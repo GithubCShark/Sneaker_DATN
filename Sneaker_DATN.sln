@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sneaker_DATN", "Sneaker_DATN\Sneaker_DATN.csproj", "{F0D91736-A015-497B-87AF-DD7BD9520537}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F0D91736-A015-497B-87AF-DD7BD9520537}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0D91736-A015-497B-87AF-DD7BD9520537}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0D91736-A015-497B-87AF-DD7BD9520537}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0D91736-A015-497B-87AF-DD7BD9520537}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DFEE1B47-8BD7-42B4-AB2A-30AF5F49312F}
+	EndGlobalSection
+EndGlobal
