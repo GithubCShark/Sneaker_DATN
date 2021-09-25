@@ -24,5 +24,7 @@ namespace Sneaker_DATN.Models
         public DbSet<Size> Sizes { get; set; }
         public DbSet<MauSac> MauSacs { get; set; }
         public DbSet<ThuongHieu> ThuongHieus { get; set; }
+        public DbSet<MauSP> MauSPs { get; set; }
+        public DbSet<SizeSP> SizeSPs { get; set; }
     }
 }
