@@ -20,6 +20,7 @@ namespace Sneaker_DATN.Models
     {
         [Key]
         public int DonHangId { get; set; }
+
         [ForeignKey("KhachHang")]
         public int KhachHangId { get; set; }
 
@@ -27,15 +28,20 @@ namespace Sneaker_DATN.Models
         [Display(Name = "Ngày Đặt")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime Ngaydat { get; set; }
+
         [Required, Range(0, double.MaxValue, ErrorMessage ="Vui lòng nhập tổng tiền")]
         [Display(Name ="Tổng tiền")]
         public double TongTien { get; set; }
+
         [Display(Name ="Trạng thái")]
         public TrangthaiDonhang TrangthaiDonhang { get; set; }
+
         [StringLength(250)]
         [Display(Name = "Ghi chú")]
         public string Ghichu { get; set; }
+
         public KhachHang KhachHang { get; set; }
+
         public List<DonhangChitiet> DonhangChitiets { get; set; }
     }
 }
