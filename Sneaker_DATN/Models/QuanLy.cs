@@ -1,16 +1,17 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Threading.Tasks;
-
 namespace Sneaker_DATN.Models
 {
     public class QuanLy
     {
         [Key]
-        public int QuanLyId { get; set; }
+        public int UserID { get; set; }
 
         [Column(TypeName = "nvarchar(100)")]
         [Display(Name ="Tài Khoản")]
@@ -22,32 +23,43 @@ namespace Sneaker_DATN.Models
         [Required(ErrorMessage = "Vui lòng nhập họ tên")]
         public string FullName { get; set; }
 
+        [Required(ErrorMessage = "{0} không được để trống")]
+        [Display(Name = "Giới tính")]
+        public string GioiTinh { get; set; }
+
         [Required]
         [RegularExpression(@"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}", ErrorMessage = "Email không hợp lệ")]
         public string Email { get; set; }
 
-        [Column(TypeName = "nvarchar(100)")]
-        [Display(Name = "Chức danh")]
-        [Required(ErrorMessage = "Vui lòng nhập chức danh")]
-        public string Title { get; set; }
+        //[Column(TypeName = "nvarchar(100)")]
+        //[Display(Name = "Chức danh")]
+        //[Required(ErrorMessage = "Vui lòng nhập chức danh")]
+        //public string Title { get; set; }
 
-        [Column(TypeName = "nvarchar(100)")]
+        [Required(ErrorMessage = "{0} không được để trống")]
+        [Display(Name = "Số điện thoại")]
+        [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Vui lòng nhập đúng đinh dạng là SĐT")]
+        public string PhoneNumber { get; set; }
+
         [Display(Name = "Ngày sinh")]
         [Required(ErrorMessage = "Vui lòng nhập ngày sinh")]
         [DisplayFormat(DataFormatString ="{0:dd/MM/yyyy}")]
         public DateTime? DOB { get; set; }
 
-        [Display(Name ="Quản trị")]
-        public bool Admin { get; set; }
-
-        [Display(Name ="Sử dụng")]
+        [Display(Name ="Mật khẩu")]
+        [Column(TypeName = "varchar(50)"), MaxLength(50)]
+        [DataType(DataType.Password)]
         public string Password { get; set;}
 
-        [Column(TypeName = "nvarchar(50)"), MaxLength(50)]
-        [Display(Name = "Xác nhận Mật khẩu")]
+        [Column(TypeName = "varchar(50)"), MaxLength(50)]
+        [Display(Name = "Xác nhận mật khẩu")]
         [DataType(DataType.Password)]
         [Compare("Password",ErrorMessage ="Mật khẩu không khớp")]
-        [NotMapped]
         public string ConfirmPassword { get; set; }
+
+        [StringLength(1)]
+        [Display(Name = "Quyền")]
+        public char Role { get; set; }
     }
 }

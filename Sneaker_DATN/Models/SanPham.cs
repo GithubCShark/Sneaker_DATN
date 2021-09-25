@@ -8,19 +8,10 @@ using System.Threading.Tasks;
 
 namespace Sneaker_DATN.Models
 {
-    public enum PhanLoai
-    {
-        [Display(Name = "Adidas")]
-        Adidas = 1,
-        [Display(Name = "Nike")]
-        Nike = 2,
-        [Display(Name = "Converse")]
-        Converse = 3
-    }
     public class SanPham
     {
         [Key]
-        public int SanPhamId { get; set; }
+        public int ProductID { get; set; }
 
         [Column(TypeName = "nvarchar(250)")]
         [StringLength(250)]
@@ -28,26 +19,31 @@ namespace Sneaker_DATN.Models
         [Display(Name ="Tên sản phẩm")]
         public string Name { get; set; }
 
-        [Column(TypeName = "nvarchar(250)")]
-        [StringLength(250)]
-        public string? MoTa { get; set; }
-
         [Column(TypeName = "money")]
         [Required(ErrorMessage = "Vui lòng nhập giá"), Range(0, double.MaxValue, ErrorMessage ="Vui lòng nhập giá")]
         [Display(Name = "Giá")]
-        public double Gia { get; set; }
+        public double Price { get; set; }
 
-        [Required(ErrorMessage = "Vui lòng chọn"), Range(1, double.MaxValue, ErrorMessage = "Vui lòng chọn")]
-        [Display(Name = "Phân loại")]
-        public PhanLoai PhanLoai { get; set; }
-
-        [Column(TypeName = "nvarchar(150)")]
-        [StringLength(150)]
         [Display(Name = "Hình ảnh")]
-        public string? HinhAnh { get; set; }
+        public string? Image { get; set; }
+
+        [Display(Name = "Hình ảnh 1")]
+        public string? Image1 { get; set; }
+
+        [Display(Name = "Hình ảnh 2")]
+        public string? Image2 { get; set; }
+
+        [ForeignKey("ThuongHieu")]
+        [Display(Name = "Thương hiệu")]
+        public int TradeMarkID { get; set; }
 
         [Display(Name = "Đang phục vụ")]
-        public bool TrangThai { get; set; }
+        public bool Status { get; set; }
+
+        [Display(Name = "Mô tả")]
+        [Column(TypeName = "nvarchar(250)")]
+        [StringLength(250)]
+        public string? Description { get; set; }
 
         [NotMapped]
         [Display(Name ="Chọn hình")]

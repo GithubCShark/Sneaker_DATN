@@ -7,22 +7,13 @@ using System.Threading.Tasks;
 
 namespace Sneaker_DATN.Models
 {
-    public enum TrangthaiDonhang
-    {
-        [Display(Name ="Mới đặt")]
-        Moidat = 1,
-        [Display(Name ="Đang giao")]
-        Danggiao = 2,
-        [Display(Name ="Đã giao")]
-        Dagiao = 3
-    }
     public class DonHang
     {
         [Key]
-        public int DonHangId { get; set; }
+        public int DonHangID { get; set; }
 
         [ForeignKey("KhachHang")]
-        public int KhachHangId { get; set; }
+        public int KhachHangID { get; set; }
 
         [Required(ErrorMessage = "Vui lòng nhập ngày đặt")]
         [Display(Name = "Ngày Đặt")]
@@ -33,15 +24,27 @@ namespace Sneaker_DATN.Models
         [Display(Name ="Tổng tiền")]
         public double TongTien { get; set; }
 
-        [Display(Name ="Trạng thái")]
-        public TrangthaiDonhang TrangthaiDonhang { get; set; }
+        [Required(ErrorMessage = "{0} không được để trống")]
+        [Display(Name = "Địa chỉ giao")]
+        public string DCGiao { get; set; }
+
+        [Display(Name = "Tình trạng")]
+        public string TinhTrang { get; set; }
 
         [StringLength(250)]
         [Display(Name = "Ghi chú")]
         public string Ghichu { get; set; }
 
-        public KhachHang KhachHang { get; set; }
+        [Required(ErrorMessage = "{0} không được để trống")]
+        [Display(Name = "Họ tên")]
+        public string HoTen { get; set; }
 
-        public List<DonhangChitiet> DonhangChitiets { get; set; }
+        [Required(ErrorMessage = "{0} không được để trống")]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
+        [Required(ErrorMessage = "{0} không được để trống")]
+        [Display(Name = "Số điện thoại")]
+        public string SDT { get; set; }
     }
 }

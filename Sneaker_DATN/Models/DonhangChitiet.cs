@@ -10,28 +10,23 @@ namespace Sneaker_DATN.Models
     public class DonhangChitiet
     {
         [Key]
-        public int ChiTietId { get; set; }
-
         [ForeignKey("DonHang")]
-        public int DonHangId { get; set; }
+        public int DonHangID { get; set; }
 
         [ForeignKey("SanPham")]
-        public int SanPhamId { get; set; }
+        public int SanPhamID { get; set; }
 
         [Required, Range(0, double.MaxValue, ErrorMessage = "Vui lòng nhập số lượng")]
         [Display(Name = "Số lượng")]
         public int Soluong { get; set; }
 
-        [Required, Range(0, double.MaxValue, ErrorMessage = "Vui lòng nhập thành tiền")]
-        [Display(Name = "Thành Tiền")]
-        public double Thanhtien { get; set; }
+        [Display(Name = "Đơn giá")]
+        public Nullable<decimal> DonGia { get; set; }
 
-        [StringLength(250)]
-        [Display(Name ="Ghi chú")]
-        public string Ghichu { get; set; }
+        [Display(Name = "Mã size")]
+        public int MaSize { get; set; }
 
-        public DonHang DonHang { get; set; }
-
-        public SanPham MonAn { get; set; }
+        [Display(Name = "Mã màu")]
+        public int MaMau { get; set; }
     }
 }

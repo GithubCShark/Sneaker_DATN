@@ -16,10 +16,13 @@ namespace Sneaker_DATN.Models
         {
 
         }
-        public DbSet<SanPham> MonAns { get; set; }
-        public DbSet<QuanLy> NguoiDungs { get; set; }
+        public DbSet<SanPham> SanPhams { get; set; }
+        public DbSet<QuanLy> QuanLys { get; set; }
         public DbSet<DonHang> DonHangs { get; set; }
         public DbSet<KhachHang> KhachHangs { get; set; }
         public DbSet<DonhangChitiet> DonhangChitiets { get; set; }
+        public DbSet<Size> Sizes { get; set; }
+        public DbSet<MauSac> MauSacs { get; set; }
+        public DbSet<ThuongHieu> ThuongHieus { get; set; }
     }
 }
