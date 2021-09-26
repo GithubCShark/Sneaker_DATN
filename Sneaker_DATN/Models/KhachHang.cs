@@ -10,7 +10,7 @@ namespace Sneaker_DATN.Models
     public class KhachHang
     {
         [Key]
-        public int KhanhHangId { get; set; }
+        public int KhanhHangID { get; set; }
 
         [Column(TypeName = "nvarchar(50)")]
         [StringLength(50)]
@@ -21,7 +21,7 @@ namespace Sneaker_DATN.Models
         [Required(ErrorMessage = "Vui lòng nhập ngày sinh")]
         [Display(Name = "Ngày Sinh")]
         [DisplayFormat(DataFormatString ="{0:dd/MM/yyyy}")]
-        public DateTime NgaySinh { get; set; }
+        public DateTime DOB { get; set; }
 
         [Column(TypeName = "varchar(15)"), MaxLength(15)]
         [Required(ErrorMessage = "Vui lòng nhập số điện thoại")]
