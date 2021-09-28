@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 namespace Sneaker_DATN.Models
 {
-    public class MauSac
+    public class Colors
     {
+        [Key]
         [Display(Name = "Mã màu")]
         public int ColorID { get; set; }
 

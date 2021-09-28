@@ -8,13 +8,13 @@ using System.Xml.Linq;
 
 namespace Sneaker_DATN.Models
 {
-    public class ThuongHieu
+    public class Brands
     {
         [Key]
         [Display(Name = "Mã thương hiệu")]
-        public int MaTH { get; set; }
+        public int BrandID { get; set; }
 
         [Display(Name = "Tên thương hiệu")]
-        public string TenTH { get; set; }
+        public string BrandName { get; set; }
     }
 }

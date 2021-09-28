@@ -7,12 +7,17 @@ using System.Threading.Tasks;
 
 namespace Sneaker_DATN.Models
 {
-    public class MauSP
+    public class ProductColor
     {
         [Key]
-        [ForeignKey("SanPham")]
+        [ForeignKey("Products")]
         public int ProductID { get; set; }
-        [ForeignKey("MauSac")]
-        public int MauID { get; set; }
+
+        [ForeignKey("Colors")]
+        public int ColorID { get; set; }
+
+        public Products Products { get; set; }
+
+        public Colors Colors { get; set; }
     }
 }

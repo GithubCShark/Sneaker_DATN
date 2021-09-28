@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sneaker_DATN.Models
 {
-    public class SanPham
+    public class Products
     {
         [Key]
         public int ProductID { get; set; }
@@ -17,7 +17,7 @@ namespace Sneaker_DATN.Models
         [StringLength(250)]
         [Required(ErrorMessage ="Vui lòng nhập tên sản phẩm")]
         [Display(Name ="Tên sản phẩm")]
-        public string Name { get; set; }
+        public string ProductName { get; set; }
 
         [Column(TypeName = "money")]
         [Required(ErrorMessage = "Vui lòng nhập giá"), Range(0, double.MaxValue, ErrorMessage ="Vui lòng nhập giá")]
@@ -33,9 +33,9 @@ namespace Sneaker_DATN.Models
         [Display(Name = "Hình ảnh 2")]
         public string? Image2 { get; set; }
 
-        [ForeignKey("ThuongHieu")]
+        [ForeignKey("Brands")]
         [Display(Name = "Thương hiệu")]
-        public int TradeMarkID { get; set; }
+        public int BrandID { get; set; }
 
         [Display(Name = "Đang phục vụ")]
         public bool Status { get; set; }
@@ -48,5 +48,7 @@ namespace Sneaker_DATN.Models
         [NotMapped]
         [Display(Name ="Chọn hình")]
         public IFormFile ImageFile { get; set; }
+
+        public Brands Brands { get; set; }
     }
 }

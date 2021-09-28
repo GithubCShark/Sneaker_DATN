@@ -7,12 +7,17 @@ using System.Threading.Tasks;
 
 namespace Sneaker_DATN.Models
 {
-    public class SizeSP
+    public class ProductSize
     {
         [Key]
-        [ForeignKey("SanPham")]
+        [ForeignKey("Products")]
         public int ProductID { get; set; }
-        [ForeignKey("Size")]
+
+        [ForeignKey("Sizes")]
         public int SizeID { get; set; }
+
+        public Products Products { get; set; }
+
+        public Sizes Sizes { get; set; }
     }
 }

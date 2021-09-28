@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 using System.Threading.Tasks;
 namespace Sneaker_DATN.Models
 {
-    public class QuanLy
+    public class Users
     {
         [Key]
         public int UserID { get; set; }
@@ -58,8 +58,10 @@ namespace Sneaker_DATN.Models
         [Compare("Password",ErrorMessage ="Mật khẩu không khớp")]
         public string ConfirmPassword { get; set; }
 
-        [StringLength(1)]
+        [ForeignKey("Roles")]
         [Display(Name = "Quyền")]
-        public char Role { get; set; }
+        public int RoleID { get; set; }
+
+        public Roles Roles { get; set; }
     }
 }

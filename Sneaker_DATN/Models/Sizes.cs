@@ -7,12 +7,12 @@ using System.Xml.Linq;
 
 namespace Sneaker_DATN.Models
 {
-    public class Size
+    public class Sizes
     {
+        [Key]
         [Display(Name = "Mã size")]
         public int SizeID { get; set; }
 
-        [Display(Name = "Size")]
-        public int Size1 { get; set; }
+        public int Size { get; set; }
     }
 }
