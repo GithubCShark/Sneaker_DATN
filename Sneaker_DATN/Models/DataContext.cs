@@ -16,6 +16,15 @@ namespace Sneaker_DATN.Models
         {
 
         }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            // Create 2 Primary Key
+            builder.Entity<ProductColor>().HasKey(p => new { p.ProductID, p.ColorID });
+            builder.Entity<ProductSize>().HasKey(p => new { p.ProductID, p.SizeID });
+
+        }
+
         public DbSet<Products> Products { get; set; }
         public DbSet<Users> Users { get; set; }
         public DbSet<Orders> Orders { get; set; }

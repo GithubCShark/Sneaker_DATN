@@ -21,7 +21,7 @@ namespace Sneaker_DATN.Models
         public int Quantity { get; set; }
 
         [Display(Name = "Đơn giá")]
-        public decimal Price { get; set; }
+        public double Price { get; set; }
 
         [ForeignKey("Sizes")]
         [Display(Name = "Mã size")]

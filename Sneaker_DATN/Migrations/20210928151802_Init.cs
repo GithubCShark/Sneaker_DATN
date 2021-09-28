@@ -121,7 +121,7 @@ namespace Sneaker_DATN.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductColors", x => x.ProductID);
+                    table.PrimaryKey("PK_ProductColors", x => new { x.ProductID, x.ColorID });
                     table.ForeignKey(
                         name: "FK_ProductColors_Colors_ColorID",
                         column: x => x.ColorID,
@@ -145,7 +145,7 @@ namespace Sneaker_DATN.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductSizes", x => x.ProductID);
+                    table.PrimaryKey("PK_ProductSizes", x => new { x.ProductID, x.SizeID });
                     table.ForeignKey(
                         name: "FK_ProductSizes_Products_ProductID",
                         column: x => x.ProductID,
@@ -194,7 +194,7 @@ namespace Sneaker_DATN.Migrations
                     OrderID = table.Column<int>(type: "int", nullable: false),
                     ProductID = table.Column<int>(type: "int", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
-                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Price = table.Column<double>(type: "float", nullable: false),
                     SizeID = table.Column<int>(type: "int", nullable: false),
                     ColorID = table.Column<int>(type: "int", nullable: false)
                 },

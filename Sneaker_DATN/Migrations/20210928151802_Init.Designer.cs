@@ -10,7 +10,7 @@ using Sneaker_DATN.Models;
 namespace Sneaker_DATN.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210928142557_Init")]
+    [Migration("20210928151802_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -59,8 +59,8 @@ namespace Sneaker_DATN.Migrations
                     b.Property<int>("ColorID")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
                     b.Property<int>("ProductID")
                         .HasColumnType("int");
@@ -136,7 +136,7 @@ namespace Sneaker_DATN.Migrations
                     b.Property<int>("ColorID")
                         .HasColumnType("int");
 
-                    b.HasKey("ProductID");
+                    b.HasKey("ProductID", "ColorID");
 
                     b.HasIndex("ColorID");
 
@@ -151,7 +151,7 @@ namespace Sneaker_DATN.Migrations
                     b.Property<int>("SizeID")
                         .HasColumnType("int");
 
-                    b.HasKey("ProductID");
+                    b.HasKey("ProductID", "SizeID");
 
                     b.HasIndex("SizeID");
 

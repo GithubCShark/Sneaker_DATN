@@ -9,7 +9,6 @@ namespace Sneaker_DATN.Models
 {
     public class ProductSize
     {
-        [Key]
         [ForeignKey("Products")]
         public int ProductID { get; set; }
 
