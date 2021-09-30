@@ -5,7 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Sneaker_DATN.Helpers;
 using Sneaker_DATN.Models;
+using Sneaker_DATN.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +30,9 @@ namespace Sneaker_DATN
             services.AddControllersWithViews();
             services.AddDbContext<DataContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddTransient<IEncodeHelper, EncodeHelper>();
+            services.AddTransient<IAdminSvc, AdminSvc>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,7 +59,7 @@ namespace Sneaker_DATN
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Admin}/{action=Index}/{id?}");
             });
         }
     }
