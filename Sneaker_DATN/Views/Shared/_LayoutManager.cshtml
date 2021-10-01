@@ -1,0 +1,315 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Quản Lý | @ViewData["Title"]</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.8.2/angular-route.min.js"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="~/img/svg/logo.svg" type="image/x-icon">
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="~/css/style.css">
+</head>
+
+<body ng-app="myApp">
+    <div class="layer"></div>
+    <!-- ! Body -->
+    <a class="skip-link sr-only" href="#skip-target">Skip</a>
+    <div class="page-flex">
+        <!-- ! Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-start">
+                <div class="sidebar-head">
+                    <a href="/" class="logo-wrapper" title="Home">
+                        <span class="sr-only">Home</span>
+                        <span class="icon logo" aria-hidden="true"></span>
+                        <div class="logo-text">
+                            <span class="logo-title">DACH Team</span>
+                            <span class="logo-subtitle">Trang Quản Lý</span>
+                        </div>
+                    </a>
+                    <button class="sidebar-toggle transparent-btn" title="Menu" type="button">
+                        <span class="sr-only">Toggle menu</span>
+                        <span class="icon menu-toggle" aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="sidebar-body" ng-controller="index">
+                    <ul class="sidebar-body-menu">
+                        <li>
+                            <a class="{{acdefaul}}" ng-click="acside(0)" href="#!trangchu">
+                                <span class="icon home" aria-hidden="true"></span>Trang Chủ
+                            </a>
+                        </li>
+                        <li>
+                            <a class="{{ac1}}" ng-click="acside(1)" href="#!donhang">
+                                <span class="icon document" aria-hidden="true"></span>Đơn Hàng
+                            </a>
+                        </li>
+                        <li>
+                            <a class="{{ac2}}" ng-click="acside(2)" href="#!khachhang">
+                                <span class="icon user-3" aria-hidden="true"></span>Khách Hàng
+                            </a>
+                        </li>
+                        <li>
+                            <a class="show-cat-btn {{ac3}}" href="#">
+                                <span class="icon category" aria-hidden="true"></span>Sản Phẩm
+                                <span class="category__btn transparent-btn" title="Open list">
+                                    <span class="icon arrow-down" aria-hidden="true"></span>
+                                </span>
+                            </a>
+                            <ul class="cat-sub-menu">
+                                <li>
+                                    <a ng-click="acside(3)" href="#!product">Danh Sách</a>
+                                </li>
+                                <li>
+                                    <a ng-click="acside(3)" href="#!color">Bảng Màu</a>
+                                </li>
+                                <li>
+                                    <a ng-click="acside(3)" href="#">Bảng Size</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="show-cat-btn1 {{ac4}}" href="#">
+                                <span class="icon report" aria-hidden="true"></span>Thống Kê, Báo Cáo
+                                <span class="category__btn1 transparent-btn" title="Open list">
+                                    <span class="icon arrow-down" aria-hidden="true"></span>
+                                </span>
+                            </a>
+                            <ul class="cat-sub-menu">
+                                <li>
+                                    <a ng-click="acside(4)" href="#">Thống Kê</a>
+                                </li>
+                                <li>
+                                    <a ng-click="acside(4)" href="#">Báo Cáo</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="{{ac5}}" ng-click="acside(5)" href="#!marketing">
+                                <span class="icon marketing" aria-hidden="true"></span>Marketing
+                            </a>
+                        </li>
+                        <li>
+                            <a class="{{ac6}}" ng-click="acside(6)" asp-controller="User" asp-action="Index">
+                                <span class="icon user-3" aria-hidden="true"></span>Quản lý tài khoản
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="sidebar-footer">
+                <a href="##" class="sidebar-user">
+                    <span class="sidebar-user-img">
+                        <picture>
+                            <source srcset="/img/avatar/avatar-illustrated-01.webp" type="image/webp">
+                            <img src="/img/avatar/avatar-illustrated-01.png" alt="Mai Thế Anh">
+                        </picture>
+                    </span>
+                    <div class="sidebar-user-info">
+                        <span class="sidebar-user__title">Mtab</span>
+                        <span class="sidebar-user__subtitle">Support manager</span>
+                    </div>
+                </a>
+            </div>
+        </aside>
+        <div class="main-wrapper">
+            <!-- ! Main nav -->
+            <nav class="main-nav--bg">
+                <div class="container main-nav">
+                    <div class="main-nav-start">
+                        <div class="music">
+                            <audio id="player" src="./audio/cuoithoi.mp3"></audio>
+                            <div class="player">
+                                <div class="control">
+                                    <i class="fas fa-play" id="playbtn"></i>
+                                </div>
+                                <div class="info">
+                                    Cưới thôi!
+                                    <div class="bar">
+                                        <div id="progress"></div>
+                                    </div>
+                                </div>
+                                <i id="current" class="fab fa-napster"></i>
+                                <!-- <div id="current">0:00</div>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="main-nav-end">
+                        <button class="sidebar-toggle transparent-btn" title="Menu" type="button">
+                            <span class="sr-only">Toggle menu</span>
+                            <span class="icon menu-toggle--gray" aria-hidden="true"></span>
+                        </button>
+                        <div class="lang-switcher-wrapper">
+                            <button class="lang-switcher transparent-btn" type="button">
+                                VN
+                                <i data-feather="chevron-down" aria-hidden="true"></i>
+                            </button>
+                            <ul class="lang-menu dropdown">
+                                <li><a href="##">English</a></li>
+                            </ul>
+                        </div>
+                        <button class="theme-switcher gray-circle-btn" type="button" title="Switch theme">
+                            <span class="sr-only">Đổi giao diện</span>
+                            <i class="moon-icon" data-feather="moon" aria-hidden="true"></i>
+                            <i class="sun-icon" data-feather="sun" aria-hidden="true"></i>
+                        </button>
+                        <div class="notification-wrapper">
+                            <button class="gray-circle-btn dropdown-btn" title="Thông Báo" type="button">
+                                <span class="sr-only">Thông Báo</span>
+                                <span class="icon notification active" aria-hidden="true"></span>
+                            </button>
+                            <ul class="users-item-dropdown notification-dropdown dropdown">
+                                <li>
+                                    <a href="##">
+                                        <div class="notification-dropdown-icon info">
+                                            <i data-feather="check"></i>
+                                        </div>
+                                        <div class="notification-dropdown-text">
+                                            <span class="notification-dropdown__title">System just updated</span>
+                                            <span class="notification-dropdown__subtitle">
+                                                The system has been successfully upgraded. Read more
+                                                here.
+                                            </span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="##">
+                                        <div class="notification-dropdown-icon danger">
+                                            <i data-feather="info" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="notification-dropdown-text">
+                                            <span class="notification-dropdown__title">The cache is full!</span>
+                                            <span class="notification-dropdown__subtitle">
+                                                Unnecessary caches take up a lot of memory space and
+                                                interfere ...
+                                            </span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="##">
+                                        <div class="notification-dropdown-icon info">
+                                            <i data-feather="check" aria-hidden="true"></i>
+                                        </div>
+                                        <div class="notification-dropdown-text">
+                                            <span class="notification-dropdown__title">New Subscriber here!</span>
+                                            <span class="notification-dropdown__subtitle">A new subscriber has subscribed.</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="link-to-page" href="##">Đến trang thông báo</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="nav-user-wrapper">
+                            <button href="##" class="nav-user-btn dropdown-btn" title="Bản Thân" type="button">
+                                <span class="sr-only">Bản Thân</span>
+                                <span class="nav-user-img">
+                                    <picture>
+                                        <source srcset="./img/avatar/avatar-illustrated-02.webp" type="image/webp">
+                                        <img src="./img/avatar/avatar-illustrated-02.png" alt="User name">
+                                    </picture>
+                                </span>
+                            </button>
+                            <ul class="users-item-dropdown nav-user-dropdown dropdown">
+                                <li>
+                                    <a href="##">
+                                        <i data-feather="user" aria-hidden="true"></i>
+                                        <span>Thông Tin</span>
+                                    </a>
+                                </li>
+                                <!--<li><a href="##">
+                                    <i data-feather="settings" aria-hidden="true"></i>
+                                    <span>Account settings</span>
+                                  </a>
+                                </li>
+                                -->
+                                <li>
+                                    <a class="danger" href="##">
+                                        <i data-feather="log-out" aria-hidden="true"></i>
+                                        <span>Đăng Xuất</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <!-- ! Main -->
+            @RenderBody()
+            <!-- ! Footer -->
+            <footer class="footer">
+                <div class="container footer--flex">
+                    <div class="footer-start">
+                        <p>
+                            2021 © DACH Team - By: <a href="https://www.facebook.com/maitheanh.tlst/" target="_blank"
+                                                      rel="noopener noreferrer">anh.mt1602@gmail.com</a>
+                        </p>
+                    </div>
+                    <ul class="footer-end">
+                        <li><a href="##">Thông tin</a></li>
+                        <li><a href="##">Hỗ trợ</a></li>
+                        <li><a href="##">Thanh toán</a></li>
+                    </ul>
+                </div>
+            </footer>
+        </div>
+    </div>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>
+<!-- Chart library -->
+<script src="/plugins/chart.min.js"></script>
+<!-- Icons library -->
+<script src="/plugins/feather.min.js"></script>
+<!-- Custom scripts -->
+<script src="/js/script.js"></script>
+<script>
+    var app = angular.module("myApp", ["ngRoute"]);
+    app.controller("index", function ($scope, $http) {
+        $scope.acdefaul = "active"
+        $scope.acside = function (x) {
+            $scope.acdefaul = ""
+            $scope.ac1 = ""
+            $scope.ac2 = ""
+            $scope.ac3 = ""
+            $scope.ac4 = ""
+            $scope.ac5 = ""
+            $scope.ac6 = ""
+            if (x == "1") {
+                $scope.ac1 = "active"
+            }
+            else if (x == "2") {
+                $scope.ac2 = "active"
+            }
+            else if (x == "3") {
+                $scope.ac3 = "active"
+            }
+            else if (x == "4") {
+                $scope.ac4 = "active"
+            }
+            else if (x == "5") {
+                $scope.ac5 = "active"
+            }
+            else if (x == "6") {
+                $scope.ac6 = "active"
+            }
+            else {
+                $scope.acdefaul = "active"
+            }
+        }
+    })
+</script>

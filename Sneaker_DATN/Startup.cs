@@ -28,12 +28,14 @@ namespace Sneaker_DATN
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddDbContext<DataContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddTransient<IEncodeHelper, EncodeHelper>();
             services.AddTransient<IAdminSvc, AdminSvc>();
             services.AddTransient<IProductSvc, ProductSvc>();
+            services.AddTransient<IUserSvc, UserSvc>();
             services.AddTransient<IUploadHelper, UploadHelper>();
 
             //services.AddRazorPages().AddRazorRuntimeCompilation();
@@ -66,7 +68,7 @@ namespace Sneaker_DATN
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Admin}/{action=Index}/{id?}");
+                    pattern: "{controller=User}/{action=Index}/{id?}");
             });
         }
     }
