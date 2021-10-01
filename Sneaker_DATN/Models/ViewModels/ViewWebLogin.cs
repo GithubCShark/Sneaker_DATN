@@ -14,6 +14,9 @@ namespace Sneaker_DATN.Models.ViewModels
         [Required]
         public string Password { get; set; }
 
+        [Required]
+        public int RoleID { get; set; }
+
         public string ReturnUrl { get; set; }
     }
 }

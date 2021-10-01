@@ -8,24 +8,24 @@ using System.Threading.Tasks;
 
 namespace Sneaker_DATN.Services
 {
-    public interface IUserSvc
+    public interface IUserMemSvc
     {
-        List<Users> GetAllUser();
-        Users GetUser(int id);
-        int AddUser(Users user);
-        int EditUser(int id, Users user);
-        public Users Login(ViewLogin viewLogin);
+        List<Users> GetAllUserMem();
+        Users GetUserMem(int id);
+        int AddUserMem(Users user);
+        int EditUserMem(int id, Users user);
+        public Users Login(ViewWebLogin viewWebLogin);
     }
-    public class UserSvc : IUserSvc
+    public class UserMemSvc : IUserMemSvc
     {
         protected DataContext _context;
         protected IEncodeHelper _encodeHelper;
-        public UserSvc(DataContext context, IEncodeHelper encodeHelper)
+        public UserMemSvc(DataContext context, IEncodeHelper encodeHelper)
         {
             _context = context;
             _encodeHelper = encodeHelper;
         }
-        public int AddUser(Users user)
+        public int AddUserMem(Users user)
         {
             int ret = 0;
             try
@@ -43,7 +43,7 @@ namespace Sneaker_DATN.Services
             return ret;
         }
 
-        public int EditUser(int id, Users user)
+        public int EditUserMem(int id, Users user)
         {
             int ret = 0;
             try
@@ -72,29 +72,28 @@ namespace Sneaker_DATN.Services
             return ret;
         }
 
-        public List<Users> GetAllUser()
-        {
-            List<Users> list = new List<Users>();
-            list = _context.Users.Where(
-                p => p.RoleID.Equals(1)
-                || p.RoleID.Equals(2)
-                ).ToList();
-            return list;
-        }
+        
 
-        public Users GetUser(int id)
+        public Users GetUserMem(int id)
         {
             Users user = null;
             user = _context.Users.Find(id);
             return user;
         }
-        public Users Login(ViewLogin viewLogin)
+        public List<Users> GetAllUserMem()
+        {
+            List<Users> list = new List<Users>();
+            list = _context.Users.Where(
+                p => p.RoleID.Equals(3)
+                ).ToList();
+            return list;
+        }
+        public Users Login(ViewWebLogin viewWebLogin)
         {
             var u = _context.Users.Where(
-                p => p.UserName.Equals(viewLogin.UserName)
-                && p.Password.Equals(_encodeHelper.Encode(viewLogin.Password))
-                && p.RoleID.Equals(1)
-                || p.RoleID.Equals(2)
+                p => p.UserName.Equals(viewWebLogin.UserName)
+                && p.Password.Equals(_encodeHelper.Encode(viewWebLogin.Password))
+                && p.RoleID.Equals(3)
                 ).FirstOrDefault();
             return u;
         }
