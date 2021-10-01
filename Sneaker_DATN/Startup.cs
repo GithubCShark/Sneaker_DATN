@@ -33,6 +33,10 @@ namespace Sneaker_DATN
 
             services.AddTransient<IEncodeHelper, EncodeHelper>();
             services.AddTransient<IAdminSvc, AdminSvc>();
+            services.AddTransient<IProductSvc, ProductSvc>();
+            services.AddTransient<IUploadHelper, UploadHelper>();
+
+            //services.AddRazorPages().AddRazorRuntimeCompilation();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,8 +55,11 @@ namespace Sneaker_DATN
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            //app.UseSession();
+
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
