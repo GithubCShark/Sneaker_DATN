@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Sneaker_DATN.Models.Sizes>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Bảng Size Giày</h1>
+
+<p>
+    <a asp-action="Create">Thêm mới size</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SizeID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Size)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SizeID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Size)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.SizeID">Sửa</a> |
+                <a asp-action="Delete" asp-route-id="@item.SizeID">Xoá</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

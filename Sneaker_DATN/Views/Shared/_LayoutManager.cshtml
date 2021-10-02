@@ -50,7 +50,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="{{ac1}}" ng-click="acside(1)" href="#!donhang">
+                            <a class="{{ac1}}" ng-click="acside(1)" asp-controller="Orders" asp-action="Index">
                                 <span class="icon document" aria-hidden="true"></span>Đơn Hàng
                             </a>
                         </li>
@@ -71,10 +71,10 @@
                                     <a ng-click="acside(3)" asp-controller="Product" asp-action="Index">Danh Sách</a>
                                 </li>
                                 <li>
-                                    <a ng-click="acside(3)" href="#!color">Bảng Màu</a>
+                                    <a ng-click="acside(3)" asp-controller="Colors" asp-action="Index">Bảng Màu</a>
                                 </li>
                                 <li>
-                                    <a ng-click="acside(3)" href="#">Bảng Size</a>
+                                    <a ng-click="acside(3)" asp-controller="Sizes" asp-action="Index">Bảng Size</a>
                                 </li>
                             </ul>
                         </li>
