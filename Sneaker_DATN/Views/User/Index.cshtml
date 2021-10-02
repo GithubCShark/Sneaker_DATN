@@ -74,7 +74,15 @@
                             @Html.DisplayFor(modelItem => item.Email)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Gender)
+                            @if (item.Gender == "1")
+                            {
+                                <span>Nam</span>
+                            }
+                            else
+                            {
+                                <span>Nữ</span>
+                            }
+                            @*@Html.DisplayFor(modelItem => item.Gender)*@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.PhoneNumber)
@@ -83,7 +91,19 @@
                             @Html.DisplayFor(modelItem => item.DOB)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.RoleID)
+                            @if (item.RoleID == 1)
+                            {
+                                <span>Quản lý</span>
+                            }
+                            else if (item.RoleID == 2)
+                            {
+                                <span>Nhân viên</span>
+                            }
+                            else
+                            {
+                                <span>Khách hàng</span>
+                            }
+                            @*@Html.DisplayFor(modelItem => item.RoleID)*@
                         </td>
                         <td>
                             <a asp-action="Edit" asp-route-id="@item.UserID">Sửa</a> |

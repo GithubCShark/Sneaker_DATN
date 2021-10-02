@@ -9,9 +9,13 @@ namespace Sneaker_DATN.Services
     public interface IProductSvc
     {
         List<Products> GetProductAll();
+
         Products GetProduct(int id);
+
         int AddProduct(Products product);
+
         int GetProduct(Products product);
+
         int EditProduct(int id, Products product);
     }
     public class ProductSvc : IProductSvc

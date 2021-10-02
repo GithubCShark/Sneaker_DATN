@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Sneaker_DATN.Helpers;
 using Sneaker_DATN.Models;
@@ -20,11 +21,12 @@ namespace Sneaker_DATN.Controllers
         private readonly IWebHostEnvironment _webHostEnvironment;
         private IProductSvc _productSvc;
         private IUploadHelper _uploadHelper;
-        public ProductController(IWebHostEnvironment webHostEnviroment, IProductSvc productSvc, IUploadHelper uploadHelper)
+        public ProductController(IWebHostEnvironment webHostEnviroment, IProductSvc productSvc, IUploadHelper uploadHelper, DataContext context)
         {
             _webHostEnvironment = webHostEnviroment;
             _productSvc = productSvc;
             _uploadHelper = uploadHelper;
+            _context = context;
         }
 
         // GET: ProductController
@@ -43,7 +45,9 @@ namespace Sneaker_DATN.Controllers
         // GET: MonAnController/Create
         public ActionResult Create()
         {
-                return View();
+            var brands = _context.Brands.ToList();
+            ViewData["brands"] = new SelectList(brands, "BrandID", "BrandName");
+            return View();
         }
 
         // POST: ProductController/Create
@@ -60,8 +64,8 @@ namespace Sneaker_DATN.Controllers
                         string rootPath = Path.Combine(_webHostEnvironment.WebRootPath, "images");
                         _uploadHelper.UploadImage(product.ImageFile, rootPath, "Product");
                         product.Image = product.ImageFile.FileName;
-                        product.Image1 = product.ImageFile.FileName;
-                        product.Image2 = product.ImageFile.FileName;
+                        product.Image1 = product.ImageFile1.FileName;
+                        product.Image2 = product.ImageFile2.FileName;
 
                     }
 

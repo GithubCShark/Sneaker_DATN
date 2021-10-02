@@ -49,6 +49,14 @@ namespace Sneaker_DATN.Models
         [Display(Name ="Chọn hình")]
         public IFormFile ImageFile { get; set; }
 
+        [NotMapped]
+        [Display(Name = "Chọn hình 1")]
+        public IFormFile ImageFile1 { get; set; }
+
+        [NotMapped]
+        [Display(Name = "Chọn hình 2")]
+        public IFormFile ImageFile2 { get; set; }
+
         public Brands Brands { get; set; }
     }
 }

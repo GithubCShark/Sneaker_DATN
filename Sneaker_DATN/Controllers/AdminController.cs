@@ -26,7 +26,7 @@ namespace Sneaker_DATN.Controllers
 
         public IActionResult Index()
         {
-            return View(_adminSvc.GetUserAll());
+            return View();
         }
 
         public IActionResult Login(string returnUrl)

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -31,10 +32,12 @@ namespace Sneaker_DATN.Models
         [RegularExpression(@"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}", ErrorMessage = "Email không hợp lệ")]
         public string Email { get; set; }
 
-        //[Column(TypeName = "nvarchar(100)")]
-        //[Display(Name = "Chức danh")]
-        //[Required(ErrorMessage = "Vui lòng nhập chức danh")]
-        //public string Title { get; set; }
+        [Display(Name = "Ảnh đại diện")]
+        public string? ImgUser { get; set; }
+
+        [NotMapped]
+        [Display(Name = "Chọn hình")]
+        public IFormFile ImageUser { get; set; }
 
         [Required(ErrorMessage = "{0} không được để trống")]
         [Display(Name = "Số điện thoại")]

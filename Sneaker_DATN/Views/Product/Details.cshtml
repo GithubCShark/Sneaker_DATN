@@ -1,7 +1,7 @@
 ﻿@model Sneaker_DATN.Models.Products
 
 @{
-    ViewData["Title"] = "Detail";
+    ViewData["Title"] = "Details";
 }
 
 <h1>Detail</h1>
@@ -22,23 +22,23 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Price)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Image)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Image)
+        <dd class="col-sm-10">
+            <img src="~/images/Product/@Model.Image" style="width:250px" />
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Image1)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Image1)
+        <dd class="col-sm-10">
+            <img src="~/images/Product/@Model.Image1" style="width:250px" />
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Image2)
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Image2)
+        <dd class="col-sm-10">
+            <img src="~/images/Product/@Model.Image2" style="width:250px" />
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Status)
