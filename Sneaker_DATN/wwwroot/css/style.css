@@ -1026,12 +1026,13 @@ body {
   background-position: center center;
 }
 
+/*
 .logo {
   background-image: url(~/images/avatar/Logoteam.png);
-  width: 49px;
+  width: 64px;
   height: 49px;
 }
-
+*/
 .menu-toggle {
     background-image: url(~/images/svg/Bulk/Menu-toggle-white.svg);
     width: 24px;
