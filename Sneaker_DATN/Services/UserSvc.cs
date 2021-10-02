@@ -14,6 +14,8 @@ namespace Sneaker_DATN.Services
         Users GetUser(int id);
         int AddUser(Users user);
         int EditUser(int id, Users user);
+        List<Roles> GetAllRole();
+        Roles GetRole(int id);
         public Users Login(ViewLogin viewLogin);
     }
     public class UserSvc : IUserSvc
@@ -87,6 +89,21 @@ namespace Sneaker_DATN.Services
             Users user = null;
             user = _context.Users.Find(id);
             return user;
+        }
+        public List<Roles> GetAllRole()
+        {
+            List<Roles> list = new List<Roles>();
+            list = _context.Roles.Where(
+                p => p.RoleID.Equals(1)
+                || p.RoleID.Equals(2)
+                ).ToList();
+            return list;
+        }
+        public Roles GetRole(int id)
+        {
+            Roles roles = null;
+            roles = _context.Roles.Find(id);
+            return roles;
         }
         public Users Login(ViewLogin viewLogin)
         {

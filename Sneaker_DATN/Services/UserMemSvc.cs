@@ -14,6 +14,7 @@ namespace Sneaker_DATN.Services
         Users GetUserMem(int id);
         int AddUserMem(Users user);
         int EditUserMem(int id, Users user);
+        Roles GetRole(int id);
         public Users Login(ViewWebLogin viewWebLogin);
     }
     public class UserMemSvc : IUserMemSvc
@@ -72,7 +73,12 @@ namespace Sneaker_DATN.Services
             return ret;
         }
 
-        
+        public Roles GetRole(int id)
+        {
+            Roles roles = null;
+            roles = _context.Roles.Find(id);
+            return roles;
+        }
 
         public Users GetUserMem(int id)
         {

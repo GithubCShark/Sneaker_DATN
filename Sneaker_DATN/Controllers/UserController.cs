@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Sneaker_DATN.Models;
 using Sneaker_DATN.Services;
 using System;
@@ -14,10 +15,12 @@ namespace Sneaker_DATN.Controllers
     {
         private readonly IWebHostEnvironment _webHostEnviroment;
         private IUserSvc _userSvc;
-        public UserController(IWebHostEnvironment webHostEnvironment, IUserSvc userSvc)
+        private DataContext _context;
+        public UserController(IWebHostEnvironment webHostEnvironment, IUserSvc userSvc, DataContext context)
         {
             _webHostEnviroment = webHostEnvironment;
             _userSvc = userSvc;
+            _context = context;
         }
         // GET: UserController
         public ActionResult Index()
@@ -29,12 +32,17 @@ namespace Sneaker_DATN.Controllers
         public ActionResult Details(int id)
         {
             var user = _userSvc.GetUser(id);
+
+            var roles = _userSvc.GetRole(user.RoleID);
+            ViewData["RoleNameD"] = roles.Role;
             return View(user);
         }
 
         // GET: UserController/Create
         public ActionResult Create()
         {
+            var rolename = _context.Roles.ToList();
+            ViewData["RoleNameC"]= new SelectList(rolename, "RoleID", "Role");
             return View();
         }
 
@@ -57,6 +65,9 @@ namespace Sneaker_DATN.Controllers
         // GET: UserController/Edit/5
         public ActionResult Edit(int id)
         {
+            var role = _context.Roles.ToList();
+            ViewData["RoleN"] = new SelectList(role, "RoleID", "Role");
+
             var user = _userSvc.GetUser(id);
             return View(user);
         }

@@ -39,29 +39,29 @@
                     </a>
                     <button class="sidebar-toggle transparent-btn" title="Menu" type="button">
                         <span class="sr-only">Toggle menu</span>
-                        <span class="icon menu-toggle" aria-hidden="true"></span>
+                        <i class="icon fas fa-list" style="color:white"></i>
                     </button>
                 </div>
                 <div class="sidebar-body" ng-controller="index">
                     <ul class="sidebar-body-menu">
                         <li>
                             <a class="{{acdefaul}}" ng-click="acside(0)" href="#!trangchu">
-                                <span class="icon home" aria-hidden="true"></span>Trang Chủ
+                                <i class="icon fas fa-home"></i>Trang Chủ
                             </a>
                         </li>
                         <li>
                             <a class="{{ac1}}" ng-click="acside(1)" asp-controller="Orders" asp-action="Index">
-                                <span class="icon document" aria-hidden="true"></span>Đơn Hàng
+                                <i class="icon fas fa-cart-plus"></i>Đơn Hàng
                             </a>
                         </li>
                         <li>
                             <a class="{{ac2}}" ng-click="acside(2)" asp-controller="UserMem" asp-action="Index">
-                                <span class="icon user-3" aria-hidden="true"></span>Khách Hàng
+                                <i class="icon fas fa-users"></i></span>Khách Hàng
                             </a>
                         </li>
                         <li>
                             <a class="show-cat-btn {{ac3}}" href="#">
-                                <span class="icon category" aria-hidden="true"></span>Sản Phẩm
+                                <i class="icon fas fa-archive"></i></span>Sản Phẩm
                                 <span class="category__btn transparent-btn" title="Open list">
                                     <span class="icon arrow-down" aria-hidden="true"></span>
                                 </span>
@@ -80,7 +80,7 @@
                         </li>
                         <li>
                             <a class="show-cat-btn1 {{ac4}}" href="#">
-                                <span class="icon report" aria-hidden="true"></span>Thống Kê, Báo Cáo
+                                <i class="icon fas fa-chart-pie"></i></span>Thống Kê, Báo Cáo
                                 <span class="category__btn1 transparent-btn" title="Open list">
                                     <span class="icon arrow-down" aria-hidden="true"></span>
                                 </span>
@@ -96,12 +96,12 @@
                         </li>
                         <li>
                             <a class="{{ac5}}" ng-click="acside(5)" href="#!marketing">
-                                <span class="icon marketing" aria-hidden="true"></span>Marketing
+                                <i class="icon fas fa-share-alt-square"></i></span>Marketing
                             </a>
                         </li>
                         <li>
                             <a class="{{ac6}}" ng-click="acside(6)" asp-controller="User" asp-action="Index">
-                                <span class="icon user-3" aria-hidden="true"></span>Quản lý tài khoản
+                                <i class="icon fas fa-user-cog"></i>Quản lý tài khoản
                             </a>
                         </li>
                     </ul>
@@ -166,7 +166,7 @@
                         <div class="notification-wrapper">
                             <button class="gray-circle-btn dropdown-btn" title="Thông Báo" type="button">
                                 <span class="sr-only">Thông Báo</span>
-                                <span class="icon notification active" aria-hidden="true"></span>
+                                <i class="icon fas fa-bell"></i>
                             </button>
                             <ul class="users-item-dropdown notification-dropdown dropdown">
                                 <li>
@@ -250,7 +250,7 @@
             <!-- ! Main -->
             @RenderBody()
             <!-- ! Footer -->
-            <footer class="footer">
+            @*<footer class="footer">
                 <div class="container footer--flex">
                     <div class="footer-start">
                         <p>
@@ -264,7 +264,7 @@
                         <li><a href="##">Thanh toán</a></li>
                     </ul>
                 </div>
-            </footer>
+            </footer>*@
         </div>
     </div>
     @await RenderSectionAsync("Scripts", required: false)

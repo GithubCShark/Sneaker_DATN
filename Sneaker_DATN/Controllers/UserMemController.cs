@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Sneaker_DATN.Models;
 using Sneaker_DATN.Services;
 using System;
@@ -14,10 +15,12 @@ namespace Sneaker_DATN.Controllers
     {
         private readonly IWebHostEnvironment _webHostEnviroment;
         private IUserMemSvc _userMemSvc;
-        public UserMemController(IWebHostEnvironment webHostEnvironment, IUserMemSvc userMemSvc)
+        private DataContext _context;
+        public UserMemController(IWebHostEnvironment webHostEnvironment, IUserMemSvc userMemSvc, DataContext context)
         {
             _webHostEnviroment = webHostEnvironment;
             _userMemSvc = userMemSvc;
+            _context = context;
         }
         // GET: UserController
         public ActionResult Index()
@@ -29,34 +32,40 @@ namespace Sneaker_DATN.Controllers
         public ActionResult Details(int id)
         {
             var user = _userMemSvc.GetUserMem(id);
+
+            var roles = _userMemSvc.GetRole(user.RoleID);
+            ViewData["RoleNameD"] = roles.Role;
             return View(user);
         }
 
         // GET: UserController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
+        //public ActionResult Create()
+        //{
+        //    return View();
+        //}
 
         // POST: UserController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Users user)
-        {
-            try
-            {
-                _userMemSvc.AddUserMem(user);
-                return RedirectToAction(nameof(Index), new { id = user.UserID});
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create(Users user)
+        //{
+        //    try
+        //    {
+        //        _userMemSvc.AddUserMem(user);
+        //        return RedirectToAction(nameof(Index), new { id = user.UserID});
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
 
         // GET: UserController/Edit/5
         public ActionResult Edit(int id)
         {
+            var role = _context.Roles.ToList();
+            ViewData["RoleN"] = new SelectList(role, "RoleID", "Role");
+
             var user = _userMemSvc.GetUserMem(id);
             return View(user);
         }

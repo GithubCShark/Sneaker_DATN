@@ -83,7 +83,11 @@
                             @Html.DisplayFor(modelItem => item.DOB)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.RoleID)
+                            @if(item.RoleID == 3)
+                            {
+                            <span>Khách hàng</span>
+                            }
+                            @*@Html.DisplayFor(modelItem => item.RoleID)*@
                         </td>
                         <td>
                             <a asp-action="Edit" asp-route-id="@item.UserID">Sửa</a> |
