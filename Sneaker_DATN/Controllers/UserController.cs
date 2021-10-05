@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Sneaker_DATN.Controllers
 {
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         private readonly IWebHostEnvironment _webHostEnviroment;
         private IUserSvc _userSvc;

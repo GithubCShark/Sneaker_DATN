@@ -31,7 +31,7 @@ namespace Sneaker_DATN.Controllers
 
         public IActionResult Login(string returnUrl)
         {
-            string userName = HttpContext.Session.GetString(SessionKey.Users.UserName);
+            string userName = HttpContext.Session.GetString(SessionKey.User.UserName);
             if (userName != null && userName != "")
             {
                 return RedirectToAction("Index", "Admin");
@@ -51,70 +51,26 @@ namespace Sneaker_DATN.Controllers
                 Users user = _adminSvc.Login(viewLogin);
                 if (user != null)
                 {
-                    HttpContext.Session.SetString(SessionKey.Users.UserName, user.UserName);
-                    HttpContext.Session.SetString(SessionKey.Users.FullName, user.FullName);
-                    HttpContext.Session.SetString(SessionKey.Users.UserContext, JsonConvert.SerializeObject(user));
+                    HttpContext.Session.SetString(SessionKey.User.UserName, user.UserName);
+                    HttpContext.Session.SetString(SessionKey.User.FullName, user.FullName);
+                    HttpContext.Session.SetString(SessionKey.User.UserContext, JsonConvert.SerializeObject(user));
 
-                    return RedirectToAction(nameof(Index), "Admin");
+                    return RedirectToAction(nameof(UserController.Index), "User");
                 }
             }
             return View(viewLogin);
         }
 
-        public ActionResult Create()
-        {
-            return View();
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public IActionResult Logout()
         {
-            try
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+                HttpContext.Session.Remove(SessionKey.User.UserName);
+                HttpContext.Session.Remove(SessionKey.User.FullName);
+                HttpContext.Session.Remove(SessionKey.User.UserContext);
 
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
+                return RedirectToAction(nameof(Login), "Admin");
             }
         }
     }

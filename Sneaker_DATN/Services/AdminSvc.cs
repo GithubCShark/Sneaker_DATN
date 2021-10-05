@@ -98,6 +98,8 @@ namespace Sneaker_DATN.Services
             var u = _context.Users.Where(
                 p => p.UserName.Equals(viewLogin.UserName)
                 && p.Password.Equals(_encodeHelper.Encode(viewLogin.Password))
+                && p.RoleID.Equals(1)
+                || p.RoleID.Equals(2)
                 ).FirstOrDefault();
             return u;
         }

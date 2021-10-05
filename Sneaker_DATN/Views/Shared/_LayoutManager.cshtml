@@ -1,4 +1,12 @@
-﻿<!DOCTYPE html>
+﻿@using Sneaker_DATN.Models
+@using Sneaker_DATN.Constant
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Http.Extensions
+
+@{ string userName = Context.Session.GetString(SessionKey.User.UserName);}
+@{ string fullName = Context.Session.GetString(SessionKey.User.FullName);}
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -16,9 +24,9 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
           integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <!-- Favicon -->
-    <link rel="shortcut icon" href="../images/svg/logo.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="~/images/svg/logo.svg" type="image/x-icon">
     <!-- Custom styles -->
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="~/css/style.css">
 </head>
 
 <body ng-app="myApp">
@@ -32,7 +40,7 @@
                 <div class="sidebar-head">
                     <a href="/" class="logo-wrapper" title="Home">
                         <span class="sr-only">Home</span>
-                        <img class="icon" src="../images/avatar/Logoteam.png" />
+                        <img class="icon" src="~/images/avatar/Logoteam.png" />
                         <div class="logo-text">
                             <span class="logo-title">DACH Team</span>
                             <span class="logo-subtitle">Trang Quản Lý</span>
@@ -112,8 +120,8 @@
                 <a href="##" class="sidebar-user">
                     <span class="sidebar-user-img">
                         <picture>
-                            <source srcset="../images/avatar/avatar-illustrated-01.webp" type="image/webp">
-                            <img src="../images/img/avatar/avatar-illustrated-01.png" alt="Mai Thế Anh">
+                            <source srcset="~/images/avatar/avatar-illustrated-01.webp" type="image/webp">
+                            <img src="~/images/img/avatar/avatar-illustrated-01.png" alt="Mai Thế Anh">
                         </picture>
                     </span>
                     <div class="sidebar-user-info">
@@ -129,7 +137,7 @@
                 <div class="container main-nav">
                     <div class="main-nav-start">
                         <div class="music">
-                            <audio id="player" src="./audio/cuoithoi.mp3"></audio>
+                            <audio id="player" src="~/audio/cuoithoi.mp3"></audio>
                             <div class="player">
                                 <div class="control">
                                     <i class="fas fa-play" id="playbtn"></i>
@@ -219,17 +227,17 @@
                                 <span class="sr-only">Bản Thân</span>
                                 <span class="nav-user-img">
                                     <picture>
-                                        <source srcset="../images/avatar/avatar-illustrated-02.webp" type="image/webp">
-                                        <img src="../images/avatar/avatar-illustrated-02.png" alt="User name">
+                                        <source srcset="~/images/avatar/avatar-illustrated-02.webp" type="image/webp">
+                                        <img src="~/images/avatar/avatar-illustrated-02.png" alt="User name">
                                     </picture>
                                 </span>
                             </button>
                             <ul class="users-item-dropdown nav-user-dropdown dropdown">
                                 <li>
-                                    <a href="##">
+                                    <button class="nav-link btn btn-link text-dark">
                                         <i data-feather="user" aria-hidden="true"></i>
                                         <span>Thông Tin</span>
-                                    </a>
+                                    </button>
                                 </li>
                                 <!--<li><a href="##">
                                     <i data-feather="settings" aria-hidden="true"></i>
@@ -237,12 +245,7 @@
                                   </a>
                                 </li>
                                 -->
-                                <li>
-                                    <a class="danger" href="##">
-                                        <i data-feather="log-out" aria-hidden="true"></i>
-                                        <span>Đăng Xuất</span>
-                                    </a>
-                                </li>
+                                <partial name="_LogoutPartial" />
                             </ul>
                         </div>
                     </div>
@@ -252,20 +255,20 @@
             @RenderBody()
             <!-- ! Footer -->
             @*<footer class="footer">
-                <div class="container footer--flex">
-                    <div class="footer-start">
-                        <p>
-                            2021 © DACH Team - By: <a href="https://www.facebook.com/maitheanh.tlst/" target="_blank"
-                                                      rel="noopener noreferrer">anh.mt1602@gmail.com</a>
-                        </p>
+                    <div class="container footer--flex">
+                        <div class="footer-start">
+                            <p>
+                                2021 © DACH Team - By: <a href="https://www.facebook.com/maitheanh.tlst/" target="_blank"
+                                                          rel="noopener noreferrer">anh.mt1602@gmail.com</a>
+                            </p>
+                        </div>
+                        <ul class="footer-end">
+                            <li><a href="##">Thông tin</a></li>
+                            <li><a href="##">Hỗ trợ</a></li>
+                            <li><a href="##">Thanh toán</a></li>
+                        </ul>
                     </div>
-                    <ul class="footer-end">
-                        <li><a href="##">Thông tin</a></li>
-                        <li><a href="##">Hỗ trợ</a></li>
-                        <li><a href="##">Thanh toán</a></li>
-                    </ul>
-                </div>
-            </footer>*@
+                </footer>*@
         </div>
     </div>
     @await RenderSectionAsync("Scripts", required: false)

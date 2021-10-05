@@ -7,7 +7,7 @@ namespace Sneaker_DATN.Constant
 {
     public class SessionKey
     {
-        public static class Users
+        public static class User
         {
             public const string UserName = "UserName";
             public const string FullName = "FullName";
