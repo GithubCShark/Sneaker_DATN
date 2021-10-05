@@ -1028,49 +1028,49 @@ body {
 
 /*
 .logo {
-  background-image: url(~/images/avatar/Logoteam.png);
+  background-image: url(../images/avatar/Logoteam.png);
   width: 64px;
   height: 49px;
 }
 */
 .menu-toggle {
-    background-image: url(~/images/svg/Bulk/Menu-toggle-white.svg);
+    background-image: url(../images/svg/Bulk/Menu-toggle-white.svg);
     width: 24px;
     height: 24px;
 }
 
 .menu-toggle--gray {
-    background-image: url(~/images/svg/Bulk/Menu-toggle-gray.svg);
+    background-image: url(../images/svg/Bulk/Menu-toggle-gray.svg);
     width: 24px;
     height: 24px;
 }
 
 .home {
-    background-image: url(~/images/svg/Bulk/Home-white.svg);
+    background-image: url(../images/svg/Bulk/Home-white.svg);
     width: 24px;
     height: 24px;
 }
 
 .document {
-    background-image: url(~/images/svg/Bulk/Document-white.svg);
+    background-image: url(../images/svg/Bulk/Document-white.svg);
     width: 24px;
     height: 24px;
 }
 
 .folder {
-    background-image: url(~/images/svg/Bulk/Folder-white.svg);
+    background-image: url(../images/svg/Bulk/Folder-white.svg);
     width: 24px;
     height: 24px;
 }
 
 .arrow-down {
-    background-image: url(~/images/svg/Bulk/Arrow-DownCircle.svg);
+    background-image: url(../images/svg/Bulk/Arrow-DownCircle.svg);
     width: 24px;
     height: 24px;
 }
 
 .report {
-    background-image: url(~/images/svg/Bulk/Chart.svg);
+    background-image: url(../images/svg/Bulk/Chart.svg);
     width: 24px;
     height: 24px;
 }
@@ -1078,114 +1078,114 @@ body {
 .marketing {
     width: 24px;
     height: 24px;
-    background-image: url(~/images/svg/Bulk/Discount.svg);
+    background-image: url(../images/svg/Bulk/Discount.svg);
 }
 
 .message {
-    background-image: url(~/images/svg/Bulk/Message-white.svg);
+    background-image: url(../images/svg/Bulk/Message-white.svg);
     width: 24px;
     height: 24px;
 }
 
 .edit {
-    background-image: url(~/images/svg/Bulk/Edit-white.svg);
+    background-image: url(../images/svg/Bulk/Edit-white.svg);
     width: 24px;
     height: 24px;
 }
 
 .category {
-    background-image: url(~/images/svg/Bulk/Category-white.svg);
+    background-image: url(../images/svg/Bulk/Category-white.svg);
     width: 24px;
     height: 24px;
 }
 
 .user-3 {
-  background-image: url(../img/svg/Bulk/3-User-white.svg);
+  background-image: url(../images/svg/Bulk/3-User-white.svg);
   width: 24px;
   height: 24px;
 }
 
 .setting {
-  background-image: url(../img/svg/Bulk/Setting-white.svg);
+  background-image: url(../images/svg/Bulk/Setting-white.svg);
   width: 24px;
   height: 24px;
 }
 
 .settings-line {
-  background-image: url(../img/svg/Bulk/Settings-line.svg);
+  background-image: url(../images/svg/Bulk/Settings-line.svg);
   width: 24px;
   height: 24px;
 }
 
 .avatar {
-  background-image: url(../img/avatar/Avatar.svg);
-  width: 56px;
-  height: 56px;
+    background-image: url(../images/avatar/Avatar.svg);
+    width: 56px;
+    height: 56px;
 }
 
 .avatar-2 {
-  background-image: url(../img/avatar/avatar-2.svg);
+  background-image: url(../images/avatar/avatar-2.svg);
   width: 40px;
   height: 40px;
 }
 
 .notification {
-  background-image: url(../img/svg/Bulk/Notification-gray.svg);
+  background-image: url(../images/svg/Bulk/Notification-gray.svg);
   width: 24px;
   height: 24px;
 }
 
 .arrows-up-down {
-  background-image: url(../img/svg/Bulk/Arrows-up-down.svg);
+  background-image: url(../images/svg/Bulk/Arrows-up-down.svg);
   width: 10px;
   height: 17px;
   margin-left: 10px;
 }
 
 .move {
-  background-image: url(../img/svg/move.svg);
-  width: 24px;
-  height: 24px;
+    background-image: url(../images/svg/move.svg);
+    width: 24px;
+    height: 24px;
 }
 
 .radio {
-  background-image: url(../img/svg/radio.svg);
-  width: 24px;
-  height: 24px;
+    background-image: url(../images/svg/radio.svg);
+    width: 24px;
+    height: 24px;
 }
 
 .thumbnail {
-  background-image: url(../img/svg/thumbnail.svg);
-  width: 60px;
-  height: 60px;
+    background-image: url(../images/svg/thumbnail.svg);
+    width: 60px;
+    height: 60px;
 }
 
 .time-circle {
-  background-image: url(../img/svg/Bulk/TimeCircle.svg);
-  width: 24px;
-  height: 24px;
+    background-image: url(../images/svg/Bulk/TimeCircle.svg);
+    width: 24px;
+    height: 24px;
 }
 
 .google-drive {
-  background-image: url(../img/svg/GoogleDrive.svg);
+  background-image: url(../images/svg/GoogleDrive.svg);
   width: 24px;
   height: 24px;
 }
 
 .dropbox {
-  background-image: url(../img/svg/dropbox.svg);
+  background-image: url(../images/svg/dropbox.svg);
   width: 24px;
   height: 24px;
 }
 
 .star {
-  background-image: url(../img/svg/Bulk/Star.svg);
+  background-image: url(../images/svg/Bulk/Star.svg);
   width: 24px;
   height: 24px;
 }
 
 .delete {
-  background-image: url(../img/svg/Bulk/Delete.svg);
+  background-image: url(../images/svg/Bulk/Delete.svg);
   width: 24px;
   height: 24px;
 }
@@ -1455,12 +1455,11 @@ button.disabled:focus {
 .sidebar-toggle:hover {
   opacity: 1;
 }
-
-.sidebar-toggle.rotated {
-  -webkit-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
-  transform: rotate(180deg);
-}
+    .sidebar-toggle.rotated {
+        -webkit-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
 
 .category__btn,.category__btn1 {
   position: absolute;
@@ -3470,7 +3469,7 @@ label {
 }
 
 .darkmode .menu-toggle--gray {
-  background-image: url(../img/svg/Bulk/Menu-toggle-white.svg);
+  background-image: url(../images/svg/Bulk/Menu-toggle-white.svg);
 }
 
 .moon-icon {
@@ -3929,6 +3928,9 @@ label {
   .sidebar.hidden .category__btn {
     display: none;
   }
+    .sidebar.hidden .category__btn1 {
+        display: none;
+    }
 
   .sidebar.hidden .sidebar-body-menu a {
     -webkit-box-pack: center;

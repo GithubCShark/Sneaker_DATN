@@ -6,18 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang Quản Lý | @ViewData["Title"]</title>
-
+    <!-- Bootstrap 4 / AngularJS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <script src="https://code.angularjs.org/1.8.2/angular-route.min.js"></script>
+    <!-- Icon -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
           integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <!-- Favicon -->
-    <link rel="shortcut icon" href="~/img/svg/logo.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="../images/svg/logo.svg" type="image/x-icon">
     <!-- Custom styles -->
-    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body ng-app="myApp">
@@ -31,7 +32,7 @@
                 <div class="sidebar-head">
                     <a href="/" class="logo-wrapper" title="Home">
                         <span class="sr-only">Home</span>
-                        <img class="icon" src="~/images/avatar/Logoteam.png" />
+                        <img class="icon" src="../images/avatar/Logoteam.png" />
                         <div class="logo-text">
                             <span class="logo-title">DACH Team</span>
                             <span class="logo-subtitle">Trang Quản Lý</span>
@@ -39,29 +40,29 @@
                     </a>
                     <button class="sidebar-toggle transparent-btn" title="Menu" type="button">
                         <span class="sr-only">Toggle menu</span>
-                        <i class="icon fas fa-list" style="color:white"></i>
+                        <span class="icon menu-toggle" aria-hidden="true"></span>
                     </button>
                 </div>
                 <div class="sidebar-body" ng-controller="index">
                     <ul class="sidebar-body-menu">
                         <li>
                             <a class="{{acdefaul}}" ng-click="acside(0)" href="#!trangchu">
-                                <i class="icon fas fa-home"></i>Trang Chủ
+                                <span class="icon home" aria-hidden="true"></span>Trang Chủ
                             </a>
                         </li>
                         <li>
                             <a class="{{ac1}}" ng-click="acside(1)" asp-controller="Orders" asp-action="Index">
-                                <i class="icon fas fa-cart-plus"></i>Đơn Hàng
+                                <span class="icon document" aria-hidden="true"></span>Đơn Hàng
                             </a>
                         </li>
                         <li>
                             <a class="{{ac2}}" ng-click="acside(2)" asp-controller="UserMem" asp-action="Index">
-                                <i class="icon fas fa-users"></i></span>Khách Hàng
+                                <span class="icon user-3" aria-hidden="true"></span>Khách Hàng
                             </a>
                         </li>
                         <li>
                             <a class="show-cat-btn {{ac3}}" href="#">
-                                <i class="icon fas fa-archive"></i></span>Sản Phẩm
+                                <span class="icon category" aria-hidden="true"></span>Sản Phẩm
                                 <span class="category__btn transparent-btn" title="Open list">
                                     <span class="icon arrow-down" aria-hidden="true"></span>
                                 </span>
@@ -80,7 +81,7 @@
                         </li>
                         <li>
                             <a class="show-cat-btn1 {{ac4}}" href="#">
-                                <i class="icon fas fa-chart-pie"></i></span>Thống Kê, Báo Cáo
+                                <span class="icon report" aria-hidden="true"></span>Thống Kê, Báo Cáo
                                 <span class="category__btn1 transparent-btn" title="Open list">
                                     <span class="icon arrow-down" aria-hidden="true"></span>
                                 </span>
@@ -96,12 +97,12 @@
                         </li>
                         <li>
                             <a class="{{ac5}}" ng-click="acside(5)" href="#!marketing">
-                                <i class="icon fas fa-share-alt-square"></i></span>Marketing
+                                <span class="icon marketing" aria-hidden="true"></span>Marketing
                             </a>
                         </li>
                         <li>
                             <a class="{{ac6}}" ng-click="acside(6)" asp-controller="User" asp-action="Index">
-                                <i class="icon fas fa-user-cog"></i>Quản lý tài khoản
+                                <span class="icon user-3" aria-hidden="true"></span>Quản lý tài khoản
                             </a>
                         </li>
                     </ul>
@@ -111,8 +112,8 @@
                 <a href="##" class="sidebar-user">
                     <span class="sidebar-user-img">
                         <picture>
-                            <source srcset="/img/avatar/avatar-illustrated-01.webp" type="image/webp">
-                            <img src="/img/avatar/avatar-illustrated-01.png" alt="Mai Thế Anh">
+                            <source srcset="../images/avatar/avatar-illustrated-01.webp" type="image/webp">
+                            <img src="../images/img/avatar/avatar-illustrated-01.png" alt="Mai Thế Anh">
                         </picture>
                     </span>
                     <div class="sidebar-user-info">
@@ -218,8 +219,8 @@
                                 <span class="sr-only">Bản Thân</span>
                                 <span class="nav-user-img">
                                     <picture>
-                                        <source srcset="./img/avatar/avatar-illustrated-02.webp" type="image/webp">
-                                        <img src="./img/avatar/avatar-illustrated-02.png" alt="User name">
+                                        <source srcset="../images/avatar/avatar-illustrated-02.webp" type="image/webp">
+                                        <img src="../images/avatar/avatar-illustrated-02.png" alt="User name">
                                     </picture>
                                 </span>
                             </button>
@@ -280,8 +281,7 @@
 <script>
     var app = angular.module("myApp", ["ngRoute"]);
     app.controller("index", function ($scope, $http) {
-        $scope.acdefaul = "active"
-        $scope.acside = function (x) {
+        $scope.setac = function () {
             $scope.acdefaul = ""
             $scope.ac1 = ""
             $scope.ac2 = ""
@@ -289,25 +289,34 @@
             $scope.ac4 = ""
             $scope.ac5 = ""
             $scope.ac6 = ""
+        }
+        $scope.acside = function (x) {
             if (x == "1") {
+                $scope.setac();
                 $scope.ac1 = "active"
             }
             else if (x == "2") {
+                $scope.setac();
                 $scope.ac2 = "active"
             }
             else if (x == "3") {
+                $scope.setac();
                 $scope.ac3 = "active"
             }
             else if (x == "4") {
+                $scope.setac();
                 $scope.ac4 = "active"
             }
             else if (x == "5") {
+                $scope.setac();
                 $scope.ac5 = "active"
             }
             else if (x == "6") {
+                $scope.setac();
                 $scope.ac6 = "active"
             }
             else {
+                $scope.setac();
                 $scope.acdefaul = "active"
             }
         }
