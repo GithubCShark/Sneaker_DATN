@@ -1,63 +1,66 @@
 ﻿@model Sneaker_DATN.Models.Products
+
 @{
     ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_LayoutManager.cshtml";
 }
+<div class="row pt-3 text-muted">
+    <h1 class="text-muted ml-2">Thêm mới</h1>
 
-<h1>Create</h1>
+    <h4 class="ml-4">SẢN PHẨM</h4>
+    <hr />
+    <div class="m-auto px-5">
+        <div class="col-lg-6">
+            <form asp-action="Create" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="ProductName" class="control-label"></label>
+                    <input asp-for="ProductName" class="form-control" />
+                    <span asp-validation-for="ProductName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Price" class="control-label"></label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ImageFile" class="control-label"></label>
+                    <input asp-for="ImageFile" type="file" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="ImageFile1" class="control-label"></label>
+                    <input asp-for="ImageFile2" type="file" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="ImageFile2" class="control-label"></label>
+                    <input asp-for="ImageFile2" type="file" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="BrandID" class="control-label"></label>
+                    <select asp-for="BrandID" class="form-control" asp-items="ViewBag.brands"></select>
+                    <span asp-validation-for="BrandID" class="text-danger"></span>
 
-<h4>Products</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ProductName" class="control-label"></label>
-                <input asp-for="ProductName" class="form-control" />
-                <span asp-validation-for="ProductName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ImageFile" class="control-label"></label>
-                <input asp-for="ImageFile" type="file" />
-            </div>
-            <div class="form-group">
-                <label asp-for="ImageFile1" class="control-label"></label>
-                <input asp-for="ImageFile2" type="file" />
-            </div>
-            <div class="form-group">
-                <label asp-for="ImageFile2" class="control-label"></label>
-                <input asp-for="ImageFile2" type="file" />
-            </div>
-            <div class="form-group">
-                <label asp-for="BrandID" class="control-label"></label>
-                <select asp-for="BrandID" class="form-control" asp-items="ViewBag.brands"></select>
-                <span asp-validation-for="BrandID" class="text-danger"></span>
-
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Status" /> @Html.DisplayNameFor(model => model.Status)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="Status" /> @Html.DisplayNameFor(model => model.Status)
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+    <div class="ml-2">
+        <a asp-action="Index">Trở về danh sách</a>
+    </div>
 </div>
 
 @section Scripts {

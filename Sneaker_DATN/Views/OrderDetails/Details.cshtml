@@ -1,61 +1,61 @@
 ﻿@model Sneaker_DATN.Models.OrderDetails
-
 @{
     ViewData["Title"] = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutManager.cshtml";
 }
+<div class="m-auto pt-3 text-muted">
+    <h1 class="text-muted ml-2">Chi tiết</h1>
 
-<h1>Details</h1>
-
-<div>
-    <h4>OrderDetails</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            Tên khách hàng
-        </dt>
-        <dd class="col-sm-10">
-            @ViewBag.orderdetail
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Orders)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Orders.Address)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Products)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Products.ProductName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Sizes)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Sizes.SizeID)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Colors)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Colors.ColorID)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.OrderID">Edit</a> |
-    <a asp-controller="Orders" asp-action="Index">Back to List</a>
+    <div>
+        <h4 class="ml-4">ĐƠN HÀNG</h4>
+        <hr />
+        <dl class="col-lg-10">
+            <dt class="col-sm-2">
+                Tên khách hàng
+            </dt>
+            <dd class="col-sm-10">
+                @ViewBag.orderdetail
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Quantity)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Quantity)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Orders)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Orders.Address)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Products)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Products.ProductName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Sizes)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Sizes.SizeID)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Colors)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Colors.ColorID)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.OrderID">Edit</a> |
+        <a asp-controller="Orders" asp-action="Index">Back to List</a>
+    </div>
 </div>

@@ -1,77 +1,111 @@
 ﻿@model IEnumerable<Sneaker_DATN.Models.Orders>
-
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "ListOrder";
+    Layout = "~/Views/Shared/_LayoutManager.cshtml";
 }
 
-<h1>Index</h1>
+<h2 class="main-title">DANH SÁCH ĐƠN HÀNG</h2>
+<div class="">
+    <div class="col-lg-11 m-auto mt-3">
+        <div class="card shadow-sm">
+            <div class="card-body justify-content-around">
+                <div class="row col-lg-12">
+                    <div class="input-group col-lg-8 col-sm-6">
+                        <div class="form-outline d-flex">
+                            <input type="search" class="input-group col-lg-8" placeholder="Tìm kiếm..." />
+                            <button type="button" class="search-btn btn btn-primary">
+                                <i class="fas fa-search"></i>
+                            </button>
+                            <div class="ml-1">
+                                <select>
+                                    <option selected>Trạng thái...</option>
+                                    <option value="1">Đợi</option>
+                                    <option value="2">Xác nhận</option>
+                                    <option value="3">Đã giao</option>
+                                </select>
+                            </div>
+                            <button type="button" class="search-btn btn btn-primary">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.DateCreate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Total)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Note)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FullName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PhoneNumber)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateCreate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Total)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Note)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FullName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PhoneNumber)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.OrderID">Edit</a> |
-                <a asp-controller="OrderDetails" asp-action="Details" asp-route-id="@item.OrderID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.OrderID">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                    </div>
+                    @*<div class="col-lg-4 col-sm-6">
+                        <a asp-action="Create" class="color-btn-create btn btn-primary float-right">Thêm mới</a>
+                    </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-11 m-auto">
+        <div class="users-table table-wrapper">
+            <table class="posts-table mt-3">
+                <thead>
+                    <tr class="users-table-info">
+                        <th class="pl-3">
+                            @Html.DisplayNameFor(model => model.DateCreate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Total)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Address)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Status)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Note)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FullName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Email)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PhoneNumber)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateCreate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Total)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Note)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PhoneNumber)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.OrderID">Edit</a> |
+                            <a asp-controller="OrderDetails" asp-action="Details" asp-route-id="@item.OrderID">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.OrderID">Delete</a>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
