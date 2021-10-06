@@ -1,37 +1,62 @@
 ﻿@model Sneaker_DATN.Models.ViewModels.ViewLogin
 
-<main class="page-center signin-ad">
-    <img class="wave" src="~/images/avatar/wave.png">
-    <div class="container">
-        <div class="img">
-            <img src="~/images/svg/bg.svg">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elegant Dashboard | Sign In</title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="~/images/svg/logo.svg" type="image/x-icon">
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="~/css/style.css">
+</head>
+
+<body>
+    <!-- <div class="layer"></div> -->
+    <main class="page-center signin-ad">
+        <img class="wave" src="~/images/avatar/wave.png">
+        <div class="container">
+            <div class="img">
+                <img src="~/images/svg/bg.svg">
+            </div>
+            <div class="login-content">
+                <div class="text-danger" asp-validation-summary="All"></div>
+                <form asp-action="Login" method="post">
+                    <h2 class="title">TRANG ĐĂNG NHẬP</h2>
+                    <input type="hidden" asp-for="ReturnUrl" />
+                    <div class="input-div one">
+                        <div class="i">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="div">
+                            <h5><label asp-for="UserName">Tài khoản</label></h5>
+                            <input type="text" asp-for="UserName" class="input" />
+                        </div>
+                    </div>
+                    <div class="input-div pass">
+                        <div class="i">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <div class="div">
+                            <h5><label asp-for="Password">Mật khẩu</label></h5>
+                            <input type="password" asp-for="Password" class="input">
+                        </div>
+                    </div>
+                    <a href="#">Quên mật khẩu?</a>
+                    <input type="submit" class="btn" value="Đăng nhập">
+                </form>
+            </div>
         </div>
-        <div class="text-danger" asp-validation-summary="All"></div>
-        <div class="login-content">
-            <form asp-action="Login" method="post">
-                <h2 class="title">TRANG ĐĂNG NHẬP</h2>
-                <input type="hidden" asp-for="ReturnUrl" />
-                <div class="input-div one">
-                    <div class="i">
-                        <i class="fas fa-user"></i>
-                    </div>
-                    <div class="div">
-                        <h5><label asp-for="UserName">Tài khoản</label></h5>
-                        <input type="text" asp-for="UserName" class="input" />
-                    </div>
-                </div>
-                <div class="input-div pass">
-                    <div class="i">
-                        <i class="fas fa-lock"></i>
-                    </div>
-                    <div class="div">
-                        <h5 ><label asp-for="Password">Mật khẩu</label></h5>
-                        <input type="password" asp-for="Password" class="input">
-                    </div>
-                </div>
-                <a href="#">Quên mật khẩu?</a>
-                <input type="submit" class="btn" value="Đăng nhập">
-            </form>
-        </div>
-    </div>
-</main>
+    </main>
+    <!-- Chart library -->
+    @*<script src="~/plugins/chart.min.js"></script>*@
+    <!-- Icons library -->
+    <script src="~/plugins/feather.min.js"></script>
+    <!-- Custom scripts -->
+    <!--<script src="~/js/script.js"></script>-->
+</body>
+
+</html>
