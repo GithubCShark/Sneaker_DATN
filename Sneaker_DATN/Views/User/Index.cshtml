@@ -80,7 +80,7 @@
                             @Html.DisplayFor(modelItem => item.Email)
                         </td>
                         <td>
-                            @if (item.Gender == "1")
+                            @if (item.Gender)
                             {
                                 <span>Nam</span>
                             }
@@ -97,19 +97,13 @@
                             @Html.DisplayFor(modelItem => item.DOB)
                         </td>
                         <td>
-                            @if (item.RoleID == 1)
+                            @foreach (var rl in ViewBag.role)
                             {
-                                <span>Quản lý</span>
+                                if (rl.RoleID == item.RoleID)
+                                {
+                                    @rl.Role;
+                                }
                             }
-                            else if (item.RoleID == 2)
-                            {
-                                <span>Nhân viên</span>
-                            }
-                            else
-                            {
-                                <span>Khách hàng</span>
-                            }
-                            @*@Html.DisplayFor(modelItem => item.RoleID)*@
                         </td>
                         <td>
                             <a asp-action="Edit" asp-route-id="@item.UserID">Sửa</a> |

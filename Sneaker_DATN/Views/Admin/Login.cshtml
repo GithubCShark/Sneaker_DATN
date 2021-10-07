@@ -25,15 +25,15 @@
             <div class="login-content">
                 <div class="text-danger" asp-validation-summary="All"></div>
                 <form asp-action="Login" method="post">
-                    <h2 class="title">TRANG ĐĂNG NHẬP</h2>
+                    <h2 class="title">ĐĂNG NHẬP</h2>
                     <input type="hidden" asp-for="ReturnUrl" />
                     <div class="input-div one">
                         <div class="i">
                             <i class="fas fa-user"></i>
                         </div>
                         <div class="div">
-                            <h5><label asp-for="UserName">Tài khoản</label></h5>
-                            <input type="text" asp-for="UserName" class="input" />
+                            @*<h5><label asp-for="UserName">Tài khoản</label></h5>*@
+                            <input type="text" asp-for="UserName" class="input" placeholder="UserName" />
                         </div>
                     </div>
                     <div class="input-div pass">
@@ -41,8 +41,8 @@
                             <i class="fas fa-lock"></i>
                         </div>
                         <div class="div">
-                            <h5><label asp-for="Password">Mật khẩu</label></h5>
-                            <input type="password" asp-for="Password" class="input">
+                            @*<h5><label asp-for="Password">Mật khẩu</label></h5>*@
+                            <input type="password" asp-for="Password" class="input" placeholder="Password" >
                         </div>
                     </div>
                     <a href="#">Quên mật khẩu?</a>

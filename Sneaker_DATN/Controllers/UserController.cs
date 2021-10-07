@@ -25,6 +25,7 @@ namespace Sneaker_DATN.Controllers
         // GET: UserController
         public ActionResult Index()
         {
+            ViewData["role"] = _context.Roles.ToList();
             return View(_userSvc.GetAllUser());
         }
 

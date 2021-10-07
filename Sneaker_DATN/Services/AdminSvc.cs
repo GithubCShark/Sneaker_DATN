@@ -14,10 +14,6 @@ namespace Sneaker_DATN.Services
 
         Users GetUser(int id);
 
-        int AddUser(Users user);
-
-        int EditUser(int id, Users user);
-
         public Users Login(ViewLogin viewLogin);
     }
 
@@ -30,53 +26,6 @@ namespace Sneaker_DATN.Services
         {
             _context = context;
             _encodeHelper = encodeHelper;
-        }
-
-        public int AddUser(Users user)
-        {
-            int ret = 0;
-            try
-            {
-                user.Password = _encodeHelper.Encode(user.Password);
-                user.ConfirmPassword = user.Password;
-                _context.Add(user);
-                _context.SaveChanges();
-                ret = user.UserID;
-            }
-            catch (Exception)
-            {
-                ret = 0;
-            }
-            return ret;
-        }
-
-        public int EditUser(int id, Users user)
-        {
-            int ret = 0;
-            try
-            {
-                Users _user = null;
-                _user.UserName = user.UserName;
-                _user.FullName = user.FullName;
-                _user.Gender = user.Gender;
-                _user.Email = user.Email;
-                _user.PhoneNumber = user.PhoneNumber;
-                _user.DOB = user.DOB;
-                if (user.Password != null)
-                {
-                    user.Password = _encodeHelper.Encode(user.Password);
-                    _user.Password = user.Password;
-                }
-                _user.RoleID = user.RoleID;
-                _context.Update(_user);
-                _context.SaveChanges();
-                ret = user.UserID;
-            }
-            catch (Exception)
-            {
-                ret = 0;
-            }
-            return ret;
         }
 
         public Users GetUser(int id)
@@ -98,8 +47,8 @@ namespace Sneaker_DATN.Services
             var u = _context.Users.Where(
                 p => p.UserName.Equals(viewLogin.UserName)
                 && p.Password.Equals(_encodeHelper.Encode(viewLogin.Password))
-                && p.RoleID.Equals(1)
-                || p.RoleID.Equals(2)
+                && (p.RoleID.Equals(1)
+                || p.RoleID.Equals(2))
                 ).FirstOrDefault();
             return u;
         }

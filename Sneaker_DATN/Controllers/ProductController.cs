@@ -32,6 +32,7 @@ namespace Sneaker_DATN.Controllers
         // GET: ProductController
         public ActionResult Index()
         {
+            ViewData["brand"] = _context.Brands.ToList();
             return View(_productSvc.GetProductAll());
         }
 

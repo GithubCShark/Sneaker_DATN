@@ -26,7 +26,7 @@ namespace Sneaker_DATN.Models
 
         [Required(ErrorMessage = "{0} không được để trống")]
         [Display(Name = "Giới tính")]
-        public string Gender { get; set; }
+        public bool Gender { get; set; }
 
         [Required]
         [RegularExpression(@"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}", ErrorMessage = "Email không hợp lệ")]

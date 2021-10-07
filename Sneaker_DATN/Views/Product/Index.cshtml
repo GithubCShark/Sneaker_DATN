@@ -61,9 +61,6 @@
                             @Html.DisplayNameFor(model => model.Status)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Description)
-                        </th>
-                        <th>
                             @Html.DisplayNameFor(model => model.Brands)
                         </th>
                         <th></th>
@@ -92,15 +89,18 @@
                             @Html.DisplayFor(modelItem => item.Status)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Description)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Brands.BrandID)
+                            @foreach (var brd in ViewBag.brand)
+                            {
+                                if (brd.BrandID == item.BrandID)
+                                {
+                                    @brd.BrandName;
+                                }
+                            }
                         </td>
                         <td>
                             <a asp-action="Edit" asp-route-id="@item.ProductID">Edit</a> |
                             <a asp-action="Details" asp-route-id="@item.ProductID">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@item.ProductID">Delete</a>
+                            @*<a asp-action="Delete" asp-route-id="@item.ProductID">Delete</a>*@
                         </td>
                     </tr>
                     }

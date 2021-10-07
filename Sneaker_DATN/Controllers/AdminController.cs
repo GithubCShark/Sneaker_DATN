@@ -34,7 +34,7 @@ namespace Sneaker_DATN.Controllers
             string userName = HttpContext.Session.GetString(SessionKey.User.UserName);
             if (userName != null && userName != "")
             {
-                return RedirectToAction("Index", "Admin");
+                return RedirectToAction(nameof(UserController.Index), "User");
             }
 
             ViewLogin login = new ViewLogin();
