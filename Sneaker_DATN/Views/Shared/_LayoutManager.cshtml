@@ -51,20 +51,20 @@
                         <span class="icon menu-toggle" aria-hidden="true"></span>
                     </button>
                 </div>
-                <div class="sidebar-body" ng-controller="index">
+                <div id="myDIV" class="sidebar-body" ng-controller="index">
                     <ul class="sidebar-body-menu">
                         <li>
-                            <a class="{{acdefaul}}" ng-click="acside(0)" href="#!trangchu">
+                            <a class="dashboard-menu active" ng-click="acside(0)" href="#!trangchu">
                                 <span class="icon home" aria-hidden="true"></span>Trang Chủ
                             </a>
                         </li>
                         <li>
-                            <a class="{{ac1}}" ng-click="acside(1)" asp-controller="Orders" asp-action="Index">
+                            <a class="dashboard-menu" ng-click="acside(1)" asp-controller="Orders" asp-action="Index">
                                 <span class="icon document" aria-hidden="true"></span>Đơn Hàng
                             </a>
                         </li>
                         <li>
-                            <a class="{{ac2}}" ng-click="acside(2)" asp-controller="UserMem" asp-action="Index">
+                            <a class="dashboard-menu" ng-click="acside(2)" asp-controller="UserMem" asp-action="Index">
                                 <span class="icon user-3" aria-hidden="true"></span>Khách Hàng
                             </a>
                         </li>
@@ -281,6 +281,27 @@
 <!-- Custom scripts -->
 <script src="~/js/script.js"></script>
 <script>
+    var header = document.getElementById("myDIV");
+    var btns = header.getElementsByClassName("dashboard-menu");
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+            var current = document.getElementsByClassName("active");
+            current[0].className = current[0].className.replace(" active", "");
+            this.className += " active";
+        });
+    }
+    //var header = document.getElementById("myDIV");
+    //var btns = header.getElementsByClassName("dashboard-menu");
+    //for (var i = 0; i < btns.length; i++) {
+    //    btns[i].addEventListener("click", function () {
+    //        var current = document.getElementsByClassName("active");
+    //        if (current.length > 0) {
+    //            current[0].className = current[0].className.replace(" active", "");
+    //        }
+    //        this.className += " active";
+    //    });
+    //}
+
     var app = angular.module("myApp", ["ngRoute"]);
     app.controller("index", function ($scope, $http) {
         $scope.setac = function () {

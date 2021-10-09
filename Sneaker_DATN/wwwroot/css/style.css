@@ -4614,13 +4614,15 @@ Audio
 
 .color-dashboard .form-outline {
     height: 40px;
-    max-width: 350px;
+    max-width: 400px;
     max-height: 40px;
     border-radius: 8px;
-    border: 1px solid rgb(240, 240, 240);
 }
 
     .color-dashboard .form-outline input {
+        border-radius: 8px 0 0 8px;
+    }
+    .color-dashboard .form-outline select {
         border-radius: 8px 0 0 8px;
     }
 
@@ -4646,14 +4648,38 @@ Audio
 }
 
 .color-dashboard .posts-table .users-table-info {
+    font-weight: bold;
+    font-size: 16px;
+    color: #000;
     border: none;
 }
 
 .color-dashboard .posts-table tbody tr td:nth-child(1) {
-    padding: 0 2rem;
+    padding-left: 3rem;
+}
+.color-dashboard .posts-table thead tr th:nth-child(1) {
+    padding-left: 3rem;
+}
+
+.color-dashboard .dashbroad-icon-hover:hover {
+    color: #1e40ec;
+}
+.color-dashboard .dashbroad-icon-hover {
+    color: #6178eb;
+    /*#576ee0*/
+}
+
+.color-dashboard .posts-table thead tr .dashboard-icon {
     width: 1rem;
+}
+.color-dashboard .posts-table thead tr .dashboard-txt {
+    width: 10rem;
 }
 
 .darkmode .users-table {
-    background-color: transparent;
+    border-radius: 16px;
+    background-color: #161624;
+}
+.darkmode .color-dashboard .posts-table .users-table-info {
+    color: #FFF;
 }

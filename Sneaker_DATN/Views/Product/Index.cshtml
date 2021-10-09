@@ -5,9 +5,10 @@
     Layout = "~/Views/Shared/_LayoutManager.cshtml";
 }
 
-<h2 class="main-title">DANH SÁCH SẢN PHẨM</h2>
-<div class="">
-    <div class="col-lg-11 m-auto mt-3">
+
+<div class="color-dashboard">
+    <h2 class="main-title text-center pt-4">DANH SÁCH SẢN PHẨM</h2>
+    <div class="col-lg-12 m-auto px-5 pb-4">
         <div class="card shadow-sm">
             <div class="card-body justify-content-around">
                 <div class="row col-lg-12">
@@ -17,7 +18,7 @@
                             <button type="button" class="search-btn btn btn-primary">
                                 <i class="fas fa-search"></i>
                             </button>
-                            <div class="ml-1">
+                            <div class="ml-3">
                                 <select>
                                     <option selected>Trạng thái...</option>
                                     <option value="1">Hoạt động</option>
@@ -37,7 +38,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-11 m-auto">
+    <div class="col-lg-12 m-auto px-5">
         <div class="users-table table-wrapper">
             <table class="posts-table mt-3">
                 <thead>
@@ -69,40 +70,40 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ProductName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Price)
-                        </td>
-                        <td>
-                            <img src="~/images/Product/@item.Image" style="width:100px" />
-                        </td>
-                        <td>
-                            <img src="~/images/Product/@item.Image1" style="width:100px" />
-                        </td>
-                        <td>
-                            <img src="~/images/Product/@item.Image2" style="width:100px" />
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Status)
-                        </td>
-                        <td>
-                            @foreach (var brd in ViewBag.brand)
-                            {
-                                if (brd.BrandID == item.BrandID)
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Price)
+                            </td>
+                            <td>
+                                <img src="~/images/Product/@item.Image" style="width:100px" />
+                            </td>
+                            <td>
+                                <img src="~/images/Product/@item.Image1" style="width:100px" />
+                            </td>
+                            <td>
+                                <img src="~/images/Product/@item.Image2" style="width:100px" />
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+                            <td>
+                                @foreach (var brd in ViewBag.brand)
                                 {
-                                    @brd.BrandName;
+                                    if (brd.BrandID == item.BrandID)
+                                    {
+                                        @brd.BrandName;
+                                    }
                                 }
-                            }
-                        </td>
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@item.ProductID">Edit</a> |
-                            <a asp-action="Details" asp-route-id="@item.ProductID">Details</a> |
-                            @*<a asp-action="Delete" asp-route-id="@item.ProductID">Delete</a>*@
-                        </td>
-                    </tr>
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.ProductID"><i class="far fa-edit dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
+                                <a asp-action="Details" asp-route-id="@item.ProductID"><i class="far fa-eye ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
+                                @*<a asp-action="Delete" asp-route-id="@item.ProductID">Delete</a>*@
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </table>
