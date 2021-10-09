@@ -55,7 +55,7 @@ namespace Sneaker_DATN.Controllers
                     HttpContext.Session.SetString(SessionKey.User.FullName, user.FullName);
                     HttpContext.Session.SetString(SessionKey.User.UserContext, JsonConvert.SerializeObject(user));
 
-                    return RedirectToAction(nameof(UserController.Index), "User");
+                    return RedirectToAction(nameof(Index), "Admin");
                 }
             }
             return View(viewLogin);

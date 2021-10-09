@@ -38,7 +38,7 @@
         <aside class="sidebar">
             <div class="sidebar-start">
                 <div class="sidebar-head">
-                    <a href="/" class="logo-wrapper" title="Home">
+                    <a asp-controller="Admin" asp-action="Index" class="logo-wrapper" title="Home">
                         <span class="sr-only">Home</span>
                         <img class="icon" src="~/images/avatar/Logoteam.png" />
                         <div class="logo-text">
@@ -54,7 +54,7 @@
                 <div id="myDIV" class="sidebar-body" ng-controller="index">
                     <ul class="sidebar-body-menu">
                         <li>
-                            <a class="dashboard-menu active" ng-click="acside(0)" href="#!trangchu">
+                            <a class="dashboard-menu active" ng-click="acside(0)" asp-controller="Admin" asp-action="Index">
                                 <span class="icon home" aria-hidden="true"></span>Trang Chủ
                             </a>
                         </li>
