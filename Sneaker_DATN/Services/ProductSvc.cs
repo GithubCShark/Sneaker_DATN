@@ -86,7 +86,8 @@ namespace Sneaker_DATN.Services
                 _product.Image1 = product.Image1;
                 _product.Image2 = product.Image2;
                 _product.BrandID = product.BrandID;
-                
+                _product.Status = product.Status;
+                _product.Description = product.Description;
 
                 _context.Update(_product);
                 _context.SaveChanges();

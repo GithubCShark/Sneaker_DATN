@@ -17,8 +17,8 @@ namespace Sneaker_DATN.Constant
 
         public static class Guest
         {
-            public const string Guest_Email = "KH_Email";
-            public const string Guest_FullName = "KH_FullName";
+            public const string Guest_Email = "Guest_Email";
+            public const string Guest_FullName = "Guest_FullName";
             public const string Valid = "Valid";
             public const string GuestContext = "GuestContext";
         }

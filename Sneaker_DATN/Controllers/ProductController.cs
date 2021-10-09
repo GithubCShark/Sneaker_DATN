@@ -84,34 +84,34 @@ namespace Sneaker_DATN.Controllers
         // GET: ProductController/Edit/5
         public ActionResult Edit(int id)
         {
-            var monAn = _productSvc.GetProduct(id);
-            return View(monAn);
+            var product = _productSvc.GetProduct(id);
+            return View(product);
         }
 
         // POST: ProductController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Products product)
+        public ActionResult Edit(int id, Products pro)
         {
             string thumuccon = "Product";
             try
             {
                 if (ModelState.IsValid)
                 {
-                    if (product.ImageFile != null)
+                    if (pro.ImageFile != null)
                     {
-                        if (product.ImageFile.Length > 0)
+                        if (pro.ImageFile.Length > 0)
                         {
                             string rootPath = Path.Combine(_webHostEnvironment.WebRootPath, "images");
                             //_uploadHelper.RemoveImage(rootPath + @"\monan\" + monAn.Hinh);
-                            _uploadHelper.UploadImage(product.ImageFile, rootPath, thumuccon);
-                            product.Image = product.ImageFile.FileName;
-                            product.Image1 = product.ImageFile.FileName;
-                            product.Image2 = product.ImageFile.FileName;
+                            _uploadHelper.UploadImage(pro.ImageFile, rootPath, thumuccon);
+                            pro.Image = pro.ImageFile.FileName;
+                            pro.Image1 = pro.ImageFile1.FileName;
+                            pro.Image2 = pro.ImageFile2.FileName;
                         }
                     }
-                    _productSvc.EditProduct(id, product);
-                    return RedirectToAction(nameof(Details), new { id = product.ProductID });
+                    _productSvc.EditProduct(id, pro);
+                    return RedirectToAction(nameof(Details), new { id = pro.ProductID });
                 }
             }
             catch

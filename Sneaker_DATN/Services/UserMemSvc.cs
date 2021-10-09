@@ -50,7 +50,8 @@ namespace Sneaker_DATN.Services
             try
             {
                 Users _user = null;
-                _user.UserName = user.UserName;
+                _user = _context.Users.Find(id);
+
                 _user.FullName = user.FullName;
                 _user.Gender = user.Gender;
                 _user.Email = user.Email;

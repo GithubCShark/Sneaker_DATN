@@ -79,7 +79,14 @@
                                 @Html.DisplayFor(modelItem => item.Email)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Gender)
+                                @if (item.Gender)
+                                {
+                                    <span>Nam</span>
+                                }
+                                else
+                                {
+                                    <span>Nữ</span>
+                                }
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.PhoneNumber)
