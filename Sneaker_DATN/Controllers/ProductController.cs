@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Sneaker_DATN.Helpers;
 using Sneaker_DATN.Models;
@@ -27,6 +28,7 @@ namespace Sneaker_DATN.Controllers
             _productSvc = productSvc;
             _uploadHelper = uploadHelper;
             _context = context;
+
         }
 
         // GET: ProductController
@@ -40,6 +42,10 @@ namespace Sneaker_DATN.Controllers
         public ActionResult Details(int id)
         {
             var product = _productSvc.GetProduct(id);
+
+            var brd = _productSvc.GetBrand(product.BrandID);
+            ViewData["brdetails"] = brd.BrandName;
+            
             return View(product);
         }
 
@@ -58,9 +64,9 @@ namespace Sneaker_DATN.Controllers
         {
             try
             {
-                if (product.ImageFile != null)
+                if (product.ImageFile != null  && product.ImageFile1 != null && product.ImageFile2 != null)
                 {
-                    if (product.ImageFile.Length > 0)
+                    if (product.ImageFile.Length > 0 && product.ImageFile1.Length > 0 && product.ImageFile2.Length > 0)
                     {
                         string rootPath = Path.Combine(_webHostEnvironment.WebRootPath, "images");
                         _uploadHelper.UploadImage(product.ImageFile, rootPath, "Product");
@@ -80,10 +86,14 @@ namespace Sneaker_DATN.Controllers
                 return View();
             }
         }
-
+       
+        
         // GET: ProductController/Edit/5
         public ActionResult Edit(int id)
         {
+            var brands = _context.Brands.ToList();
+            ViewData["brands"] = new SelectList(brands, "BrandID", "BrandName");
+            
             var product = _productSvc.GetProduct(id);
             return View(product);
         }
@@ -98,9 +108,9 @@ namespace Sneaker_DATN.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    if (pro.ImageFile != null)
+                    if (pro.ImageFile != null && pro.ImageFile1 != null && pro.ImageFile2 != null)
                     {
-                        if (pro.ImageFile.Length > 0)
+                        if (pro.ImageFile.Length > 0 && pro.ImageFile1.Length > 0 && pro.ImageFile2.Length > 0)
                         {
                             string rootPath = Path.Combine(_webHostEnvironment.WebRootPath, "images");
                             //_uploadHelper.RemoveImage(rootPath + @"\monan\" + monAn.Hinh);
@@ -122,25 +132,33 @@ namespace Sneaker_DATN.Controllers
         }
 
         // GET: ProductController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int? id)
         {
-            return View();
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var prod = await _context.Products
+                .FirstOrDefaultAsync(m => m.ProductID == id);
+            if (prod == null)
+            {
+                return NotFound();
+            }
+
+            return View(prod);
         }
 
         // POST: ProductController/Delete/5
-        [HttpPost]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var prod = await _context.Products.FindAsync(id);
+            _context.Products.Remove(prod);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
-
     }
 }

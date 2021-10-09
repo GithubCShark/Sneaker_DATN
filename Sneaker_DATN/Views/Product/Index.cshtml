@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Sneaker_DATN.Models.Products>
 
 @{
-    ViewData["Title"] = "ListProduct";
+    ViewData["Title"] = "ListProducts";
     Layout = "~/Views/Shared/_LayoutManager.cshtml";
 }
 
@@ -101,7 +101,7 @@
                             <td>
                                 <a asp-action="Edit" asp-route-id="@item.ProductID"><i class="far fa-edit dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
                                 <a asp-action="Details" asp-route-id="@item.ProductID"><i class="far fa-eye ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
-                                @*<a asp-action="Delete" asp-route-id="@item.ProductID">Delete</a>*@
+                                <a asp-action="Delete" asp-route-id="@item.ProductID">Delete</a>
                             </td>
                         </tr>
                     }

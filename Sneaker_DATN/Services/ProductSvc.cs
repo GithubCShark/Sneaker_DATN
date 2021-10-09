@@ -17,6 +17,7 @@ namespace Sneaker_DATN.Services
         //int GetProduct(Products product);
 
         int EditProduct(int id, Products product);
+        Brands GetBrand(int id);
     }
     public class ProductSvc : IProductSvc
     {
@@ -36,26 +37,9 @@ namespace Sneaker_DATN.Services
         public Products GetProduct(int id)
         {
             Products product = null;
-            product = _context.Products.Find(id); //cách này chỉ dùng cho Khóa chính
-            //product = _context.Products.Where(e=>e.Id==id).FirstOrDefault(); //cách tổng quát
+            product = _context.Products.Find(id);
             return product;
         }
-
-        //public int GetProduct(Products product)
-        //{
-        //    int ret = 0;
-        //    try
-        //    {
-        //        _context.Add(product);
-        //        _context.SaveChanges();
-        //        ret = product.ProductID;
-        //    }
-        //    catch
-        //    {
-        //        ret = 0;
-        //    }
-        //    return ret;
-        //}
 
         public int AddProduct(Products product)
         {
@@ -88,8 +72,8 @@ namespace Sneaker_DATN.Services
                 _product.BrandID = product.BrandID;
                 _product.Status = product.Status;
                 _product.Description = product.Description;
-
                 _context.Update(_product);
+
                 _context.SaveChanges();
                 ret = product.ProductID;
             }
@@ -98,6 +82,12 @@ namespace Sneaker_DATN.Services
                 ret = 0;
             }
             return ret;
+        }
+        public Brands GetBrand(int id)
+        {
+            Brands brd = null;
+            brd = _context.Brands.Find(id);
+            return brd;
         }
     }
 }
