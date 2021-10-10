@@ -67,8 +67,11 @@
                 </dd>*@
             </dl>
             <div class="text-center">
-                <p class="font-italic mb-2 del-notification">Bạn chắc chắn muốn xóa sản phẩm?</p>
-                <input type="submit" value="Xóa" class="col-lg-3 btn btn-danger font-weight-bold" />
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="ProductID" />
+                    <p class="font-italic mb-2 del-notification">Bạn chắc chắn muốn xóa sản phẩm?</p>
+                    <input type="submit" value="Xóa" class="col-lg-3 btn btn-danger font-weight-bold" />
+                </form>
             </div>
         </div>
     </div>
