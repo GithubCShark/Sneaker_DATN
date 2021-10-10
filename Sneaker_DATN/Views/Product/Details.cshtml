@@ -4,64 +4,71 @@
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_LayoutManager.cshtml";
 }
-<div class="m-auto pt-3 text-muted">
-    <h1 class="text-muted ml-2">Chi tiết sản phẩm</h1>
-
-    <div>
-        <hr />
-        <dl class="col-lg-10">
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.ProductName)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.ProductName)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Price)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Price)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Image)
-            </dt>
-            <dd class="col-sm-10">
-                <img src="~/images/Product/@Model.Image" style="width:250px" />
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Image1)
-            </dt>
-            <dd class="col-sm-10">
-                <img src="~/images/Product/@Model.Image1" style="width:250px" />
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Image2)
-            </dt>
-            <dd class="col-sm-10">
-                <img src="~/images/Product/@Model.Image2" style="width:250px" />
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Status)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Status)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Description)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Description)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Brands)
-            </dt>
-            <dd class="col-sm-10">
-                @ViewBag.brdetails
-            </dd>
-        </dl>
+<div class="container">
+    <div class="col-lg-12">
+        <div class="custom-detail pt-5">
+            <div class="custom-icon">
+                <a class="dashbroad-icon-hover" asp-action="Index"><i class="icon-back fas fa-chevron-left fa-2x "></i></a>
+                <h4 class="main-title text-center text-uppercase mt-2">Chi tiết sản phẩm</h4>
+                <button class="custom-icon-button">
+                    <a class="font-weight-lighter" asp-action="Edit" asp-route-id="@Model.ProductID">
+                        <i class="far fa-edit" style="font-size: 1.25rem;"></i> Chỉnh sửa
+                    </a>
+                </button>
+            </div>
+            <dl class="shadow-lg">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.ProductName)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.ProductName)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Price)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Price)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Image)
+                </dt>
+                <dd class="col-sm-10">
+                    <img src="~/images/Product/@Model.Image" style="width:150px" />
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Image1)
+                </dt>
+                <dd class="col-sm-10">
+                    <img src="~/images/Product/@Model.Image1" style="width:150px" />
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Image2)
+                </dt>
+                <dd class="col-sm-10">
+                    <img src="~/images/Product/@Model.Image2" style="width:150px" />
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Status)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Status)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Brands)
+                </dt>
+                <dd class="col-sm-10">
+                    @ViewBag.brdetails
+                </dd>
+            </dl>
+        </div></div>
+        @*<div>
+            <a asp-action="Edit" asp-route-id="@Model.ProductID">Sửa</a> |
+            <a asp-action="Index">Trở về danh sách</a>
+        </div>*@
     </div>
-    <div>
-        <a asp-action="Edit" asp-route-id="@Model.ProductID">Sửa</a> |
-        <a asp-action="Index">Trở về danh sách</a>
-    </div>
-</div>

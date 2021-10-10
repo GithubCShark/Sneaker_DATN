@@ -5,14 +5,14 @@
     Layout = "~/Views/Shared/_LayoutManager.cshtml";
 }
 
-<div class="row pt-3 text-muted">
-    <h1 class="text-muted ml-2">Xóa!</h1>
-
-    <h4 class="ml-4">CỠ SIZE</h4>
-    <hr />
-    <div class="m-auto">
-        <div class="col-lg-6">
-            <dl class="row">
+<div class="container">
+    <div class="col-lg-12">
+        <div class="custom-detail pt-5">
+            <div class="">
+                <a class="dashbroad-icon-hover  d-flex" asp-action="Index"><i class="icon-back fas fa-chevron-left fa-2x"></i></a>
+                <h4 class="main-title text-center text-danger text-uppercase mt-2">Xóa size</h4>
+            </div>
+            <dl class="shadow-lg">
                 <dt class="col-sm-2">
                     @Html.DisplayNameFor(model => model.Size)
                 </dt>
@@ -20,11 +20,15 @@
                     @Html.DisplayFor(model => model.Size)
                 </dd>
             </dl>
-            <form asp-action="Delete">
-                <input type="hidden" asp-for="SizeID" />
-                <input type="submit" value="Xoá" class="btn btn-danger" /> |
-                <a asp-action="Index">Trở về danh sách</a>
-            </form>
+            <div class="text-center">
+                <p class="font-italic mb-2 del-notification">Bạn chắc chắn muốn xóa size?</p>
+                <input type="submit" value="Xóa" class="col-lg-3 btn btn-danger font-weight-bold" />
+            </div>
+            @*<form asp-action="Delete">
+            <input type="hidden" asp-for="SizeID" />
+            <input type="submit" value="Xoá" class="btn btn-danger" /> |
+            <a asp-action="Index">Trở về danh sách</a>
+        </form>*@
         </div>
     </div>
 </div>

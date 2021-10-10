@@ -32,7 +32,7 @@
 
                     </div>
                     <div class="col-lg-4 col-sm-6">
-                        <a asp-action="Create" class="color-btn-create btn btn-primary float-right">Thêm mới</a>
+                        <a asp-action="Create" class="color-btn-create btn btn-primary float-right"><i class="fas fa-plus pr-2"></i>Thêm mới</a>
                     </div>
                 </div>
             </div>
@@ -43,7 +43,7 @@
             <table class="posts-table mt-3">
                 <thead>
                     <tr class="users-table-info">
-                        <th class="pl-3">
+                        <th>
                             @Html.DisplayNameFor(model => model.ProductName)
                         </th>
                         <th>
@@ -101,7 +101,7 @@
                             <td>
                                 <a asp-action="Edit" asp-route-id="@item.ProductID"><i class="far fa-edit dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
                                 <a asp-action="Details" asp-route-id="@item.ProductID"><i class="far fa-eye ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
-                                <a asp-action="Delete" asp-route-id="@item.ProductID">Delete</a>
+                                <a asp-action="Delete" asp-route-id="@item.ProductID"><i class="far fa-trash-alt ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
                             </td>
                         </tr>
                     }

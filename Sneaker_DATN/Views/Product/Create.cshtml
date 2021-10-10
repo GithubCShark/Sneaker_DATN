@@ -4,62 +4,66 @@
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_LayoutManager.cshtml";
 }
-<div class="row pt-3 text-muted">
-    <h1 class="text-muted ml-2">Thêm mới sản phẩm</h1>
-    <hr />
-    <div class="m-auto px-5">
-        <div class="col-lg-6">
-            <form asp-action="Create" enctype="multipart/form-data">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="ProductName" class="control-label"></label>
-                    <input asp-for="ProductName" class="form-control" />
-                    <span asp-validation-for="ProductName" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Price" class="control-label"></label>
-                    <input asp-for="Price" class="form-control" />
-                    <span asp-validation-for="Price" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="ImageFile" class="control-label"></label>
-                    <input asp-for="ImageFile" type="file" />
-                </div>
-                <div class="form-group">
-                    <label asp-for="ImageFile1" class="control-label"></label>
-                    <input asp-for="ImageFile2" type="file" />
-                </div>
-                <div class="form-group">
-                    <label asp-for="ImageFile2" class="control-label"></label>
-                    <input asp-for="ImageFile2" type="file" />
-                </div>
-                <div class="form-group">
-                    <label asp-for="BrandID" class="control-label"></label>
-                    <select asp-for="BrandID" class="form-control" asp-items="ViewBag.brands"></select>
-                    <span asp-validation-for="BrandID" class="text-danger"></span>
-                </div>
-                <div class="form-group form-check">
-                    <label class="form-check-label">
-                        <input class="form-check-input" asp-for="Status" /> @Html.DisplayNameFor(model => model.Status)
-                    </label>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Description" class="control-label"></label>
-                    <input asp-for="Description" class="form-control" />
-                    <span asp-validation-for="Description" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" />
-                </div>
-            </form>
+<div class="container">
+    <div class="col-lg-12 col-md-12 col-sm-12 custom-form mt-4">
+        <div class="card flex-row shadow-lg">
+            <div class="card-body col-lg-12 col-md-12 col-sm-12">
+                <a asp-action="Index" class="dashbroad-icon-hover">
+                    <i class="icon-back fas fa-chevron-left fa-2x d-flex"></i>
+                </a>
+                <h2 class="main-title text-center text-uppercase mt-n3">Thêm mới sản phẩm</h2>
+                <form class="form-edit" asp-action="Create" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="ProductName" class="control-label"></label>
+                        <input asp-for="ProductName" class="form-control" />
+                        <span asp-validation-for="ProductName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Price" class="control-label"></label>
+                        <input asp-for="Price" class="form-control" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ImageFile" class="control-label"></label>
+                        <input asp-for="ImageFile" type="file" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ImageFile1" class="control-label"></label>
+                        <input asp-for="ImageFile2" type="file" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ImageFile2" class="control-label"></label>
+                        <input asp-for="ImageFile2" type="file" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="BrandID" class="control-label"></label>
+                        <select asp-for="BrandID" class="form-control" asp-items="ViewBag.brands"></select>
+                        <span asp-validation-for="BrandID" class="text-danger"></span>
+                    </div>
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="Status" /> @Html.DisplayNameFor(model => model.Status)
+                        </label>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label asp-for="Description" class="control-label"></label>
+                        <input asp-for="Description" class="form-control-description form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="text-center">
+                        <input type="submit" value="Thêm sản phẩm" class="mt-2 col-lg-6 btn btn-primary" />
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
-    <div class="ml-2">
-        <a asp-action="Index">Trở về danh sách</a>
+        @*<div class="ml-2">
+            <a asp-action="Index">Trở về danh sách</a>
+        </div>*@
     </div>
-</div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

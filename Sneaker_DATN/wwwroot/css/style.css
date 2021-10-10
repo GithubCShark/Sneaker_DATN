@@ -4624,10 +4624,17 @@ Audio
     }
     .color-dashboard .form-outline select {
         border-radius: 8px 0 0 8px;
+        padding: 0rem 1rem;
+        max-width: 148px;
     }
-
+        .color-dashboard .form-outline select option {
+            height: 100rem;
+            padding: 2rem;
+            margin: 2rem;
+        }
 .color-dashboard .input-group .search-btn {
     border-radius: 0px 8px 8px 0px;
+    max-width: 42px;
 }
 
 @media screen and (max-width: 575px) {
@@ -4645,6 +4652,7 @@ Audio
 .color-dashboard .users-table {
     background-color: #fff;
     border-radius: 16px;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
 }
 
 .color-dashboard .posts-table .users-table-info {
@@ -4653,13 +4661,17 @@ Audio
     color: #000;
     border: none;
 }
-
+.color-dashboard .posts-table .users-table-info th:last-child{
+    width: 10rem;
+}
 .color-dashboard .posts-table tbody tr td:nth-child(1) {
+    width:13rem;
     padding-left: 3rem;
 }
 .color-dashboard .posts-table thead tr th:nth-child(1) {
     padding-left: 3rem;
 }
+
 
 .color-dashboard .dashbroad-icon-hover:hover {
     color: #1e40ec;
@@ -4670,10 +4682,10 @@ Audio
 }
 
 .color-dashboard .posts-table thead tr .dashboard-icon {
-    width: 1rem;
+    width: 10%;
 }
 .color-dashboard .posts-table thead tr .dashboard-txt {
-    width: 10rem;
+    width: 45%;
 }
 
 .darkmode .users-table {
@@ -4682,4 +4694,173 @@ Audio
 }
 .darkmode .color-dashboard .posts-table .users-table-info {
     color: #FFF;
+}
+/*custom edit form*/
+.custom-form .card {
+    background: #fff;
+    border-radius: 18px;
+}
+
+
+.custom-form {
+    cursor: auto;
+    padding: 0rem 15%;
+}
+
+    .custom-form .form-edit {
+        padding: 0rem 5%;
+    }
+
+    .custom-form .form-control {
+        border-radius: 8px;
+        background: #f2f2f2;
+        max-height: 40px;
+    }
+
+        .custom-form .form-control:focus {
+            background-color: transparent;
+            border: transparent;
+        }
+
+/*    .custom-form .form-edit .form-control-description {
+        height: 40% !important;
+        max-height: 0px !important;
+    }*/
+    .custom-form .main-title {
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 1.42;
+        color: #171717;
+        margin-bottom: 20px;
+    }
+
+    .custom-form .form-check input {
+        background-color: #666;
+    }
+
+    .dashbroad-icon-hover i:hover {
+        color: #1e40ec;
+    }
+
+.dashbroad-icon-hover i {
+        color: #171717;
+        /*#576ee0*/
+    }
+
+.dashbroad-icon-hover .icon-back {
+    padding: 10px 0 0 10px;
+    width: 10px;
+    height: 10px;
+    color: #a6a6a6;
+}
+
+.darkmode .custom-form .card {
+    background-color: #161624;
+}
+
+.darkmode .custom-form .form-edit {
+    color: #fff;
+}
+
+.darkmode .custom-form .main-title {
+    color: #fff;
+}
+.darkmode .custom-form .form-control {
+    color: #fff;
+    background-color: #1d1d2f;
+}
+
+/* custom detail*/
+
+dl {
+    background: #fff;
+    padding: 1em;
+    display: flex;
+    flex-flow: row wrap;
+    border-radius: 16px;
+}
+
+dt {
+    flex-basis: 20%;
+    padding: 10px 14px;
+    background: #687de3;
+    text-align: right;
+    color: #fff;
+    float: left;
+    clear: left;
+    width: 50px;
+    max-width: 50px;
+}
+
+    dt:first-child {
+        border-radius: 14px 0 0 0;
+    }
+
+    dt:last-of-type {
+        border-radius: 0 0 0 14px;
+    }
+
+    dt::after {
+        content: ":";
+    }
+
+dd {
+    flex-basis: 70%;
+    flex-grow: 1;
+    margin: 0;
+    padding: 10px 14px;
+    border-bottom: 1px solid #333;
+}
+
+.custom-detail {
+    padding: 0rem 4rem;
+}
+
+    .custom-detail .main-title {
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 1.42;
+        color: #171717;
+        margin-bottom: 20px;
+    }
+
+    .custom-detail .custom-icon {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 0.5rem;
+    }
+
+        .custom-detail .custom-icon .custom-icon-button {
+            width: 8rem;
+            height: 3rem;
+            background-color: #576ee0;
+            border-radius: 8px;
+        }
+
+            .custom-detail .custom-icon .custom-icon-button a {
+                color: #fff;
+            }
+
+            .custom-detail .custom-icon .custom-icon-button:hover {
+                background-color: #1e40ec;
+            }
+
+    .custom-detail .del-notification {
+        font-size: 14px;
+        color: #404040;
+    }
+    .darkmode dl {
+        background: #161624;
+    }
+.darkmode dt {
+    background: #1d1d2f;
+}
+.darkmode dd{
+    color: #fff;
+}
+.darkmode .custom-detail .main-title{
+    color: #fff;
+}
+.darkmode .custom-detail .del-notification {
+    color: #f2f2f2;
 }

@@ -4,13 +4,19 @@
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_LayoutManager.cshtml";
 }
-<div class="m-auto pt-3 text-muted">
-    <h1 class="text-muted ml-2">Chi tiết</h1>
-
-    <div>
-        <h4 class="ml-4">NHÂN VIÊN</h4>
-        <hr />
-        <dl class="col-lg-10">
+<div class="container">
+    <div class="col-lg-12">
+        <div class="custom-detail pt-5">
+            <div class="custom-icon">
+                <a class="dashbroad-icon-hover" asp-action="Index"><i class="icon-back fas fa-chevron-left fa-2x "></i></a>
+                <h4 class="main-title text-center text-uppercase mt-2">Chi tiết nhân viên</h4>
+                <button class="custom-icon-button">
+                    <a class="font-weight-lighter" asp-action="Edit" asp-route-id="@Model.UserID">
+                        <i class="far fa-edit" style="font-size: 1.25rem;"></i> Chỉnh sửa
+                    </a>
+                </button>
+            </div>
+            <dl class="shadow-lg">
             <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.UserName)
             </dt>
@@ -61,9 +67,9 @@
             </dd>
         </dl>
     </div>
-    <div>
+    @*<div>
         <a asp-action="Edit" asp-route-id="@Model.UserID">Sửa</a> |
         <a asp-action="Index">Trở về danh sách</a>
-    </div>
+    </div>*@
 </div>
 
