@@ -57,27 +57,34 @@ namespace Sneaker_DATN.Controllers
             return View();
         }
 
-        // POST: ProductController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+       // POST: ProductController/Create
+       [HttpPost]
+       [ValidateAntiForgeryToken]
         public ActionResult Create(Products product)
         {
             try
             {
-                if (product.ImageFile != null  && product.ImageFile1 != null && product.ImageFile2 != null)
+                if (product.ImageFile != null && product.ImageFile.Length > 0)
                 {
-                    if (product.ImageFile.Length > 0 && product.ImageFile1.Length > 0 && product.ImageFile2.Length > 0)
-                    {
                         string rootPath = Path.Combine(_webHostEnvironment.WebRootPath, "images");
                         _uploadHelper.UploadImage(product.ImageFile, rootPath, "Product");
-                        product.Image = product.ImageFile.FileName;
-                        product.Image1 = product.ImageFile1.FileName;
-                        product.Image2 = product.ImageFile2.FileName;
-
-                    }
+                        product.Image = product.ImageFile.FileName;                   
+                }
+                if (product.ImageFile1 != null && product.ImageFile1.Length > 0)
+                {
+                    string rootPath = Path.Combine(_webHostEnvironment.WebRootPath, "images");
+                    _uploadHelper.UploadImage(product.ImageFile1, rootPath, "Product1");
+                    product.Image1 = product.ImageFile1.FileName;
 
                 }
-               
+                if (product.ImageFile2 != null && product.ImageFile2.Length > 0)
+                {
+                    string rootPath = Path.Combine(_webHostEnvironment.WebRootPath, "images");
+                    _uploadHelper.UploadImage(product.ImageFile2, rootPath, "Product2");
+                    product.Image2 = product.ImageFile2.FileName;
+
+                }
+
                 _productSvc.AddProduct(product);
                 return RedirectToAction(nameof(Details), new { id = product.ProductID });
             }
@@ -86,8 +93,7 @@ namespace Sneaker_DATN.Controllers
                 return View();
             }
         }
-       
-        
+
         // GET: ProductController/Edit/5
         public ActionResult Edit(int id)
         {
@@ -103,26 +109,33 @@ namespace Sneaker_DATN.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, Products pro)
         {
-            string thumuccon = "Product";
+            //string thumuccon = "Product";
+            //string thumuccon1 = "Product1";
+            //string thumuccon2 = "Product2";
             try
             {
-                if (ModelState.IsValid)
+                if (pro.ImageFile != null && pro.ImageFile.Length > 0)
                 {
-                    if (pro.ImageFile != null && pro.ImageFile1 != null && pro.ImageFile2 != null)
-                    {
-                        if (pro.ImageFile.Length > 0 && pro.ImageFile1.Length > 0 && pro.ImageFile2.Length > 0)
-                        {
-                            string rootPath = Path.Combine(_webHostEnvironment.WebRootPath, "images");
-                            //_uploadHelper.RemoveImage(rootPath + @"\monan\" + monAn.Hinh);
-                            _uploadHelper.UploadImage(pro.ImageFile, rootPath, thumuccon);
-                            pro.Image = pro.ImageFile.FileName;
-                            pro.Image1 = pro.ImageFile1.FileName;
-                            pro.Image2 = pro.ImageFile2.FileName;
-                        }
-                    }
-                    _productSvc.EditProduct(id, pro);
-                    return RedirectToAction(nameof(Details), new { id = pro.ProductID });
+                    string rootPath = Path.Combine(_webHostEnvironment.WebRootPath, "images");
+                    _uploadHelper.UploadImage(pro.ImageFile, rootPath, "Product");
+                    pro.Image = pro.ImageFile.FileName;
                 }
+                //if (pro.ImageFile1 != null && pro.ImageFile1.Length > 0)
+                //{
+                //    string rootPath = Path.Combine(_webHostEnvironment.WebRootPath, "images");
+                //    _uploadHelper.UploadImage(pro.ImageFile1, rootPath, "Product1");
+                //    pro.Image1 = pro.ImageFile1.FileName;
+
+                //}
+                //if (pro.ImageFile2 != null && pro.ImageFile2.Length > 0)
+                //{
+                //    string rootPath = Path.Combine(_webHostEnvironment.WebRootPath, "images");
+                //    _uploadHelper.UploadImage(pro.ImageFile2, rootPath, "Product2");
+                //    pro.Image2 = pro.ImageFile2.FileName;
+
+                //}
+                _productSvc.EditProduct(id, pro);
+                return RedirectToAction(nameof(Details), new { id = pro.ProductID });           
             }
             catch
             {

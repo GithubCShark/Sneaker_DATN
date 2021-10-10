@@ -28,7 +28,7 @@
                         <span asp-validation-for="Price" class="text-danger"></span>
                     </div>
 
-                    <div class="form-group">
+                    @*<div class="form-group">
                         <label asp-for="Image" class="control-label"></label>
                         <input asp-for="Image" class="form-control" type="file" />
                         <span asp-validation-for="Image" class="text-danger"></span>
@@ -41,6 +41,21 @@
                     <div class="form-group">
                         <label asp-for="Image2" class="control-label"></label>
                         <input asp-for="Image2" class="form-control" type="file" />
+                        <span asp-validation-for="Image2" class="text-danger"></span>
+                    </div>*@
+                    <div class="form-group">
+                        <label asp-for="ImageFile" class="control-label"></label>
+                        <input asp-for="ImageFile" type="file" class="form-control" />
+                        <span asp-validation-for="Image" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ImageFile1" class="control-label"></label>
+                        <input asp-for="ImageFile1" type="file" class="form-control" />
+                        <span asp-validation-for="Image1" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ImageFile2" class="control-label"></label>
+                        <input asp-for="ImageFile2" type="file" class="form-control" />
                         <span asp-validation-for="Image2" class="text-danger"></span>
                     </div>
                     <div class="form-group">
@@ -60,7 +75,7 @@
                         <span asp-validation-for="Description" class="text-danger"></span>
                     </div>
                     <div class="text-center">
-                        <input type="submit" value="Lưu"  class="mt-2 col-lg-6 btn btn-primary" />
+                        <input type="submit" value="Lưu" class="mt-2 col-lg-6 btn btn-primary" />
                     </div>
                 </form>
             </div>

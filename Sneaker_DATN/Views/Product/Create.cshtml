@@ -26,15 +26,18 @@
                     </div>
                     <div class="form-group">
                         <label asp-for="ImageFile" class="control-label"></label>
-                        <input asp-for="ImageFile" type="file" class="form-control"/>
+                        <input asp-for="ImageFile" type="file" class="form-control" />
+                        <span asp-validation-for="Image" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="ImageFile1" class="control-label"></label>
-                        <input asp-for="ImageFile2" type="file" class="form-control"/>
+                        <input asp-for="ImageFile1" type="file" class="form-control" />
+                        <span asp-validation-for="Image1" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="ImageFile2" class="control-label"></label>
-                        <input asp-for="ImageFile2" type="file" class="form-control"/>
+                        <input asp-for="ImageFile2" type="file" class="form-control" />
+                        <span asp-validation-for="Image2" class="text-danger"></span>
                     </div>
                     <div class="form-group">
                         <label asp-for="BrandID" class="control-label"></label>
