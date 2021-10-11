@@ -28,36 +28,45 @@
                         <span asp-validation-for="Price" class="text-danger"></span>
                     </div>
 
-                    @*<div class="form-group">
-                        <label asp-for="Image" class="control-label"></label>
-                        <input asp-for="Image" class="form-control" type="file" />
-                        <span asp-validation-for="Image" class="text-danger"></span>
-                    </div>
                     <div class="form-group">
-                        <label asp-for="Image1" class="control-label"></label>
-                        <input asp-for="Image1" class="form-control" type="file" />
-                        <span asp-validation-for="Image1" class="text-danger"></span>
+                        <img src="~/images/Product/@Model.Image" style="width:100px" />
                     </div>
-                    <div class="form-group">
-                        <label asp-for="Image2" class="control-label"></label>
-                        <input asp-for="Image2" class="form-control" type="file" />
-                        <span asp-validation-for="Image2" class="text-danger"></span>
-                    </div>*@
                     <div class="form-group">
                         <label asp-for="ImageFile" class="control-label"></label>
-                        <input asp-for="ImageFile" type="file" class="form-control" />
-                        <span asp-validation-for="Image" class="text-danger"></span>
+                        <input asp-for="ImageFile" class="form-control" type="file" />
+
+                    </div>
+                    @*<div class="form-group" style="display:none">
+                        <label asp-for="Image" class="control-label"></label>
+                        <input asp-for="Image" class="form-control" />
+                        
+                    </div>*@
+                    <div class="form-group">
+                        <img src="~/images/Product/@Model.Image1" style="width:100px" />
                     </div>
                     <div class="form-group">
                         <label asp-for="ImageFile1" class="control-label"></label>
-                        <input asp-for="ImageFile1" type="file" class="form-control" />
-                        <span asp-validation-for="Image1" class="text-danger"></span>
+                        <input asp-for="ImageFile1" class="form-control" type="file" />
+
+                    </div>
+                    @*<div class="form-group">
+                        <label asp-for="Image1" class="control-label"></label>
+                        <input asp-for="Image1" type="file" class="form-control" />
+
+                    </div>*@
+                    <div class="form-group">
+                        <img src="~/images/Product/@Model.Image2" style="width:100px" />
                     </div>
                     <div class="form-group">
                         <label asp-for="ImageFile2" class="control-label"></label>
-                        <input asp-for="ImageFile2" type="file" class="form-control" />
-                        <span asp-validation-for="Image2" class="text-danger"></span>
+                        <input asp-for="ImageFile2" class="form-control" type="file" />
+
                     </div>
+                    @*<div class="form-group">
+                        <label asp-for="Image2" class="control-label"></label>
+                        <input asp-for="Image2" type="file" class="form-control" />
+
+                    </div>*@
                     <div class="form-group">
                         <label asp-for="BrandID" class="control-label"></label>
                         <select asp-for="BrandID" class="form-control" asp-items="ViewBag.brands"></select>
@@ -74,8 +83,8 @@
                         <input asp-for="Description" class="form-control" />
                         <span asp-validation-for="Description" class="text-danger"></span>
                     </div>
-                    <div class="text-center">
-                        <input type="submit" value="Lưu" class="mt-2 col-lg-6 btn btn-primary" />
+                    <div class="form-group text-center">
+                        <input type="submit" value="Save" class="mt-2 col-lg-6 btn btn-primary" />
                     </div>
                 </form>
             </div>

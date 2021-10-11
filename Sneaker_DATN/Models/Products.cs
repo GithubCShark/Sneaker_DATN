@@ -25,13 +25,13 @@ namespace Sneaker_DATN.Models
         public double Price { get; set; }
 
         [Display(Name = "Hình ảnh")]
-        public string? Image { get; set; }
+        public string Image { get; set; }
 
         [Display(Name = "Hình ảnh 1")]
-        public string? Image1 { get; set; }
+        public string Image1 { get; set; }
 
         [Display(Name = "Hình ảnh 2")]
-        public string? Image2 { get; set; }
+        public string Image2 { get; set; }
 
         [ForeignKey("Brands")]
         [Display(Name = "Thương hiệu")]
