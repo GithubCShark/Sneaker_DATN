@@ -52,12 +52,16 @@
                     <div class="form-group">
                         <label asp-for="ImageFile2" class="control-label"></label>
                         <input asp-for="ImageFile2" type="file" class="form-control" />
-                       
+
                     </div>
                     <div class="form-group">
                         <label asp-for="BrandID" class="control-label"></label>
                         <select asp-for="BrandID" class="form-control" asp-items="ViewBag.brands"></select>
                         <span asp-validation-for="BrandID" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Chọn Size</label>
+                        @Html.ListBox("selectedSize", ViewBag.size, new { @class = "w-100", id = "selectedSize" })
                     </div>
                     <div class="form-group form-check">
                         <label class="form-check-label">
@@ -77,11 +81,20 @@
         </div>
     </div>
 
-        @*<div class="ml-2">
+    @*<div class="ml-2">
             <a asp-action="Index">Trở về danh sách</a>
         </div>*@
-    </div>
+</div>
 
-    @section Scripts {
-        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    }
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/lib/multiple-select/multiple-select.min.js"></script>
+    <link rel="stylesheet" href="~/lib/multiple-select/multiple-select.min.css" />
+    <script>
+        $('#selectedSize').multipleSelect({
+            selectAll: false,
+            keepOpen: false,
+            isOpen: false
+        });
+    </script>
+}

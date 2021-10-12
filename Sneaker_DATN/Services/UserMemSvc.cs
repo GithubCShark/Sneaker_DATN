@@ -56,6 +56,7 @@ namespace Sneaker_DATN.Services
                 _user.Gender = user.Gender;
                 _user.Email = user.Email;
                 _user.PhoneNumber = user.PhoneNumber;
+                _user.Address = user.Address;
                 _user.DOB = user.DOB;
                 if (user.Password != null)
                 {

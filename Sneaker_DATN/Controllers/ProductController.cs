@@ -50,11 +50,17 @@ namespace Sneaker_DATN.Controllers
             return View(product);
         }
 
+        [BindProperty]
+        public int[] selectedSize { set; get; }
         // GET: MonAnController/Create
         public ActionResult Create()
         {
             var brands = _context.Brands.ToList();
             ViewData["brands"] = new SelectList(brands, "BrandID", "BrandName");
+            var sizes = _context.Sizes.ToList();
+            ViewData["size"] = new MultiSelectList(sizes, "SizeID", "Size");
+            var colors = _context.Colors.ToList();
+            ViewData["color"] = new MultiSelectList(colors, "ColorID", "Color");
             return View();
         }
 
@@ -110,38 +116,28 @@ namespace Sneaker_DATN.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, Products product)
         {
-            string thumuccon = "PRODUCT";
+            string thumuccon = "Product";
             try
             {
                 if (ModelState.IsValid)
                 {
-                    if (product.ImageFile != null)
+                    if (product.ImageFile != null && product.ImageFile.Length > 0)
                     {
-                        if (product.ImageFile.Length > 0)
-                        {
-                            
-                            string rootPath = Path.Combine(_webHostEnvironment.WebRootPath, "images");
-                            _uploadHelper.UploadImage(product.ImageFile, rootPath, thumuccon);
-                            product.Image = product.ImageFile.FileName;
-                        }
+                        string rootPath = Path.Combine(_webHostEnvironment.WebRootPath, "images");
+                        _uploadHelper.UploadImage(product.ImageFile, rootPath, thumuccon);
+                        product.Image = product.ImageFile.FileName;
                     }
-                    if (product.ImageFile1 != null)
+                    if (product.ImageFile1 != null && product.ImageFile1.Length > 0)
                     {
-                        if (product.ImageFile1.Length > 0)
-                        {
-                            string rootPath = Path.Combine(_webHostEnvironment.WebRootPath, "images");
-                            _uploadHelper.UploadImage(product.ImageFile1, rootPath, thumuccon);
-                            product.Image1 = product.ImageFile1.FileName;
-                        }
+                        string rootPath = Path.Combine(_webHostEnvironment.WebRootPath, "images");
+                        _uploadHelper.UploadImage(product.ImageFile1, rootPath, thumuccon);
+                        product.Image1 = product.ImageFile1.FileName;
                     }
-                    if (product.ImageFile2 != null)
+                    if (product.ImageFile2 != null && product.ImageFile2.Length > 0)
                     {
-                        if (product.ImageFile2.Length > 0)
-                        {
-                            string rootPath = Path.Combine(_webHostEnvironment.WebRootPath, "images");
-                            _uploadHelper.UploadImage(product.ImageFile2, rootPath, thumuccon);
-                            product.Image2 = product.ImageFile2.FileName;
-                        }
+                        string rootPath = Path.Combine(_webHostEnvironment.WebRootPath, "images");
+                        _uploadHelper.UploadImage(product.ImageFile2, rootPath, thumuccon);
+                        product.Image2 = product.ImageFile2.FileName;
                     }
 
                 }

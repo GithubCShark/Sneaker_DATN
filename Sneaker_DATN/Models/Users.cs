@@ -33,7 +33,7 @@ namespace Sneaker_DATN.Models
         public string Email { get; set; }
 
         [Display(Name = "Ảnh đại diện")]
-        public string? ImgUser { get; set; }
+        public string ImgUser { get; set; }
 
         [NotMapped]
         [Display(Name = "Chọn hình")]
@@ -44,6 +44,10 @@ namespace Sneaker_DATN.Models
         [DataType(DataType.PhoneNumber)]
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Vui lòng nhập đúng đinh dạng là SĐT")]
         public string PhoneNumber { get; set; }
+
+        [Display(Name = "Địa chỉ")]
+        [Column(TypeName = "nvarchar(250)"), MaxLength(250)]
+        public string Address { get; set; }
 
         [Display(Name = "Ngày sinh")]
         [Required(ErrorMessage = "Vui lòng nhập ngày sinh")]
@@ -60,6 +64,9 @@ namespace Sneaker_DATN.Models
         [DataType(DataType.Password)]
         [Compare("Password",ErrorMessage ="Mật khẩu không khớp")]
         public string ConfirmPassword { get; set; }
+
+        [Display(Name = "Khóa")]
+        public bool Lock { get; set; }
 
         [ForeignKey("Roles")]
         [Display(Name = "Quyền")]

@@ -14,9 +14,8 @@ namespace Sneaker_DATN.Services
 
         int AddProduct(Products product);
 
-        //int GetProduct(Products product);
-
         int EditProduct(int id, Products product);
+
         Brands GetBrand(int id);
     }
     public class ProductSvc : IProductSvc

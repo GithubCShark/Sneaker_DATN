@@ -14,7 +14,7 @@
                     <i class="icon-back fas fa-chevron-left fa-2x d-flex"></i>
                 </a>
                 <h2 class="main-title text-center text-uppercase mt-n3">Chỉnh sửa sản phẩm</h2>
-                <form class="form-edit" asp-action="Edit">
+                <form class="form-edit" asp-action="Edit" enctype="multipart/form-data">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <input type="hidden" asp-for="ProductID" />
                     <div class="form-group">
@@ -34,12 +34,10 @@
                     <div class="form-group">
                         <label asp-for="ImageFile" class="control-label"></label>
                         <input asp-for="ImageFile" class="form-control" type="file" />
-
                     </div>
-                    @*<div class="form-group" style="display:none">
+                    @*<div class="form-group">
                         <label asp-for="Image" class="control-label"></label>
-                        <input asp-for="Image" class="form-control" />
-                        
+                        <input asp-for="Image" type="file" class="form-control" />
                     </div>*@
                     <div class="form-group">
                         <img src="~/images/Product/@Model.Image1" style="width:100px" />
@@ -47,12 +45,10 @@
                     <div class="form-group">
                         <label asp-for="ImageFile1" class="control-label"></label>
                         <input asp-for="ImageFile1" class="form-control" type="file" />
-
                     </div>
                     @*<div class="form-group">
                         <label asp-for="Image1" class="control-label"></label>
                         <input asp-for="Image1" type="file" class="form-control" />
-
                     </div>*@
                     <div class="form-group">
                         <img src="~/images/Product/@Model.Image2" style="width:100px" />
@@ -60,12 +56,10 @@
                     <div class="form-group">
                         <label asp-for="ImageFile2" class="control-label"></label>
                         <input asp-for="ImageFile2" class="form-control" type="file" />
-
                     </div>
                     @*<div class="form-group">
                         <label asp-for="Image2" class="control-label"></label>
                         <input asp-for="Image2" type="file" class="form-control" />
-
                     </div>*@
                     <div class="form-group">
                         <label asp-for="BrandID" class="control-label"></label>

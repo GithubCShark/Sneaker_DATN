@@ -61,7 +61,9 @@ namespace Sneaker_DATN.Services
                 _user.Gender = user.Gender;
                 _user.Email = user.Email;
                 _user.PhoneNumber = user.PhoneNumber;
+                _user.Address = user.Address;
                 _user.DOB = user.DOB;
+                _user.Lock = user.Lock;
                 if (user.Password != null)
                 {
                     user.Password = _encodeHelper.Encode(user.Password);
