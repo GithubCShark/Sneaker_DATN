@@ -1,0 +1,136 @@
+﻿@using Microsoft.AspNetCore.Http
+@using Sneaker_DATN.Constant
+
+
+@model IEnumerable<Sneaker_DATN.Models.ViewCart>;
+@{
+    Layout = "~/Shared/_WebLayout.cshtml";
+}
+@{ string emailAddress = Context.Session.GetString(SessionKey.Guest.Guest_Email);}
+@{ string fullName = Context.Session.GetString(SessionKey.Guest.Guest_FullName);}
+
+<h1>Giỏ hàng</h1>
+<table class="table">
+    <tr>
+        <th>STT</th>
+        <th>Tên</th>
+        <th>Hình ảnh</th>
+        <th>Số lượng</th>
+        <th>Đơn giá</th>
+        <th>Tổng</th>
+    </tr>
+    @{
+        int stt = 0;
+        double total = 0;
+        foreach (var item in Model)
+        {
+            int iD = @item.Products.ProductID;
+            string txt_Id = "txtQuantity_" + iD;
+            stt++;
+
+            double totalSub = item.Products.Price * item.Quantity;
+            total += totalSub;
+            <tr id="tr_@iD">
+                <td>
+                    @stt
+                </td>
+                <td>
+                    @item.Products.ProductName
+                </td>
+                <td>
+                    <img src="~/images/Product/@item.Products.Image" style="width : 150px" />
+                </td>
+                <td>
+                    <input type="number" id="@txt_Id" value="@item.Quantity" />
+                    
+                </td>
+                <td id="tdGia_@iD">@item.Products.Price</td>
+                <td id="tdTien_@iD">@totalSub</td>
+                <td>
+                    <a href="javascript:updateCart(@iD);">Cập nhật</a> |
+                    <a href="javascript:delCart(@iD);">Xóa</a>
+                </td>
+            </tr>
+        }
+    }
+</table>
+<p>
+    <div>Tổng tiền : <span id="spTotal">@total</span></div>
+</p>
+<p>
+    @if (emailAddress != null && emailAddress != "")
+    {
+        <a class="addProduct" href="javascript:orderCart(true); ">Đặt Hàng</a>
+    }
+    else
+    {
+        <span> Bạn cần <a class="addProduct" href="javascript:orderCart(false); ">đăng nhập</a> để đặt hàng.</span>
+
+    }
+</p>
+<div>
+    <a asp-action="Index">Quay lại</a>
+</div>
+
+<script>
+    function delCart(id) {
+        $.ajax({
+            type: "POST",
+            url: "/Home/DeleteCart",
+            data: {
+                id: id,
+            },
+            success: function (result) {
+                $("#tr_" + id).hide();
+                $("#spTotal").html(result);
+
+                if (result == "0") {
+                    $("#imgCart").attr("src", '/images/cart.png');
+                }
+
+            }
+        });
+    }
+
+
+    function updateCart(id) {
+        var soluong = $("#txtQuantity_" + id).val();
+        var gia = $("#tdGia_" + id).html();
+        var thanhtien = soluong * gia;
+        $("#tdTien_" + id).html(thanhtien);
+
+
+        $.ajax({
+            type: "POST",
+            url: "/Home/UpdateCart",
+            data: {
+                id: id,
+                soluong: soluong
+            },
+            success: function (result) {
+                $("#spTotal").html(result);
+                if (result == "0") {
+                    $("#imgCart").attr("src", '/images/cart.png');
+                }
+            }
+        });
+    }
+
+    function orderCart(flagLogin) {
+        if (!flagLogin) {
+            window.location = "Login";
+            }
+            return false;
+    }
+
+        $.ajax({
+            type: "POST",
+            url: "/Home/OrderCart",
+            data: {
+            },
+            success: function (result) {
+                window.location = "/Home/History";
+            }
+        });
+
+</script>
