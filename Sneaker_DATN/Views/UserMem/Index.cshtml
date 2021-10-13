@@ -41,9 +41,9 @@
             <table class="posts-table mt-3">
                 <thead>
                     <tr class="users-table-info">
-                        <th>
-                            @Html.DisplayNameFor(model => model.UserName)
-                        </th>
+                        @*<th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>*@
                         <th>
                             @Html.DisplayNameFor(model => model.FullName)
                         </th>
@@ -62,50 +62,56 @@
                         <th>
                             @Html.DisplayNameFor(model => model.Roles)
                         </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Lock)
+                        </th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.UserName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.FullName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Email)
-                            </td>
-                            <td>
-                                @if (item.Gender)
-                                {
-                                    <span>Nam</span>
-                                }
-                                else
-                                {
-                                    <span>Nữ</span>
-                                }
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.PhoneNumber)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.DOB)
-                            </td>
-                            <td>
-                                @if (item.RoleID == 3)
-                                {
-                                    <span>Khách hàng</span>
-                                }
-                                @*@Html.DisplayFor(modelItem => item.RoleID)*@
-                            </td>
-                            <td>
-                                <a asp-action="Edit" asp-route-id="@item.UserID"><i class="far fa-edit dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
-                                <a asp-action="Details" asp-route-id="@item.UserID"><i class="far fa-eye ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
-                            </td>
-                        </tr>
+                    <tr>
+                        @*<td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>*@
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @if (item.Gender)
+                            {
+                                <span>Nam</span>
+                            }
+                            else
+                            {
+                                <span>Nữ</span>
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PhoneNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DOB)
+                        </td>
+                        <td>
+                            @if (item.RoleID == 3)
+                            {
+                                <span>Khách hàng</span>
+                            }
+                            @*@Html.DisplayFor(modelItem => item.RoleID)*@
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Lock)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.UserID"><i class="far fa-edit dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
+                            <a asp-action="Details" asp-route-id="@item.UserID"><i class="far fa-eye ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>

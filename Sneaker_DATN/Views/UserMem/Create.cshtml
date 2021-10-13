@@ -33,10 +33,15 @@
                     <input asp-for="Email" class="form-control" />
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="display :none;">
                     <label asp-for="ImgUser" class="control-label"></label>
-                    <input asp-for="ImgUser" class="form-control" />
+                    <input asp-for="ImgUser" type="file" class="form-control" />
                     <span asp-validation-for="ImgUser" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ImageUser" class="control-label"></label>
+                    <input asp-for="ImageUser" type="file" class="form-control" />
                 </div>
                 <div class="form-group">
                     <label asp-for="PhoneNumber" class="control-label"></label>
@@ -62,6 +67,11 @@
                     <label asp-for="RoleID" class="control-label"></label>
                     <select asp-for="RoleID" class="form-control" asp-items="ViewBag.RoleNameC"></select>
                     <span asp-validation-for="RoleID" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="Lock" /> @Html.DisplayNameFor(model => model.Lock)
+                    </label>
                 </div>
                 <div class="form-group">
                     <input type="submit" value="Create" class="btn btn-primary" />

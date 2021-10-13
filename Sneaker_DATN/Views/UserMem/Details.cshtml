@@ -50,7 +50,7 @@
                     @Html.DisplayNameFor(model => model.ImgUser)
                 </dt>
                 <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.ImgUser)
+                    <img src="~/images/avatar/@Model.ImgUser" style="width:150px" />
                 </dd>
                 <dt class="col-sm-2">
                     @Html.DisplayNameFor(model => model.PhoneNumber)
@@ -69,6 +69,19 @@
                 </dt>
                 <dd class="col-sm-10">
                     @ViewBag.RoleNameD
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Lock)
+                </dt>
+                <dd class="col-sm-10">
+                    @if (!Model.Lock)
+                    {
+                        <span>Hoạt động</span>
+                    }
+                    else
+                    {
+                        <span>Không hoạt động</span>
+                    }
                 </dd>
             </dl>
             @*<div>

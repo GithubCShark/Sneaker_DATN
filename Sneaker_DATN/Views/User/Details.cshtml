@@ -17,62 +17,75 @@
                 </button>
             </div>
             <dl class="shadow-lg">
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.UserName)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.UserName)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.FullName)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.FullName)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Gender)
-            </dt>
-            <dd class="col-sm-10">
-                @if (Model.Gender)
-                {
-                    <span>Nam</span>
-                }
-                else
-                {
-                    <span>Nữ</span>
-                }
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Email)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Email)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.ImgUser)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.ImgUser)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.PhoneNumber)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.PhoneNumber)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.DOB)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.DOB)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Roles)
-            </dt>
-            <dd class="col-sm-10">
-                @ViewBag.RoleNameD
-            </dd>
-        </dl>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.UserName)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.UserName)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.FullName)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.FullName)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Gender)
+                </dt>
+                <dd class="col-sm-10">
+                    @if (Model.Gender)
+                    {
+                        <span>Nam</span>
+                    }
+                    else
+                    {
+                        <span>Nữ</span>
+                    }
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.ImgUser)
+                </dt>
+                <dd class="col-sm-10">
+                    <img src="~/images/avatar/@Model.ImgUser" style="width:150px" />
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.PhoneNumber)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.DOB)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.DOB)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Roles)
+                </dt>
+                <dd class="col-sm-10">
+                    @ViewBag.RoleNameD
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Lock)
+                </dt>
+                <dd class="col-sm-10">
+                    @if (!Model.Lock)
+                    {
+                        <span>Hoạt động</span>
+                    }
+                    else
+                    {
+                        <span>Không hoạt động</span>
+                    }
+                </dd>
+            </dl>
     </div>
     @*<div>
         <a asp-action="Edit" asp-route-id="@Model.UserID">Sửa</a> |

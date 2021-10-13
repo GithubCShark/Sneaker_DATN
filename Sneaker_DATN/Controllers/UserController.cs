@@ -2,10 +2,12 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Sneaker_DATN.Helpers;
 using Sneaker_DATN.Models;
 using Sneaker_DATN.Services;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,11 +18,13 @@ namespace Sneaker_DATN.Controllers
         private readonly IWebHostEnvironment _webHostEnviroment;
         private IUserSvc _userSvc;
         private DataContext _context;
-        public UserController(IWebHostEnvironment webHostEnvironment, IUserSvc userSvc, DataContext context)
+        private IUploadHelper _uploadHelper;
+        public UserController(IWebHostEnvironment webHostEnvironment, IUserSvc userSvc, DataContext context, IUploadHelper uploadHelper)
         {
             _webHostEnviroment = webHostEnvironment;
             _userSvc = userSvc;
             _context = context;
+            _uploadHelper = uploadHelper;
         }
         // GET: UserController
         public ActionResult Index()
@@ -54,6 +58,12 @@ namespace Sneaker_DATN.Controllers
         {
             try
             {
+                if (user.ImageUser != null && user.ImageUser.Length > 0)
+                {
+                    string rootPath = Path.Combine(_webHostEnviroment.WebRootPath, "images");
+                    _uploadHelper.UploadImage(user.ImageUser, rootPath, "avatar");
+                    user.ImgUser = user.ImageUser.FileName;
+                }
                 _userSvc.AddUser(user);
                 return RedirectToAction(nameof(Index), new { id = user.UserID});
             }
@@ -80,8 +90,16 @@ namespace Sneaker_DATN.Controllers
         {
             try
             {
+                string thumuccon = "avatar";
                 if (ModelState.IsValid)
                 {
+                    if (user.ImageUser != null && user.ImageUser.Length > 0)
+                    {
+                        string rootPath = Path.Combine(_webHostEnviroment.WebRootPath, "images");
+                        _uploadHelper.UploadImage(user.ImageUser, rootPath, thumuccon);
+                        user.ImgUser = user.ImageUser.FileName;
+                    }
+
                     _userSvc.EditUser(id, user);
                 }
                 return RedirectToAction(nameof(Index),new { id = user.UserID });
