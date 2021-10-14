@@ -40,7 +40,7 @@ namespace Sneaker_DATN.Filters
             {
                 Controller controller = filtercontext.Controller as Controller;
                 var session = filtercontext.HttpContext.Session;
-                string EmailGuest = filtercontext.HttpContext.Session.GetString(SessionKey.Guest.Guest_Email);
+                string EmailGuest = filtercontext.HttpContext.Session.GetString(SessionKey.Guest.Guest_UserName);
                 var sessionStatus = ((EmailGuest != null && EmailGuest != "") ? true : false);
                 if (controller != null)
                 {

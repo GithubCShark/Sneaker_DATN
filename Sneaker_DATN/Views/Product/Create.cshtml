@@ -4,6 +4,15 @@
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_LayoutManager.cshtml";
 }
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
+<script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
+@*<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></script>*@
+@*<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>*@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
 <div class="container">
     <div class="col-lg-12 col-md-12 col-sm-12 custom-form mt-4">
         <div class="card flex-row shadow-lg">
@@ -61,7 +70,23 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label">Chọn Size</label>
-                        @Html.ListBox("selectedSize", ViewBag.size, new { @class = "w-100", id = "selectedSize" })
+                        @Html.ListBox("selectedSize", ViewBag.size, new
+                        {
+                            @class = "choices-multiple-remove-button",
+                            id = "selectedSize",
+                            Multiple = "multiple",
+                            placeholder = "Chọn Sizes"
+                        })
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Chọn Màu</label>
+                        @Html.ListBox("selectedColor", ViewBag.color, new
+                        {
+                            @class = "choices-multiple-remove-button",
+                            id = "selectedColor",
+                            Multiple = "multiple",
+                            placeholder = "Chọn Màu"
+                        })
                     </div>
                     <div class="form-group form-check">
                         <label class="form-check-label">
@@ -88,13 +113,16 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <script src="~/lib/multiple-select/multiple-select.min.js"></script>
-    <link rel="stylesheet" href="~/lib/multiple-select/multiple-select.min.css" />
     <script>
-        $('#selectedSize').multipleSelect({
-            selectAll: false,
-            keepOpen: false,
-            isOpen: false
+        $(document).ready(function () {
+
+            var multipleCancelButton = new Choices('.choices-multiple-remove-button', {
+                removeItemButton: true,
+                searchResultLimit: 6,
+                renderChoiceLimit: 6
+            });
+
+
         });
     </script>
 }

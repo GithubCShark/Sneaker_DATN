@@ -6,7 +6,7 @@
 @{
     Layout = "~/Shared/_WebLayout.cshtml";
 }
-@{ string emailAddress = Context.Session.GetString(SessionKey.Guest.Guest_Email);}
+@{ string emailAddress = Context.Session.GetString(SessionKey.Guest.Guest_UserName);}
 @{ string fullName = Context.Session.GetString(SessionKey.Guest.Guest_FullName);}
 
 <h1>Giỏ hàng</h1>

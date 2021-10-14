@@ -26,7 +26,7 @@ namespace Sneaker_DATN.Controllers
 
         protected string GetEmailMem()
         {
-            return HttpContext.Session.GetString(SessionKey.Guest.Guest_Email);
+            return HttpContext.Session.GetString(SessionKey.Guest.Guest_UserName);
         }
     }
 }
