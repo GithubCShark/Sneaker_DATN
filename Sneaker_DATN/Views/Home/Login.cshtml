@@ -1,0 +1,82 @@
+﻿@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+        </div>
+    </div>
+</section>
+<!-- End Banner Area -->
+<!-- Start breadcumb Area -->
+<section class="breadcrumb-login">
+    <div class="container">
+        <nav aria-label="breadcrumb ">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Sản phẩm</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+<!-- End breadcumb Area -->
+<!--================Login Box Area =================-->
+<section class="login_box_area">
+    <div class="container shadow-lg">
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="login_box_img">
+                    <img class="img-fluid" src="img/login.gif" alt="">
+                    <div class="hover">
+                        <!-- <h4>New to our website?</h4>
+                        <p>There are advances being made in science and technology everyday, and a good example of
+                            this is the</p>
+                        <a class="primary-btn" href="registration.html">Create an Account</a> -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="login_form_inner">
+                    <h3>Đăng nhập</h3>
+                    <form class="row login_form" action="contact_process.php" method="post" id="contactForm"
+                          novalidate="novalidate">
+                        <div class="col-md-12 form-group">
+                            <input type="text" class="form-control" id="name" name="name"
+                                   placeholder="Tên đăng nhập" onfocus="this.placeholder = ''"
+                                   onblur="this.placeholder = 'Tên đăng nhập'">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <input type="password" class="form-control" id="password" name="password"
+                                   placeholder="Mật khẩu" onfocus="this.placeholder = ''"
+                                   onblur="this.placeholder = 'Mật khẩu'">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <div class="creat_account">
+                                <input type="checkbox" id="f-option2" name="selector">
+                                <label for="f-option2">Ghi nhớ mật khẩu</label>
+                            </div>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <button type="submit" value="submit" class="primary-btn">Đăng nhập</button>
+                            <!-- Divider Text -->
+                            <div class="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
+                                <div class="border-bottom w-100 ml-5"></div>
+                                <span class="px-2 small text-muted font-weight-bold text-muted">OR</span>
+                                <div class="border-bottom w-100 mr-5"></div>
+                            </div>
+                            <a href="#" class="text-center login_form_fotgot">Quên mật khẩu?</a>
+                            <div class="login_form_register text-center">
+                                Bạn chưa có tài khoảng?
+                                <a href="#" class="">Đăng ký</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Login Box Area =================-->
