@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using Sneaker_DATN.Constant
+@using Microsoft.AspNetCore.Http
+
+@{ string userName = Context.Session.GetString(SessionKey.Guest.Guest_UserName);}
+@{ string fullName = Context.Session.GetString(SessionKey.Guest.Guest_FullName);}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -31,7 +37,7 @@
             <nav class="navbar navbar-expand-lg navbar-light main_box">
                 <div class="container">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a>
+                    <a class="navbar-brand logo_h" asp-controller="Home" asp-action="Index"><img src="~/images/avatar/Logoteam.png" alt=""></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -96,11 +102,19 @@
                                     <span class='bx bx-user-circle bx-sm'></span>
                                 </a>
                                 <ul class="dropdown-menu shadow-sm">
-                                    <li class="nav-item"><a class="nav-link" href="login.html">Đăng nhập</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="register.html">Đăng ký</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#">Thông tin cá nhân</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#">Đơn hàng</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="#">Đổi mật khẩu</a></li>
+                                    @if (userName != null && userName != "")
+                                    {
+                                        <partial name="_LogoutPartialHome" />
+                                    }
+                                    else
+                                    {
+
+                                        <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Login">Đăng nhập</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="register.html">Đăng ký</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="#">Thông tin cá nhân</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="#">Đơn hàng</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="#">Đổi mật khẩu</a></li>
+                                    }
                                 </ul>
                             </li>
                             <i></i>
@@ -145,9 +159,9 @@
             </nav>
         </header>*@
 
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
 
     <!-- start footer Area -->
     <footer class="footer-area section_gap">
@@ -239,9 +253,10 @@
     <script src="~/js/main.js"></script>
 
     @*<script src="~/lib/jquery/dist/jquery.min.js"></script>*@
-        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        @*<script src="~/js/site.js" asp-append-version="true"></script>*@
-    @await RenderSectionAsync("Scripts", required: false)
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @*<script src="~/js/site.js" asp-append-version="true"></script>*@
+    @*@CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();*@
+    await __tagHelperRunner.RunAsync(__tagHelperExecutionContext)
     <script>
         AOS.init();
     </script>

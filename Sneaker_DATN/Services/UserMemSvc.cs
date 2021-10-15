@@ -102,6 +102,7 @@ namespace Sneaker_DATN.Services
                 p => p.UserName.Equals(viewWebLogin.UserName)
                 && p.Password.Equals(_encodeHelper.Encode(viewWebLogin.Password))
                 && p.RoleID.Equals(3)
+                && p.Lock.Equals(false)
                 ).FirstOrDefault();
             return u;
         }

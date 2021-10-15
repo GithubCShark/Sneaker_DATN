@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Sneaker_DATN.Models.ViewModels.ViewWebLogin
+@{
     ViewData["Title"] = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -41,17 +42,17 @@
             <div class="col-lg-5">
                 <div class="login_form_inner">
                     <h3>Đăng nhập</h3>
-                    <form class="row login_form" action="contact_process.php" method="post" id="contactForm"
+                    <div class="text-danger" asp-validation-summary="All"></div>
+                    <form asp-action="Login" class="row login_form" method="post" id="contactForm"
                           novalidate="novalidate">
+                        <input type="hidden" asp-for="ReturnUrl" />
                         <div class="col-md-12 form-group">
-                            <input type="text" class="form-control" id="name" name="name"
-                                   placeholder="Tên đăng nhập" onfocus="this.placeholder = ''"
-                                   onblur="this.placeholder = 'Tên đăng nhập'">
+                            <input type="text" asp-for="UserName" class="form-control" 
+                                   placeholder="Tên đăng nhập">
                         </div>
                         <div class="col-md-12 form-group">
-                            <input type="password" class="form-control" id="password" name="password"
-                                   placeholder="Mật khẩu" onfocus="this.placeholder = ''"
-                                   onblur="this.placeholder = 'Mật khẩu'">
+                            <input type="password" asp-for="Password" class="form-control"
+                                   placeholder="Mật khẩu">
                         </div>
                         <div class="col-md-12 form-group">
                             <div class="creat_account">

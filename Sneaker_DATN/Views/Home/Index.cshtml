@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<Sneaker_DATN.Models.Products>
+@{
     ViewData["Title"] = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -203,40 +204,43 @@
                 </div>
             </div>
             <div class="row" data-aos="fade-up">
-                <!-- single product -->
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="single-product">
-                        <img class="img-fluid" src="~/images/product/p1.jpg" alt="">
-                        <div class="badge-overlay">
-                            <span class="badge">Sale 5%</span>
-                        </div>
-                        <div class="product-details">
-                            <h6>Nike Air Force 1 Shadow</h6>
-                            <div class="price">
-                                <h6>3.500.000₫</h6>
-                                <!-- <h6 class="l-through">$210.00</h6> -->
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="single-product">
+                            <img class="img-fluid" src="~/images/Product/@item.Image" alt="">
+                            <div class="badge-overlay">
+                                <span class="badge">Sale 0%</span>
                             </div>
-                            <div class="prd-bottom">
-                                <a href="" class="social-info">
-                                    <span class="ti-bag"></span>
-                                    <p class="hover-text">Giỏ hàng</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-heart"></span>
-                                    <p class="hover-text">Yêu thích</p>
-                                </a>
-                                <!-- <a href="" class="social-info">
-                                    <span class="lnr lnr-sync"></span>
-                                    <p class="hover-text">compare</p>
-                                </a> -->
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-move"></span>
-                                    <p class="hover-text">view more</p>
-                                </a>
+                            <div class="product-details">
+                                <h6>@Html.DisplayFor(modelItem => item.ProductName)</h6>
+                                <div class="price">
+                                    <h6>@Html.DisplayFor(modelItem => item.Price)</h6>
+                                    <h6 class="l-through">$0</h6>
+                                </div>
+                                <div class="prd-bottom">
+                                    <a href="" class="social-info">
+                                        <span class="ti-bag"></span>
+                                        <p class="hover-text">Giỏ hàng</p>
+                                    </a>
+                                    <a href="" class="social-info">
+                                        <span class="lnr lnr-heart"></span>
+                                        <p class="hover-text">Yêu thích</p>
+                                    </a>
+                                    <!-- <a href="" class="social-info">
+                                        <span class="lnr lnr-sync"></span>
+                                        <p class="hover-text">compare</p>
+                                    </a> -->
+                                    <a href="" class="social-info">
+                                        <span class="lnr lnr-move"></span>
+                                        <p class="hover-text">view more</p>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                }
+                <!-- single product -->
                 <!-- single product -->
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="single-product">
