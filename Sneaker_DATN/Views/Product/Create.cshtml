@@ -70,24 +70,11 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label">Chọn Size</label>
-                        @Html.ListBox("selectedSize", ViewBag.size, new
+                        @foreach (var item in ViewBag.size)
                         {
-                            @class = "choices-multiple-remove-button",
-                            id = "selectedSize",
-                            Multiple = "multiple",
-                            placeholder = "Chọn Sizes"
-                        })
+                            <input type="checkbox" value="@item.SizeID" /> @item.Size
+                        }
                     </div>
-                    @*<div class="form-group">
-                        <label class="control-label">Chọn Màu</label>
-                        @Html.ListBox("selectedColor", ViewBag.color, new
-                        {
-                            @class = "choices-multiple-remove-button",
-                            id = "selectedColor",
-                            Multiple = "multiple",
-                            placeholder = "Chọn Màu"
-                        })
-                    </div>*@
                     <div class="form-group form-check">
                         <label class="form-check-label">
                             <input class="form-check-input" asp-for="Status" /> @Html.DisplayNameFor(model => model.Status)
@@ -121,8 +108,6 @@
                 searchResultLimit: 6,
                 renderChoiceLimit: 6
             });
-
-
         });
     </script>
 }

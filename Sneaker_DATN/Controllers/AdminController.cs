@@ -26,7 +26,16 @@ namespace Sneaker_DATN.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            string userName = HttpContext.Session.GetString(SessionKey.User.UserName);
+            if (userName != null && userName != "")
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction(nameof(AdminController.Login), "Admin");
+            }
+            //return View();
         }
 
         public IActionResult Login(string returnUrl)

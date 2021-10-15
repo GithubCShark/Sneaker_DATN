@@ -107,6 +107,8 @@
                             @Html.Raw(string.Join("<br>",
                                 item.ProductSizes.Select(p => p.Sizes).ToList().Select(c => $"<i>{c.Size}</i>")))
                         </td>*@
+                        <td></td>
+                        <td></td>
                         <td>
                             <a asp-action="Edit" asp-route-id="@item.ProductID"><i class="far fa-edit dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
                             <a asp-action="Details" asp-route-id="@item.ProductID"><i class="far fa-eye ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>

@@ -42,14 +42,27 @@ namespace Sneaker_DATN.Controllers
         }
 
         [BindProperty]
-        public int[] selectedSize { set; get; }
+        public string[] selectedSize { set; get; }
         // GET: MonAnController/Create
         public ActionResult Create()
         {
             var brands = _context.Brands.ToList();
             ViewData["brands"] = new SelectList(brands, "BrandID", "BrandName");
-            var sizes = _context.Sizes.ToList();
-            ViewData["size"] = new MultiSelectList(sizes, "SizeID", "Size");
+            ViewData["size"] = _context.Sizes.ToList();
+
+            //List<SelectListItem> listSizes = new List<SelectListItem>();
+            //foreach (var c in sizes)
+            //{
+            //    listSizes.Add(new SelectListItem
+            //    {
+            //        Text = c.Size.ToString(),
+            //        Value = c.SizeID.ToString()
+            //    });
+            //}
+            //ViewData["size"] = listSizes;
+            //ViewData["size"] = new MultiSelectList(sizes, "SizeID", "Size");
+            //ViewBag.size = listSizes;
+
             var colors = _context.Colors.ToList();
             ViewData["color"] = new MultiSelectList(colors, "ColorID", "Color");
             return View();
@@ -58,7 +71,7 @@ namespace Sneaker_DATN.Controllers
        // POST: ProductController/Create
        [HttpPost]
        [ValidateAntiForgeryToken]
-        public ActionResult Create(Products product)
+        public async Task<IActionResult> Create(Products product)
         {
             try
             {
@@ -84,12 +97,14 @@ namespace Sneaker_DATN.Controllers
                 _productSvc.AddProduct(product);
                 _context.SaveChanges();
 
+                var prod = await _context.ProductSizes.FindAsync(product.ProductID);
+                _context.ProductSizes.Remove(prod);
                 foreach (var selectedSize in selectedSize)
-                {
-                    _context.Add(new ProductSize() { ProductID = product.ProductID, SizeID = selectedSize });
-                    _context.SaveChanges();
+                {                    
+                    _context.Add(new ProductSize() { ProductID = product.ProductID, SizeID = int.Parse(selectedSize) });
                 }
                 
+                await _context.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Index), new { id = product.ProductID });
             }
