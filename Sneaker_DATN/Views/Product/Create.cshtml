@@ -78,7 +78,7 @@
                             placeholder = "Chọn Sizes"
                         })
                     </div>
-                    <div class="form-group">
+                    @*<div class="form-group">
                         <label class="control-label">Chọn Màu</label>
                         @Html.ListBox("selectedColor", ViewBag.color, new
                         {
@@ -87,7 +87,7 @@
                             Multiple = "multiple",
                             placeholder = "Chọn Màu"
                         })
-                    </div>
+                    </div>*@
                     <div class="form-group form-check">
                         <label class="form-check-label">
                             <input class="form-check-input" asp-for="Status" /> @Html.DisplayNameFor(model => model.Status)

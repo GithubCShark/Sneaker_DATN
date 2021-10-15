@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<Sneaker_DATN.Models.Products>
-
 @{
     ViewData["Title"] = "ListProducts";
     Layout = "~/Views/Shared/_LayoutManager.cshtml";
@@ -64,46 +63,56 @@
                         <th>
                             @Html.DisplayNameFor(model => model.Brands)
                         </th>
+                        <th>
+                            Size
+                        </th>
+                        <th>
+                            Color
+                        </th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ProductName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Price)
-                            </td>
-                            <td>
-                                <img src="~/images/Product/@item.Image" style="width:100px; height:100px;" />
-                            </td>
-                            <td>
-                                <img src="~/images/Product/@item.Image1" style="width: 100px; height: 100px;" />
-                            </td>
-                            <td>
-                                <img src="~/images/Product/@item.Image2" style="width: 100px; height:100px;" />
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Status)
-                            </td>
-                            <td>
-                                @foreach (var brd in ViewBag.brand)
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProductName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            <img src="~/images/Product/@item.Image" style="width:100px; height:100px;" />
+                        </td>
+                        <td>
+                            <img src="~/images/Product/@item.Image1" style="width: 100px; height: 100px;" />
+                        </td>
+                        <td>
+                            <img src="~/images/Product/@item.Image2" style="width: 100px; height:100px;" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            @foreach (var brd in ViewBag.brand)
+                            {
+                                if (brd.BrandID == item.BrandID)
                                 {
-                                    if (brd.BrandID == item.BrandID)
-                                    {
-                                        @brd.BrandName;
-                                    }
+                                    @brd.BrandName;
                                 }
-                            </td>
-                            <td>
-                                <a asp-action="Edit" asp-route-id="@item.ProductID"><i class="far fa-edit dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
-                                <a asp-action="Details" asp-route-id="@item.ProductID"><i class="far fa-eye ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
-                                <a asp-action="Delete" asp-route-id="@item.ProductID"><i class="far fa-trash-alt ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
-                            </td>
-                        </tr>
+                            }
+                        </td>
+                        @*<td>
+                            @Html.Raw(string.Join("<br>",
+                                item.ProductSizes.Select(p => p.Sizes).ToList().Select(c => $"<i>{c.Size}</i>")))
+                        </td>*@
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.ProductID"><i class="far fa-edit dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
+                            <a asp-action="Details" asp-route-id="@item.ProductID"><i class="far fa-eye ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
+                            <a asp-action="Delete" asp-route-id="@item.ProductID"><i class="far fa-trash-alt ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>

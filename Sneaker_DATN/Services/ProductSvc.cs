@@ -17,6 +17,7 @@ namespace Sneaker_DATN.Services
         int EditProduct(int id, Products product);
 
         Brands GetBrand(int id);
+        //ProductColor GetColor(int id);
     }
     public class ProductSvc : IProductSvc
     {
@@ -30,6 +31,10 @@ namespace Sneaker_DATN.Services
         {
             List<Products> list = new List<Products>();
             list = _context.Products.ToList();
+            //List<ProductSize> listsize = new List<ProductSize>();
+            //listsize = _context.ProductSizes.ToList();
+            //List<ProductColor> listcolor = new List<ProductColor>();
+            //listcolor = _context.ProductColors.ToList();
             return list;
         }
 
@@ -55,12 +60,17 @@ namespace Sneaker_DATN.Services
             }
             return ret;
         }
-        public int EditProduct(int id, Products product)
+        public int EditProduct(int id, Products product/*, Sizes size*/)
         {
             int ret = 0;
             try
             {
                 Products _product = null;
+                //Sizes _size = null;
+                //_size = _context.Sizes.Find(id);
+                //_size.SizeID = size.SizeID;
+                //_size.Size = size.Size;
+
                 _product = _context.Products.Find(id);
 
                 _product.ProductName = product.ProductName;

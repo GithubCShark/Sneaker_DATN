@@ -138,6 +138,9 @@ namespace Sneaker_DATN.Migrations
 
                     b.HasIndex("ColorID");
 
+                    b.HasIndex("ProductID")
+                        .IsUnique();
+
                     b.ToTable("ProductColors");
                 });
 
@@ -150,6 +153,9 @@ namespace Sneaker_DATN.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ProductID", "SizeID");
+
+                    b.HasIndex("ProductID")
+                        .IsUnique();
 
                     b.HasIndex("SizeID");
 
@@ -164,6 +170,9 @@ namespace Sneaker_DATN.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("BrandID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ColorID")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -186,6 +195,9 @@ namespace Sneaker_DATN.Migrations
                         .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
+
+                    b.Property<int>("SizeID")
+                        .HasColumnType("int");
 
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
@@ -340,8 +352,8 @@ namespace Sneaker_DATN.Migrations
                         .IsRequired();
 
                     b.HasOne("Sneaker_DATN.Models.Products", "Products")
-                        .WithMany()
-                        .HasForeignKey("ProductID")
+                        .WithOne("ColorsP")
+                        .HasForeignKey("Sneaker_DATN.Models.ProductColor", "ProductID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -353,8 +365,8 @@ namespace Sneaker_DATN.Migrations
             modelBuilder.Entity("Sneaker_DATN.Models.ProductSize", b =>
                 {
                     b.HasOne("Sneaker_DATN.Models.Products", "Products")
-                        .WithMany()
-                        .HasForeignKey("ProductID")
+                        .WithOne("SizeP")
+                        .HasForeignKey("Sneaker_DATN.Models.ProductSize", "ProductID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -389,6 +401,13 @@ namespace Sneaker_DATN.Migrations
                         .IsRequired();
 
                     b.Navigation("Roles");
+                });
+
+            modelBuilder.Entity("Sneaker_DATN.Models.Products", b =>
+                {
+                    b.Navigation("ColorsP");
+
+                    b.Navigation("SizeP");
                 });
 #pragma warning restore 612, 618
         }

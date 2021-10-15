@@ -36,18 +36,9 @@ namespace Sneaker_DATN.Controllers
         public ActionResult Index()
         {
             ViewData["brand"] = _context.Brands.ToList();
+            //ViewData["sz"] = _context.Sizes.ToList();
+            //ViewData["clo"] = _context.ProductColors.ToList();
             return View(_productSvc.GetProductAll());
-        }
-
-        // GET: ProductController/Details/5
-        public ActionResult Details(int id)
-        {
-            var product = _productSvc.GetProduct(id);
-
-            var brd = _productSvc.GetBrand(product.BrandID);
-            ViewData["brdetails"] = brd.BrandName;
-            
-            return View(product);
         }
 
         [BindProperty]
@@ -75,24 +66,31 @@ namespace Sneaker_DATN.Controllers
                 {
                         string rootPath = Path.Combine(_webHostEnvironment.WebRootPath, "images");
                         _uploadHelper.UploadImage(product.ImageFile, rootPath, "Product");
-                        product.Image = product.ImageFile.FileName;                   
+                    product.Image = product.ImageFile.FileName;
                 }
                 if (product.ImageFile1 != null && product.ImageFile1.Length > 0)
                 {
                     string rootPath = Path.Combine(_webHostEnvironment.WebRootPath, "images");
                     _uploadHelper.UploadImage(product.ImageFile1, rootPath, "Product");
                     product.Image1 = product.ImageFile1.FileName;
-
                 }
                 if (product.ImageFile2 != null && product.ImageFile2.Length > 0)
                 {
                     string rootPath = Path.Combine(_webHostEnvironment.WebRootPath, "images");
                     _uploadHelper.UploadImage(product.ImageFile2, rootPath, "Product");
                     product.Image2 = product.ImageFile2.FileName;
-
                 }
 
                 _productSvc.AddProduct(product);
+                _context.SaveChanges();
+
+                foreach (var selectedSize in selectedSize)
+                {
+                    _context.Add(new ProductSize() { ProductID = product.ProductID, SizeID = selectedSize });
+                    _context.SaveChanges();
+                }
+                
+
                 return RedirectToAction(nameof(Index), new { id = product.ProductID });
             }
             catch
@@ -106,7 +104,10 @@ namespace Sneaker_DATN.Controllers
         {
             var brands = _context.Brands.ToList();
             ViewData["brands"] = new SelectList(brands, "BrandID", "BrandName");
-            
+
+            var sizes = _context.Sizes.ToList();
+            ViewData["size"] = new MultiSelectList(sizes, "SizeID", "Size");
+
             var product = _productSvc.GetProduct(id);
             return View(product);
         }
@@ -150,7 +151,19 @@ namespace Sneaker_DATN.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
+        // GET: ProductController/Details/5
+        public ActionResult Details(int id)
+        {
+            var product = _productSvc.GetProduct(id);
 
+            var brd = _productSvc.GetBrand(product.BrandID);
+            ViewData["brdetails"] = brd.BrandName;
+
+            //var brcl = _productSvc.GetColor(product.ColorID);
+            //ViewData["brcl"] = brcl.Color;
+
+            return View(product);
+        }
         // GET: ProductController/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
