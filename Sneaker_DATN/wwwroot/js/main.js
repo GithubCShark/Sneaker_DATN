@@ -65,15 +65,15 @@ $(document).ready(function () {
   /*=================================
   Javascript for product area carousel
   ==================================*/
-  $(".active-product-area").owlCarousel({
-    items: 1,
-    autoplay: false,
-    autoplayTimeout: 5000,
-    loop: true,
-    nav: true,
-      navText: ["<img src='~/images/product/prev.png'>", "<img src='~/images/product/next.png'>"],
-    dots: false
-  });
+  //$(".active-product-area").owlCarousel({
+  //  items: 1,
+  //  autoplay: false,
+  //  autoplayTimeout: 5000,
+  //  loop: true,
+  //  nav: true,
+  //    navText: ["<img src='~/images/product/prev.png'>", "<img src='~/images/product/next.png'>"],
+  //  dots: false
+  //});
 
   /*=================================
   Javascript for single product area carousel
@@ -586,3 +586,44 @@ $(document).ready(function () {
     }, 1000);
   });
 });
+
+// slide show
+let slide_index = 0
+let slide_play = true
+let slides = document.querySelectorAll('.slide')
+
+hideAllSlide = () => {
+    slides.forEach(e => {
+        e.classList.remove('active')
+    })
+}
+
+showSlide = () => {
+    hideAllSlide()
+    slides[slide_index].classList.add('active')
+}
+
+nextSlide = () => slide_index = slide_index + 1 === slides.length ? 0 : slide_index + 1
+
+prevSlide = () => slide_index = slide_index - 1 < 0 ? slides.length - 1 : slide_index - 1
+
+// pause slide when hover slider
+
+document.querySelector('.slider').addEventListener('mouseover', () => slide_play = false)
+
+// enable slide when mouse leave out slider
+document.querySelector('.slider').addEventListener('mouseleave', () => slide_play = true)
+
+// slider controll
+
+document.querySelector('.slide-next').addEventListener('click', () => {
+    nextSlide()
+    showSlide()
+})
+
+document.querySelector('.slide-prev').addEventListener('click', () => {
+    prevSlide()
+    showSlide()
+})
+
+showSlide()

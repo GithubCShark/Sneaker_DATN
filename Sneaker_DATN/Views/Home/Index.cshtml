@@ -4,9 +4,6 @@
 }
 
 <style>
-    .sticky-wrapper{
-        overflow: hidden;
-    }
     .banner-area {
         /* background: url(~/images/banner/banner-bg.png) center no-repeat;*/
         background: url('@Url.Content("~/images/banner/banner-bg.png")') center no-repeat;
@@ -19,48 +16,106 @@
 <!-- start banner Area -->
 <section class="banner-area">
     <div class="container">
-        <div class="row fullscreen align-items-center justify-content-start">
+        <div class="row fullscreen ">
             <div class="col-lg-12">
-                @*<img class="banner-area-img" src="~/images/banner/banner-bg.png" />*@
-                <div class="active-banner-slider owl-carousel">
-                    <!-- single-slide -->
-                    <div class="row single-slide align-items-center d-flex">
-                        <div class="col-lg-5 col-md-6">
-                            <div class="banner-content ">
-                                <p>New in</p>
-                                <h1>YEZZY BOOST<br>SPLY - 350</h1>
-                                <!-- <p>Bộ sưu tập mới về giày thể thao.</p> -->
-                                <div class="add-bag d-flex align-items-center">
-                                    <a class="add-btn" href=""><span class="lnr lnr-cross"></span></a>
-                                    <span class="add-text text-uppercase">Thêm vào giỏ hàng</span>
+                <!-- hero section -->
+                <div class="hero">
+                    <div class="slider">
+                        <div class="">
+                            <!-- slide item -->
+                            <div class="slide active col-lg-12">
+                                <div class="info col-lg-6">
+                                    <div class="info-content">
+                                        <p class="top-down">
+                                            New in
+                                        </p>
+                                        <h2 class="top-down trans-delay-0-2">
+                                            Nike AirMax 1
+                                        </h2>
+                                        <p class="top-down trans-delay-0-4">
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati dolor commodi dignissimos culpa, eaque eos necessitatibus possimus veniam, cupiditate rerum deleniti? Libero, ducimus error? Beatae velit dolore sint explicabo! Fugit.
+                                        </p>
+                                        <div class="top-down trans-delay-0-6 d-flex align-items-center">
+                                            <a href="#" class="btn-icon"> <i class='bx bx-plus bx-sm'></i></a>
+                                            <span class="btn-flat btn-hover">
+                                                Thêm vào giỏ hàng
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="img top-down col-lg-6">
+                                    <div class="img-shape"></div>
+                                    <img src="~/images/banner/banner-img.png" alt="">
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-7">
-                            <div class="banner-img">
-                                <img class="img-fluid" src="~/images/banner/banner-img.png" alt="">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- single-slide -->
-                    <div class="row single-slide">
-                        <div class="col-lg-5">
-                            <div class="banner-content">
-                                <h1>Nike New <br>Collection!</h1>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-                                <div class="add-bag d-flex align-items-center">
-                                    <a class="add-btn" href=""><span class="lnr lnr-cross"></span></a>
-                                    <span class="add-text text-uppercase">Add to Bag</span>
+                            <!-- end slide item -->
+                            <!-- slide item -->
+                            <div class="slide col-lg-12">
+                                <div class="info col-lg-6">
+                                    <div class="info-content">
+                                        <p class="top-down">
+                                            New in
+                                        </p>
+                                        <h2 class="top-down trans-delay-0-2">
+                                            Ipsum dolor
+                                        </h2>
+                                        <p class="top-down trans-delay-0-4">
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. A optio, voluptatum aperiam nobis quis maxime corporis porro alias soluta sunt quae consectetur aliquid blanditiis perspiciatis labore cumque, ullam, quam eligendi!
+                                        </p>
+                                        <div class="top-down trans-delay-0-6 d-flex align-items-center">
+                                            <a href="#" class="btn-icon"> <i class='bx bx-plus bx-sm'></i></a>
+                                            <span class="btn-flat btn-hover">
+                                                Thêm vào giỏ hàng
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="img right-left col-lg-6">
+                                    <div class="img-shape"></div>
+                                    <img src="~/images/banner/banner-img.png" alt="">
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-7">
-                            <div class="banner-img">
-                                <img class="img-fluid" src="~/images/banner/banner-img2.jpg" alt="">
+                            <!-- end slide item -->
+                            <!-- slide item -->
+                            <div class="slide col-lg-12">
+                                <div class="info col-lg-6">
+                                    <div class="info-content">
+                                        <h3 class="top-down">
+                                            JBL JR 310BT
+                                        </h3>
+                                        <h2 class="top-down trans-delay-0-2">
+                                            Consectetur Elit
+                                        </h2>
+                                        <p class="top-down trans-delay-0-4">
+                                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo aut fugiat, libero magnam nemo inventore in tempora beatae officiis temporibus odit deserunt molestiae amet quam, asperiores, iure recusandae nulla labore!
+                                        </p>
+                                        <div class="top-down trans-delay-0-6 d-flex align-items-center">
+                                            <a href="#" class="btn-icon"> <i class='bx bx-plus bx-sm'></i></a>
+                                            <span class="btn-flat btn-hover">
+                                                Thêm vào giỏ hàng
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="img left-right col-lg-6">
+                                    <div class="img-shape"></div>
+                                    <img src="~/images/banner/banner-img.png" alt="">
+                                </div>
                             </div>
+                            <!-- end slide item -->
                         </div>
+                        <!-- slider controller -->
+                        <button class="slide-controll slide-next">
+                            <i class='bx bxs-chevron-right'></i>
+                        </button>
+                        <button class="slide-controll slide-prev">
+                            <i class='bx bxs-chevron-left'></i>
+                        </button>
+                        <!-- end slider controller -->
                     </div>
                 </div>
+                <!-- end hero section -->
+
             </div>
         </div>
     </div>
@@ -134,7 +189,8 @@
 </section>
 <!-- End category Area -->
 <!-- start product Area -->
-<section class="owl-carousel active-product-area section_gap">
+@* class : owl-carousel*@
+<section class="active-product-area section_gap">
     <!-- single product slide -->
     <div class="single-product-slider">
         <div class="container">
@@ -150,7 +206,7 @@
                 <!-- single product -->
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="single-product">
-                        <img class="img-fluid shadow-sm" src="~/images/product/p1.jpg" alt="">
+                        <img class="img-fluid" src="~/images/product/p1.jpg" alt="">
                         <div class="badge-overlay">
                             <span class="badge">Sale 5%</span>
                         </div>
@@ -184,7 +240,7 @@
                 <!-- single product -->
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="single-product">
-                        <img class="img-fluid  shadow-sm" src="~/images/product/p2.jpg" alt="">
+                        <img class="img-fluid" src="~/images/product/p2.jpg" alt="">
                         <div class="product-details">
                             <h6>Nike Dunk High</h6>
                             <div class="price">
@@ -215,7 +271,7 @@
                 <!-- single product -->
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="single-product">
-                        <img class="img-fluid   shadow-sm" src="~/images/product/p3.jpg" alt="">
+                        <img class="img-fluid" src="~/images/product/p3.jpg" alt="">
                         <div class="product-details">
                             <h6>Nike Air Force 1 Sage</h6>
                             <div class="price">
@@ -246,7 +302,7 @@
                 <!-- single product -->
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="single-product">
-                        <img class="img-fluid   shadow-sm" src="~/images/product/p4.jpg" alt="">
+                        <img class="img-fluid" src="~/images/product/p4.jpg" alt="">
                         <div class="product-details">
                             <h6>Vans Comfort Old Skool Mule</h6>
                             <div class="price">
@@ -277,7 +333,7 @@
                 <!-- single product -->
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="single-product">
-                        <img class="img-fluid   shadow-sm" src="~/images/product/p5.jpg" alt="">
+                        <img class="img-fluid" src="~/images/product/p5.jpg" alt="">
                         <div class="product-details">
                             <h6>Adidas Stan Smith</h6>
                             <div class="price">
@@ -308,7 +364,7 @@
                 <!-- single product -->
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="single-product">
-                        <img class="img-fluid   shadow-sm" src="~/images/product/p6.jpg" alt="">
+                        <img class="img-fluid" src="~/images/product/p6.jpg" alt="">
                         <div class="product-details">
                             <h6>MLB Mule NY Monogram </h6>
                             <div class="price">
@@ -339,7 +395,7 @@
                 <!-- single product -->
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="single-product">
-                        <img class="img-fluid shadow-sm" src="~/images/product/p7.jpg" alt="">
+                        <img class="img-fluid" src="~/images/product/p7.jpg" alt="">
                         <div class="product-details">
                             <h6>Puma Mule Ribbon</h6>
                             <div class="price">
@@ -370,7 +426,7 @@
                 <!-- single product -->
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="single-product">
-                        <img class="img-fluid  shadow-sm" src="~/images/product/p8.jpg" alt="">
+                        <img class="img-fluid" src="~/images/product/p8.jpg" alt="">
                         <div class="product-details">
                             <h6>Nike Air Force 1 LXX</h6>
                             <div class="price">
@@ -401,277 +457,7 @@
             </div>
         </div>
     </div>
-    <!-- single product slide -->
-    <div class="single-product-slider">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-6 text-center">
-                    <div class="section-title">
-                        <h1>Coming Products</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <!-- single product -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-product">
-                        <img class="img-fluid" src="img/product/p6.jpg" alt="">
-                        <div class="product-details">
-                            <h6>addidas New Hammer sole for Sports person</h6>
-                            <div class="price">
-                                <h6>$150.00</h6>
-                                <h6 class="l-through">$210.00</h6>
-                            </div>
-                            <div class="prd-bottom">
 
-                                <a href="" class="social-info">
-                                    <span class="ti-bag"></span>
-                                    <p class="hover-text">add to bag</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-heart"></span>
-                                    <p class="hover-text">Wishlist</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-sync"></span>
-                                    <p class="hover-text">compare</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-move"></span>
-                                    <p class="hover-text">view more</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single product -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-product">
-                        <img class="img-fluid" src="img/product/p8.jpg" alt="">
-                        <div class="product-details">
-                            <h6>addidas New Hammer sole for Sports person</h6>
-                            <div class="price">
-                                <h6>$150.00</h6>
-                                <h6 class="l-through">$210.00</h6>
-                            </div>
-                            <div class="prd-bottom">
-
-                                <a href="" class="social-info">
-                                    <span class="ti-bag"></span>
-                                    <p class="hover-text">add to bag</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-heart"></span>
-                                    <p class="hover-text">Wishlist</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-sync"></span>
-                                    <p class="hover-text">compare</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-move"></span>
-                                    <p class="hover-text">view more</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single product -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-product">
-                        <img class="img-fluid" src="img/product/p3.jpg" alt="">
-                        <div class="product-details">
-                            <h6>addidas New Hammer sole for Sports person</h6>
-                            <div class="price">
-                                <h6>$150.00</h6>
-                                <h6 class="l-through">$210.00</h6>
-                            </div>
-                            <div class="prd-bottom">
-
-                                <a href="" class="social-info">
-                                    <span class="ti-bag"></span>
-                                    <p class="hover-text">add to bag</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-heart"></span>
-                                    <p class="hover-text">Wishlist</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-sync"></span>
-                                    <p class="hover-text">compare</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-move"></span>
-                                    <p class="hover-text">view more</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single product -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-product">
-                        <img class="img-fluid" src="img/product/p5.jpg" alt="">
-                        <div class="product-details">
-                            <h6>addidas New Hammer sole for Sports person</h6>
-                            <div class="price">
-                                <h6>$150.00</h6>
-                                <h6 class="l-through">$210.00</h6>
-                            </div>
-                            <div class="prd-bottom">
-
-                                <a href="" class="social-info">
-                                    <span class="ti-bag"></span>
-                                    <p class="hover-text">add to bag</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-heart"></span>
-                                    <p class="hover-text">Wishlist</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-sync"></span>
-                                    <p class="hover-text">compare</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-move"></span>
-                                    <p class="hover-text">view more</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single product -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-product">
-                        <img class="img-fluid" src="img/product/p1.jpg" alt="">
-                        <div class="product-details">
-                            <h6>addidas New Hammer sole for Sports person</h6>
-                            <div class="price">
-                                <h6>$150.00</h6>
-                                <h6 class="l-through">$210.00</h6>
-                            </div>
-                            <div class="prd-bottom">
-
-                                <a href="" class="social-info">
-                                    <span class="ti-bag"></span>
-                                    <p class="hover-text">add to bag</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-heart"></span>
-                                    <p class="hover-text">Wishlist</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-sync"></span>
-                                    <p class="hover-text">compare</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-move"></span>
-                                    <p class="hover-text">view more</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single product -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-product">
-                        <img class="img-fluid" src="img/product/p4.jpg" alt="">
-                        <div class="product-details">
-                            <h6>addidas New Hammer sole for Sports person</h6>
-                            <div class="price">
-                                <h6>$150.00</h6>
-                                <h6 class="l-through">$210.00</h6>
-                            </div>
-                            <div class="prd-bottom">
-
-                                <a href="" class="social-info">
-                                    <span class="ti-bag"></span>
-                                    <p class="hover-text">add to bag</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-heart"></span>
-                                    <p class="hover-text">Wishlist</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-sync"></span>
-                                    <p class="hover-text">compare</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-move"></span>
-                                    <p class="hover-text">view more</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single product -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-product">
-                        <img class="img-fluid" src="img/product/p1.jpg" alt="">
-                        <div class="product-details">
-                            <h6>addidas New Hammer sole for Sports person</h6>
-                            <div class="price">
-                                <h6>$150.00</h6>
-                                <h6 class="l-through">$210.00</h6>
-                            </div>
-                            <div class="prd-bottom">
-
-                                <a href="" class="social-info">
-                                    <span class="ti-bag"></span>
-                                    <p class="hover-text">add to bag</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-heart"></span>
-                                    <p class="hover-text">Wishlist</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-sync"></span>
-                                    <p class="hover-text">compare</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-move"></span>
-                                    <p class="hover-text">view more</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- single product -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-product">
-                        <img class="img-fluid" src="img/product/p8.jpg" alt="">
-                        <div class="product-details">
-                            <h6>addidas New Hammer sole for Sports person</h6>
-                            <div class="price">
-                                <h6>$150.00</h6>
-                                <h6 class="l-through">$210.00</h6>
-                            </div>
-                            <div class="prd-bottom">
-
-                                <a href="" class="social-info">
-                                    <span class="ti-bag"></span>
-                                    <p class="hover-text">add to bag</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-heart"></span>
-                                    <p class="hover-text">Wishlist</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-sync"></span>
-                                    <p class="hover-text">compare</p>
-                                </a>
-                                <a href="" class="social-info">
-                                    <span class="lnr lnr-move"></span>
-                                    <p class="hover-text">view more</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </section>
 <!-- end product Area -->
 <!-- start features Area -->
@@ -764,43 +550,3 @@
     </div>
 </section>
 <!-- End brand Area -->
-
-<script>
-    /*=================================
-Javascript for banner area carousel
-==================================*/
-    $(".active-banner-slider").owlCarousel({
-        items: 1,
-        autoplay: false,
-        autoplayTimeout: 5000,
-        loop: true,
-        nav: true,
-        navText: ["<img src='~/images/banner/prev.png'>", "<img src='~/images/banner/next.png'>"],
-        dots: false
-    });
-
-    /*=================================
-    Javascript for product area carousel
-    ==================================*/
-    $(".active-product-area").owlCarousel({
-        items: 1,
-        autoplay: false,
-        autoplayTimeout: 5000,
-        loop: true,
-        nav: true,
-        navText: ["<img src='~/images/product/prev.png'>", "<img src='~/images/product/next.png'>"],
-        dots: false
-    });
-    /*=================================
-Javascript for exclusive area carousel
-==================================*/
-    $(".active-exclusive-product-slider").owlCarousel({
-        items: 1,
-        autoplay: false,
-        autoplayTimeout: 5000,
-        loop: true,
-        nav: true,
-        navText: ["<img src='~/images/product/prev.png'>", "<img src='~/images/product/next.png'>"],
-        dots: false
-    });
-</script>
