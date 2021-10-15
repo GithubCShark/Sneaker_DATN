@@ -1555,12 +1555,18 @@ h6 {
 /* banner area css
 ============================================================================================ */
 .banner-area {
-  background: url(../img/banner/banner-bg.png) center no-repeat;
-  background-size: cover;
-  position: relative;
+   /* background: url(~/images/banner/banner-bg.png) center no-repeat;*/
+    background-image: url('@Url.Content("~/images/banner/banner-bg.png")');
+    background-size: cover;
+    position: relative;
 }
+/*    .banner-area img {
+        background-size: cover;
+        position: absolute;
+        background-repeat: no-repeat;
+    }*/
 @media (max-width: 768px) {
-  .banner-area .fullscreen {
+    .banner-area .fullscreen {
     height: 650px !important;
   }
 }

@@ -1,8 +1,806 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome Công</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<style>
+    .sticky-wrapper{
+        overflow: hidden;
+    }
+    .banner-area {
+        /* background: url(~/images/banner/banner-bg.png) center no-repeat;*/
+        background: url('@Url.Content("~/images/banner/banner-bg.png")') center no-repeat;
+        background-size: cover;
+        position: relative;
+    }
+
+</style>
+
+<!-- start banner Area -->
+<section class="banner-area">
+    <div class="container">
+        <div class="row fullscreen align-items-center justify-content-start">
+            <div class="col-lg-12">
+                @*<img class="banner-area-img" src="~/images/banner/banner-bg.png" />*@
+                <div class="active-banner-slider owl-carousel">
+                    <!-- single-slide -->
+                    <div class="row single-slide align-items-center d-flex">
+                        <div class="col-lg-5 col-md-6">
+                            <div class="banner-content ">
+                                <p>New in</p>
+                                <h1>YEZZY BOOST<br>SPLY - 350</h1>
+                                <!-- <p>Bộ sưu tập mới về giày thể thao.</p> -->
+                                <div class="add-bag d-flex align-items-center">
+                                    <a class="add-btn" href=""><span class="lnr lnr-cross"></span></a>
+                                    <span class="add-text text-uppercase">Thêm vào giỏ hàng</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-7">
+                            <div class="banner-img">
+                                <img class="img-fluid" src="~/images/banner/banner-img.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- single-slide -->
+                    <div class="row single-slide">
+                        <div class="col-lg-5">
+                            <div class="banner-content">
+                                <h1>Nike New <br>Collection!</h1>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+                                <div class="add-bag d-flex align-items-center">
+                                    <a class="add-btn" href=""><span class="lnr lnr-cross"></span></a>
+                                    <span class="add-text text-uppercase">Add to Bag</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-7">
+                            <div class="banner-img">
+                                <img class="img-fluid" src="~/images/banner/banner-img2.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+<!-- Start category Area -->
+<section class="category-area mt-5" data-aos="fade-up">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-12">
+                <div class="row">
+                    <div class="col-lg-8 col-md-8" data-aos="fade-up">
+                        <div class="single-deal">
+                            <div class="overlay"></div>
+                            <img class="img-fluid w-100" src="~/images/category/c1.jpg" alt="">
+                            <a href="img/category/c1.jpg" class="img-pop-up" target="_blank">
+                                <div class="deal-details">
+                                    <h6 class="deal-title">Adidas</h6>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4" data-aos="fade-up">
+                        <div class="single-deal">
+                            <div class="overlay"></div>
+                            <img class="img-fluid w-100" src="~/images/category/c2.jpg" alt="">
+                            <a href="img/category/c2.jpg" class="img-pop-up" target="_blank">
+                                <div class="deal-details">
+                                    <h6 class="deal-title">Sneaker for Sports</h6>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4" data-aos="fade-up">
+                        <div class="single-deal">
+                            <div class="overlay"></div>
+                            <img class="img-fluid w-100" src="~/images/category/c3.jpg" alt="">
+                            <a href="img/category/c3.jpg" class="img-pop-up" target="_blank">
+                                <div class="deal-details">
+                                    <h6 class="deal-title">Product for Couple</h6>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-8" data-aos="fade-up">
+                        <div class="single-deal">
+                            <div class="overlay"></div>
+                            <img class="img-fluid w-100" src="~/images/category/c4.jpg" alt="">
+                            <a href="img/category/c4.jpg" class="img-pop-up" target="_blank">
+                                <div class="deal-details">
+                                    <h6 class="deal-title">Nike</h6>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 media-small" data-aos="fade-up">
+                <div class="single-deal">
+                    <div class="overlay"></div>
+                    <img class="img-fluid w-100" src="~/images/category/c5.jpg" alt="">
+                    <a href="img/category/c5.jpg" class="img-pop-up" target="_blank">
+                        <div class="deal-details">
+                            <h6 class="deal-title">Sneaker for Sports</h6>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End category Area -->
+<!-- start product Area -->
+<section class="owl-carousel active-product-area section_gap">
+    <!-- single product slide -->
+    <div class="single-product-slider">
+        <div class="container">
+            <div class="row justify-content-center" data-aos="fade-up">
+                <div class="col-lg-6 text-center">
+                    <div class="section-title">
+                        <h1>Sản phẩm</h1>
+                        <p>Các sản phẩm bán chạy.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row" data-aos="fade-up">
+                <!-- single product -->
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="single-product">
+                        <img class="img-fluid shadow-sm" src="~/images/product/p1.jpg" alt="">
+                        <div class="badge-overlay">
+                            <span class="badge">Sale 5%</span>
+                        </div>
+                        <div class="product-details">
+                            <h6>Nike Air Force 1 Shadow</h6>
+                            <div class="price">
+                                <h6>3.500.000₫</h6>
+                                <!-- <h6 class="l-through">$210.00</h6> -->
+                            </div>
+                            <div class="prd-bottom">
+                                <a href="" class="social-info">
+                                    <span class="ti-bag"></span>
+                                    <p class="hover-text">Giỏ hàng</p>
+                                </a>
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-heart"></span>
+                                    <p class="hover-text">Yêu thích</p>
+                                </a>
+                                <!-- <a href="" class="social-info">
+                                    <span class="lnr lnr-sync"></span>
+                                    <p class="hover-text">compare</p>
+                                </a> -->
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-move"></span>
+                                    <p class="hover-text">view more</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- single product -->
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="single-product">
+                        <img class="img-fluid  shadow-sm" src="~/images/product/p2.jpg" alt="">
+                        <div class="product-details">
+                            <h6>Nike Dunk High</h6>
+                            <div class="price">
+                                <h6>3.500.000₫</h6>
+                                <h6 class="l-through">4.000.000₫</h6>
+                            </div>
+                            <div class="prd-bottom">
+                                <a href="" class="social-info">
+                                    <span class="ti-bag"></span>
+                                    <p class="hover-text">Giỏ hàng</p>
+                                </a>
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-heart"></span>
+                                    <p class="hover-text">Yêu thích</p>
+                                </a>
+                                <!-- <a href="" class="social-info">
+                                    <span class="lnr lnr-sync"></span>
+                                    <p class="hover-text">compare</p>
+                                </a> -->
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-move"></span>
+                                    <p class="hover-text">view more</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- single product -->
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="single-product">
+                        <img class="img-fluid   shadow-sm" src="~/images/product/p3.jpg" alt="">
+                        <div class="product-details">
+                            <h6>Nike Air Force 1 Sage</h6>
+                            <div class="price">
+                                <h6>3.500.000₫</h6>
+                                <!-- <h6 class="l-through">2.150.000₫</h6> -->
+                            </div>
+                            <div class="prd-bottom">
+                                <a href="" class="social-info">
+                                    <span class="ti-bag"></span>
+                                    <p class="hover-text">Giỏ hàng</p>
+                                </a>
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-heart"></span>
+                                    <p class="hover-text">Yêu thích</p>
+                                </a>
+                                <!-- <a href="" class="social-info">
+                                    <span class="lnr lnr-sync"></span>
+                                    <p class="hover-text">compare</p>
+                                </a> -->
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-move"></span>
+                                    <p class="hover-text">view more</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- single product -->
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="single-product">
+                        <img class="img-fluid   shadow-sm" src="~/images/product/p4.jpg" alt="">
+                        <div class="product-details">
+                            <h6>Vans Comfort Old Skool Mule</h6>
+                            <div class="price">
+                                <h6>1.700.000₫</h6>
+                                <h6 class="l-through">2.150.000₫</h6>
+                            </div>
+                            <div class="prd-bottom">
+                                <a href="" class="social-info">
+                                    <span class="ti-bag"></span>
+                                    <p class="hover-text">Giỏ hàng</p>
+                                </a>
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-heart"></span>
+                                    <p class="hover-text">Yêu thích</p>
+                                </a>
+                                <!-- <a href="" class="social-info">
+                                    <span class="lnr lnr-sync"></span>
+                                    <p class="hover-text">compare</p>
+                                </a> -->
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-move"></span>
+                                    <p class="hover-text">view more</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- single product -->
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="single-product">
+                        <img class="img-fluid   shadow-sm" src="~/images/product/p5.jpg" alt="">
+                        <div class="product-details">
+                            <h6>Adidas Stan Smith</h6>
+                            <div class="price">
+                                <h6>$2.500.000₫</h6>
+                                <!-- <h6 class="l-through">$210.00</h6> -->
+                            </div>
+                            <div class="prd-bottom">
+                                <a href="" class="social-info">
+                                    <span class="ti-bag"></span>
+                                    <p class="hover-text">Giỏ hàng</p>
+                                </a>
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-heart"></span>
+                                    <p class="hover-text">Yêu thích</p>
+                                </a>
+                                <!-- <a href="" class="social-info">
+                                    <span class="lnr lnr-sync"></span>
+                                    <p class="hover-text">compare</p>
+                                </a> -->
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-move"></span>
+                                    <p class="hover-text">view more</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- single product -->
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="single-product">
+                        <img class="img-fluid   shadow-sm" src="~/images/product/p6.jpg" alt="">
+                        <div class="product-details">
+                            <h6>MLB Mule NY Monogram </h6>
+                            <div class="price">
+                                <h6>1.750.000₫</h6>
+                                <!-- <h6 class="l-through">$210.00</h6> -->
+                            </div>
+                            <div class="prd-bottom">
+                                <a href="" class="social-info">
+                                    <span class="ti-bag"></span>
+                                    <p class="hover-text">Giỏ hàng</p>
+                                </a>
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-heart"></span>
+                                    <p class="hover-text">Yêu thích</p>
+                                </a>
+                                <!-- <a href="" class="social-info">
+                                    <span class="lnr lnr-sync"></span>
+                                    <p class="hover-text">compare</p>
+                                </a> -->
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-move"></span>
+                                    <p class="hover-text">view more</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- single product -->
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="single-product">
+                        <img class="img-fluid shadow-sm" src="~/images/product/p7.jpg" alt="">
+                        <div class="product-details">
+                            <h6>Puma Mule Ribbon</h6>
+                            <div class="price">
+                                <h6>1.400.000₫</h6>
+                                <h6 class="l-through">1.650.000₫</h6>
+                            </div>
+                            <div class="prd-bottom">
+                                <a href="" class="social-info">
+                                    <span class="ti-bag"></span>
+                                    <p class="hover-text">Giỏ hàng</p>
+                                </a>
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-heart"></span>
+                                    <p class="hover-text">Yêu thích</p>
+                                </a>
+                                <!-- <a href="" class="social-info">
+                                    <span class="lnr lnr-sync"></span>
+                                    <p class="hover-text">compare</p>
+                                </a> -->
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-move"></span>
+                                    <p class="hover-text">view more</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- single product -->
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="single-product">
+                        <img class="img-fluid  shadow-sm" src="~/images/product/p8.jpg" alt="">
+                        <div class="product-details">
+                            <h6>Nike Air Force 1 LXX</h6>
+                            <div class="price">
+                                <h6>4.000.000₫</h6>
+                                <h6 class="l-through">4.500.000₫</h6>
+                            </div>
+                            <div class="prd-bottom">
+                                <a href="" class="social-info">
+                                    <span class="ti-bag"></span>
+                                    <p class="hover-text">Giỏ hàng</p>
+                                </a>
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-heart"></span>
+                                    <p class="hover-text">Yêu thích</p>
+                                </a>
+                                <!-- <a href="" class="social-info">
+                                    <span class="lnr lnr-sync"></span>
+                                    <p class="hover-text">compare</p>
+                                </a> -->
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-move"></span>
+                                    <p class="hover-text">view more</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- single product slide -->
+    <div class="single-product-slider">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <div class="section-title">
+                        <h1>Coming Products</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <!-- single product -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-product">
+                        <img class="img-fluid" src="img/product/p6.jpg" alt="">
+                        <div class="product-details">
+                            <h6>addidas New Hammer sole for Sports person</h6>
+                            <div class="price">
+                                <h6>$150.00</h6>
+                                <h6 class="l-through">$210.00</h6>
+                            </div>
+                            <div class="prd-bottom">
+
+                                <a href="" class="social-info">
+                                    <span class="ti-bag"></span>
+                                    <p class="hover-text">add to bag</p>
+                                </a>
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-heart"></span>
+                                    <p class="hover-text">Wishlist</p>
+                                </a>
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-sync"></span>
+                                    <p class="hover-text">compare</p>
+                                </a>
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-move"></span>
+                                    <p class="hover-text">view more</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- single product -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-product">
+                        <img class="img-fluid" src="img/product/p8.jpg" alt="">
+                        <div class="product-details">
+                            <h6>addidas New Hammer sole for Sports person</h6>
+                            <div class="price">
+                                <h6>$150.00</h6>
+                                <h6 class="l-through">$210.00</h6>
+                            </div>
+                            <div class="prd-bottom">
+
+                                <a href="" class="social-info">
+                                    <span class="ti-bag"></span>
+                                    <p class="hover-text">add to bag</p>
+                                </a>
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-heart"></span>
+                                    <p class="hover-text">Wishlist</p>
+                                </a>
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-sync"></span>
+                                    <p class="hover-text">compare</p>
+                                </a>
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-move"></span>
+                                    <p class="hover-text">view more</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- single product -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-product">
+                        <img class="img-fluid" src="img/product/p3.jpg" alt="">
+                        <div class="product-details">
+                            <h6>addidas New Hammer sole for Sports person</h6>
+                            <div class="price">
+                                <h6>$150.00</h6>
+                                <h6 class="l-through">$210.00</h6>
+                            </div>
+                            <div class="prd-bottom">
+
+                                <a href="" class="social-info">
+                                    <span class="ti-bag"></span>
+                                    <p class="hover-text">add to bag</p>
+                                </a>
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-heart"></span>
+                                    <p class="hover-text">Wishlist</p>
+                                </a>
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-sync"></span>
+                                    <p class="hover-text">compare</p>
+                                </a>
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-move"></span>
+                                    <p class="hover-text">view more</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- single product -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-product">
+                        <img class="img-fluid" src="img/product/p5.jpg" alt="">
+                        <div class="product-details">
+                            <h6>addidas New Hammer sole for Sports person</h6>
+                            <div class="price">
+                                <h6>$150.00</h6>
+                                <h6 class="l-through">$210.00</h6>
+                            </div>
+                            <div class="prd-bottom">
+
+                                <a href="" class="social-info">
+                                    <span class="ti-bag"></span>
+                                    <p class="hover-text">add to bag</p>
+                                </a>
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-heart"></span>
+                                    <p class="hover-text">Wishlist</p>
+                                </a>
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-sync"></span>
+                                    <p class="hover-text">compare</p>
+                                </a>
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-move"></span>
+                                    <p class="hover-text">view more</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- single product -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-product">
+                        <img class="img-fluid" src="img/product/p1.jpg" alt="">
+                        <div class="product-details">
+                            <h6>addidas New Hammer sole for Sports person</h6>
+                            <div class="price">
+                                <h6>$150.00</h6>
+                                <h6 class="l-through">$210.00</h6>
+                            </div>
+                            <div class="prd-bottom">
+
+                                <a href="" class="social-info">
+                                    <span class="ti-bag"></span>
+                                    <p class="hover-text">add to bag</p>
+                                </a>
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-heart"></span>
+                                    <p class="hover-text">Wishlist</p>
+                                </a>
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-sync"></span>
+                                    <p class="hover-text">compare</p>
+                                </a>
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-move"></span>
+                                    <p class="hover-text">view more</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- single product -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-product">
+                        <img class="img-fluid" src="img/product/p4.jpg" alt="">
+                        <div class="product-details">
+                            <h6>addidas New Hammer sole for Sports person</h6>
+                            <div class="price">
+                                <h6>$150.00</h6>
+                                <h6 class="l-through">$210.00</h6>
+                            </div>
+                            <div class="prd-bottom">
+
+                                <a href="" class="social-info">
+                                    <span class="ti-bag"></span>
+                                    <p class="hover-text">add to bag</p>
+                                </a>
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-heart"></span>
+                                    <p class="hover-text">Wishlist</p>
+                                </a>
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-sync"></span>
+                                    <p class="hover-text">compare</p>
+                                </a>
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-move"></span>
+                                    <p class="hover-text">view more</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- single product -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-product">
+                        <img class="img-fluid" src="img/product/p1.jpg" alt="">
+                        <div class="product-details">
+                            <h6>addidas New Hammer sole for Sports person</h6>
+                            <div class="price">
+                                <h6>$150.00</h6>
+                                <h6 class="l-through">$210.00</h6>
+                            </div>
+                            <div class="prd-bottom">
+
+                                <a href="" class="social-info">
+                                    <span class="ti-bag"></span>
+                                    <p class="hover-text">add to bag</p>
+                                </a>
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-heart"></span>
+                                    <p class="hover-text">Wishlist</p>
+                                </a>
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-sync"></span>
+                                    <p class="hover-text">compare</p>
+                                </a>
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-move"></span>
+                                    <p class="hover-text">view more</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- single product -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="single-product">
+                        <img class="img-fluid" src="img/product/p8.jpg" alt="">
+                        <div class="product-details">
+                            <h6>addidas New Hammer sole for Sports person</h6>
+                            <div class="price">
+                                <h6>$150.00</h6>
+                                <h6 class="l-through">$210.00</h6>
+                            </div>
+                            <div class="prd-bottom">
+
+                                <a href="" class="social-info">
+                                    <span class="ti-bag"></span>
+                                    <p class="hover-text">add to bag</p>
+                                </a>
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-heart"></span>
+                                    <p class="hover-text">Wishlist</p>
+                                </a>
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-sync"></span>
+                                    <p class="hover-text">compare</p>
+                                </a>
+                                <a href="" class="social-info">
+                                    <span class="lnr lnr-move"></span>
+                                    <p class="hover-text">view more</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end product Area -->
+<!-- start features Area -->
+<section class="features-area section_gap" data-aos="fade-up">
+    <div class="container">
+        <div class="row features-inner shadow-lg">
+            <!-- single features -->
+            <div class="col-lg-3 col-md-6 col-sm-6" data-aos="zoom-in">
+                <div class="single-features">
+                    <div class="f-icon">
+                        <img src="~/images/features/f-icon1.png" alt="">
+                    </div>
+                    <h6>Free Delivery</h6>
+                    <p>Free Shipping on all order</p>
+                </div>
+            </div>
+            <!-- single features -->
+            <div class="col-lg-3 col-md-6 col-sm-6" data-aos="zoom-in">
+                <div class="single-features">
+                    <div class="f-icon">
+                        <img src="~/images/features/f-icon2.png" alt="">
+                    </div>
+                    <h6>Return Policy</h6>
+                    <p>Free Shipping on all order</p>
+                </div>
+            </div>
+            <!-- single features -->
+            <div class="col-lg-3 col-md-6 col-sm-6" data-aos="zoom-in">
+                <div class="single-features">
+                    <div class="f-icon">
+                        <img src="~/images/features/f-icon3.png" alt="">
+                    </div>
+                    <h6>24/7 Support</h6>
+                    <p>Free Shipping on all order</p>
+                </div>
+            </div>
+            <!-- single features -->
+            <div class="col-lg-3 col-md-6 col-sm-6" data-aos="zoom-in">
+                <div class="single-features">
+                    <div class="f-icon">
+                        <img src="~/images/features/f-icon4.png" alt="">
+                    </div>
+                    <h6>Secure Payment</h6>
+                    <p>Free Shipping on all order</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end features Area -->
+<!-- Start exclusive deal Area -->
+<section class="exclusive-deal-area" data-aos="fade-up">
+    <div class="container">
+        <div class="exclusive-deal-ctn row justify-content-center align-items-center">
+            <div class="col-lg-12 no-padding exclusive-left">
+                <div class="row">
+                    <div class="exclusive-deal-txt col-lg-10">
+                        <h1>SALE OFF 50%</h1>
+                        <a href="" class="primary-btn">Xem ngay<i class='bx bx-send primary-btn-icon'></i></a>
+                    </div>
+                    <div class="exclusive-deal-img col-lg-2">
+                        <img src="~/images/exclusive.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End exclusive deal Area -->
+<!-- Start brand Area -->
+<section class="brand-area section_gap" data-aos="fade-up">
+    <div class="container">
+        <div class="row" data-aos="zoom-in-up">
+            <a class="col single-img" href="#">
+                <img class="img-fluid d-block mx-auto" src="~/images/brand/1.png" alt="">
+            </a>
+            <a class="col single-img" href="#">
+                <img class="img-fluid d-block mx-auto" src="~/images/brand/2.png" alt="">
+            </a>
+            <a class="col single-img" href="#">
+                <img class="img-fluid d-block mx-auto" src="~/images/brand/3.png" alt="">
+            </a>
+            <a class="col single-img" href="#">
+                <img class="img-fluid d-block mx-auto" src="~/images/brand/4.png" alt="">
+            </a>
+            <a class="col single-img" href="#">
+                <img class="img-fluid d-block mx-auto" src="~/images/brand/5.png" alt="">
+            </a>
+        </div>
+    </div>
+</section>
+<!-- End brand Area -->
+
+<script>
+    /*=================================
+Javascript for banner area carousel
+==================================*/
+    $(".active-banner-slider").owlCarousel({
+        items: 1,
+        autoplay: false,
+        autoplayTimeout: 5000,
+        loop: true,
+        nav: true,
+        navText: ["<img src='~/images/banner/prev.png'>", "<img src='~/images/banner/next.png'>"],
+        dots: false
+    });
+
+    /*=================================
+    Javascript for product area carousel
+    ==================================*/
+    $(".active-product-area").owlCarousel({
+        items: 1,
+        autoplay: false,
+        autoplayTimeout: 5000,
+        loop: true,
+        nav: true,
+        navText: ["<img src='~/images/product/prev.png'>", "<img src='~/images/product/next.png'>"],
+        dots: false
+    });
+    /*=================================
+Javascript for exclusive area carousel
+==================================*/
+    $(".active-exclusive-product-slider").owlCarousel({
+        items: 1,
+        autoplay: false,
+        autoplayTimeout: 5000,
+        loop: true,
+        nav: true,
+        navText: ["<img src='~/images/product/prev.png'>", "<img src='~/images/product/next.png'>"],
+        dots: false
+    });
+</script>

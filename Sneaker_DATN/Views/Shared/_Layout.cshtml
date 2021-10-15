@@ -8,12 +8,16 @@
     <!-- Boxicon -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!--
+        CSS
+        ============================================= -->
     <link rel="stylesheet" href="~/css/linearicons.css">
-    <link rel="stylesheet" href="~/css/owl.carousel.css">
-    <link rel="stylesheet" href="~/css/themify-icons.css">
     <link rel="stylesheet" href="~/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/themify-icons.css">
+    <link rel="stylesheet" href="~/css/bootstrap.css">
+    <link rel="stylesheet" href="~/css/owl.carousel.css">
     <link rel="stylesheet" href="~/css/nice-select.css">
     <link rel="stylesheet" href="~/css/nouislider.min.css">
     <link rel="stylesheet" href="~/css/ion.rangeSlider.css" />
@@ -22,63 +26,224 @@
     <link rel="stylesheet" href="~/css/main.css">
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Sneaker_DATN</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" id="login" href="/Admin/Login">Đăng nhập</a>
-                        </li>
-                    </ul>
+    <header class="header_area sticky-header">
+        <div class="main_menu">
+            <nav class="navbar navbar-expand-lg navbar-light main_box">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav menu_nav ml-auto">
+                            <li class="nav-item active"><a class="nav-link" href="index.html">Trang chủ</a></li>
+                            <li class="nav-item submenu dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false">Sản phẩm</a>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item"><a class="nav-link" href="category.html">Shop Category</a></li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="productdetail.html">
+                                            Product
+                                            Details
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="checkout.html">Product Checkout</a>
+                                    </li>
+                                    <li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="confirmation.html">Confirmation</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item submenu dropdown">
+                                <a href="#" class="nav-link">Tin tức</a>
+                            </li>
+                            <li class="nav-item submenu dropdown">
+                                <a href="#" class="nav-link">Sale</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="contact.html">Liên hệ</a>
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="nav-item submenu dropdown">
+                                <a href="#" class="minicart-btn cart">
+                                    <span class="bx bx-shopping-bag bx-sm"></span>
+                                    <!-- <div class="notification"></div> -->
+                                </a>
+                                <a href="cart.html" class="cart cart-mobile">
+                                    <span class="bx bx-shopping-bag bx-sm"></span>
+                                    <!-- <div class="notification"></div> -->
+                                </a>
+                            </li>
+                            <li class="nav-item submenu dropdown">
+                                <button class="search">
+                                    <span class="bx bx-search-alt-2 bx-sm" id="search">
+                                    </span>
+                                </button>
+                            </li>
+                            <li class="nav-item submenu submenu-user dropdown">
+                                <a href="#" class="user nav-link-right dropdown-toggle" data-toggle="dropdown"
+                                   role="button" aria-haspopup="true" aria-expanded="false">
+                                    <span class='bx bx-user-circle bx-sm'></span>
+                                </a>
+                                <ul class="dropdown-menu shadow-sm">
+                                    <li class="nav-item"><a class="nav-link" href="login.html">Đăng nhập</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="register.html">Đăng ký</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#">Thông tin cá nhân</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#">Đơn hàng</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#">Đổi mật khẩu</a></li>
+                                </ul>
+                            </li>
+                            <i></i>
+                        </ul>
+                    </div>
                 </div>
+            </nav>
+        </div>
+        <div class="search_input" id="search_input_box">
+            <div class="container">
+                <form class="d-flex justify-content-between">
+                    <input type="text" class="form-control" id="search_input" placeholder="Search Here">
+                    <button type="submit" class="btn"></button>
+                    <span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
+                </form>
             </div>
-        </nav>
+        </div>
     </header>
-    <div class="container">
+    <!-- End Header Area -->
+    @*<header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                <div class="container">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Sneaker_DATN</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" id="login" href="/Admin/Login">Đăng nhập</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>*@
+
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
-    </div>
 
-    @*<footer class="border-top footer text-muted">
+    <!-- start footer Area -->
+    <footer class="footer-area section_gap">
         <div class="container">
-            &copy; 2021 - Sneaker_DATN - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-6" data-aos="fade-up">
+                    <div class="single-footer-widget single-footer-me">
+                        <h6>D-ACH Sneaker</h6>
+                        <ul>
+                            <li><i class='bx bx-phone bx-sm'></i>Email: dachsneaker@gmai.com</li>
+                            <li><i class='bx bx-mail-send bx-sm'></i>Điện thoại: 0123 456 789</li>
+                            <li><i class='bx bx-map bx-sm'></i>Địa chỉ: </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6" data-aos="fade-up">
+                    <div class="single-footer-widget">
+                        <h6>Danh mục</h6>
+                        <ul class="single-footer-links">
+                            <li><a href="#">Trang chủ</a></li>
+                            <li><a href="#">Trang chủ</a></li>
+                            <li><a href="#">Trang chủ</a></li>
+                            <li><a href="#">Trang chủ</a></li>
+                            <li><a href="#">Trang chủ</a></li>
+                            <li><a href="#">Trang chủ</a></li>
+                            <li><a href="#">Trang chủ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3  col-md-6 col-sm-6" data-aos="fade-up">
+                    <div class="single-footer-widget">
+                        <h6 class="mb-20">Thông tin</h6>
+                        <ul class="single-footer-links">
+                            <li><a href="#">Trang chủ</a></li>
+                            <li><a href="#">Trang chủ</a></li>
+                            <li><a href="#">Trang chủ</a></li>
+                            <li><a href="#">Trang chủ</a></li>
+                            <li><a href="#">Trang chủ</a></li>
+                            <li><a href="#">Trang chủ</a></li>
+                            <li><a href="#">Trang chủ</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6" data-aos="fade-up">
+                    <div class="single-footer-widget">
+                        <h6>Theo dõi</h6>
+                        <div class="footer-social d-flex align-items-center">
+                            <a href="#"><i class='bx bxl-facebook-circle bx-sm'></i></a>
+                            <a href="#"><i class='bx bxl-instagram bx-sm'></i></a>
+                            <a href="#"><i class='bx bxl-tiktok bx-sm'></i></a>
+                            <a href="#"><i class='bx bxl-twitter bx-sm'></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="footer-bottom d-flex justify-content-center align-items-center flex-wrap">
+                <p class="footer-text m-0">
+                    Copyright &copy;
+                    <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is
+                    made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
+                        target="_blank">Colorlib</a>
+                </p>
+            </div> -->
         </div>
-    </footer>*@
+    </footer>
+    <!-- End footer Area -->
+    @*<footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2021 - Sneaker_DATN - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>*@
     <!-- Scroll to Top End -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="js/vendor/jquery-2.2.4.min.js"></script>
+    <script src="~/js/vendor/jquery-2.2.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
             integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
             crossorigin="anonymous"></script>
-    <script src="js/vendor/bootstrap.min.js"></script>
-    <script src="js/jquery.ajaxchimp.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/jquery.sticky.js"></script>
-    <script src="js/nouislider.min.js"></script>
-    <script src="js/countdown.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
+    <script src="~/js/vendor/bootstrap.min.js"></script>
+    <script src="~/js/jquery.ajaxchimp.min.js"></script>
+    <script src="~/js/jquery.nice-select.min.js"></script>
+    <script src="~/js/jquery.sticky.js"></script>
+    <script src="~/js/nouislider.min.js"></script>
+    <script src="~/js/countdown.js"></script>
+    <script src="~/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/js/owl.carousel.min.js"></script>
     <!--gmaps Js-->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
-    <script src="js/gmaps.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="~/js/gmaps.min.js"></script>
+    <script src="~/js/main.js"></script>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>*@
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        @*<script src="~/js/site.js" asp-append-version="true"></script>*@
     @await RenderSectionAsync("Scripts", required: false)
+    <script>
+        AOS.init();
+    </script>
 </body>
 </html>

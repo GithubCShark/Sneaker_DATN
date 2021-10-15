@@ -78,7 +78,7 @@ namespace Sneaker_DATN
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Admin}/{action=Login}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
