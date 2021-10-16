@@ -196,19 +196,27 @@
             <div class="row" data-aos="fade-up">
                 @foreach (var item in Model)
                 {
+                    
                     <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="single-product">
                             <img class="img-fluid" src="~/images/Product/@item.Image" alt="">
                             @*sale*@
-                            @*<div class="badge-overlay">
-                                <span class="badge">Sale 0%</span>
-                            </div>*@
+                            @if (item.Price >= 3000000)
+                            {
+                                <div class="badge-overlay">
+                                    <span class="badge">Sale 0%</span>
+                                </div>
+                            }
                             <div class="product-details">
                                 <h6>@Html.DisplayFor(modelItem => item.ProductName)</h6>
                                 <div class="price">
                                     <h6>@Html.DisplayFor(modelItem => item.Price)</h6>
                                     @*discount*@
-                                    @*<h6 class="l-through">$0</h6>*@
+                                    @if (item.Price >= 3000000)
+                                    {
+                                        <h6 class="l-through">$@Html.DisplayFor(modelItem => item.Price)</h6>
+                                    }
+                                    
                                 </div>
                                 <div class="prd-bottom">
                                     <a href="" class="social-info">
@@ -220,9 +228,9 @@
                                         <p class="hover-text">Yêu thích</p>
                                     </a>
                                     <!-- <a href="" class="social-info">
-                                        <span class="lnr lnr-sync"></span>
-                                        <p class="hover-text">compare</p>
-                                    </a> -->
+                <span class="lnr lnr-sync"></span>
+                <p class="hover-text">compare</p>
+            </a> -->
                                     <a href="" class="social-info">
                                         <span class="lnr lnr-move"></span>
                                         <p class="hover-text">view more</p>
