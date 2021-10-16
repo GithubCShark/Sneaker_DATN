@@ -1929,9 +1929,9 @@ label {
 }
 
 .users-table img {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
+    width: 30px;
+    height: 30px;
+  border-radius: 18px;
   margin-right: 7px;
 }
 
@@ -4699,16 +4699,24 @@ Audio
 .custom-form .card {
     background: #fff;
     border-radius: 18px;
+    margin-bottom: 50px;
 }
 
-
+.custom-form .form-checkbox-input{
+    width: 20px;
+    height: 20px;
+    border-radius: 18px;
+}
+.custom-form .custom-checkbox{
+    display: flex;
+}
 .custom-form {
     cursor: auto;
-    padding: 0rem 15%;
+    padding: 0rem 20%;
 }
 
     .custom-form .form-edit {
-        padding: 0rem 5%;
+        padding: 0rem 10%;
     }
 
     .custom-form .form-control {
@@ -4778,6 +4786,7 @@ dl {
     display: flex;
     flex-flow: row wrap;
     border-radius: 16px;
+    margin-bottom: 50px;
 }
 
 dt {
@@ -4863,4 +4872,11 @@ dd {
 }
 .darkmode .custom-detail .del-notification {
     color: #f2f2f2;
+}
+/**/
+.form-control-select {
+    width: 100%;
+    border: none;
+    background: #f2f2f2;
+    border-radius: 8px;
 }

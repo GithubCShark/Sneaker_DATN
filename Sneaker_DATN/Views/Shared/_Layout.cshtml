@@ -14,8 +14,6 @@
     <!-- Boxicon -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <!--
         CSS
         ============================================= -->
@@ -30,6 +28,21 @@
     <link rel="stylesheet" href="~/css/ion.rangeSlider.skinFlat.css" />
     <link rel="stylesheet" href="~/css/magnific-popup.css">
     <link rel="stylesheet" href="~/css/main.css">
+
+    <style>
+    .banner-area {
+        /* background: url(~/images/banner/banner-bg.png) center no-repeat;*/
+        background: url('@Url.Content("~/images/banner/banner-bg.png")') center no-repeat;
+        background-size: cover;
+        position: relative;
+    }
+    .organic-breadcrumb {
+   /*     background: url(../img/banner/common-banner.png) center no-repeat;*/
+        background: url('@Url.Content("~/images/banner/common-banner-bg.png")') center no-repeat;
+        background-size: cover;
+        padding-top: 130px;
+    }
+    </style>
 </head>
 <body>
     <header class="header_area sticky-header">
@@ -101,9 +114,12 @@
                                    role="button" aria-haspopup="true" aria-expanded="false">
                                     <span class='bx bx-user-circle bx-sm'></span>
                                 </a>
-                                <ul class="dropdown-menu shadow-sm">
+                                <ul class="dropdown-menu">
                                     @if (userName != null && userName != "")
                                     {
+                                        <li class="nav-item"><a class="nav-link" href="#">Thông tin cá nhân</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="#">Đơn hàng</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="#">Đổi mật khẩu</a></li>
                                         <partial name="_LogoutPartialHome" />
                                     }
                                     else
@@ -111,12 +127,15 @@
 
                                         <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Login">Đăng nhập</a></li>
                                         <li class="nav-item"><a class="nav-link" href="register.html">Đăng ký</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="#">Thông tin cá nhân</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="#">Đơn hàng</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="#">Đổi mật khẩu</a></li>
+
                                     }
                                 </ul>
                             </li>
+                            @*<li class="nav-item submenu dropdown">
+                                    <a href="#">
+                                        <span class="bx bx-exit bx-sm"></span>
+                                    </a>
+                                </li>*@
                             <i></i>
                         </ul>
                     </div>
@@ -254,6 +273,11 @@
 
     @*<script src="~/lib/jquery/dist/jquery.min.js"></script>*@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @*  *@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     @*<script src="~/js/site.js" asp-append-version="true"></script>*@
     @*@CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();*@
     await __tagHelperRunner.RunAsync(__tagHelperExecutionContext)

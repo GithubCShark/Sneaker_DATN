@@ -7,7 +7,7 @@
 
 
 <div class="container">
-    <div class="col-lg-02 col-md-10 col-sm-10 custom-form mt-4">
+    <div class="col-lg-12 col-md-10 col-sm-10 custom-form mt-4">
         <div class="card flex-row shadow-lg">
             <div class="card-body col-lg-12 col-md-12 col-sm-12">
                 <a asp-action="Index" class="dashbroad-icon-hover">
@@ -30,7 +30,7 @@
                     <div class="form-group">
                         <label asp-for="Gender" class="control-label"></label>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <select asp-for="Gender">
+                        <select asp-for="Gender" class="form-control-select" >
                             <option value="true">Nam</option>
                             <option value="false">Nữ</option>
                         </select>
@@ -59,13 +59,13 @@
                     </div>
                     <div class="form-group">
                         <label asp-for="RoleID" class="control-label"></label>
-                        <select asp-for="RoleID" class="form-control" asp-items="ViewBag.RoleN"></select>
+                        <select asp-for="RoleID" class="form-control-select" asp-items="ViewBag.RoleN"></select>
                         <span asp-validation-for="RoleID" class="text-danger"></span>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group custom-checkbox">
                         <label asp-for="Lock" class="control-label"></label>
                         &nbsp;&nbsp;
-                        <input asp-for="Lock" class="" type="checkbox" />
+                        <input asp-for="Lock" class="form-checkbox-input" type="checkbox" />
                         <span asp-validation-for="Lock" class="text-danger"></span>
                     </div>
                     <div class="text-center">
