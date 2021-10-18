@@ -23,13 +23,13 @@ namespace Sneaker_DATN.Controllers
         private readonly DataContext _context;
         private IProductSvc _productSvc;
         private IUploadHelper _uploadHelper;
-        public ProductController(IWebHostEnvironment webHostEnviroment, IProductSvc productSvc, IUploadHelper uploadHelper, DataContext context)
+        public ProductController(IWebHostEnvironment webHostEnviroment, 
+            IProductSvc productSvc, IUploadHelper uploadHelper, DataContext context)
         {
             _webHostEnvironment = webHostEnviroment;
             _productSvc = productSvc;
             _uploadHelper = uploadHelper;
             _context = context;
-
         }
 
         // GET: ProductController
@@ -41,37 +41,37 @@ namespace Sneaker_DATN.Controllers
             return View(_productSvc.GetProductAll());
         }
 
-        [BindProperty]
-        public string[] selectedSize { set; get; }
+        //[BindProperty]
+        //public string[] selectedSize { set; get; }
         // GET: MonAnController/Create
         public ActionResult Create()
         {
             var brands = _context.Brands.ToList();
             ViewData["brands"] = new SelectList(brands, "BrandID", "BrandName");
-            ViewData["size"] = _context.Sizes.ToList();
-
-            //List<SelectListItem> listSizes = new List<SelectListItem>();
-            //foreach (var c in sizes)
-            //{
-            //    listSizes.Add(new SelectListItem
-            //    {
-            //        Text = c.Size.ToString(),
-            //        Value = c.SizeID.ToString()
-            //    });
-            //}
-            //ViewData["size"] = listSizes;
-            //ViewData["size"] = new MultiSelectList(sizes, "SizeID", "Size");
-            //ViewBag.size = listSizes;
-
+            
             var colors = _context.Colors.ToList();
             ViewData["color"] = new MultiSelectList(colors, "ColorID", "Color");
+
+            //ViewData["size"] = _context.Sizes.ToList();
+            ViewData["size"] = (from c in _context.Sizes
+                                select new Sizes()
+                                {
+                                    Size = c.Size,
+                                    SizeID = c.SizeID
+                                }).ToList();
+            //IEnumerable<Sizes> listSize = (from c in _context.Sizes
+            //                               select new Sizes()
+            //                               {
+            //                                     Size = c.Size,
+            //                                     SizeID = c.SizeID
+            //                               }).ToList();
             return View();
         }
 
        // POST: ProductController/Create
        [HttpPost]
        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Products product)
+        public  IActionResult Create(Products product,List<int> ListSize)   
         {
             try
             {
@@ -93,21 +93,18 @@ namespace Sneaker_DATN.Controllers
                     _uploadHelper.UploadImage(product.ImageFile2, rootPath, "Product");
                     product.Image2 = product.ImageFile2.FileName;
                 }
+                //var prod = await _context.ProductSizes.FindAsync(product.ProductID);
+                //_context.ProductSizes.Remove(prod);
+                //foreach (var selectedSize in selectedSize)
+                //{                    
+                //    _context.Add(new ProductSize() { ProductID = product.ProductID, SizeID = int.Parse(selectedSize) });
+                //}
 
+                //await _context.SaveChangesAsync();
                 _productSvc.AddProduct(product);
-                _context.SaveChanges();
-
-                var prod = await _context.ProductSizes.FindAsync(product.ProductID);
-                _context.ProductSizes.Remove(prod);
-                foreach (var selectedSize in selectedSize)
-                {                    
-                    _context.Add(new ProductSize() { ProductID = product.ProductID, SizeID = int.Parse(selectedSize) });
-                }
-                
-                await _context.SaveChangesAsync();
-
                 return RedirectToAction(nameof(Index), new { id = product.ProductID });
             }
+                            
             catch
             {
                 return View();
@@ -120,8 +117,8 @@ namespace Sneaker_DATN.Controllers
             var brands = _context.Brands.ToList();
             ViewData["brands"] = new SelectList(brands, "BrandID", "BrandName");
 
-            var sizes = _context.Sizes.ToList();
-            ViewData["size"] = new MultiSelectList(sizes, "SizeID", "Size");
+            //var sizes = _context.Sizes.ToList();
+            //ViewData["size"] = new MultiSelectList(sizes, "SizeID", "Size");
 
             var product = _productSvc.GetProduct(id);
             return View(product);
@@ -208,5 +205,39 @@ namespace Sneaker_DATN.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+        //public ActionResult AddOrEdit(int id = 0)
+        //{
+        //    ProductSize productSize = new ProductSize();
+        //    using (_context)
+        //    {
+        //        if (id != 0)
+        //        {
+        //            productSize = _context.ProductSizes.Where(x => x.ProductID == id).FirstOrDefault();
+        //            //mutiple select
+        //            productSize.SelectSize = productSize.SelectProSize.Split(',').ToArray();
+        //        }
+        //        productSize.SizesProperty = _context.Sizes.ToList();
+        //    }
+        //    return View(productSize);
+        //}
+        //[HttpPost]
+        //public ActionResult AddOrEdit(ProductSize pro)
+        //{
+        //    pro.SelectProSize = string.Join(",", pro.SelectSize);
+        //    using (_context)
+        //    {
+        //        if (pro.ProductID == 0)
+        //        {
+        //            _context.ProductSizes.Add(pro);
+        //        }
+        //        else
+        //        {
+        //            _context.Entry(pro).State = EntityState.Modified;
+        //        }
+        //        _context.SaveChanges();
+        //    }
+        //    return RedirectToAction("AddOrEdit", new { id = 0 });
+        //}
     }
 }

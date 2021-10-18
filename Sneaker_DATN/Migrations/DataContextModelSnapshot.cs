@@ -138,9 +138,6 @@ namespace Sneaker_DATN.Migrations
 
                     b.HasIndex("ColorID");
 
-                    b.HasIndex("ProductID")
-                        .IsUnique();
-
                     b.ToTable("ProductColors");
                 });
 
@@ -152,12 +149,11 @@ namespace Sneaker_DATN.Migrations
                     b.Property<int>("SizeID")
                         .HasColumnType("int");
 
+                    b.Property<string>("SelectProSize")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
                     b.HasKey("ProductID", "SizeID");
-
-                    b.HasIndex("ProductID")
-                        .IsUnique();
-
-                    b.HasIndex("SizeID");
 
                     b.ToTable("ProductSizes");
                 });
@@ -170,9 +166,6 @@ namespace Sneaker_DATN.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("BrandID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ColorID")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -195,9 +188,6 @@ namespace Sneaker_DATN.Migrations
                         .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
-
-                    b.Property<int>("SizeID")
-                        .HasColumnType("int");
 
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
@@ -352,33 +342,14 @@ namespace Sneaker_DATN.Migrations
                         .IsRequired();
 
                     b.HasOne("Sneaker_DATN.Models.Products", "Products")
-                        .WithOne("ColorsP")
-                        .HasForeignKey("Sneaker_DATN.Models.ProductColor", "ProductID")
+                        .WithMany()
+                        .HasForeignKey("ProductID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Colors");
 
                     b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("Sneaker_DATN.Models.ProductSize", b =>
-                {
-                    b.HasOne("Sneaker_DATN.Models.Products", "Products")
-                        .WithOne("SizeP")
-                        .HasForeignKey("Sneaker_DATN.Models.ProductSize", "ProductID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Sneaker_DATN.Models.Sizes", "Sizes")
-                        .WithMany()
-                        .HasForeignKey("SizeID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Products");
-
-                    b.Navigation("Sizes");
                 });
 
             modelBuilder.Entity("Sneaker_DATN.Models.Products", b =>
@@ -401,13 +372,6 @@ namespace Sneaker_DATN.Migrations
                         .IsRequired();
 
                     b.Navigation("Roles");
-                });
-
-            modelBuilder.Entity("Sneaker_DATN.Models.Products", b =>
-                {
-                    b.Navigation("ColorsP");
-
-                    b.Navigation("SizeP");
                 });
 #pragma warning restore 612, 618
         }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Sneaker_DATN.Models
 {
-    public class ProductColor
+    public partial class ProductColor
     {
         [ForeignKey("Products")]
         public int ProductID { get; set; }

@@ -15,8 +15,11 @@ namespace Sneaker_DATN.Models
         [ForeignKey("Sizes")]
         public int SizeID { get; set; }
 
-        public Products Products { get; set; }
+        //public int SelectProSize { get; set; }
 
-        public Sizes Sizes { get; set; }
+        //[NotMapped]
+        //public IEnumerable<Sizes> SizesProperty { get; set; }
+        //[NotMapped]
+        //public int[] SelectSize { get; set; }
     }
 }
