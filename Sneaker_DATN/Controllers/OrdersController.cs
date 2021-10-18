@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sneaker_DATN.Controllers
 {
-    public class OrdersController : Controller
+    public class OrdersController : BaseController
     {
         private IOrderSvc _orderSvc;
         public OrdersController(IOrderSvc orderSvc)

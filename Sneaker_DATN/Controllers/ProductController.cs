@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 namespace Sneaker_DATN.Controllers
 {
     //[Route("/product")]
-    public class ProductController : Controller
+    public class ProductController : BaseController
     {
         
         private readonly IWebHostEnvironment _webHostEnvironment;

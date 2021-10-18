@@ -1,4 +1,9 @@
-﻿<!-- Start Banner Area -->
+﻿@model Sneaker_DATN.Models.Users
+@{
+    ViewData["Title"] = "Đăng Ký";
+}
+
+<!-- Start Banner Area -->
 <section class="banner-area organic-breadcrumb">
     <div class="container">
         <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
@@ -31,36 +36,60 @@
                     <!-- Registeration Form -->
                     <div class="col-md-7 col-lg-6 ml-auto register_box_form">
                         <h3 class="text-center">Đăng ký</h3>
-                        <form action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+                        <form asp-action="Register" enctype="multipart/form-data" method="post" id="contactForm" novalidate="novalidate">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="row">
                                 <!-- Full Name -->
                                 <div class="form-group col-lg-6 mb-4">
-                                    <input id="FullName" type="text" name="FullName" placeholder="Tên tài khoảng"
+                                    <input asp-for="UserName" id="UsernName" type="text" name="UsernName" placeholder="Tên tài khoản"
+                                           class="form-control">
+                                </div>
+                                <div class="form-group col-lg-6 mb-4">
+                                    <input asp-for="FullName" id="FullName" type="text" name="FullName" placeholder="Họ và tên"
+                                           class="form-control">
+                                </div>
+                                <div class="form-group col-lg-6 mb-4">
+                                    <select asp-for="Gender" class="form-control">
+                                        <option value="true">Nam</option>
+                                        <option value="false">Nữ</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" style="display :none;">
+                                    <label asp-for="ImgUser" class="control-label"></label>
+                                    <input asp-for="ImgUser" type="file" class="form-control" />
+                                    <span asp-validation-for="ImgUser" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-lg-6 mb-4">
+                                    <input asp-for="ImageUser" type="file" id="image" name="image" placeholder="Chọn ảnh"
+                                           class="form-control">
+                                </div>
+                                <div class="form-group col-lg-6 mb-4">
+                                    <input asp-for="DOB" id="DOB" type="date" name="DOB" placeholder="Ngày sinh"
                                            class="form-control">
                                 </div>
                                 <!-- Phone -->
                                 <div class="form-group col-lg-6 mb-4">
-                                    <input id="phone" type="tel" name="phone" placeholder="Số điện thoại"
+                                    <input asp-for="PhoneNumber" id="phone" type="tel" name="phone" placeholder="Số điện thoại"
                                            class="form-control">
                                 </div>
                                 <!-- Email Address -->
                                 <div class="form-group col-lg-12 mb-4">
-                                    <input id="email" type="email" name="email" placeholder="Email Address"
+                                    <input asp-for="Email" id="email" type="email" name="email" placeholder="Email Address"
                                            class="form-control">
                                 </div>
                                 <!-- Password -->
                                 <div class="form-group col-lg-6 mb-4">
-                                    <input id="password" type="password" name="password" placeholder="Password"
+                                    <input asp-for="Password" id="password" type="password" name="password" placeholder="Password"
                                            class="form-control">
                                 </div>
                                 <!-- Password Confirmation -->
                                 <div class="form-group col-lg-6 mb-4">
-                                    <input id="passwordConfirmation" type="password" name="passwordConfirmation"
+                                    <input asp-for="ConfirmPassword" id="passwordConfirmation" type="password" name="passwordConfirmation"
                                            placeholder="Confirm Password" class="form-control">
                                 </div>
                                 <!-- Submit Button -->
                                 <div class="form-group col-lg-12 mx-auto mb-0">
-                                    <button href="#" class="register_box_btn primary-btn">Đăng ký</button>
+                                    <button type="submit" class="register_box_btn primary-btn">Đăng ký</button>
                                 </div>
                                 <!-- Divider Text -->
                                 <div class="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
@@ -71,15 +100,15 @@
 
                                 <!-- Social Login -->
                                 <!-- <div class="form-group col-lg-12 mx-auto">
-                                    <a href="#" class="btn btn-primary btn-block py-2 btn-facebook">
-                                        <i class="fa fa-facebook-f mr-2"></i>
-                                        <span class="font-weight-bold">Continue with Facebook</span>
-                                    </a>
-                                    <a href="#" class="btn btn-primary btn-block py-2 btn-twitter">
-                                        <i class="fa fa-twitter mr-2"></i>
-                                        <span class="font-weight-bold">Continue with Twitter</span>
-                                    </a>
-                                </div> -->
+        <a href="#" class="btn btn-primary btn-block py-2 btn-facebook">
+            <i class="fa fa-facebook-f mr-2"></i>
+            <span class="font-weight-bold">Continue with Facebook</span>
+        </a>
+        <a href="#" class="btn btn-primary btn-block py-2 btn-twitter">
+            <i class="fa fa-twitter mr-2"></i>
+            <span class="font-weight-bold">Continue with Twitter</span>
+        </a>
+    </div> -->
                                 <!-- Already Registered -->
                                 <div class="text-center w-100">
                                     <p class="text-muted font-weight-bold">

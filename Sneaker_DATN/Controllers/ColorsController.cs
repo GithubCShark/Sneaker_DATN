@@ -9,7 +9,7 @@ using Sneaker_DATN.Models;
 
 namespace Sneaker_DATN.Controllers
 {
-    public class ColorsController : Controller
+    public class ColorsController : BaseController
     {
         private readonly DataContext _context;
 

@@ -9,7 +9,7 @@ using Sneaker_DATN.Models;
 
 namespace Sneaker_DATN.Controllers
 {
-    public class SizesController : Controller
+    public class SizesController : BaseController
     {
         private readonly DataContext _context;
 

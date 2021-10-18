@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Sneaker_DATN.Controllers
 {
-    public class UserMemController : Controller
+    public class UserMemController : BaseController
     {
         private readonly IWebHostEnvironment _webHostEnviroment;
         private IUserMemSvc _userMemSvc;
@@ -96,6 +96,7 @@ namespace Sneaker_DATN.Controllers
                         _uploadHelper.UploadImage(user.ImageUser, rootPath, thumuccon);
                         user.ImgUser = user.ImageUser.FileName;
                     }
+
                     _userMemSvc.EditUserMem(id, user);
                 }
                 return RedirectToAction(nameof(Index),new { id = user.UserID });
