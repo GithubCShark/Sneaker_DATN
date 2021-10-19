@@ -77,18 +77,17 @@ namespace Sneaker_DATN.Controllers
                 return RedirectToAction(nameof(Index), "Home");
             }
         }
+        public IActionResult Register() {
+            return View();
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Register(Users user)
         {
             try
             {
-                if (user.ImageUser != null && user.ImageUser.Length > 0)
-                {
-                    string rootPath = Path.Combine(_webHostEnviroment.WebRootPath, "images");
-                    _uploadHelper.UploadImage(user.ImageUser, rootPath, "avatar");
-                    user.ImgUser = user.ImageUser.FileName;
-                }
+                user.RoleID = 3;
+                user.Lock = false;
                 _userMemSvc.AddUserMem(user);
                 return RedirectToAction(nameof(Index), "Home");
             }

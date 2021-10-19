@@ -7,17 +7,17 @@
 }
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
-<script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
+<!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
+<script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>-->
 @*<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></script>*@
 @*<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>*@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
-<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/davidstutz/bootstrap-multiselect@master/dist/css/bootstrap-multiselect.css">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>-->
+@*<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css">*@
+<!--<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/davidstutz/bootstrap-multiselect@master/dist/css/bootstrap-multiselect.css">
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/davidstutz/bootstrap-multiselect@master/dist/js/bootstrap-multiselect.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/davidstutz/bootstrap-multiselect@master/dist/js/bootstrap-multiselect.js"></script>-->
 
 
 
@@ -76,6 +76,11 @@
                         <select asp-for="BrandID" class="form-control-select" asp-items="ViewBag.brands"></select>
                         <span asp-validation-for="BrandID" class="text-danger"></span>
                     </div>
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="Status" /> @Html.DisplayNameFor(model => model.Status)
+                        </label>
+                    </div>
                     <div class="form-group">
                         <label class="control-label">Chọn Size</label>
                         <select id="ListSize" multiple="multiple">
@@ -84,12 +89,6 @@
                                 <option value="@item.SizeID">@item.Size</option>
                             }
                         </select>
-                    </div>
-
-                    <div class="form-group form-check">
-                        <label class="form-check-label">
-                            <input class="form-check-input" asp-for="Status" /> @Html.DisplayNameFor(model => model.Status)
-                        </label>
                     </div>
                     <div class="form-group mt-3">
                         <label asp-for="Description" class="control-label"></label>
@@ -107,40 +106,40 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-<script type="text/javascript">
-    $(document).ready(function () {
+    <script type="text/javascript">
+        $(document).ready(function () {
 
-        $("#ListSize").multiselect({
-            includeSelectOption: true
-        })
+            $("#ListSize").multiselect({
+                includeSelectOption: true
+            })
 
-        $("#btnSave").click(function () {
-            SaveSelectSize();
+            $("#btnSave").click(function () {
+                SaveSelectSize();
+            });
+
         });
+        function SaveSelectSize() {
+            var sizeList = "";
+            $.each($("#ListSize option:selected"),
+                function (index, data) {
+                    sizeList += $(this).val() + " " + $(this).text() + "\n";
+                }
+            )
+        };
+        $.ajax({
+            async: true,
+            type: 'POST',
+            dataType: 'JSON',
+            contentType: 'application/json; charset=utf8',
+            url: '/Home/Index',
+            data: JSON.stringify({ listOfsize: listOfsize }),
+            success: function (data) {
 
-    });
-    function SaveSelectSize() {
-        var sizeList = "";
-        $.each($("#ListSize option:selected"),
-            function (index, data) {
-                sizeList += $(this).val() + " " + $(this).text() + "\n";
+            },
+            error: function () {
+                alert('Have some problem')
             }
-        )
-    };
-    $.ajax({
-        async: true,
-        type: 'POST',
-        dataType: 'JSON',
-        contentType: 'application/json; charset=utf8',
-        url: '/Home/Index',
-        data: JSON.stringify({ listOfsize: listOfsize }),
-        success: function (data) {
-
-        },
-        error: function () {
-            alert('Have some problem')
-        }
-    });
-</script>
+        });
+    </script>
 
 }
