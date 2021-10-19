@@ -63,7 +63,14 @@ namespace Sneaker_DATN.Controllers
                     HttpContext.Session.SetString(SessionKey.User.UserName, user.UserName);
                     HttpContext.Session.SetString(SessionKey.User.FullName, user.FullName);
                     HttpContext.Session.SetString(SessionKey.User.UserContext, JsonConvert.SerializeObject(user));
-
+                    if (user.ImgUser == null && user.ImgUser == "")
+                    {
+                        HttpContext.Session.SetString(SessionKey.User.Avatar, "");
+                    }
+                    else
+                    {
+                        HttpContext.Session.SetString(SessionKey.User.Avatar, user.ImgUser);
+                    }
                     return RedirectToAction(nameof(Index), "Admin");
                 }
             }
@@ -77,6 +84,7 @@ namespace Sneaker_DATN.Controllers
             {
                 HttpContext.Session.Remove(SessionKey.User.UserName);
                 HttpContext.Session.Remove(SessionKey.User.FullName);
+                HttpContext.Session.Remove(SessionKey.User.Avatar);
                 HttpContext.Session.Remove(SessionKey.User.UserContext);
 
                 return RedirectToAction(nameof(Login), "Admin");

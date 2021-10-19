@@ -12,6 +12,7 @@ namespace Sneaker_DATN.Constant
             public const string UserName = "UserName";
             public const string FullName = "FullName";
             public const string Valid = "Valid";
+            public const string Avatar = "Avatar";
             public const string UserContext = "UserContext";
         }
 
@@ -20,6 +21,7 @@ namespace Sneaker_DATN.Constant
             public const string Guest_UserName = "Guest_UserName";
             public const string Guest_FullName = "Guest_FullName";
             public const string Valid = "Valid";
+            public const string Avatar = "Avatar";
             public const string GuestContext = "GuestContext";
         }
     }

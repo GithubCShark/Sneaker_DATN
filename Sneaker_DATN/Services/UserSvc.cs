@@ -21,6 +21,8 @@ namespace Sneaker_DATN.Services
         List<Roles> GetAllRole();
 
         Roles GetRole(int id);
+
+        Users GetInfo(string username);
     }
     public class UserSvc : IUserSvc
     {
@@ -114,6 +116,14 @@ namespace Sneaker_DATN.Services
             Roles roles = null;
             roles = _context.Roles.Find(id);
             return roles;
+        }
+        public Users GetInfo(string username)
+        {
+            Users user = null;
+            user = _context.Users.Where(
+                p => p.UserName.Equals(username)
+                ).FirstOrDefault();
+            return user;
         }
     }
 }

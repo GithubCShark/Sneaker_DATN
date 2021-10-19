@@ -13,7 +13,7 @@
 </section>
 <!-- End Banner Area -->
 <!-- Start breadcumb Area -->
-<section class="breadcrumb-login">
+@*<section class="breadcrumb-login">
     <div class="container">
         <nav aria-label="breadcrumb ">
             <ol class="breadcrumb">
@@ -22,7 +22,7 @@
             </ol>
         </nav>
     </div>
-</section>
+</section>*@
 <!-- End breadcumb Area -->
 <!--================Login Box Area =================-->
 <section class="register_box_area">
@@ -43,10 +43,12 @@
                                 <!-- Full Name -->
                                 <div class="form-group col-lg-6 mb-4">
                                     <input asp-for="UserName" type="text" class="form-control" placeholder="Tên đăng nhập">
+                                    <span asp-validation-for="UserName" class="text-danger"></span>
                                 </div>
                                 <div class="form-group col-lg-6 mb-4">
                                     <input asp-for="FullName" type="text" placeholder="Họ và tên"
                                            class="form-control">
+                                    <span asp-validation-for="FullName" class="text-danger"></span>
                                 </div>
                                 <div class="form-group col-lg-6 mb-4">
                                     <select asp-for="Gender" class="form-control">
@@ -66,26 +68,31 @@
                                 <div class="form-group col-lg-6 mb-4">
                                     <input asp-for="DOB" id="DOB" type="date" placeholder="Ngày sinh"
                                            class="form-control">
+                                    <span asp-validation-for="DOB" class="text-danger"></span>
                                 </div>
                                 <!-- Phone -->
                                 <div class="form-group col-lg-6 mb-4">
                                     <input asp-for="PhoneNumber" placeholder="Số điện thoại"
                                            class="form-control">
+                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                                 </div>
                                 <!-- Email Address -->
                                 <div class="form-group col-lg-12 mb-4">
                                     <input asp-for="Email" type="email" placeholder="Email Address"
                                            class="form-control">
+                                    <span asp-validation-for="Email" class="text-danger"></span>
                                 </div>
                                 <!-- Password -->
                                 <div class="form-group col-lg-6 mb-4">
                                     <input asp-for="Password" type="password" name="password" placeholder="Password"
                                            class="form-control">
+                                    <span asp-validation-for="Password" class="text-danger"></span>
                                 </div>
                                 <!-- Password Confirmation -->
                                 <div class="form-group col-lg-6 mb-4">
                                     <input asp-for="ConfirmPassword" type="password" name="passwordConfirmation"
                                            placeholder="Confirm Password" class="form-control">
+                                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                                 </div>
                                 <!-- Submit Button -->
                                 <div class="form-group col-lg-12 mx-auto mb-0">

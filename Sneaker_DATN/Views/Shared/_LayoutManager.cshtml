@@ -5,6 +5,7 @@
 
 @{ string userName = Context.Session.GetString(SessionKey.User.UserName);}
 @{ string fullName = Context.Session.GetString(SessionKey.User.FullName);}
+@{ string avatar = Context.Session.GetString(SessionKey.User.Avatar);}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -228,15 +229,25 @@
                                 <span class="sr-only">Bản Thân</span>
                                 <span class="nav-user-img">
                                     <picture>
-                                        <source srcset="~/images/avatar/avatar-illustrated-02.webp" type="image/webp">
-                                        <img src="~/images/avatar/avatar-illustrated-02.png" alt="User name">
+                                        @if (avatar == null && avatar == "")
+                                        {
+                                            <source srcset="~/images/avatar/avatar-illustrated-02.webp" type="image/webp">
+                                            <img src="~/images/avatar/avatar-illustrated-02.png" alt="User name">
+                                        }
+                                        else
+                                        {
+                                            <img src="~/images/avatar/@avatar" alt="User name">
+                                        }
                                     </picture>
                                 </span>
                             </button>
                             <ul class="users-item-dropdown nav-user-dropdown dropdown">
                                 <li>
-                                    <button class="nav-link btn btn-link text-primary">
-                                        <i data-feather="user" aria-hidden="true"></i>Thông Tin
+                                    <button class="nav-link btn btn-link">
+                                        <a asp-controller="User" asp-action="Info" asp-route-id="@userName" class="text-primary">
+                                            <i data-feather="user" aria-hidden="true"></i>
+                                            Thông Tin
+                                        </a>
                                     </button>
                                 </li>
                                 <!--<li><a href="##">

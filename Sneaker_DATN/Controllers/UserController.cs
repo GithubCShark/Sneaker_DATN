@@ -109,6 +109,11 @@ namespace Sneaker_DATN.Controllers
                 return RedirectToAction(nameof(Index));
             }
         }
+        public ActionResult Info(string username)
+        {
+            Users user = _userSvc.GetInfo(username);
+            return View(user);
+        }
 
         // GET: UserController/Delete/5
         //public ActionResult Delete(int id)
