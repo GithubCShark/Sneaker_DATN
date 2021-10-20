@@ -4880,3 +4880,7 @@ dd {
     background: #f2f2f2;
     border-radius: 8px;
 }
+/*iframe*/
+.iframe-chatbox {
+    display: none;
+}
