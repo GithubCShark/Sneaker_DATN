@@ -109,9 +109,13 @@ namespace Sneaker_DATN.Controllers
                 return RedirectToAction(nameof(Index));
             }
         }
-        public ActionResult Info(string username)
+        public ActionResult Info(int id)
         {
-            Users user = _userSvc.GetInfo(username);
+            var user = _userSvc.GetInfo(id);
+
+            var roles = _userSvc.GetRole(user.RoleID);
+            ViewData["RoleNameInfo"] = roles.Role;
+
             return View(user);
         }
 

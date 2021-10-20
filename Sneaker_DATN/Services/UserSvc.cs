@@ -22,7 +22,7 @@ namespace Sneaker_DATN.Services
 
         Roles GetRole(int id);
 
-        Users GetInfo(string username);
+        Users GetInfo(int id);
     }
     public class UserSvc : IUserSvc
     {
@@ -117,12 +117,10 @@ namespace Sneaker_DATN.Services
             roles = _context.Roles.Find(id);
             return roles;
         }
-        public Users GetInfo(string username)
+        public Users GetInfo(int id)
         {
             Users user = null;
-            user = _context.Users.Where(
-                p => p.UserName.Equals(username)
-                ).FirstOrDefault();
+            user = _context.Users.Find(id);
             return user;
         }
     }
