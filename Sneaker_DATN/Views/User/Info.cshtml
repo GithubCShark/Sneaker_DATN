@@ -5,14 +5,14 @@
     Layout = "~/Views/Shared/_LayoutManager.cshtml";
 }
 <div class="container">
-    <div class="col-lg-12">
+    <div class="col-lg-10 m-auto">
         <div class="custom-detail pt-5">
             <div class="custom-icon">
-                @*<a class="dashbroad-icon-hover" asp-action="Index"><i class="icon-back fas fa-chevron-left fa-2x "></i></a>*@
-                <h4 class="main-title text-center text-uppercase mt-2">Chi tiết cá nhân</h4>
+                <a class="dashbroad-icon-hover" asp-controller="Admin" asp-action="Index"><i class="icon-back fas fa-chevron-left fa-2x "></i></a>
+                <h4 class="main-title text-center text-uppercase mt-2">Chào @Model.FullName</h4>
                 <button class="custom-icon-button">
-                    <a class="font-weight-lighter" asp-action="Edit">
-                        <i class="far fa-edit" style="font-size: 1.25rem;"></i> Chỉnh sửa
+                    <a class="font-weight-lighter" asp-action="Edit" asp-route-id="@Model.UserID">
+                        <i class="far fa-edit" style="font-size: 1.25rem;"></i> Chỉnh sửa?
                     </a>
                 </button>
             </div>
@@ -41,7 +41,6 @@
                     {
                         <span>Nữ</span>
                     }
-                    @Html.DisplayFor(model => model.Gender)
                 </dd>
                 <dt class="col-sm-2">
                     @Html.DisplayNameFor(model => model.Email)
@@ -71,7 +70,7 @@
                     @Html.DisplayNameFor(model => model.Roles)
                 </dt>
                 <dd class="col-sm-10">
-                    @ViewBag.RoleNameD
+                    @ViewBag.RoleNameInfo
                 </dd>
                 <dt class="col-sm-2">
                     @Html.DisplayNameFor(model => model.Lock)
