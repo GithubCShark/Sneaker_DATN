@@ -88,9 +88,9 @@ namespace Sneaker_DATN.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, Users user)
         {
+            string thumuccon = "avatar";
             try
             {
-                string thumuccon = "avatar";
                 if (ModelState.IsValid)
                 {
                     if (user.ImageUser != null && user.ImageUser.Length > 0)
@@ -99,9 +99,8 @@ namespace Sneaker_DATN.Controllers
                         _uploadHelper.UploadImage(user.ImageUser, rootPath, thumuccon);
                         user.ImgUser = user.ImageUser.FileName;
                     }
-
-                    _userSvc.EditUser(id, user);
                 }
+                _userSvc.EditUser(id, user);
                 return RedirectToAction(nameof(Index),new { id = user.UserID });
             }
             catch
