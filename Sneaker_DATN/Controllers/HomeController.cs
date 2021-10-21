@@ -116,5 +116,10 @@ namespace Sneaker_DATN.Controllers
                 return View(user);
             }
         }
+
+        public IActionResult Products()
+        {
+            return View();
+        }
     }
 }
