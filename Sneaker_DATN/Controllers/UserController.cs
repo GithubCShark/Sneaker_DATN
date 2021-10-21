@@ -58,14 +58,23 @@ namespace Sneaker_DATN.Controllers
         {
             try
             {
-                if (user.ImageUser != null && user.ImageUser.Length > 0)
+                if (ModelState.IsValid)
                 {
-                    string rootPath = Path.Combine(_webHostEnviroment.WebRootPath, "images");
-                    _uploadHelper.UploadImage(user.ImageUser, rootPath, "avatar");
-                    user.ImgUser = user.ImageUser.FileName;
+                    if (user.ImageUser != null && user.ImageUser.Length > 0)
+                    {
+                        string rootPath = Path.Combine(_webHostEnviroment.WebRootPath, "images");
+                        _uploadHelper.UploadImage(user.ImageUser, rootPath, "avatar");
+                        user.ImgUser = user.ImageUser.FileName;
+                    }
+                    _userSvc.AddUser(user);
+                    return RedirectToAction(nameof(Index), new { id = user.UserID });
                 }
-                _userSvc.AddUser(user);
-                return RedirectToAction(nameof(Index), new { id = user.UserID});
+                else
+                {
+                    var rolename = _context.Roles.ToList();
+                    ViewData["RoleNameC"] = new SelectList(rolename, "RoleID", "Role");
+                    return View();
+                }
             }
             catch
             {
@@ -99,9 +108,16 @@ namespace Sneaker_DATN.Controllers
                         _uploadHelper.UploadImage(user.ImageUser, rootPath, thumuccon);
                         user.ImgUser = user.ImageUser.FileName;
                     }
+                    _userSvc.EditUser(id, user);
+                    return RedirectToAction(nameof(Index), new { id = user.UserID });
                 }
-                _userSvc.EditUser(id, user);
-                return RedirectToAction(nameof(Index),new { id = user.UserID });
+                else
+                {
+                    var role = _context.Roles.ToList();
+                    ViewData["RoleN"] = new SelectList(role, "RoleID", "Role");
+
+                    return View(user);
+                }
             }
             catch
             {

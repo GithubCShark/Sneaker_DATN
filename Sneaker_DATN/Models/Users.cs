@@ -28,7 +28,7 @@ namespace Sneaker_DATN.Models
         [Display(Name = "Giới tính")]
         public bool Gender { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "{0} không được để trống")]
         [RegularExpression(@"[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}", ErrorMessage = "Email không hợp lệ")]
         public string Email { get; set; }
 
@@ -57,6 +57,7 @@ namespace Sneaker_DATN.Models
         [Display(Name ="Mật khẩu")]
         [Column(TypeName = "varchar(50)"), MaxLength(50)]
         [DataType(DataType.Password)]
+        [Required(ErrorMessage = "Vui lòng nhập mật khẩu")]
         public string Password { get; set;}
 
         [Column(TypeName = "varchar(50)"), MaxLength(50)]

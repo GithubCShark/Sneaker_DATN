@@ -15,6 +15,7 @@ namespace Sneaker_DATN.Services
         int AddUserMem(Users user);
         int EditUserMem(int id, Users user);
         Roles GetRole(int id);
+        List<Users> GetAllUser();
         public Users Login(ViewWebLogin viewWebLogin);
     }
     public class UserMemSvc : IUserMemSvc
@@ -96,6 +97,12 @@ namespace Sneaker_DATN.Services
             list = _context.Users.Where(
                 p => p.RoleID.Equals(3)
                 ).ToList();
+            return list;
+        }
+        public List<Users> GetAllUser()
+        {
+            List<Users> list = new List<Users>();
+            list = _context.Users.ToList();
             return list;
         }
         public Users Login(ViewWebLogin viewWebLogin)

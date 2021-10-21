@@ -57,7 +57,16 @@ namespace Sneaker_DATN.Controllers
                 {
                     HttpContext.Session.SetString(SessionKey.Guest.Guest_UserName, user.UserName);
                     HttpContext.Session.SetString(SessionKey.Guest.Guest_FullName, user.FullName);
+                    HttpContext.Session.SetInt32(SessionKey.Guest.Guest_ID.ToString(), user.UserID);
                     HttpContext.Session.SetString(SessionKey.Guest.GuestContext, JsonConvert.SerializeObject(user));
+                    //if (user.ImgUser == null && user.ImgUser == "")
+                    //{
+                    //    HttpContext.Session.SetString(SessionKey.Guest.Guest_Avatar, "");
+                    //}
+                    //else
+                    //{
+                    //    HttpContext.Session.SetString(SessionKey.Guest.Guest_Avatar, user.ImgUser);
+                    //}
 
                     return RedirectToAction(nameof(Index), "Home");
                 }
@@ -72,12 +81,15 @@ namespace Sneaker_DATN.Controllers
             {
                 HttpContext.Session.Remove(SessionKey.Guest.Guest_UserName);
                 HttpContext.Session.Remove(SessionKey.Guest.Guest_FullName);
+                HttpContext.Session.Remove(SessionKey.Guest.Guest_ID.ToString());
+                HttpContext.Session.Remove(SessionKey.Guest.Guest_Avatar);
                 HttpContext.Session.Remove(SessionKey.Guest.GuestContext);
 
                 return RedirectToAction(nameof(Index), "Home");
             }
         }
-        public IActionResult Register() {
+        public IActionResult Register() 
+        {
             return View();
         }
         [HttpPost]
@@ -86,14 +98,22 @@ namespace Sneaker_DATN.Controllers
         {
             try
             {
-                user.RoleID = 3;
-                user.Lock = false;
-                _userMemSvc.AddUserMem(user);
-                return RedirectToAction(nameof(Index), "Home");
+                if (ModelState.IsValid)
+                {
+                    user.RoleID = 3;
+                    user.Lock = false;
+                    _userMemSvc.AddUserMem(user);
+
+                    return RedirectToAction(nameof(Index), "Home");
+                }
+                else
+                {
+                    return View(user);
+                }
             }
             catch
             {
-                return View();
+                return View(user);
             }
         }
     }

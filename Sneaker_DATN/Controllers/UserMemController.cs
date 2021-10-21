@@ -96,9 +96,16 @@ namespace Sneaker_DATN.Controllers
                         _uploadHelper.UploadImage(user.ImageUser, rootPath, thumuccon);
                         user.ImgUser = user.ImageUser.FileName;
                     }
+                    _userMemSvc.EditUserMem(id, user);
+                    return RedirectToAction(nameof(Index), new { id = user.UserID });
                 }
-                _userMemSvc.EditUserMem(id, user);
-                return RedirectToAction(nameof(Index),new { id = user.UserID });
+                else
+                {
+                    var role = _context.Roles.ToList();
+                    ViewData["RoleN"] = new SelectList(role, "RoleID", "Role");
+
+                    return View(user);
+                }
             }
             catch
             {
