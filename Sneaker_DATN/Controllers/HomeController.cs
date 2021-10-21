@@ -71,7 +71,7 @@ namespace Sneaker_DATN.Controllers
                     return RedirectToAction(nameof(Index), "Home");
                 }
             }
-            return View(viewWebLogin);
+            return PartialView(viewWebLogin);
         }
 
         [HttpPost]
