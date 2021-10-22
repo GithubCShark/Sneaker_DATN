@@ -93,8 +93,8 @@
                                         <td class="pro-quantity"><span>37</span></td>
                                         <td class="pro-quantity"><span>Đen</span></td>
                                         <td class="pro-quantity"><span><input name="sl" type="number" id="@txt_Id" onchange="updateCart(@iD)" value="@item.Quantity" /></span></td>
-                                        <td class="pro-subtotal" id="tdGia_@iD"><span>@item.Products.Price</span></td>
-                                        <td class="pro-price" id="tdTien_@iD"><span>@totalSub</span></td>
+                                        <td class="pro-subtotal"><span id="tdGia_@iD">@item.Products.Price</span></td>
+                                        <td class="pro-price"><span id="tdTien_@iD">@totalSub</span></td>
                                         <td class="pro-remove"><a href="javascript:delCart(@iD);"><i class='bx bx-x bx-sm'></i></a></td>
                                     </tr>
                                 }
