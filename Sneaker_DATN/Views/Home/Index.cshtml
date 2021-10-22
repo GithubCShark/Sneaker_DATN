@@ -1,9 +1,9 @@
 ﻿@model IEnumerable<Sneaker_DATN.Models.Products>
+
 @{
     ViewData["Title"] = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <!-- start banner Area -->
 <section class="banner-area">
     <div class="container">
@@ -196,7 +196,7 @@
             <div class="row" data-aos="fade-up">
                 @foreach (var item in Model)
                 {
-                    
+
                     <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="single-product">
                             <img class="img-fluid" src="~/images/Product/@item.Image" alt="">
@@ -216,21 +216,21 @@
                                     {
                                         <h6 class="l-through">$@Html.DisplayFor(modelItem => item.Price)</h6>
                                     }
-                                    
+
                                 </div>
                                 <div class="prd-bottom">
-                                    <a href="" class="social-info">
+                                    <a class="addProduct social-info" href="javascript:addCart(@item.ProductID);">
                                         <span class="ti-bag"></span>
                                         <p class="hover-text">Giỏ hàng</p>
                                     </a>
-                                    <a href="" class="social-info">
+                                    <a class="social-info">
                                         <span class="lnr lnr-heart"></span>
                                         <p class="hover-text">Yêu thích</p>
                                     </a>
                                     <!-- <a href="" class="social-info">
-                <span class="lnr lnr-sync"></span>
-                <p class="hover-text">compare</p>
-            </a> -->
+                                        <span class="lnr lnr-sync"></span>
+                                        <p class="hover-text">compare</p>
+                                    </a> -->
                                     <a href="" class="social-info">
                                         <span class="lnr lnr-move"></span>
                                         <p class="hover-text">Xem Thêm</p>
@@ -336,3 +336,23 @@
     </div>
 </section>
 <!-- End brand Area -->
+
+<script>
+    function addCart(id) {
+        $("#imgCart").attr("src", '/images/cartA.png');
+        $("#imgBusy_" + id).show();
+        setTimeout(function () {
+            $.ajax({
+                url: "/Home/AddCart?Id=" + id,
+                type: "Post",
+                success: function (result) {
+                    //alert(result);
+                },
+                error: function (e) {
+                    //alert(this.url);
+                }
+            })
+            $("#imgBusy_" + id).hide();
+        }, 500);
+    }
+</script>

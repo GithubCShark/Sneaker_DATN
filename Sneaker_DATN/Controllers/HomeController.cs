@@ -21,17 +21,18 @@ namespace Sneaker_DATN.Controllers
         private IUserMemSvc _userMemSvc;
         private IProductSvc _productSvc;
         private IUploadHelper _uploadHelper;
-        public HomeController(IUserMemSvc userMemSvc, IProductSvc productSvc, IWebHostEnvironment webHostEnvironment, IUploadHelper uploadHelper)
+        private IOrderSvc _orderSvc;
+        private IOrderDetailSvc _orderDetailSvc;
+        public HomeController(IUserMemSvc userMemSvc, IProductSvc productSvc, IWebHostEnvironment webHostEnvironment, IUploadHelper uploadHelper, IOrderSvc orderSvc, IOrderDetailSvc orderDetailSvc)
         {
             _userMemSvc = userMemSvc;
             _productSvc = productSvc;
             _webHostEnviroment = webHostEnvironment;
             _uploadHelper = uploadHelper;
+            _orderSvc = orderSvc;
+            _orderDetailSvc = orderDetailSvc;
         }
-        public IActionResult Index()
-        {
-            return View(_productSvc.GetProductAll());
-        }
+
 
         public IActionResult Login(string returnUrl)
         {
@@ -88,10 +89,12 @@ namespace Sneaker_DATN.Controllers
                 return RedirectToAction(nameof(Index), "Home");
             }
         }
-        public IActionResult Register() 
+
+        public IActionResult Register()
         {
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Register(Users user)
@@ -117,9 +120,177 @@ namespace Sneaker_DATN.Controllers
             }
         }
 
-        public IActionResult Products()
+        //public IActionResult Products()
+        //{
+        //    return View();
+        //}
+        public IActionResult Index()
         {
             return View(_productSvc.GetProductAll());
+        }
+        #region cart
+        public IActionResult AddCart(int id)
+        {
+            var cart = HttpContext.Session.GetString("cart");
+            if (cart == null)
+            {
+                var product = _productSvc.GetProduct(id);
+                List<ViewCart> listCart = new List<ViewCart>()
+                {
+                    new ViewCart
+                    {
+                        Products = product,
+                        Quantity = 1
+                    }
+                };
+                HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(listCart));
+            }
+            else
+            {
+                List<ViewCart> dataCart = JsonConvert.DeserializeObject<List<ViewCart>>(cart);
+                bool check = true;
+                for (int i = 0; i < dataCart.Count; i++)
+                {
+                    if (dataCart[i].Products.ProductID == id)
+                    {
+                        dataCart[i].Quantity++;
+                        check = false;
+                    }
+                }
+                if (check)
+                {
+                    var product = _productSvc.GetProduct(id);
+                    dataCart.Add(new ViewCart
+                    {
+                        Products = product,
+                        Quantity = 1
+                    });
+                }
+                HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(dataCart));
+            }
+            return Ok();
+        }
+        public IActionResult Cart()
+        {
+            List<ViewCart> dataCart = new List<ViewCart>();
+            var cart = HttpContext.Session.GetString("cart");
+            if (cart != null)
+            {
+                dataCart = JsonConvert.DeserializeObject<List<ViewCart>>(cart);
+            }
+            return View(dataCart);
+        }
+        public IActionResult UpdateCart(int id, int soluong)
+        {
+            var cart = HttpContext.Session.GetString("cart");
+            double total = 0;
+            if (cart != null)
+            {
+                List<ViewCart> dataCart = JsonConvert.DeserializeObject<List<ViewCart>>(cart);
+                for (int i = 0; i < dataCart.Count; i++)
+                {
+                    if (dataCart[i].Products.ProductID == id)
+                    {
+                        dataCart[i].Quantity = soluong;
+                        break;
+                    }
+                }
+                HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(dataCart));
+                total = Tongtien();
+                return Ok(total);
+            }
+            return BadRequest();
+        }
+        public IActionResult DeleteCart(int id)
+        {
+            double total = 0;
+            var cart = HttpContext.Session.GetString("cart");
+            if (cart != null)
+            {
+                List<ViewCart> dataCart = JsonConvert.DeserializeObject<List<ViewCart>>(cart);
+
+                for (int i = 0; i < dataCart.Count; i++)
+                {
+                    if (dataCart[i].Products.ProductID == id)
+                    {
+                        dataCart.RemoveAt(i);
+                    }
+                }
+                HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(dataCart));
+                total = Tongtien();
+                return Ok(total);
+            }
+            return BadRequest();
+        }
+
+        public IActionResult OrderCart()
+        {
+            string guest_Name = HttpContext.Session.GetString(SessionKey.Guest.Guest_FullName);
+            if (guest_Name == null || guest_Name == "")  // đã có session
+            {
+                return BadRequest();
+            }
+            var cart = HttpContext.Session.GetString("cart");
+            if (cart != null && cart.Count() > 0)
+            {
+                #region DonHang
+                var G_Context = HttpContext.Session.GetString(SessionKey.Guest.GuestContext);
+                var khachhangId = JsonConvert.DeserializeObject<Users>(G_Context).UserID;
+
+                double total = Tongtien();
+
+                var order = new Orders()
+                {
+                    UserID = khachhangId,
+                    Total = total,
+                    DateCreate = DateTime.Now,
+                    Note = "",
+
+                };
+
+                _orderSvc.AddOrder(order);
+                int orderiD = order.OrderID;
+
+                #region Chitiet
+                List<ViewCart> dataCart = JsonConvert.DeserializeObject<List<ViewCart>>(cart);
+                for (int i = 0; i < dataCart.Count; i++)
+                {
+                    OrderDetails detail = new OrderDetails()
+                    {
+                        OrderID = orderiD,
+                        ProductID = dataCart[i].Products.ProductID,
+                        Quantity = dataCart[i].Quantity,
+                        Price = dataCart[i].Products.Price * dataCart[i].Quantity,
+
+                    };
+                    _orderDetailSvc.AddOrderDetail(detail);
+                }
+
+                #endregion
+                #endregion
+                #endregion
+
+
+                HttpContext.Session.Remove("cart");
+
+                return Ok();
+            }
+            return BadRequest();
+        }
+        [NonAction]
+        private double Tongtien()
+        {
+            double total = 0;
+            var cart = HttpContext.Session.GetString("cart");
+            if (cart != null)
+            {
+                List<ViewCart> dataCart = JsonConvert.DeserializeObject<List<ViewCart>>(cart);
+                for (int i = 0; i < dataCart.Count; i++)
+                {
+                    total += (dataCart[i].Products.Price * dataCart[i].Quantity);
+                }
+            }
+            return total;
         }
     }
 }

@@ -9,7 +9,10 @@ namespace Sneaker_DATN.Services
     public interface IOrderSvc
     {
         List<Orders> GetOrderAll();
+
         Orders GetOrder(int id);
+
+        int AddOrder(Orders orders);
     }
     public class OrderSvc : IOrderSvc
     {
@@ -31,6 +34,22 @@ namespace Sneaker_DATN.Services
             List<Orders> list = new List<Orders>();
             list = _context.Orders.ToList();
             return list;
+        }
+
+        public int AddOrder(Orders orders)
+        {
+            int ret = 0;
+            try
+            {
+                _context.Add(orders);
+                _context.SaveChanges();
+                ret = orders.OrderID;
+            }
+            catch
+            {
+                ret = 0;
+            }
+            return ret;
         }
 
     }
