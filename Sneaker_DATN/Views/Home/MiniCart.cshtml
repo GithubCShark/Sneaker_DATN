@@ -1,0 +1,93 @@
+﻿@using Sneaker_DATN.Models
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Http.Extensions
+@using Sneaker_DATN.Constant
+
+@model IEnumerable<Sneaker_DATN.Models.ViewCart>;
+
+@{ string emailAddress = Context.Session.GetString(SessionKey.Guest.Guest_UserName);}
+@{ string fullName = Context.Session.GetString(SessionKey.Guest.Guest_FullName);
+}
+
+
+<div class="container modal-content ">
+    <div class="modal-body">
+        <!-- offcanvas mini cart start -->
+        <button type="button" class="close close-login" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div class="offcanvas-minicart-wrapper">
+            <div class="">
+                <div class=""></div>
+                <div class="minicart-inner-content">
+                    <div class="minicart-close">
+                        <i class='bx bx-x bx-sm'></i>
+                    </div>
+                    <div class="minicart-content-box">
+                        @{
+                            int stt = 0;
+                            double total = 0;
+                            foreach (var item in Model)
+                            {
+                                int iD = @item.Products.ProductID;
+                                string txt_Id = "txtQuantity_" + iD;
+                                stt++;
+
+                                double totalSub = item.Products.Price * item.Quantity;
+                                total += totalSub;
+                                <div class="minicart-item-wrapper">
+                                    <ul>
+
+                                        <li class="minicart-item">
+                                            <div class="minicart-thumb">
+                                                <a href="#">
+                                                    <img src="~/images/Product/@item.Products.Image" alt="product">
+                                                </a>
+                                            </div>
+                                            <div class="minicart-content">
+                                                <h3 class="product-name">
+                                                    <a>@item.Products.ProductName</a>
+                                                </h3>
+                                                <p>
+                                                    <input class="cart-quantity" name="sl" type="number" id="@txt_Id" onchange="updateCart(@iD)" value="@item.Quantity" disabled/>
+                                                    <span class="cart-price" id="tdGia_@iD">@item.Products.Price</span>
+                                                    @*<span class="cart-price" id="tdTien_@iD">@totalSub </span>*@
+                                                </p>
+                                            </div>
+                                            <button class="minicart-remove"><i class='bx bx-x'></i></button>
+                                        </li>
+
+                                    </ul>
+                                </div>
+
+                                <div class="minicart-pricing-box">
+                                    <ul>
+                                        @*<li>
+                                            <span>sub-total</span>
+                                            <span><strong>$300.00</strong></span>
+                                        </li>
+                                        <li>
+                                            <span>Eco Tax (-2.00)</span>
+                                            <span><strong>$10.00</strong></span>
+                                        </li>
+                                        <li>
+                                            <span>VAT (20%)</span>
+                                            <span><strong>$60.00</strong></span>
+                                        </li>*@
+                                        <li class="total">
+                                            <span>total</span>
+                                            <span id="tdTien_@iD"><strong>@totalSub</strong></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            }
+                        }
+                        <div class="minicart-button">
+                            <a asp-controller="Home" asp-action="Cart"><i class='bx bx-shopping-bag bx-sm'></i> Xem giỏ hàng</a>
+                            <a href="cart.html"><i class='bx bx-share bx-rotate-180 bx-sm'></i> Thanh toán</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- offcanvas mini cart end -->
+    </div>
+</div>

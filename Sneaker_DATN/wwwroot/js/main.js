@@ -563,14 +563,14 @@ $(document).ready(function () {
     });
   }
   // mimi cart
-  $(".minicart-btn").on('click', function () {
-    $("body").addClass('fix');
-    $(".minicart-inner").addClass('show')
-  })
-  $(".minicart-close, .offcanvas-overlay").on('click', function () {
-    $("body").removeClass('fix');
-    $(".minicart-inner").removeClass('show')
-  })
+  //$(".minicart-btn").on('click', function () {
+  //  $("body").addClass('fix');
+  //  $(".minicart-inner").addClass('show')
+  //})
+  //$(".minicart-close, .offcanvas-overlay").on('click', function () {
+  //  $("body").removeClass('fix');
+  //  $(".minicart-inner").removeClass('show')
+  //})
 
   // scroll to top
   $(window).on('scroll', function () {

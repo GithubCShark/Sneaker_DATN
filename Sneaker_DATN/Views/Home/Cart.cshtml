@@ -11,53 +11,141 @@
 @{ string fullName = Context.Session.GetString(SessionKey.Guest.Guest_FullName);
 }
 
-<h1>Giỏ hàng</h1>
-<table class="table">
-    <tr>
-        <th>STT</th>
-        <th>Tên</th>
-        <th>Hình ảnh</th>
-        <th>Số lượng</th>
-        <th>Đơn giá</th>
-        <th>Tổng</th>
-    </tr>
-    @{
-        int stt = 0;
-        double total = 0;
-        foreach (var item in Model)
-        {
-            int iD = @item.Products.ProductID;
-            string txt_Id = "txtQuantity_" + iD;
-            stt++;
 
-            double totalSub = item.Products.Price * item.Quantity;
-            total += totalSub;
-            <tr id="tr_@iD">
-                <td>
-                    @stt
-                </td>
-                <td>
-                    @item.Products.ProductName
-                </td>
-                <td>
-                    <img src="~/images/Product/@item.Products.Image" style="width : 150px" />
-                </td>
-                <td>
-                    <input name="sl" type="number" id="@txt_Id" onchange="updateCart(@iD)" value="@item.Quantity" />
-                </td>
-                <td id="tdGia_@iD">@item.Products.Price</td>
-                <td id="tdTien_@iD">@totalSub</td>
-                <td>
-                    <a href="javascript:delCart(@iD);">Xóa</a>
-                </td>
-            </tr>
-        }
-    }
-</table>
-<p>
-    <div>Tổng tiền : <span id="spTotal">@total</span></div>
-</p>
-<p>
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+        </div>
+    </div>
+</section>
+<!-- End Banner Area -->
+<!-- Start breadcumb Area -->
+<section class="breadcrumb-login">
+    <div class="container">
+        <nav aria-label="breadcrumb ">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Giỏ hàng</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+<!-- End breadcumb Area -->
+<!--================Cart Area =================-->
+<div class="colorlib-product">
+    <div class="container">
+        <div class="row row-pb-lg">
+            <div class="col-md-10 offset-md-1">
+                <div class="process-wrap">
+                    <div class="process text-center active">
+                        <p><span>01</span></p>
+                        <h3>Giỏ hàng</h3>
+                    </div>
+                    <div class="process text-center">
+                        <p><span>02</span></p>
+                        <h3>Thanh toán</h3>
+                    </div>
+                    <div class="process text-center">
+                        <p><span>03</span></p>
+                        <h3>Hoàn thành</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row row-pb-lg">
+            <div class="col-md-12">
+                <div class="cart-table table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="pro-quantity">STT</th>
+                                <th class="pro-thumbnail">Sản phẩm</th>
+                                <th class="pro-title">Tên</th>
+                                <th class="pro-quantity">Size</th>
+                                <th class="pro-quantity">Màu sắc</th>
+                                <th class="pro-quantity">Số lượng</th>
+                                <th class="pro-price">Giá</th>
+                                <th class="pro-subtotal">Tổng</th>
+                                <th class="pro-remove"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                int stt = 0;
+                                double total = 0;
+                                foreach (var item in Model)
+                                {
+                                    int iD = @item.Products.ProductID;
+                                    string txt_Id = "txtQuantity_" + iD;
+                                    stt++;
+
+                                    double totalSub = item.Products.Price * item.Quantity;
+                                    total += totalSub;
+                                    <tr id="tr_@iD">
+                                        <td class="pro-quantity"><span>@stt</span></td>
+                                        <td class="pro-thumbnail">
+                                            <a href="#">
+                                                <img class="img-fluid" src="~/images/Product/@item.Products.Image" alt="Product" />
+                                            </a>
+                                        </td>
+                                        <td class="pro-title"><a href="#"> @item.Products.ProductName</a></td>
+                                        <td class="pro-quantity"><span>37</span></td>
+                                        <td class="pro-quantity"><span>Đen</span></td>
+                                        <td class="pro-quantity"><span><input name="sl" type="number" id="@txt_Id" onchange="updateCart(@iD)" value="@item.Quantity" /></span></td>
+                                        <td class="pro-subtotal" id="tdGia_@iD"><span>@item.Products.Price</span></td>
+                                        <td class="pro-price" id="tdTien_@iD"><span>@totalSub</span></td>
+                                        <td class="pro-remove"><a href="javascript:delCart(@iD);"><i class='bx bx-x bx-sm'></i></a></td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row row-pb-lg">
+            <div class="col-md-12">
+                <div class="total-wrap">
+                    <div class="row">
+                        <div class="col-sm-7">
+                            <form action="#">
+                                <div class="row form-group">
+                                    <div class="col-sm-10">
+                                        <input type="text" name="quantity" class="form-control input-number"
+                                               placeholder="Mã giảm giá...">
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <button class="primary-btn">Áp dụng</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-sm-5 text-center">
+                            <div class="total">
+                                <div class="sub">
+                                    <p><span>Tổng:</span> <span>$200.00</span></p>
+                                    <p><span>Phí vận chuyển:</span> <span>$0.00</span></p>
+                                    <p><span>Giảm giá:</span> <span>$45.00</span></p>
+                                </div>
+                                <div class="grand-total">
+                                    <p><span><strong>Tổng tiền:</strong></span> <span id="spTotal">@total</span></p>
+                                </div>
+                            </div>
+                            <div class="checkout_btn_inner mt-3">
+                                <!-- <a class="grays_btn" href="index.html">Tiếp tục mua sắm</a> -->
+                                <a class="primary-btn" href="checkout.html">Tiến hành thanh toán</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*<p>
     @if (emailAddress != null && emailAddress != "")
     {
         <a class="addProduct" href="javascript:orderCart(true); ">Đặt Hàng</a>
@@ -67,11 +155,8 @@
         <span> Bạn cần <a class="addProduct" href="javascript:orderCart(false); ">đăng nhập</a> để đặt hàng.</span>
 
     }
-</p>
-<div>
-    @*<a asp-action="Edit" asp-route-id="@Model.ChitietID">Edit</a> |*@
-    <a asp-action="Index">Quay lại</a>
-</div>
+</p>*@
+
 <script>
 
     function delCart(id) {

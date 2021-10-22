@@ -120,10 +120,10 @@ namespace Sneaker_DATN.Controllers
             }
         }
 
-        //public IActionResult Products()
-        //{
-        //    return View();
-        //}
+        public IActionResult Products()
+        {
+            return View(_productSvc.GetProductAll());
+        }
         public IActionResult Index()
         {
             return View(_productSvc.GetProductAll());
@@ -277,6 +277,17 @@ namespace Sneaker_DATN.Controllers
             }
             return BadRequest();
         }
+        public IActionResult MiniCart()
+        {
+            List<ViewCart> dataCart = new List<ViewCart>();
+            var cart = HttpContext.Session.GetString("cart");
+            if (cart != null)
+            {
+                dataCart = JsonConvert.DeserializeObject<List<ViewCart>>(cart);
+            }
+            return PartialView(dataCart);
+        }
+
         [NonAction]
         private double Tongtien()
         {
@@ -293,4 +304,5 @@ namespace Sneaker_DATN.Controllers
             return total;
         }
     }
+
 }
