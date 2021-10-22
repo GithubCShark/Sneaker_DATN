@@ -18,21 +18,11 @@
                             <button type="button" class="search-btn btn btn-primary">
                                 <i class="fas fa-search"></i>
                             </button>
-                            @*<div class="ml-1">
-                                    <select>
-                                        <option selected>Trạng thái...</option>
-                                        <option value="1">Hoạt động</option>
-                                        <option value="2">Ngừng HĐ</option>
-                                    </select>
-                                </div>
-                                <button type="button" class="search-btn btn btn-primary">
-                                    <i class="fas fa-search"></i>
-                                </button>*@
                         </div>
 
                     </div>
                     <div class="col-lg-4 col-sm-6">
-                        <a asp-action="Create" class="color-btn-create btn btn-primary float-right"><i class="fas fa-plus pr-2"></i>Thêm mới</a>
+                        <a href="@Url.Action("Create", "Sizes")" class="color-btn-create btn btn-primary btn-create-size float-right"><i class="fas fa-plus pr-2"></i>Thêm mới</a>
                     </div>
                 </div>
             </div>
@@ -56,21 +46,42 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td >
+                            <td>
                                 @Html.DisplayFor(modelItem => item.SizeID)
                             </td>
-                            <td >
+                            <td>
                                 @Html.DisplayFor(modelItem => item.Size)
                             </td>
-                            <td >
-                                <a asp-action="Edit" asp-route-id="@item.SizeID"><i class="far fa-edit dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
-                                <a asp-action="Delete" asp-route-id="@item.SizeID"><i class="far fa-trash-alt ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
+                            <td>
+                                <a href="@Url.Action("Edit", "Sizes", new { id = @item.SizeID })" class="btn-edit-size"><i class="far fa-edit dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
+                                <a href="@Url.Action("Delete", "Sizes")"><i class="far fa-trash-alt ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
+                                <input type="hidden" class="id" value="@item.SizeID" />
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
         </div>
+    </div>
+</div>
+<!-- Modal Create Size -->
+<div class="modal fade" id="createSizeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <!-- empty -->
+    </div>
+</div>
+
+<!-- Modal Edit Size -->
+<div class="modal fade" id="editSizeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <!-- empty -->
+    </div>
+</div>
+
+<!-- Modal Details -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <!-- empty -->
     </div>
 </div>
 

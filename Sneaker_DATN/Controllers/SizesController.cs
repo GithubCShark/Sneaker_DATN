@@ -61,7 +61,7 @@ namespace Sneaker_DATN.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(sizes);
+            return PartialView(sizes);
         }
 
         // GET: Sizes/Edit/5
@@ -112,7 +112,7 @@ namespace Sneaker_DATN.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(sizes);
+            return PartialView(sizes);
         }
 
         // GET: Sizes/Delete/5

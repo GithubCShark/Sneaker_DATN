@@ -1,10 +1,10 @@
-﻿// Modal Login
+﻿// Modal Crete Size
 $(document).ready(function () {
 
-    $('.btn-login').click(function (e) {
+    $('.btn-create-size').click(function (e) {
         e.preventDefault();
 
-        var $modal = $('#loginModal');
+        var $modal = $('#createSizeModal');
         var $modalDialog = $('.modal-dialog');
         var href = $(this).prop('href');
 
@@ -19,16 +19,23 @@ $(document).ready(function () {
 
 });
 
-// Modal Register
+// Modal Edit Size
 $(document).ready(function () {
 
-    $('.btn-register').click(function (e) {
+    $('.btn-edit-size').click(function (e) {
         e.preventDefault();
 
-        var $modal = $('#registerModal');
+        var $modal = $('#editSizeModal');
         var $modalDialog = $('.modal-dialog');
         var href = $(this).prop('href');
-
+        var id = $(this).parent().find('.id').val();
+        $.ajax({
+            type: 'GET',
+            url: 'Sizes/Edit/' + id,
+            success: function (size) {
+                $('#editSizeModal #id');
+            }
+        });
         // không cho phép tắt modal khi click bên ngoài modal
         var option = { backdrop: true };
 
