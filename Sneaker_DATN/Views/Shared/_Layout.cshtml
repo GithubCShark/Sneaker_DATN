@@ -9,8 +9,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Sneaker_DATN</title>
-
+    <title>D-ACH Sneaker - @ViewData["Title"]</title>
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="~/images/fav.png">
     <!-- Boxicon -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -32,10 +33,10 @@
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <!-- Angular JS-->
     @*<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-    <script src="https://code.angularjs.org/1.8.2/angular-route.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />*@
+        <script src="https://code.angularjs.org/1.8.2/angular-route.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />*@
 
-<style>
+    <style>
     .banner-area {
         /* background: url(~/images/banner/banner-bg.png) center no-repeat;*/
         background: url('@Url.Content("~/images/banner/banner-bg.png")') center no-repeat;
@@ -62,7 +63,7 @@
         background-color: #fff;
         border-radius: 18px;
     }
-</style>
+    </style>
 </head>
 <body>
     <header class="header_area sticky-header">
@@ -81,26 +82,9 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav ml-auto">
-                            <li class="nav-item active"><a class="nav-link" href="index.html">Trang chủ</a></li>
+                            <li class="nav-item active"><a class="nav-link" asp-controller="Home" asp-action="Index">Trang chủ</a></li>
                             <li class="nav-item submenu dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                                   aria-haspopup="true" aria-expanded="false">Sản phẩm</a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item"><a class="nav-link" href="category.html">Shop Category</a></li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="productdetail.html">
-                                            Product
-                                            Details
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="checkout.html">Product Checkout</a>
-                                    </li>
-                                    <li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="confirmation.html">Confirmation</a>
-                                    </li>
-                                </ul>
+                                <a asp-controller="Home" asp-action="Products" class="nav-link">Sản phẩm</a>
                             </li>
                             <li class="nav-item submenu dropdown">
                                 <a href="#" class="nav-link">Tin tức</a>

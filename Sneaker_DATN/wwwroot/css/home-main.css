@@ -2344,9 +2344,9 @@ h6 {
             background: #ff454f;
         }
 
-        .single-product .badge-overlay {
-            border-radius: none;
-        }
+.lattest-product-area .single-product .badge-products {
+    top: 30px !important;
+}
 
         .single-product .badge {
             color: #fff;
@@ -2354,7 +2354,6 @@ h6 {
             text-align: center;
             line-height: normal;
             text-transform: uppercase;
-            border-radius: none;
         }
 
     .badge-overlay::after {

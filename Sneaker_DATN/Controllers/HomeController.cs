@@ -119,7 +119,7 @@ namespace Sneaker_DATN.Controllers
 
         public IActionResult Products()
         {
-            return View();
+            return View(_productSvc.GetProductAll());
         }
     }
 }
