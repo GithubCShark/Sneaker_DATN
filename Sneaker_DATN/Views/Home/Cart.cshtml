@@ -1,14 +1,11 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@using Sneaker_DATN.Models
+﻿@using Sneaker_DATN.Models
 @using Microsoft.AspNetCore.Http
 @using Microsoft.AspNetCore.Http.Extensions
 @using Sneaker_DATN.Constant
 
 @model IEnumerable<Sneaker_DATN.Models.ViewCart>;
 @{
-    Layout = "~/Views/Shared/_WebLayout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @{ string emailAddress = Context.Session.GetString(SessionKey.Guest.Guest_UserName);}
 @{ string fullName = Context.Session.GetString(SessionKey.Guest.Guest_FullName);
@@ -43,16 +40,14 @@
                     @item.Products.ProductName
                 </td>
                 <td>
-                    <img src="~/images/Product/" style="width : 150px" />
+                    <img src="~/images/Product/@item.Products.Image" style="width : 150px" />
                 </td>
                 <td>
-                    <input type="number" asp-action="avascript:updateCart(@iD);" id="@txt_Id" value="@item.Quantity" />
-
+                    <input name="sl" type="number" id="@txt_Id" onchange="updateCart(@iD)" value="@item.Quantity" />
                 </td>
                 <td id="tdGia_@iD">@item.Products.Price</td>
                 <td id="tdTien_@iD">@totalSub</td>
                 <td>
-                    @*<a href="javascript:updateCart(@iD);">Cập nhật</a> |*@
                     <a href="javascript:delCart(@iD);">Xóa</a>
                 </td>
             </tr>
@@ -78,6 +73,7 @@
     <a asp-action="Index">Quay lại</a>
 </div>
 <script>
+
     function delCart(id) {
         $.ajax({
             type: "POST",
@@ -96,7 +92,6 @@
             }
         });
     }
-
 
     function updateCart(id) {
         var soluong = $("#txtQuantity_" + id).val();

@@ -2,7 +2,6 @@
 
 @{
     ViewData["Title"] = "Edit";
-    Layout = "~/Views/Shared/_LayoutManager.cshtml";
 }
 
 <div class="modal-content">
@@ -13,7 +12,7 @@
         <h2 class="main-title text-center text-uppercase mt-n3">Chỉnh sửa size</h2>
         <form class="form-edit" asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" name="id" id="id" />
+            <input type="hidden" asp-for="SizeID" name="id" id="id" />
             <div class="form-group">
                 <label asp-for="Size" class="control-label"></label>
                 <input asp-for="Size" class="form-control" />
