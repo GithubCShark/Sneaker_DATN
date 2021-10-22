@@ -3,6 +3,14 @@
 
 @{ string userName = Context.Session.GetString(SessionKey.Guest.Guest_UserName);}
 @{ string fullName = Context.Session.GetString(SessionKey.Guest.Guest_FullName);}
+@{ string avatar = Context.Session.GetString(SessionKey.Guest.Guest_Avatar);}
+@{ 
+    int id = 0;
+    if (userName != null && userName != "")
+    {
+        id = (int)Context.Session.GetInt32(SessionKey.Guest.Guest_ID.ToString());
+    }
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -116,16 +124,21 @@
                             <li class="nav-item submenu submenu-user dropdown">
                                 <a href="#" class="user nav-link-right dropdown-toggle" data-toggle="dropdown"
                                    role="button" aria-haspopup="true" aria-expanded="false">
-
-                                    @*<span class='bx bx-user-circle bx-sm'></span>*@
-                                    <span class="img-user"><img src="~/images/avatar/157687606_2904103233166466_77970241031104239_n.jpg" alt="" /></span>
+                                    @if (avatar == null || avatar == "")
+                                    {
+                                        <span class="bx bx-user-circle bx-sm"></span>
+                                    }
+                                    else
+                                    {
+                                        <span class="img-user"><img src="~/images/avatar/@avatar" alt="" /></span>
+                                    }
                                 </a>
                                 <ul class="dropdown-menu">
                                     @if (userName != null && userName != "")
                                     {
-                                        <li class="nav-item"><a class="nav-link" href="#">Thông tin cá nhân</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="#">Đơn hàng</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="#">Đổi mật khẩu</a></li>
+                                        <li class="nav-item"><a class="nav-link" asp-action="Info" asp-route-id="@id">Thông tin cá nhân</a></li>
+                                        <li class="nav-item"><a class="nav-link" asp-action="Order" asp-route-id="@id">Đơn hàng</a></li>
+                                        <li class="nav-item"><a class="nav-link" asp-action="ChangePass" asp-route-id="@id">Đổi mật khẩu</a></li>
                                         <partial name="_LogoutPartialHome" />
                                     }
                                     else
@@ -135,7 +148,6 @@
                                         <li class="nav-item"><a href='@Url.Action("Login","Home")' class="nav-link btn-login">Đăng nhập</a></li>
                                         @*<li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Register">Đăng ký</a></li>*@
                                         <li class="nav-item"><a href='@Url.Action("Register","Home")' class="nav-link btn-register">Đăng ký</a></li>
-
                                     }
                                 </ul>
                             </li>
@@ -144,7 +156,7 @@
                                         <span class="bx bx-exit bx-sm"></span>
                                     </a>
                                 </li>*@
-                         
+
                         </ul>
                     </div>
                 </div>

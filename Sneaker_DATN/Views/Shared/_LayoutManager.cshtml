@@ -230,7 +230,7 @@
                                 <span class="sr-only">Bản Thân</span>
                                 <span class="nav-user-img">
                                     <picture>
-                                        @if (avatar == null && avatar == "")
+                                        @if (avatar == null || avatar == "")
                                         {
                                             <source srcset="~/images/avatar/avatar-illustrated-02.webp" type="image/webp">
                                             <img src="~/images/avatar/avatar-illustrated-02.png" alt="User name">

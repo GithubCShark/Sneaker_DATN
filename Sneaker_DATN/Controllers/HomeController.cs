@@ -60,14 +60,14 @@ namespace Sneaker_DATN.Controllers
                     HttpContext.Session.SetString(SessionKey.Guest.Guest_FullName, user.FullName);
                     HttpContext.Session.SetInt32(SessionKey.Guest.Guest_ID.ToString(), user.UserID);
                     HttpContext.Session.SetString(SessionKey.Guest.GuestContext, JsonConvert.SerializeObject(user));
-                    //if (user.ImgUser == null && user.ImgUser == "")
-                    //{
-                    //    HttpContext.Session.SetString(SessionKey.Guest.Guest_Avatar, "");
-                    //}
-                    //else
-                    //{
-                    //    HttpContext.Session.SetString(SessionKey.Guest.Guest_Avatar, user.ImgUser);
-                    //}
+                    if (user.ImgUser == null || user.ImgUser == "")
+                    {
+                        HttpContext.Session.SetString(SessionKey.Guest.Guest_Avatar, "");
+                    }
+                    else
+                    {
+                        HttpContext.Session.SetString(SessionKey.Guest.Guest_Avatar, user.ImgUser);
+                    }
 
                     return RedirectToAction(nameof(Index), "Home");
                 }
@@ -302,6 +302,15 @@ namespace Sneaker_DATN.Controllers
                 }
             }
             return total;
+        }
+        public IActionResult Details(int id)
+        {
+            var product = _productSvc.GetProduct(id);
+
+            var brd = _productSvc.GetBrand(product.BrandID);
+            ViewData["brdetails"] = brd.BrandName;
+
+            return View(product);
         }
     }
 

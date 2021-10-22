@@ -1,4 +1,7 @@
-﻿ 
+﻿@model Sneaker_DATN.Models.Products
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
 <!-- Start Banner Area -->
 <section class="banner-area organic-breadcrumb">
@@ -28,13 +31,13 @@
                 <div class="swiper mySwiper2 shadow-lg">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
-                            <img src="./img/product-details/1.jpg" />
+                            <img src="~/images/Product/@Model.Image" />
                         </div>
                         <div class="swiper-slide">
-                            <img src="./img/product-details/1.1.jpg" />
+                            <img src="~/images/Product/@Model.Image1" />
                         </div>
                         <div class="swiper-slide">
-                            <img src="./img/product-details/1.2.jpg" />
+                            <img src="~/images/Product/@Model.Image2" />
                         </div>
                     </div>
                     <div class="swiper-button-next swiper-button"></div>
@@ -43,22 +46,22 @@
                 <div thumbsSlider="" class="swiper mySwiper">
                     <div class="swiper-wrapper2 swiper-wrapper">
                         <div class="swiper-slide">
-                            <img src="./img/product-details/1.jpg" />
+                            <img src="~/images/Product/@Model.Image" />
                         </div>
                         <div class="swiper-slide">
-                            <img src="./img/product-details/1.1.jpg" />
+                            <img src="~/images/Product/@Model.Image1" />
                         </div>
                         <div class="swiper-slide">
-                            <img src="./img/product-details/1.2.jpg" />
+                            <img src="~/images/Product/@Model.Image2" />
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-5 offset-lg-1">
                 <div class="s_product_text">
-                    <h3>Nike Air Max 1 – Watermelon</h3>
-                    <h2>3.200.000₫</h2>
-                    <p>Mill Oil is an innovative oil filled radiator with the most modern technology. If you are looking for something that can make your interior look awesome, and at the same time give you the pleasant warm feeling during the winter.</p>
+                    <h3>@Html.DisplayFor(model => model.ProductName)</h3>
+                    <h2>@Html.DisplayFor(model => model.Price)₫</h2>
+                    <p>@Html.DisplayFor(model => model.Description).</p>
                     <div class="size-wrap">
                         <div class="block-26 slt-detail-product mb-5">
                             <h4>Size</h4>
