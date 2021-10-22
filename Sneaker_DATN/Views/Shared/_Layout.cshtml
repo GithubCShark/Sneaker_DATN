@@ -9,8 +9,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Sneaker_DATN</title>
-
+    <title>D-ACH Sneaker - @ViewData["Title"]</title>
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="~/images/fav.png">
     <!-- Boxicon -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -27,13 +28,13 @@
     <link rel="stylesheet" href="~/css/ion.rangeSlider.css" />
     <link rel="stylesheet" href="~/css/ion.rangeSlider.skinFlat.css" />
     <link rel="stylesheet" href="~/css/magnific-popup.css">
-    <link rel="stylesheet" href="~/css/main.css">
+    <link rel="stylesheet" href="~/css/home-main.css">
     <!-- slide -->
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     <!-- Angular JS-->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-    <script src="https://code.angularjs.org/1.8.2/angular-route.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+    @*<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+        <script src="https://code.angularjs.org/1.8.2/angular-route.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />*@
 
     <style>
     .banner-area {
@@ -48,9 +49,6 @@
         background-size: cover;
         padding-top: 130px;
     }
-        .modal-backdrop {
-            display: none;
-        }
         .img-user img{
             width: 50px;
             height: 50px;
@@ -60,6 +58,11 @@
         .iframe-chatbox{
             display: none;
         }
+    .modal-body {
+        margin-top: 7rem;
+        background-color: #fff;
+        border-radius: 18px;
+    }
     </style>
 </head>
 <body>
@@ -79,26 +82,9 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav ml-auto">
-                            <li class="nav-item active"><a class="nav-link" href="index.html">Trang chủ</a></li>
+                            <li class="nav-item active"><a class="nav-link" asp-controller="Home" asp-action="Index">Trang chủ</a></li>
                             <li class="nav-item submenu dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                                   aria-haspopup="true" aria-expanded="false">Sản phẩm</a>
-                                <ul class="dropdown-menu">
-                                    <li class="nav-item"><a class="nav-link" href="category.html">Shop Category</a></li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="productdetail.html">
-                                            Product
-                                            Details
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="checkout.html">Product Checkout</a>
-                                    </li>
-                                    <li class="nav-item"><a class="nav-link" href="cart.html">Shopping Cart</a></li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="confirmation.html">Confirmation</a>
-                                    </li>
-                                </ul>
+                                <a asp-controller="Home" asp-action="Products" class="nav-link">Sản phẩm</a>
                             </li>
                             <li class="nav-item submenu dropdown">
                                 <a href="#" class="nav-link">Tin tức</a>
@@ -130,7 +116,7 @@
                             <li class="nav-item submenu submenu-user dropdown">
                                 <a href="#" class="user nav-link-right dropdown-toggle" data-toggle="dropdown"
                                    role="button" aria-haspopup="true" aria-expanded="false">
-                                    
+
                                     @*<span class='bx bx-user-circle bx-sm'></span>*@
                                     <span class="img-user"><img src="~/images/avatar/157687606_2904103233166466_77970241031104239_n.jpg" alt="" /></span>
                                 </a>
@@ -154,29 +140,16 @@
                                 </ul>
                             </li>
                             @*<li class="nav-item submenu dropdown">
-                                <a href="#">
-                                    <span class="bx bx-exit bx-sm"></span>
-                                </a>
-                            </li>*@
+                                    <a href="#">
+                                        <span class="bx bx-exit bx-sm"></span>
+                                    </a>
+                                </li>*@
                             <i></i>
                         </ul>
                     </div>
                 </div>
             </nav>
         </div>
-        <!-- Modal Login -->
-        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <!-- empty -->
-            </div>
-        </div>
-        <!-- Modal Register -->
-        <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <!-- empty -->
-            </div>
-        </div>
-        <!-- Modal Register -->
         <div class="search_input" id="search_input_box">
             <div class="container">
                 <form class="d-flex justify-content-between">
@@ -187,31 +160,21 @@
             </div>
         </div>
     </header>
-    <!-- End Header Area -->
-    @*<header>
-            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-                <div class="container">
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Sneaker_DATN</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                        <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" id="login" href="/Admin/Login">Đăng nhập</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </header>*@
+
+    @* modal *@
+    <!-- Modal Login -->
+    <div class="container modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <!-- empty -->
+        </div>
+    </div>
+    <!-- Modal Register -->
+    <div class="container modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <!-- empty -->
+        </div>
+    </div>
+    <!-- Modal Register -->
 
     <main role="main" class="pb-3">
         @RenderBody()
@@ -285,14 +248,91 @@
         </iframe>
 
     </footer>
-    @*<iframe src="livechat.fpt.ai/v36/src/index.html?botcode=ce4e1ad940f772773f77773238615541&botname=H%E1%BB%97%20tr%E1%BB%A3%20tr%E1%BB%B1c%20tuy%E1%BA%BFn&sendername=&scendpoint=livechat.fpt.ai%3A443&time=1634723438966&subchannel=&themes=&styles=%7B%22headerColorType%22%3A%22gradient%22%2C%22headerSolid%22%3A%22%23ededf2ff%22%2C%22headerGradient1%22%3A%22%233353A2FF%22%2C%22headerGradient2%22%3A%22%2331B7B7FF%22%2C%22headerTextColor%22%3A%22%23ffffffff%22%2C%22headerLogoEnable%22%3Afalse%2C%22headerLogoLink%22%3A%22https%3A%2F%2Fchatbot-tools.fpt.ai%2Flivechat-builder%2Fimg%2FIcon-fpt-ai.png%22%2C%22headerText%22%3A%22H%E1%BB%97%20tr%E1%BB%A3%20tr%E1%BB%B1c%20tuy%E1%BA%BFn%22%2C%22primaryColor%22%3A%22%236d9ccbff%22%2C%22secondaryColor%22%3A%22%23ecececff%22%2C%22primaryTextColor%22%3A%22%23ffffffff%22%2C%22secondaryTextColor%22%3A%22%23000000DE%22%2C%22buttonColor%22%3A%22%23b4b4b4ff%22%2C%22buttonTextColor%22%3A%22%23ffffffff%22%2C%22avatarBot%22%3A%22https%3A%2F%2Fchatbot-tools.fpt.ai%2Flivechat-builder%2Fimg%2Fbot.png%22%2C%22sendMessagePlaceholder%22%3A%22Nh%E1%BA%ADp%20tin%20nh%E1%BA%AFn%22%2C%22floatButtonLogo%22%3A%22https%3A%2F%2Fchatbot-tools.fpt.ai%2Flivechat-builder%2Fimg%2FIcon-fpt-ai.png%22%2C%22floatButtonTooltip%22%3A%22FPT.AI%20xin%20ch%C3%A0o%22%2C%22floatButtonTooltipEnable%22%3Atrue%2C%22customerLogo%22%3A%22https%3A%2F%2Fchatbot-tools.fpt.ai%2Flivechat-builder%2Fimg%2Fbot.png%22%2C%22customerWelcomeText%22%3A%22Vui%20l%C3%B2ng%20nh%E1%BA%ADp%20t%C3%AAn%20c%E1%BB%A7a%20b%E1%BA%A1n%22%2C%22customerButtonText%22%3A%22B%E1%BA%AFt%20%C4%91%E1%BA%A7u%22%2C%22prefixEnable%22%3Afalse%2C%22prefixType%22%3A%22radio%22%2C%22prefixOptions%22%3A%5B%22Anh%22%2C%22Ch%E1%BB%8B%22%5D%2C%22prefixPlaceholder%22%3A%22Danh%20x%C6%B0ng%22%2C%22headerBackground%22%3A%22linear-gradient(86.7deg%2C%20%233353A2FF%200.85%25%2C%20%2331B7B7FF%2098.94%25)%22%2C%22css%22%3A%22%22%7D"></iframe>*@
-    <!-- End footer Area -->
-    @*<footer class="border-top footer text-muted">
-            <div class="container">
-                &copy; 2021 - Sneaker_DATN - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+
+    <!-- offcanvas mini cart start -->
+    <div class="offcanvas-minicart-wrapper">
+        <div class="minicart-inner">
+            <div class="offcanvas-overlay"></div>
+            <div class="minicart-inner-content">
+                <div class="minicart-close">
+                    <i class='bx bx-x bx-sm'></i>
+                </div>
+                <div class="minicart-content-box">
+                    <div class="minicart-item-wrapper">
+                        <ul>
+                            <li class="minicart-item">
+                                <div class="minicart-thumb">
+                                    <a href="#">
+                                        <img src="/img/product/p1.jpg" alt="product">
+                                    </a>
+                                </div>
+                                <div class="minicart-content">
+                                    <h3 class="product-name">
+                                        <a href="#">Nike Air Force</a>
+                                    </h3>
+                                    <p>
+                                        <span class="cart-quantity">1 <strong>&times;</strong></span>
+                                        <span class="cart-price">1.000.000đ</span>
+                                    </p>
+                                </div>
+                                <button class="minicart-remove"><i class='bx bx-x'></i></button>
+                            </li>
+                            <li class="minicart-item">
+                                <div class="minicart-thumb">
+                                    <a href="#">
+                                        <img src="/img/product/p1.jpg" alt="product">
+                                    </a>
+                                </div>
+                                <div class="minicart-content">
+                                    <h3 class="product-name">
+                                        <a href="#">Air Jordan 4</a>
+                                    </h3>
+                                    <p>
+                                        <span class="cart-quantity">1 <strong>&times;</strong></span>
+                                        <span class="cart-price">1.000.000đ</span>
+                                    </p>
+                                </div>
+                                <button class="minicart-remove"><i class='bx bx-x'></i></button>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="minicart-pricing-box">
+                        <ul>
+                            <li>
+                                <span>sub-total</span>
+                                <span><strong>$300.00</strong></span>
+                            </li>
+                            <li>
+                                <span>Eco Tax (-2.00)</span>
+                                <span><strong>$10.00</strong></span>
+                            </li>
+                            <li>
+                                <span>VAT (20%)</span>
+                                <span><strong>$60.00</strong></span>
+                            </li>
+                            <li class="total">
+                                <span>total</span>
+                                <span><strong>$370.00</strong></span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="minicart-button">
+                        <a href="cart.html"><i class='bx bx-shopping-bag bx-sm'></i> Xem giỏ hàng</a>
+                        <a href="cart.html"><i class='bx bx-share bx-rotate-180 bx-sm'></i> Thanh toán</a>
+                    </div>
+                </div>
             </div>
-        </footer>*@
+        </div>
+    </div>
+    <!-- offcanvas mini cart end -->
+    <!-- Scroll to top start -->
+    <div class="scroll-top not-visible">
+        <i class='bx bxs-chevron-up'></i>
+    </div>
     <!-- Scroll to Top End -->
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="~/js/vendor/jquery-2.2.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"

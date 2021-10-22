@@ -3,114 +3,109 @@
     ViewData["Title"] = "Đăng Ký";
 }
 
-<div class="modal-content">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    </div>
+<div class="container modal-content">
     <div class="modal-body">
-
         <section class="register_box_area">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card flex-row my-5 border-0 shadow-lg rounded-3 overflow-hidden">
-                            <div class="col-md-5 d-none d-md-flex  register_box_img">
-                                <img src="~/images/background-register.jpg">
+
+            <div class="row">
+
+                <div class="card flex-row border-0 rounded-3 overflow-hidden">
+                    <div class="col-lg-7 register_box_img">
+                        <img src="~/images/svg/sign-up-home.svg">
+                    </div>
+
+                    <!-- Registeration Form -->
+                    <div class="col-lg-5 col-md-12 col-sm-12 ml-auto register_box_form">
+                        <button type="button" class="close close-register" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h3 class="text-center">Đăng ký</h3>
+                        <form asp-action="Register" enctype="multipart/form-data" method="post" id="contactForm" novalidate="novalidate">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="row">
+                                <!-- Full Name -->
+                                <div class="form-group col-lg-6 mb-4">
+                                    <input asp-for="UserName" type="text" class="form-control" placeholder="Tên đăng nhập">
+                                    <span asp-validation-for="UserName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-lg-6 mb-4">
+                                    <input asp-for="FullName" type="text" placeholder="Họ và tên"
+                                           class="form-control">
+                                    <span asp-validation-for="FullName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-lg-6 mb-4">
+                                    <select asp-for="Gender" class="form-select form-control">
+                                        <option value="true">Nam</option>
+                                        <option value="false">Nữ</option>
+                                    </select>
+                                </div>
+                                @*<div class="form-group" style="display :none;">
+                    <label asp-for="ImgUser" class="control-label"></label>
+                    <input asp-for="ImgUser" type="file" class="form-control" />
+                    <span asp-validation-for="ImgUser" class="text-danger"></span>
+                </div>
+                <div class="form-group col-lg-6 mb-4">
+                    <input asp-for="ImageUser" type="file" id="image" name="image" placeholder="Chọn ảnh"
+                           class="form-control">
+                </div>*@
+                                <div class="form-group col-lg-6 mb-4">
+                                    <input asp-for="DOB" id="DOB" type="date" placeholder="Ngày sinh"
+                                           class="form-control">
+                                    <span asp-validation-for="DOB" class="text-danger"></span>
+                                </div>
+                                <!-- Phone -->
+                                <div class="form-group col-lg-12 mb-4">
+                                    <input asp-for="PhoneNumber" placeholder="Số điện thoại"
+                                           class="form-control">
+                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                </div>
+                                <!-- Email Address -->
+                                <div class="form-group col-lg-12 mb-4">
+                                    <input asp-for="Email" type="email" placeholder="Email"
+                                           class="form-control">
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                                <!-- Password -->
+                                <div class="form-group col-lg-6 mb-4">
+                                    <input asp-for="Password" placeholder="Mật khẩu"
+                                           class="form-control">
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                                <!-- Password Confirmation -->
+                                <div class="form-group col-lg-6 mb-4">
+                                    <input asp-for="ConfirmPassword"
+                                           placeholder="Xác nhận mật khẩu" class="form-control">
+                                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                </div>
+                                <!-- Submit Button -->
+                                <div class="form-group col-lg-12 mx-auto mb-0">
+                                    <button type="submit" class="register_box_btn primary-btn">Đăng ký</button>
+                                </div>
+                                <!-- Divider Text -->
+                                <div class="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
+                                    <div class="border-bottom w-100 ml-5"></div>
+                                    <span class="px-2 small text-muted font-weight-bold text-muted">OR</span>
+                                    <div class="border-bottom w-100 mr-5"></div>
+                                </div>
+
+                                <!-- Social Login -->
+                                <!-- <div class="form-group col-lg-12 mx-auto">
+                <a href="#" class="btn btn-primary btn-block py-2 btn-facebook">
+                    <i class="fa fa-facebook-f mr-2"></i>
+                    <span class="font-weight-bold">Continue with Facebook</span>
+                </a>
+                <a href="#" class="btn btn-primary btn-block py-2 btn-twitter">
+                    <i class="fa fa-twitter mr-2"></i>
+                    <span class="font-weight-bold">Continue with Twitter</span>
+                </a>
+            </div> -->
+                                <!-- Already Registered -->
+                                <div class="text-center w-100">
+                                    <p class="text-muted font-weight-bold">
+                                        Bạn đã có tài khoảng? <a asp-action="Login">Login</a>
+                                    </p>
+                                </div>
+
                             </div>
-
-                            <!-- Registeration Form -->
-                            <div class="col-md-7 col-lg-6 ml-auto register_box_form">
-                                <h3 class="text-center">Đăng ký</h3>
-                                <form asp-action="Register" enctype="multipart/form-data" method="post" id="contactForm" novalidate="novalidate">
-                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                    <div class="row">
-                                        <!-- Full Name -->
-                                        <div class="form-group col-lg-6 mb-4">
-                                            <input asp-for="UserName" type="text" class="form-control" placeholder="Tên đăng nhập">
-                                            <span asp-validation-for="UserName" class="text-danger"></span>
-                                        </div>
-                                        <div class="form-group col-lg-6 mb-4">
-                                            <input asp-for="FullName" type="text" placeholder="Họ và tên"
-                                                   class="form-control">
-                                            <span asp-validation-for="FullName" class="text-danger"></span>
-                                        </div>
-                                        <div class="form-group col-lg-6 mb-4">
-                                            <select asp-for="Gender" class="form-control">
-                                                <option value="true">Nam</option>
-                                                <option value="false">Nữ</option>
-                                            </select>
-                                        </div>
-                                        @*<div class="form-group" style="display :none;">
-                                        <label asp-for="ImgUser" class="control-label"></label>
-                                        <input asp-for="ImgUser" type="file" class="form-control" />
-                                        <span asp-validation-for="ImgUser" class="text-danger"></span>
-                                    </div>
-                                    <div class="form-group col-lg-6 mb-4">
-                                        <input asp-for="ImageUser" type="file" id="image" name="image" placeholder="Chọn ảnh"
-                                               class="form-control">
-                                    </div>*@
-                                        <div class="form-group col-lg-6 mb-4">
-                                            <input asp-for="DOB" id="DOB" type="date" placeholder="Ngày sinh"
-                                                   class="form-control">
-                                            <span asp-validation-for="DOB" class="text-danger"></span>
-                                        </div>
-                                        <!-- Phone -->
-                                        <div class="form-group col-lg-6 mb-4">
-                                            <input asp-for="PhoneNumber" placeholder="Số điện thoại"
-                                                   class="form-control">
-                                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-                                        </div>
-                                        <!-- Email Address -->
-                                        <div class="form-group col-lg-12 mb-4">
-                                            <input asp-for="Email" type="email" placeholder="Email Address"
-                                                   class="form-control">
-                                            <span asp-validation-for="Email" class="text-danger"></span>
-                                        </div>
-                                        <!-- Password -->
-                                        <div class="form-group col-lg-6 mb-4">
-                                            <input asp-for="Password" type="password" placeholder="Password"
-                                                   class="form-control">
-                                            <span asp-validation-for="Password" class="text-danger"></span>
-                                        </div>
-                                        <!-- Password Confirmation -->
-                                        <div class="form-group col-lg-6 mb-4">
-                                            <input asp-for="ConfirmPassword"
-                                                   placeholder="Confirm Password" class="form-control">
-                                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-                                        </div>
-                                        <!-- Submit Button -->
-                                        <div class="form-group col-lg-12 mx-auto mb-0">
-                                            <button type="submit" class="register_box_btn primary-btn">Đăng ký</button>
-                                        </div>
-                                        <!-- Divider Text -->
-                                        <div class="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
-                                            <div class="border-bottom w-100 ml-5"></div>
-                                            <span class="px-2 small text-muted font-weight-bold text-muted">OR</span>
-                                            <div class="border-bottom w-100 mr-5"></div>
-                                        </div>
-
-                                        <!-- Social Login -->
-                                        <!-- <div class="form-group col-lg-12 mx-auto">
-                                    <a href="#" class="btn btn-primary btn-block py-2 btn-facebook">
-                                        <i class="fa fa-facebook-f mr-2"></i>
-                                        <span class="font-weight-bold">Continue with Facebook</span>
-                                    </a>
-                                    <a href="#" class="btn btn-primary btn-block py-2 btn-twitter">
-                                        <i class="fa fa-twitter mr-2"></i>
-                                        <span class="font-weight-bold">Continue with Twitter</span>
-                                    </a>
-                                </div> -->
-                                        <!-- Already Registered -->
-                                        <div class="text-center w-100">
-                                            <p class="text-muted font-weight-bold">
-                                                Bạn đã có tài khoảng? <a asp-action="Login">Login</a>
-                                            </p>
-                                        </div>
-
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
