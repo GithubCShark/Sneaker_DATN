@@ -9519,15 +9519,9 @@ h6 {
         padding-right: 30px;
         margin-right: -15px;
     }
-
-    .minicart-item-wrapper {
-        border-bottom: 1px solid #e5e5e5;
-    }
-
         .minicart-item-wrapper ul li {
             padding-bottom: 20px;
             margin-bottom: 20px;
-            border-bottom: 1px solid #e5e5e5;
         }
 
             .minicart-item-wrapper ul li:last-child {
@@ -10084,4 +10078,35 @@ h6 {
 .modal-body{
     background-color: #fff;
     border-radius: 18px;
+}
+/*custom mini cart*/
+.minicart-custom-content {
+    display: flex;
+    align-items: flex-end;
+}
+
+.minicart-custom-body {
+    margin-top: -1rem;
+    width: 600px;
+    padding: 3rem 1rem 3rem 1rem;
+}
+
+.close-minicart {
+    position: absolute;
+    float: left !important;
+    top: 0.8rem;
+    left: 1rem;
+}
+
+.minicart-button-ct {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.minicart-item .cart-quantity {
+    border: none;
+    background-color: transparent;
+    width: 2rem;
+    max-width: 2rem;
 }

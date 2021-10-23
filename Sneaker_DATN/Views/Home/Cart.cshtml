@@ -134,7 +134,16 @@
                             </div>
                             <div class="checkout_btn_inner mt-3">
                                 <!-- <a class="grays_btn" href="index.html">Tiếp tục mua sắm</a> -->
-                                <a class="primary-btn" href="checkout.html">Tiến hành thanh toán</a>
+                                    @if (emailAddress != null && emailAddress != "")
+                                    {
+                                        <a class="primary-btn addProduct" href="javascript:orderCart(true); ">Tiến hành thanh toán</a>
+                                    }
+                                    else
+                                    {
+                                        <span> Bạn cần <a class="addProduct" href="javascript:orderCart(false); ">đăng nhập</a> để đặt hàng.</span>
+
+                                    }
+                                @*<a class="primary-btn" href="checkout.html">Tiến hành thanh toán</a>*@
                             </div>
                         </div>
                     </div>

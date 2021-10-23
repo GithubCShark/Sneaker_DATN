@@ -10,17 +10,48 @@
 }
 
 
-<div class="container modal-content ">
-    <div class="modal-body">
+<style>
+    .minicart-custom-content {
+        display: flex;
+        align-items: flex-end;
+    }
+
+    .minicart-custom-body {
+        margin-top: -1rem;
+        width: 600px;
+        padding: 3rem 1rem 3rem 1rem;
+    }
+    .close-minicart {
+        position: absolute;
+        float: left !important;
+        top: 0.8rem;
+        left: 1rem;
+    }
+    .minicart-button-ct {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .minicart-item .cart-quantity{
+        border: none;
+        background-color: transparent;
+        width: 2rem;
+        max-width: 2rem;
+    }
+</style>
+
+<div class="modal-content minicart-custom-content">
+    <div class="modal-body minicart-custom-body">
         <!-- offcanvas mini cart start -->
-        <button type="button" class="close close-login" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close close-minicart minicart-close" data-dismiss="modal" aria-l
+                abel="Close"><span aria-hidden="true">&times;</span></button>
         <div class="offcanvas-minicart-wrapper">
-            <div class="">
-                <div class=""></div>
+            <div class="minicart-inner-box">
+                @*<div class="offcanvas-overlay"></div>*@
                 <div class="minicart-inner-content">
-                    <div class="minicart-close">
+                    @*<div class="minicart-close">
                         <i class='bx bx-x bx-sm'></i>
-                    </div>
+                    </div>*@
                     <div class="minicart-content-box">
                         @{
                             int stt = 0;
@@ -33,7 +64,7 @@
 
                                 double totalSub = item.Products.Price * item.Quantity;
                                 total += totalSub;
-                                <div class="minicart-item-wrapper">
+                                <div class="minicart-item-wrapper" id="tr_@iD">
                                     <ul>
 
                                         <li class="minicart-item">
@@ -47,42 +78,45 @@
                                                     <a>@item.Products.ProductName</a>
                                                 </h3>
                                                 <p>
-                                                    <input class="cart-quantity" name="sl" type="number" id="@txt_Id" onchange="updateCart(@iD)" value="@item.Quantity" disabled/>
+                                                    <input class="cart-quantity" name="sl" type="number" id="@txt_Id" onchange="updateCart(@iD)" value="@item.Quantity" disabled /> x
                                                     <span class="cart-price" id="tdGia_@iD">@item.Products.Price</span>
                                                     @*<span class="cart-price" id="tdTien_@iD">@totalSub </span>*@
                                                 </p>
                                             </div>
-                                            <button class="minicart-remove"><i class='bx bx-x'></i></button>
+                                            <a class="minicart-remove" href="javascript:delCart(@iD);"><i class='bx bx-x'></i></a>
                                         </li>
 
                                     </ul>
                                 </div>
 
-                                <div class="minicart-pricing-box">
-                                    <ul>
-                                        @*<li>
-                                            <span>sub-total</span>
-                                            <span><strong>$300.00</strong></span>
-                                        </li>
-                                        <li>
-                                            <span>Eco Tax (-2.00)</span>
-                                            <span><strong>$10.00</strong></span>
-                                        </li>
-                                        <li>
-                                            <span>VAT (20%)</span>
-                                            <span><strong>$60.00</strong></span>
-                                        </li>*@
-                                        <li class="total">
-                                            <span>total</span>
-                                            <span id="tdTien_@iD"><strong>@totalSub</strong></span>
-                                        </li>
-                                    </ul>
-                                </div>
                             }
                         }
+
+                        <div class="minicart-pricing-box">
+                            <ul>
+                                @*<li>
+                    <span>sub-total</span>
+                    <span><strong>$300.00</strong></span>
+                </li>
+                <li>
+                    <span>Eco Tax (-2.00)</span>
+                    <span><strong>$10.00</strong></span>
+                </li>
+                <li>
+                    <span>VAT (20%)</span>
+                    <span><strong>$60.00</strong></span>
+                </li>*@
+                                <li class="total">
+                                    <span>Tổng</span>
+                                    <span id="spTotal"><strong>@total</strong></span>
+                                </li>
+                            </ul>
+                        </div>
                         <div class="minicart-button">
-                            <a asp-controller="Home" asp-action="Cart"><i class='bx bx-shopping-bag bx-sm'></i> Xem giỏ hàng</a>
-                            <a href="cart.html"><i class='bx bx-share bx-rotate-180 bx-sm'></i> Thanh toán</a>
+                            <div class="minicart-button-ct  col-lg-12">
+                                <a class="col-lg-6" asp-controller="Home" asp-action="Cart"><i class='bx bx-shopping-bag bx-sm'></i> Xem giỏ hàng</a>
+                                <a class="col-lg-6" href="cart.html"><i class='bx bx-share bx-rotate-180 bx-sm'></i> Thanh toán</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -91,3 +125,25 @@
         <!-- offcanvas mini cart end -->
     </div>
 </div>
+
+<script>
+    function delCart(id) {
+        $.ajax({
+            type: "POST",
+            url: "/Home/DeleteCart",
+            data: {
+                id: id,
+            },
+            success: function (result) {
+                $("#tr_" + id).hide();
+                $("#spTotal").html(result);
+
+                if (result == "0") {
+                    $("#imgCart").attr("src", '/images/cart.png');
+                }
+
+            }
+        });
+    }
+
+</script>

@@ -3,6 +3,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<!-- slide -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<style>
+    .breadcrumb-details .breadcrumb {
+        margin-top: 2% !important;
+    }
+</style>
+
 <!-- Start Banner Area -->
 <section class="banner-area organic-breadcrumb">
     <div class="container">
@@ -12,12 +20,12 @@
 </section>
 <!-- End Banner Area -->
 <!-- Start breadcumb Area -->
-<section class="breadcrumb-login">
+<section class="breadcrumb-login breadcrumb-details">
     <div class="container">
         <nav aria-label="breadcrumb ">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Chi tiết</li>
+                <li class="breadcrumb-item active" aria-current="page">@Html.DisplayFor(model => model.ProductName)</li>
             </ol>
         </nav>
     </div>
@@ -84,15 +92,11 @@
                                 <li><input class="color-checkbox colors4" type="radio" name="color"></li>
                             </ul>
                         </div>
-                        <!-- <div class="product_count">
-                            <label for="qty">Số lượng:</label>
-                            <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
+                         <div class="block-26-color product_count">
+                            <h4>Số lượng:</h4>
+                            <input type="number"
                                 class="input-text qty">
-                            <button class="increase items-count" type="button"><i
-                                    class="lnr lnr-chevron-up"></i></button>
-                            <button class="reduced items-count" type="button"><i
-                                    class="lnr lnr-chevron-down"></i></button>
-                        </div> -->
+                        </div> 
                         <div class="card_area align-items-center">
                             <a class="primary-btn" href="#">Thêm vào giỏ hàng</a>
                             <button class="icon_btn"><i class='bx bxs-heart bx-lg'></i></button>
@@ -350,7 +354,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <textarea class="form-control" name="message" id="message" rows="1" placeholder="Review" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Review'"></textarea></textarea>
+                                        <textarea class="form-control" name="message" id="message" rows="1" placeholder="Review" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Review'"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-12 text-right">
@@ -366,264 +370,76 @@
 </section>
 <!--================End Product Description Area =================-->
 <!-- Start related-product Area -->
-<section class="related-product-area section_gap_bottom">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-6 text-center">
-                <div class="section-title">
-                    <h1>Các sản phẩm tương tự</h1>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <!-- single product -->
-            <div class="col-lg-3 col-md-6">
-                <div class="single-product">
-                    <img class="img-fluid shadow-lg" src="img/product/p1.jpg" alt="">
-                    <div class="product-details">
-                        <h6>Nike Air Force 1 Shadow</h6>
-                        <div class="price">
-                            <h6>3.500.000₫</h6>
-                            <!-- <h6 class="l-through">$210.00</h6> -->
-                        </div>
-                        <div class="prd-bottom">
-                            <a href="" class="social-info">
-                                <span class="ti-bag"></span>
-                                <p class="hover-text">Giỏ hàng</p>
-                            </a>
-                            <a href="" class="social-info">
-                                <span class="lnr lnr-heart"></span>
-                                <p class="hover-text">Yêu thích</p>
-                            </a>
-                            <!-- <a href="" class="social-info">
-                                <span class="lnr lnr-sync"></span>
-                                <p class="hover-text">compare</p>
-                            </a> -->
-                            <a href="" class="social-info">
-                                <span class="lnr lnr-move"></span>
-                                <p class="hover-text">Chi tiết</p>
-                            </a>
-                        </div>
+@*<section class="related-product-area section_gap_bottom">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 text-center">
+                    <div class="section-title">
+                        <h1>Các sản phẩm tương tự</h1>
                     </div>
                 </div>
             </div>
-            <!-- single product -->
-            <div class="col-lg-3 col-md-6">
-                <div class="single-product">
-                    <img class="img-fluid shadow-lg" src="img/product/p2.jpg" alt="">
-                    <div class="product-details">
-                        <h6>Nike Dunk High</h6>
-                        <div class="price">
-                            <h6>3.500.000₫</h6>
-                            <h6 class="l-through">4.000.000₫</h6>
-                        </div>
-                        <div class="prd-bottom">
-                            <a href="" class="social-info">
-                                <span class="ti-bag"></span>
-                                <p class="hover-text">Giỏ hàng</p>
-                            </a>
-                            <a href="" class="social-info">
-                                <span class="lnr lnr-heart"></span>
-                                <p class="hover-text">Yêu thích</p>
-                            </a>
-                            <!-- <a href="" class="social-info">
-                                <span class="lnr lnr-sync"></span>
-                                <p class="hover-text">compare</p>
-                            </a> -->
-                            <a href="" class="social-info">
-                                <span class="lnr lnr-move"></span>
-                                <p class="hover-text">Chi tiết</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- single product -->
-            <div class="col-lg-3 col-md-6">
-                <div class="single-product">
-                    <img class="img-fluid shadow-lg" src="img/product/p3.jpg" alt="">
-                    <div class="product-details">
-                        <h6>Nike Air Force 1 Sage</h6>
-                        <div class="price">
-                            <h6>3.500.000₫</h6>
-                            <!-- <h6 class="l-through">2.150.000₫</h6> -->
-                        </div>
-                        <div class="prd-bottom">
-                            <a href="" class="social-info">
-                                <span class="ti-bag"></span>
-                                <p class="hover-text">Giỏ hàng</p>
-                            </a>
-                            <a href="" class="social-info">
-                                <span class="lnr lnr-heart"></span>
-                                <p class="hover-text">Yêu thích</p>
-                            </a>
-                            <!-- <a href="" class="social-info">
-                                    <span class="lnr lnr-sync"></span>
-                                    <p class="hover-text">compare</p>
-                                </a> -->
-                            <a href="" class="social-info">
-                                <span class="lnr lnr-move"></span>
-                                <p class="hover-text">Chi tiết</p>
-                            </a>
+            <div class="row">
+                @foreach (var item in Model)
+                {
+
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="single-product">
+                            <img class="img-fluid" src="~/images/Product/@item.Image" alt="">
+                            @if (item.Price >= 3000000)
+                            {
+                                <div class="badge-overlay">
+                                    <span class="badge">Sale 0%</span>
+                                </div>
+                            }
+                            <div class="product-details">
+                                <h6>@Html.DisplayFor(modelItem => item.ProductName)</h6>
+                                <div class="price">
+                                    <h6>@Html.DisplayFor(modelItem => item.Price)</h6>
+                                    @if (item.Price >= 3000000)
+                                    {
+                                        <h6 class="l-through">$@Html.DisplayFor(modelItem => item.Price)</h6>
+                                    }
+
+                                </div>
+                                <div class="prd-bottom">
+                                    <a class="addProduct social-info" href="javascript:addCart(@item.ProductID);">
+                                        <span class="ti-bag"></span>
+                                        <p class="hover-text">Giỏ hàng</p>
+                                    </a>
+                                    <a class="social-info">
+                                        <span class="lnr lnr-heart"></span>
+                                        <p class="hover-text">Yêu thích</p>
+                                    </a>
+                                    <a asp-action="Details" asp-route-id="@item.ProductID" class="social-info">
+                                        <span class="lnr lnr-move"></span>
+                                        <p class="hover-text">Xem Thêm</p>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                }
             </div>
-            <!-- single product -->
-            <div class="col-lg-3 col-md-6">
-                <div class="single-product">
-                    <img class="img-fluid shadow-lg" src="img/product/p4.jpg" alt="">
-                    <div class="product-details">
-                        <h6>Vans Comfort Old Skool Mule</h6>
-                        <div class="price">
-                            <h6>1.700.000₫</h6>
-                            <h6 class="l-through">2.150.000₫</h6>
-                        </div>
-                        <div class="prd-bottom">
-                            <a href="" class="social-info">
-                                <span class="ti-bag"></span>
-                                <p class="hover-text">Giỏ hàng</p>
-                            </a>
-                            <a href="" class="social-info">
-                                <span class="lnr lnr-heart"></span>
-                                <p class="hover-text">Yêu thích</p>
-                            </a>
-                            <!-- <a href="" class="social-info">
-                                <span class="lnr lnr-sync"></span>
-                                <p class="hover-text">compare</p>
-                            </a> -->
-                            <a href="" class="social-info">
-                                <span class="lnr lnr-move"></span>
-                                <p class="hover-text">Chi tiết</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- single product -->
-            <div class="col-lg-3 col-md-6">
-                <div class="single-product">
-                    <img class="img-fluid shadow-lg" src="img/product/p5.jpg" alt="">
-                    <div class="product-details">
-                        <h6>Adidas Stan Smith</h6>
-                        <div class="price">
-                            <h6>$2.500.000₫</h6>
-                            <!-- <h6 class="l-through">$210.00</h6> -->
-                        </div>
-                        <div class="prd-bottom">
-                            <a href="" class="social-info">
-                                <span class="ti-bag"></span>
-                                <p class="hover-text">Giỏ hàng</p>
-                            </a>
-                            <a href="" class="social-info">
-                                <span class="lnr lnr-heart"></span>
-                                <p class="hover-text">Yêu thích</p>
-                            </a>
-                            <!-- <a href="" class="social-info">
-                                <span class="lnr lnr-sync"></span>
-                                <p class="hover-text">compare</p>
-                            </a> -->
-                            <a href="" class="social-info">
-                                <span class="lnr lnr-move"></span>
-                                <p class="hover-text">Chi tiết</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- single product -->
-            <div class="col-lg-3 col-md-6">
-                <div class="single-product">
-                    <img class="img-fluid shadow-lg" src="img/product/p6.jpg" alt="">
-                    <div class="product-details">
-                        <h6>MLB Mule NY Monogram </h6>
-                        <div class="price">
-                            <h6>1.750.000₫</h6>
-                            <!-- <h6 class="l-through">$210.00</h6> -->
-                        </div>
-                        <div class="prd-bottom">
-                            <a href="" class="social-info">
-                                <span class="ti-bag"></span>
-                                <p class="hover-text">Giỏ hàng</p>
-                            </a>
-                            <a href="" class="social-info">
-                                <span class="lnr lnr-heart"></span>
-                                <p class="hover-text">Yêu thích</p>
-                            </a>
-                            <!-- <a href="" class="social-info">
-                                <span class="lnr lnr-sync"></span>
-                                <p class="hover-text">compare</p>
-                            </a> -->
-                            <a href="" class="social-info">
-                                <span class="lnr lnr-move"></span>
-                                <p class="hover-text">Chi tiết</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- single product -->
-            <div class="col-lg-3 col-md-6">
-                <div class="single-product">
-                    <img class="img-fluid shadow-lg" src="img/product/p7.jpg" alt="">
-                    <div class="product-details">
-                        <h6>Puma Mule Ribbon</h6>
-                        <div class="price">
-                            <h6>1.400.000₫</h6>
-                            <h6 class="l-through">1.650.000₫</h6>
-                        </div>
-                        <div class="prd-bottom">
-                            <a href="" class="social-info">
-                                <span class="ti-bag"></span>
-                                <p class="hover-text">Giỏ hàng</p>
-                            </a>
-                            <a href="" class="social-info">
-                                <span class="lnr lnr-heart"></span>
-                                <p class="hover-text">Yêu thích</p>
-                            </a>
-                            <!-- <a href="" class="social-info">
-                                <span class="lnr lnr-sync"></span>
-                                <p class="hover-text">compare</p>
-                            </a> -->
-                            <a href="" class="social-info">
-                                <span class="lnr lnr-move"></span>
-                                <p class="hover-text">Chi tiết</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- single product -->
-            <div class="col-lg-3 col-md-6">
-                <div class="single-product">
-                    <img class="img-fluid shadow-lg" src="img/product/p8.jpg" alt="">
-                    <div class="product-details">
-                        <h6>Nike Air Force 1 LXX</h6>
-                        <div class="price">
-                            <h6>4.000.000₫</h6>
-                            <h6 class="l-through">4.500.000₫</h6>
-                        </div>
-                        <div class="prd-bottom">
-                            <a href="" class="social-info">
-                                <span class="ti-bag"></span>
-                                <p class="hover-text">Giỏ hàng</p>
-                            </a>
-                            <a href="" class="social-info">
-                                <span class="lnr lnr-heart"></span>
-                                <p class="hover-text">Yêu thích</p>
-                            </a>
-                            <!-- <a href="" class="social-info">
-                                <span class="lnr lnr-sync"></span>
-                                <p class="hover-text">compare</p>
-                            </a> -->
-                            <a href="" class="social-info">
-                                <span class="lnr lnr-move"></span>
-                                <p class="hover-text">Chi tiết</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-</section>
+    </section>*@
 <!-- End related-product Area -->
+<!-- slide -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+    var swiper = new Swiper(".mySwiper", {
+        spaceBetween: 10,
+        slidesPerView: 4,
+        freeMode: true,
+        watchSlidesProgress: true,
+    });
+    var swiper2 = new Swiper(".mySwiper2", {
+        spaceBetween: 10,
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        thumbs: {
+            swiper: swiper,
+        },
+    });
+</script>
