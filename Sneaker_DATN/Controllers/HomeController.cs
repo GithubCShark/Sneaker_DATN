@@ -312,6 +312,23 @@ namespace Sneaker_DATN.Controllers
 
             return View(product);
         }
+
+        public IActionResult Blog()
+        {
+            return View();
+        }
+        public IActionResult Checkout()
+        {
+            return View();
+        }
+        public IActionResult Contact()
+        {
+            return View();
+        }
+        public IActionResult OrderComplete()
+        {
+            return View();
+        }
     }
 
 }
