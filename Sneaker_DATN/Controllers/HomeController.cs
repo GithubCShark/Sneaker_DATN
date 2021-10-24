@@ -329,6 +329,16 @@ namespace Sneaker_DATN.Controllers
         {
             return View();
         }
+        public IActionResult ChangePass()
+        {
+            return View();
+        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public IActionResult ChangePass()
+        //{
+        //    return View();
+        //}
     }
 
 }

@@ -136,9 +136,9 @@
                                 <ul class="dropdown-menu">
                                     @if (userName != null && userName != "")
                                     {
-                                        <li class="nav-item"><a class="nav-link" asp-action="Info" asp-route-id="@id">Thông tin cá nhân</a></li>
-                                        <li class="nav-item"><a class="nav-link" asp-action="Order" asp-route-id="@id">Đơn hàng</a></li>
-                                        <li class="nav-item"><a class="nav-link" asp-action="ChangePass" asp-route-id="@id">Đổi mật khẩu</a></li>
+                                        <li class="nav-item"><a class="nav-link btn-info" href='@Url.Action("Info","Home")'>Thông tin cá nhân</a></li>
+                                        <li class="nav-item"><a class="nav-link" asp-action="Cart" asp-route-id="@id">Đơn hàng</a></li>
+                                        <li class="nav-item"><a class="nav-link btn-changePass" href='@Url.Action("ChangePass","Home")'>Đổi mật khẩu</a></li>
                                         <partial name="_LogoutPartialHome" />
                                     }
                                     else
@@ -194,6 +194,20 @@
         </div>
     </div>
     <!-- Modal Minicart -->
+    <!-- Modal ChangePass -->
+    <div class="container modal fade" id="changePassModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <!-- empty -->
+        </div>
+    </div>
+    <!-- Modal ChangePass -->
+    <!-- Modal ChangePass -->
+    <div class="container modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <!-- empty -->
+        </div>
+    </div>
+    <!-- Modal ChangePass -->
 
     <main role="main" class="pb-3">
         @RenderBody()

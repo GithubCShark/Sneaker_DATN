@@ -60,3 +60,43 @@ $(document).ready(function () {
     });
 
 });
+// Modal ChangePass
+$(document).ready(function () {
+
+    $('.btn-changePass').click(function (e) {
+        e.preventDefault();
+
+        var $modal = $('#changePassModal');
+        var $modalDialog = $('.modal-dialog');
+        var href = $(this).prop('href');
+
+        // không cho phép tắt modal khi click bên ngoài modal
+        var option = { backdrop: true };
+
+        // load modal
+        $modalDialog.load(href, function () {
+            $modal.modal(option, 'show');
+        });
+    });
+
+});
+// Modal ChangePass
+$(document).ready(function () {
+
+    $('.btn-info').click(function (e) {
+        e.preventDefault();
+
+        var $modal = $('#infoModal');
+        var $modalDialog = $('.modal-dialog');
+        var href = $(this).prop('href');
+
+        // không cho phép tắt modal khi click bên ngoài modal
+        var option = { backdrop: true };
+
+        // load modal
+        $modalDialog.load(href, function () {
+            $modal.modal(option, 'show');
+        });
+    });
+
+});
