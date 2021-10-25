@@ -4,7 +4,8 @@
 @{ string userName = Context.Session.GetString(SessionKey.Guest.Guest_UserName);}
 @{ string fullName = Context.Session.GetString(SessionKey.Guest.Guest_FullName);}
 @{ string avatar = Context.Session.GetString(SessionKey.Guest.Guest_Avatar);}
-@{ 
+@{string cart = Context.Session.GetString("cart");}
+@{
     int id = 0;
     if (userName != null && userName != "")
     {
@@ -71,6 +72,10 @@
         background-color: #fff;
         border-radius: 18px;
     }
+        .navbar-right li:first-child{
+            display: flex;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
@@ -106,10 +111,20 @@
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li class="nav-item submenu dropdown">
-                                <a href='@Url.Action("MiniCart","Home")' class="minicart-btn cart">
-                                    <span class="bx bx-shopping-bag bx-sm"></span>
+                                @*<a href='@Url.Action("MiniCart","Home")' class="minicart-btn cart">*@
+                                    <a class="minicart-btn cart" id="cart" href='@Url.Action("MiniCart","Home")' >
+                                        @if (cart != null && cart != "")
+                                        {
+                                            <img id="imgCart" src="~/images/bag.png" style="width:25px" />
+                                        }
+                                        else
+                                        {
+                                            <img id="imgCart" src="~/images/bagA.png" style="width:25px" />
+                                        }
+                                    </a>
+                                    @*<span class="bx bx-shopping-bag bx-sm"></span>*@
                                     <!-- <div class="notification"></div> -->
-                                </a>
+                                @*</a>*@
                                 <a href="cart.html" class="cart cart-mobile">
                                     <span class="bx bx-shopping-bag bx-sm"></span>
                                     <!-- <div class="notification"></div> -->
@@ -117,8 +132,7 @@
                             </li>
                             <li class="nav-item submenu dropdown">
                                 <button class="search">
-                                    <span class="bx bx-search-alt-2 bx-sm" id="search">
-                                    </span>
+                                    <img src="~/images/search.png" id="search" style="width:25px" />
                                 </button>
                             </li>
                             <li class="nav-item submenu submenu-user dropdown">
@@ -126,7 +140,7 @@
                                    role="button" aria-haspopup="true" aria-expanded="false">
                                     @if (avatar == null || avatar == "")
                                     {
-                                        <span class="bx bx-user-circle bx-sm"></span>
+                                        <img src="~/images/user.png" style="width:25px" />
                                     }
                                     else
                                     {
@@ -136,7 +150,7 @@
                                 <ul class="dropdown-menu">
                                     @if (userName != null && userName != "")
                                     {
-                                        <li class="nav-item"><a class="nav-link btn-info" href='@Url.Action("Info","Home")'>Thông tin cá nhân</a></li>
+                                        <li class="nav-item"><a class="nav-link btn-information" href='@Url.Action("Info","Home")'>Thông tin cá nhân</a></li>
                                         <li class="nav-item"><a class="nav-link" asp-action="Cart" asp-route-id="@id">Đơn hàng</a></li>
                                         <li class="nav-item"><a class="nav-link btn-changePass" href='@Url.Action("ChangePass","Home")'>Đổi mật khẩu</a></li>
                                         <partial name="_LogoutPartialHome" />
@@ -216,8 +230,8 @@
     <!-- start footer Area -->
     <footer class="footer-area section_gap">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-6" data-aos="fade-up">
+            <div class="row"   data-aos="fade-up">
+                <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="single-footer-widget single-footer-me">
                         <h6>D-ACH Sneaker</h6>
                         <ul>
@@ -227,7 +241,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6" data-aos="fade-up">
+                <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="single-footer-widget">
                         <h6>Danh mục</h6>
                         <ul class="single-footer-links">
@@ -241,7 +255,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-3  col-md-6 col-sm-6" data-aos="fade-up">
+                <div class="col-lg-3  col-md-6 col-sm-6">
                     <div class="single-footer-widget">
                         <h6 class="mb-20">Thông tin</h6>
                         <ul class="single-footer-links">
@@ -255,7 +269,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-6 col-sm-6" data-aos="fade-up">
+                <div class="col-lg-2 col-md-6 col-sm-6">
                     <div class="single-footer-widget">
                         <h6>Theo dõi</h6>
                         <div class="footer-social d-flex align-items-center">

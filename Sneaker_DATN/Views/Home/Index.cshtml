@@ -339,17 +339,29 @@
 
 <script>
     function addCart(id) {
-        $("#imgCart").attr("src", '/images/cartA.png');
+        $("#imgCart").attr("src", '/images/bagA.png');
         $("#imgBusy_" + id).show();
         setTimeout(function () {
             $.ajax({
                 url: "/Home/AddCart?Id=" + id,
                 type: "Post",
                 success: function (result) {
-                    //alert(result);
+                    Swal.fire({
+                        position: 'top',
+                        icon: 'success',
+                        title: 'Thêm vào giỏ thành thành công!',
+                        showConfirmButton: false,
+                        timer: 1000
+                    })
                 },
                 error: function (e) {
-                    //alert(this.url);
+                    Swal.fire({
+                        position: 'top',
+                        icon: 'error',
+                        title: 'Thêm vào giỏ thành thất bại!',
+                        showConfirmButton: true,
+                        timer: 1000
+                    })
                 }
             })
             $("#imgBusy_" + id).hide();

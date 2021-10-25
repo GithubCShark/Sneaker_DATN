@@ -4880,7 +4880,63 @@ dd {
     background: #f2f2f2;
     border-radius: 8px;
 }
-/*iframe*/
-.iframe-chatbox {
-    display: none;
+/*pagination*/
+
+.pagination-container .pagination li {
+    cursor: pointer;
+    border: 0.5px solid #e6e6e6;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 35px;
+    height: 35px;
+    background: #fff;
+    color: #b3b3b3;
+    font-size: 16px;
+    border-radius: 4px;
+    margin-right: 1px;
+}
+
+.pagination-container .pagination .active {
+    background: #576ee0;
+    color: #fff;
+}
+
+.pagination-container .pagination li:hover {
+    background: #576ee0;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.pagin-admin {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 30px;
+    height: 70px;
+    background-color: #fff;
+    border-radius: 18px;
+}
+
+.darkmode .pagin-admin {
+    background-color: #161624;
+}
+
+    .darkmode .pagin-admin .pagin-left {
+        color: #f2f2f2;
+    }
+
+.darkmode .pagination-container .pagination li {
+    color: #b3b3b3;
+    background-color: #161624;
+}
+
+.darkmode .pagination-container .pagination .active {
+    background: #576ee0;
+    color: #fff;
+}
+
+.darkmode .pagination-container .pagination li:hover {
+    background: #576ee0;
+    color: #fff;
 }

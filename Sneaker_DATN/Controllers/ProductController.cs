@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace Sneaker_DATN.Controllers
 {
@@ -33,12 +34,33 @@ namespace Sneaker_DATN.Controllers
         }
 
         // GET: ProductController
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
+            // Tham số int? dùng để thể hiện null và kiểu int
+            // page có thể có giá trị là null và kiểu int.
+            // Nếu page = null thì đặt lại là 1.
+            if (page == null) page = 1;
+            // Tạo truy vấn, lưu ý phải sắp xếp theo trường nào đó, ví dụ OrderBy
+            // theo BookID mới có thể phân trang.
+            var products = _context.Products.Include(b => b.ProductName)
+                .OrderBy(b => b.ProductID);
+            // Tạo kích thước trang (pageSize) hay là số Link hiển thị trên 1 trang
+            int pageSize = 4;
+            // Toán tử ?? trong C# mô tả nếu page khác null thì lấy giá trị page, còn
+            // nếu page = null thì lấy giá trị 1 cho biến pageNumber.
+            int pageNumber = (page ?? 1);
+            // Lấy tổng số record chia cho kích thước để biết bao nhiêu trang
+            //int checkTotal = (int)(sizes.ToList().Count / pageSize) + 1;
+            //// Nếu trang vượt qua tổng số trang thì thiết lập là 1 hoặc tổng số trang
+            //if (pageNumber > checkTotal) pageNumber = checkTotal;
             ViewData["brand"] = _context.Brands.ToList();
+            return View(_context.Products.ToPagedList(pageNumber, pageSize));
+            //return View(await _context.Sizes.ToListAsync());
+
+            //ViewData["brand"] = _context.Brands.ToList();
             //ViewData["sz"] = _context.Sizes.ToList();
             //ViewData["clo"] = _context.ProductColors.ToList();
-            return View(_productSvc.GetProductAll());
+            //return View(_productSvc.GetProductAll());
         }
 
         //[BindProperty]

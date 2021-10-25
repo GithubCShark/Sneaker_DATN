@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Sneaker_DATN.Constant;
 using Sneaker_DATN.Helpers;
@@ -12,6 +13,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace Sneaker_DATN.Controllers
 {
@@ -23,7 +25,8 @@ namespace Sneaker_DATN.Controllers
         private IUploadHelper _uploadHelper;
         private IOrderSvc _orderSvc;
         private IOrderDetailSvc _orderDetailSvc;
-        public HomeController(IUserMemSvc userMemSvc, IProductSvc productSvc, IWebHostEnvironment webHostEnvironment, IUploadHelper uploadHelper, IOrderSvc orderSvc, IOrderDetailSvc orderDetailSvc)
+        private readonly DataContext _context;
+        public HomeController(IUserMemSvc userMemSvc, IProductSvc productSvc, IWebHostEnvironment webHostEnvironment, IUploadHelper uploadHelper, IOrderSvc orderSvc, IOrderDetailSvc orderDetailSvc, DataContext context)
         {
             _userMemSvc = userMemSvc;
             _productSvc = productSvc;
@@ -31,6 +34,7 @@ namespace Sneaker_DATN.Controllers
             _uploadHelper = uploadHelper;
             _orderSvc = orderSvc;
             _orderDetailSvc = orderDetailSvc;
+            _context = context;
         }
 
 
@@ -120,9 +124,30 @@ namespace Sneaker_DATN.Controllers
             }
         }
 
-        public IActionResult Products()
+        public IActionResult Products(int? page)
         {
-            return View(_productSvc.GetProductAll());
+            // Tham số int? dùng để thể hiện null và kiểu int
+            // page có thể có giá trị là null và kiểu int.
+            // Nếu page = null thì đặt lại là 1.
+            if (page == null) page = 1;
+            // Tạo truy vấn, lưu ý phải sắp xếp theo trường nào đó, ví dụ OrderBy
+            // theo BookID mới có thể phân trang.
+            var sizes = _context.Products.Include(b => b.ProductName)
+                .OrderBy(b => b.ProductID);
+            // Tạo kích thước trang (pageSize) hay là số Link hiển thị trên 1 trang
+            int pageSize = 4;
+            // Toán tử ?? trong C# mô tả nếu page khác null thì lấy giá trị page, còn
+            // nếu page = null thì lấy giá trị 1 cho biến pageNumber.
+            int pageNumber = (page ?? 1);
+            // Lấy tổng số record chia cho kích thước để biết bao nhiêu trang
+            //int checkTotal = (int)(sizes.ToList().Count / pageSize) + 1;
+            //// Nếu trang vượt qua tổng số trang thì thiết lập là 1 hoặc tổng số trang
+            //if (pageNumber > checkTotal) pageNumber = checkTotal;
+            ViewData["brand"] = _context.Brands.ToList();
+            return View(_context.Products.ToPagedList(pageNumber, pageSize));
+            //return View(await _context.Sizes.ToListAsync());
+
+            //return View(_productSvc.GetProductAll());
         }
         public IActionResult Index()
         {
@@ -332,6 +357,10 @@ namespace Sneaker_DATN.Controllers
         public IActionResult ChangePass()
         {
             return View();
+        }
+        public IActionResult Info()
+        {
+            return PartialView();
         }
         //[HttpPost]
         //[ValidateAntiForgeryToken]

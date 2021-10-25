@@ -80,10 +80,10 @@ $(document).ready(function () {
     });
 
 });
-// Modal ChangePass
+// Modal Info
 $(document).ready(function () {
 
-    $('.btn-info').click(function (e) {
+    $('.btn-information').click(function (e) {
         e.preventDefault();
 
         var $modal = $('#infoModal');

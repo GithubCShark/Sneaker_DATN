@@ -62,3 +62,30 @@
         </section>
     </div>
 </div>
+
+<script>
+    setTimeout(function () {
+        $.ajax({
+            value: "submit",
+            type: "submit",
+            success: function (result) {
+                Swal.fire({
+                    position: 'top',
+                    icon: 'success',
+                    title: 'Đăng nhập thành công!',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
+            },
+            error: function (e) {
+                Swal.fire({
+                    position: 'top',
+                    icon: 'error',
+                    title: 'Đăng nhập thất bại!',
+                    showConfirmButton: true,
+                    timer: 1000
+                })
+            }
+        })
+    }, 500);
+</script>

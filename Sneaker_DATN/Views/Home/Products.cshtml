@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Sneaker_DATN.Models.Products>
+﻿@model X.PagedList.IPagedList<Sneaker_DATN.Models.Products>
+@using X.PagedList.Mvc.Core;
 
 @{
     ViewData["Title"] = "Products";
@@ -8,6 +9,38 @@
 <style>
     .lattest-product-area .single-product .badge-products {
         top: 30px !important;
+    }
+
+    /*pagination*/
+    .pagination-container .pagination li {
+        cursor: pointer;
+        border: 0.5px solid #e6e6e6;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 35px;
+        height: 35px;
+        background: #fff;
+        color: #b3b3b3;
+        font-size: 16px;
+        border-radius: 4px;
+        margin-right: 1px;
+    }
+
+    .pagination-container .pagination .active {
+        background: #576ee0;
+        color: #fff;
+    }
+
+    .pagination-container .pagination li:hover {
+        background: #576ee0;
+        color: #fff;
+        border-radius: 4px;
+    }
+
+    .pagin-home .pagin-left{
+        color: #fff;
+        font-size: 14px;
     }
 </style>
 
@@ -344,74 +377,64 @@
             <!-- End Filter Bar -->
             <!-- Start Best Seller -->
             <section class="lattest-product-area category-list">
-                <div class="row"  data-aos="fade-up">
+                <div class="row" data-aos="fade-up">
                     <!-- single product -->
-                        @foreach (var item in Model)
-                        {
-                            <div class="col-lg-4 col-md-6">
-                                <div class="single-product">
-                                    <img class="img-fluid" src="~/images/Product/@item.Image" alt="">
-                                    @*sale*@
-                                    @if (item.Price >= 3000000)
-                                    {
-                                        <div class="badge-overlay badge-products">
-                                            <span class="badge">Sale 0%</span>
-                                        </div>
-                                    }
-                                    <div class="product-details">
-                                        <h6>@Html.DisplayFor(modelItem => item.ProductName)</h6>
-                                        <div class="price">
-                                            <h6>@Html.DisplayFor(modelItem => item.Price)</h6>
-                                            @*discount*@
-                                            @if (item.Price >= 3000000)
-                                            {
-                                                <h6 class="l-through">$@Html.DisplayFor(modelItem => item.Price)</h6>
-                                            }
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-product">
+                                <img class="img-fluid" src="~/images/Product/@item.Image" alt="">
+                                @*sale*@
+                                @if (item.Price >= 3000000)
+                                {
+                                    <div class="badge-overlay badge-products">
+                                        <span class="badge">Sale 0%</span>
+                                    </div>
+                                }
+                                <div class="product-details">
+                                    <h6>@Html.DisplayFor(modelItem => item.ProductName)</h6>
+                                    <div class="price">
+                                        <h6>@Html.DisplayFor(modelItem => item.Price)</h6>
+                                        @*discount*@
+                                        @if (item.Price >= 3000000)
+                                        {
+                                            <h6 class="l-through">$@Html.DisplayFor(modelItem => item.Price)</h6>
+                                        }
 
-                                        </div>
-                                        <div class="prd-bottom">
-                                            <a href="" class="social-info">
-                                                <span class="ti-bag"></span>
-                                                <p class="hover-text">Giỏ hàng</p>
-                                            </a>
-                                            <a href="" class="social-info">
-                                                <span class="lnr lnr-heart"></span>
-                                                <p class="hover-text">Yêu thích</p>
-                                            </a>
-                                            <!-- <a href="" class="social-info">
-        <span class="lnr lnr-sync"></span>
-        <p class="hover-text">compare</p>
-    </a> -->
-                                            <a asp-action="Details" asp-route-id="@item.ProductID" class="social-info">
-                                                <span class="lnr lnr-move"></span>
-                                                <p class="hover-text">Xem Thêm</p>
-                                            </a>
-                                        </div>
+                                    </div>
+                                    <div class="prd-bottom">
+                                        <a href="" class="social-info">
+                                            <span class="ti-bag"></span>
+                                            <p class="hover-text">Giỏ hàng</p>
+                                        </a>
+                                        <a href="" class="social-info">
+                                            <span class="lnr lnr-heart"></span>
+                                            <p class="hover-text">Yêu thích</p>
+                                        </a>
+                                        <!-- <a href="" class="social-info">
+                                            <span class="lnr lnr-sync"></span>
+                                            <p class="hover-text">compare</p>
+                                        </a> -->
+                                        <a asp-action="Details" asp-route-id="@item.ProductID" class="social-info">
+                                            <span class="lnr lnr-move"></span>
+                                            <p class="hover-text">Xem Thêm</p>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
-                        }
+                        </div>
+                    }
                     <!-- single product -->
                 </div>
             </section>
             <!-- End Best Seller -->
             <!-- Start Filter Bar -->
-            <div class="filter-bar d-flex flex-wrap align-items-center">
-                <div class="sorting mr-auto">
-                    <select>
-                        <option value="1">Trang 1</option>
-                        <option value="1">Trang 2</option>
-                        <option value="1">Trang 3</option>
-                    </select>
+            <div class="pagin-home filter-bar d-flex flex-wrap align-items-center">
+                <div class="pagin-left sorting mr-auto">
+                    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
                 </div>
-                <div class="pagination">
-                    <a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
-                    <a href="#" class="active">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#" class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
-                    <a href="#">6</a>
-                    <a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+                <div class="pagin-right pagination">
+                    @Html.PagedListPager(Model, page => Url.Action("Products", new { page }))
                 </div>
             </div>
             <!-- End Filter Bar -->
