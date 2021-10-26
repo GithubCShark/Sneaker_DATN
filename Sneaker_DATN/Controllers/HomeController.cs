@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
 using Newtonsoft.Json;
@@ -27,7 +28,8 @@ namespace Sneaker_DATN.Controllers
         private IOrderSvc _orderSvc;
         private IOrderDetailSvc _orderDetailSvc;
         private readonly DataContext _context;
-        public HomeController(IUserMemSvc userMemSvc, IProductSvc productSvc, IWebHostEnvironment webHostEnvironment, IUploadHelper uploadHelper, IOrderSvc orderSvc, IOrderDetailSvc orderDetailSvc, DataContext context)
+        protected IEncodeHelper _encodeHelper;
+        public HomeController(IUserMemSvc userMemSvc, IProductSvc productSvc, IWebHostEnvironment webHostEnvironment, IUploadHelper uploadHelper, IOrderSvc orderSvc, IOrderDetailSvc orderDetailSvc, DataContext context, IEncodeHelper encodeHelper)
         {
             _userMemSvc = userMemSvc;
             _productSvc = productSvc;
@@ -36,6 +38,7 @@ namespace Sneaker_DATN.Controllers
             _orderSvc = orderSvc;
             _orderDetailSvc = orderDetailSvc;
             _context = context;
+            _encodeHelper = encodeHelper;
         }
 
 
@@ -72,7 +75,7 @@ namespace Sneaker_DATN.Controllers
                     {
                         HttpContext.Session.SetString(SessionKey.Guest.Guest_Avatar, user.ImgUser);
                     }
-                    //return RedirectToAction(nameof(Index), "Home");
+                    return RedirectToAction(nameof(Index), "Home", ViewData["checklog"] = true);
                 }
             }
             return PartialView(viewWebLogin);
@@ -355,18 +358,60 @@ namespace Sneaker_DATN.Controllers
         }
         public IActionResult ChangePass()
         {
-            return View();
+            var user = _userMemSvc.GetUserMem((int)HttpContext.Session.GetInt32(SessionKey.Guest.Guest_ID.ToString()));
+            return PartialView(user);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ChangePass(Users user)
+        {
+            try
+            {
+                int id = (int)HttpContext.Session.GetInt32(SessionKey.Guest.Guest_ID.ToString());
+                var _user = _userMemSvc.GetUserMem(id);
+
+                if (_encodeHelper.Encode(user.ConfirmPassword) == _user.Password)
+                {
+                    user.FullName = _user.FullName;
+                    user.Gender = _user.Gender;
+                    user.Email = _user.Email;
+                    user.PhoneNumber = _user.PhoneNumber;
+                    user.Address = _user.Address;
+                    user.DOB = _user.DOB;
+                    user.ImgUser = _user.ImgUser;
+                    user.Lock = _user.Lock;
+                    user.RoleID = _user.RoleID;
+
+
+                    _userMemSvc.EditUserMem(id, user);
+                    return RedirectToAction(nameof(Index));
+                }
+                return PartialView();
+            }
+            catch (Exception)
+            {
+                return PartialView();
+            }
         }
         public IActionResult Info()
         {
-            return View();
+            var role = _context.Roles.ToList();
+            ViewData["RoleN"] = new SelectList(role, "RoleID", "Role");
+
+            int id = (int)HttpContext.Session.GetInt32(SessionKey.Guest.Guest_ID.ToString());
+            var _user = _userMemSvc.GetUserMem(id);
+
+            return View(_user);
         }
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public IActionResult ChangePass()
-        //{
-        //    return View();
-        //}
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Info(Users user)
+        {
+
+            return View(user);
+        }
+
     }
 
 }

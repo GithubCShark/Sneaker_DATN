@@ -66,6 +66,7 @@ namespace Sneaker_DATN.Services
                 {
                     user.Password = _encodeHelper.Encode(user.Password);
                     _user.Password = user.Password;
+                    _user.ConfirmPassword = user.Password;
                 }
                 _context.Update(_user);
                 _context.SaveChanges();

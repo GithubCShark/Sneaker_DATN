@@ -17,8 +17,8 @@
     <div class="container">
         <nav aria-label="breadcrumb ">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Giỏ hàng</li>
+                <li class="breadcrumb-item"><a asp-action="index">Trang chủ</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Thông tin cá nhân</li>
             </ol>
         </nav>
     </div>
@@ -31,9 +31,9 @@
             <div class="row col-lg-12">
                 <div class="col-lg-4 infomation-user-left">
                     <div class="infomation-user-left-img">
-                        <img alt='' src='./img/i4.jpg' />
+                        <img alt='' src="~/images/avatar/@Model.ImgUser" />
                         <span class="">
-                            Huy Lâm
+                            @Html.DisplayFor(model => model.FullName)
                         </span>
                     </div>
 
@@ -57,38 +57,68 @@
 
                 <div class="col-lg-8 infomation-user-right">
                     <div class="infomation-user-info col-lg-12">
-                        <form action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+                        <form asp-action="Info" enctype="multipart/form-data" method="post" id="contactForm" novalidate="novalidate">
                             <div class="row">
+                                <!-- User Name -->
+                                <div class="form-group col-lg-6 mb-4">
+                                    <label asp-for="UserName" class="control-label"></label>
+                                    <input id="UserName" asp-for="UserName" type="text" name="UserName"
+                                           readonly class="form-control">
+                                </div>
                                 <!-- Full Name -->
                                 <div class="form-group col-lg-6 mb-4">
-                                    <input id="FullName" type="text" name="FullName" placeholder="Tên tài khoảng"
+                                    <label asp-for="FullName" class="control-label"></label>
+                                    <input id="FullName" asp-for="FullName" type="text" name="FullName"
                                            class="form-control">
                                 </div>
-                                <!-- Phone -->
+                                <!-- DOB -->
                                 <div class="form-group col-lg-6 mb-4">
-                                    <input id="phone" type="tel" name="phone" placeholder="Số điện thoại"
+                                    <label asp-for="DOB" class="control-label"></label>
+                                    <input id="DOB" asp-for="DOB" type="date" name="DOB"
                                            class="form-control">
                                 </div>
                                 <!-- Email Address -->
-                                <div class="form-group col-lg-12 mb-4">
-                                    <input id="email" type="email" name="email" placeholder="Email Address"
+                                <div class="form-group col-lg-6 mb-4">
+                                    <label asp-for="Email" class="control-label"></label>s
+                                    <input id="Email" asp-for="Email" type="email" name="Email"
                                            class="form-control">
                                 </div>
-                                <!-- Password -->
+                                <!-- Gender -->
+                                <div class="form-group col-lg-3 mb-4">
+                                    <label asp-for="Gender" class="control-label col-lg-12"></label>
+                                    <select asp-for="Gender" class="form-control-select">
+                                        <option value="true">Nam</option>
+                                        <option value="false">Nữ</option>
+                                    </select>
+                                </div>
+                                <!-- RoleID  -->
+                                <div class="form-group col-lg-3 mb-4">
+                                    <label asp-for="RoleID" class="control-label col-lg-12"></label>
+                                    <select id="RoleID" asp-for="RoleID" name="RoleID" asp-items="ViewBag.RoleN"
+                                            class="form-control-select"></select>
+                                </div>
+                                <!-- ImageUser -->
                                 <div class="form-group col-lg-6 mb-4">
-                                    <input id="password" type="password" name="password" placeholder="Password"
+                                    <label asp-for="ImageUser" class="control-label"></label>
+                                    <input id="ImageUser" asp-for="ImageUser" type="file" name="ImageUser"
                                            class="form-control">
                                 </div>
-                                <!-- Password Confirmation -->
+                                <!-- PhoneNumber -->
                                 <div class="form-group col-lg-6 mb-4">
-                                    <input id="passwordConfirmation" type="password" name="passwordConfirmation"
-                                           placeholder="Confirm Password" class="form-control">
+                                    <label asp-for="PhoneNumber" class="control-label"></label>
+                                    <input id="PhoneNumber" asp-for="PhoneNumber" type="tel" name="PhoneNumber"
+                                           class="form-control">
+                                </div>
+                                <!-- Address -->
+                                <div class="form-group col-lg-6 mb-4">
+                                    <label asp-for="Address" class="control-label"></label>
+                                    <input id="Address" asp-for="Address" name="Address"
+                                           class="form-control">
                                 </div>
                                 <!-- Submit Button -->
                                 <div class="form-group col-lg-12 text-center mx-auto mb-0">
-                                    <button href="#" class="col-lg-6 infomation-user-info-btn primary-btn">
-                                        Đăng
-                                        ký
+                                    <button type="submit" class="col-lg-3 infomation-user-info-btn primary-btn">
+                                        Đổi thông tin
                                     </button>
                                 </div>
                             </div>
