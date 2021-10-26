@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var b = ViewBag.a;
 }
 <!-- start banner Area -->
 <section class="banner-area">
@@ -347,7 +348,7 @@
                 type: "Post",
                 success: function (result) {
                     Swal.fire({
-                        position: 'top',
+                        position: 'center',
                         icon: 'success',
                         title: 'Thêm vào giỏ thành thành công!',
                         showConfirmButton: false,
@@ -356,7 +357,7 @@
                 },
                 error: function (e) {
                     Swal.fire({
-                        position: 'top',
+                        position: 'center',
                         icon: 'error',
                         title: 'Thêm vào giỏ thành thất bại!',
                         showConfirmButton: true,

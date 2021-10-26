@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
 using Newtonsoft.Json;
 using Sneaker_DATN.Constant;
 using Sneaker_DATN.Helpers;
@@ -45,7 +46,6 @@ namespace Sneaker_DATN.Controllers
             {
                 return RedirectToAction(nameof(Index), "Home");
             }
-
             ViewWebLogin login = new ViewWebLogin();
             login.ReturnUrl = returnUrl;
             return View(login);
@@ -72,8 +72,7 @@ namespace Sneaker_DATN.Controllers
                     {
                         HttpContext.Session.SetString(SessionKey.Guest.Guest_Avatar, user.ImgUser);
                     }
-
-                    return RedirectToAction(nameof(Index), "Home");
+                    //return RedirectToAction(nameof(Index), "Home");
                 }
             }
             return PartialView(viewWebLogin);
@@ -360,7 +359,7 @@ namespace Sneaker_DATN.Controllers
         }
         public IActionResult Info()
         {
-            return PartialView();
+            return View();
         }
         //[HttpPost]
         //[ValidateAntiForgeryToken]

@@ -1,115 +1,101 @@
 ﻿@model Sneaker_DATN.Models.Users
 @{
     ViewData["Title"] = "Thông tin cá nhân";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="modal-content">
-    <div class="modal-body">
-        <section class="register_box_area">
-
-            <div class="row">
-
-                <div class="card flex-row border-0 rounded-3 overflow-hidden">
-                    <div class="col-lg-7 register_box_img">
-                        <img src="~/images/svg/sign-up-home.svg">
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+        </div>
+    </div>
+</section>
+<!-- End Banner Area -->
+<!-- Start breadcumb Area -->
+<section class="breadcrumb-login">
+    <div class="container">
+        <nav aria-label="breadcrumb ">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Giỏ hàng</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+<!-- End breadcumb Area -->
+<!-- Infomation -->
+<section class="infomation-user pb-5">
+    <div class="">
+        <div class="container">
+            <div class="row col-lg-12">
+                <div class="col-lg-4 infomation-user-left">
+                    <div class="infomation-user-left-img">
+                        <img alt='' src='./img/i4.jpg' />
+                        <span class="">
+                            Huy Lâm
+                        </span>
                     </div>
 
-                    <!-- Registeration Form -->
-                    <div class="col-lg-5 col-md-12 col-sm-12 ml-auto register_box_form">
-                        <button type="button" class="close close-register" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h3 class="text-center">Đăng ký</h3>
-                        <form asp-action="Register" enctype="multipart/form-data" method="post" id="contactForm" novalidate="novalidate">
-                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <ul class="nav flex-column infomation-user-left-nav">
+                        <li class="nav-link">
+                            <a href="">Tài khoản</a>
+                            <!-- empty -->
+                        </li>
+                        <li class="nav-link">
+                            <a href="">Thông tin</a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="">Đơn hàng</a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="">Địa chỉ</a>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="col-lg-8 infomation-user-right">
+                    <div class="infomation-user-info col-lg-12">
+                        <form action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
                             <div class="row">
                                 <!-- Full Name -->
                                 <div class="form-group col-lg-6 mb-4">
-                                    <input asp-for="UserName" type="text" class="form-control" placeholder="Tên đăng nhập">
-                                    <span asp-validation-for="UserName" class="text-danger"></span>
-                                </div>
-                                <div class="form-group col-lg-6 mb-4">
-                                    <input asp-for="FullName" type="text" placeholder="Họ và tên"
+                                    <input id="FullName" type="text" name="FullName" placeholder="Tên tài khoảng"
                                            class="form-control">
-                                    <span asp-validation-for="FullName" class="text-danger"></span>
-                                </div>
-                                <div class="form-group col-lg-6 mb-4">
-                                    <select asp-for="Gender" class="form-select form-control">
-                                        <option value="true">Nam</option>
-                                        <option value="false">Nữ</option>
-                                    </select>
-                                </div>
-                                @*<div class="form-group" style="display :none;">
-                                        <label asp-for="ImgUser" class="control-label"></label>
-                                        <input asp-for="ImgUser" type="file" class="form-control" />
-                                        <span asp-validation-for="ImgUser" class="text-danger"></span>
-                                    </div>
-                                    <div class="form-group col-lg-6 mb-4">
-                                        <input asp-for="ImageUser" type="file" id="image" name="image" placeholder="Chọn ảnh"
-                                               class="form-control">
-                                    </div>*@
-                                <div class="form-group col-lg-6 mb-4">
-                                    <input asp-for="DOB" id="DOB" type="date" placeholder="Ngày sinh"
-                                           class="form-control">
-                                    <span asp-validation-for="DOB" class="text-danger"></span>
                                 </div>
                                 <!-- Phone -->
-                                <div class="form-group col-lg-12 mb-4">
-                                    <input asp-for="PhoneNumber" placeholder="Số điện thoại"
+                                <div class="form-group col-lg-6 mb-4">
+                                    <input id="phone" type="tel" name="phone" placeholder="Số điện thoại"
                                            class="form-control">
-                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                                 </div>
                                 <!-- Email Address -->
                                 <div class="form-group col-lg-12 mb-4">
-                                    <input asp-for="Email" type="email" placeholder="Email"
+                                    <input id="email" type="email" name="email" placeholder="Email Address"
                                            class="form-control">
-                                    <span asp-validation-for="Email" class="text-danger"></span>
                                 </div>
                                 <!-- Password -->
                                 <div class="form-group col-lg-6 mb-4">
-                                    <input asp-for="Password" placeholder="Mật khẩu"
+                                    <input id="password" type="password" name="password" placeholder="Password"
                                            class="form-control">
-                                    <span asp-validation-for="Password" class="text-danger"></span>
                                 </div>
                                 <!-- Password Confirmation -->
                                 <div class="form-group col-lg-6 mb-4">
-                                    <input asp-for="ConfirmPassword" placeholder="Mật khẩu"
-                                           class="form-control">
-                                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                    <input id="passwordConfirmation" type="password" name="passwordConfirmation"
+                                           placeholder="Confirm Password" class="form-control">
                                 </div>
                                 <!-- Submit Button -->
-                                <div class="form-group col-lg-12 mx-auto mb-0">
-                                    <button type="submit" class="register_box_btn primary-btn">Đăng ký</button>
+                                <div class="form-group col-lg-12 text-center mx-auto mb-0">
+                                    <button href="#" class="col-lg-6 infomation-user-info-btn primary-btn">
+                                        Đăng
+                                        ký
+                                    </button>
                                 </div>
-                                <!-- Divider Text -->
-                                <div class="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
-                                    <div class="border-bottom w-100 ml-5"></div>
-                                    <span class="px-2 small text-muted font-weight-bold text-muted">OR</span>
-                                    <div class="border-bottom w-100 mr-5"></div>
-                                </div>
-
-                                <!-- Social Login -->
-                                <!-- <div class="form-group col-lg-12 mx-auto">
-                                    <a href="#" class="btn btn-primary btn-block py-2 btn-facebook">
-                                        <i class="fa fa-facebook-f mr-2"></i>
-                                        <span class="font-weight-bold">Continue with Facebook</span>
-                                    </a>
-                                    <a href="#" class="btn btn-primary btn-block py-2 btn-twitter">
-                                        <i class="fa fa-twitter mr-2"></i>
-                                        <span class="font-weight-bold">Continue with Twitter</span>
-                                    </a>
-                                </div> -->
-                                <!-- Already Registered -->
-                                <div class="text-center w-100">
-                                    <p class="text-muted font-weight-bold">
-                                        Bạn đã có tài khoản? <a asp-action="Login">Login</a>
-                                    </p>
-                                </div>
-
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-        </section>
-
+        </div>
     </div>
-</div>
+</section>

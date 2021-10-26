@@ -4,7 +4,7 @@
 @{ string userName = Context.Session.GetString(SessionKey.Guest.Guest_UserName);}
 @{ string fullName = Context.Session.GetString(SessionKey.Guest.Guest_FullName);}
 @{ string avatar = Context.Session.GetString(SessionKey.Guest.Guest_Avatar);}
-@{string cart = Context.Session.GetString("cart");}
+@{ string cart = Context.Session.GetString("cart");}
 @{
     int id = 0;
     if (userName != null && userName != "")
@@ -150,7 +150,7 @@
                                 <ul class="dropdown-menu">
                                     @if (userName != null && userName != "")
                                     {
-                                        <li class="nav-item"><a class="nav-link btn-information" href='@Url.Action("Info","Home")'>Thông tin cá nhân</a></li>
+                                        <li class="nav-item"><a class="nav-link btn-information" asp-controller="Home" asp-action="Info">Thông tin cá nhân</a></li>
                                         <li class="nav-item"><a class="nav-link" asp-action="Cart" asp-route-id="@id">Đơn hàng</a></li>
                                         <li class="nav-item"><a class="nav-link btn-changePass" href='@Url.Action("ChangePass","Home")'>Đổi mật khẩu</a></li>
                                         <partial name="_LogoutPartialHome" />
@@ -216,7 +216,7 @@
     </div>
     <!-- Modal ChangePass -->
     <!-- Modal ChangePass -->
-    <div class="container modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="container modal fade" @*id="infoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"*@ aria-hidden="true">
         <div class="modal-dialog">
             <!-- empty -->
         </div>
@@ -407,6 +407,30 @@
             fpt_ai_render_chatbox(FptLiveChatConfigs, liveChatBaseUrl, LiveChatSocketUrl)
         }
 
+    </script>
+
+    <script>
+        var run = 0;
+        var a = '@userName';
+
+        if (a != null && a != "") {
+            run = 2;
+        }
+        else {
+            run = 1;
+        }
+
+        if (run == 1 || run == 2) {
+            if (a != null & a != "") {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Đăng nhập thành công!',
+                    showConfirmButton: false,
+                    timer: 1000
+                });
+            }
+        }
     </script>
 </body>
 </html>

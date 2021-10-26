@@ -10210,3 +10210,75 @@ h6 {
     text-decoration: none;
     border-color: #eee;
 }
+
+/* infomation */
+
+.infomation-user-left-nav .nav-link {
+    border-bottom: 1px solid rgb(199, 199, 199);
+    margin: 1rem 0rem 0rem 0;
+}
+
+.infomation-user-left-img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+    .infomation-user-left-img img {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        margin-bottom: 1rem;
+    }
+
+    .infomation-user-left-img span {
+        font-size: 22px;
+        font-weight: lighter;
+    }
+
+.infomation-user-left-nav .nav-link a {
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+    .infomation-user-left-nav .nav-link a:hover {
+        color: #567ee0;
+    }
+
+.infomation-user-left-nav .nav-link:last-child {
+    border-bottom: none;
+}
+
+.infomation-user-right {
+    border-left: 1px solid rgb(196, 196, 196);
+}
+
+.infomation-user-right-nav .nav-link a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 130px;
+    max-width: 130px;
+    height: 50px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.09) 0px 3px 12px;
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+}
+
+    .infomation-user-right-nav .nav-link a:hover {
+        background-color: #567ee0;
+        color: #fff;
+    }
+/* info thong tin */
+.infomation-user-info .infomation-user-info-btn {
+    border-radius: 8px;
+    border: none;
+}
+/* info don hang */
+/* info dia chi */
+

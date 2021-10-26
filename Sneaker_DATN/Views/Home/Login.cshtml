@@ -28,11 +28,11 @@
                                   novalidate="novalidate">
                                 <input type="hidden" asp-for="ReturnUrl" />
                                 <div class="col-md-12 form-group">
-                                    <input type="text" asp-for="UserName" class="form-control"
+                                    <input type="text" asp-for="UserName" id="username" class="form-control"
                                            placeholder="Tên đăng nhập">
                                 </div>
                                 <div class="col-md-12 form-group">
-                                    <input type="password" asp-for="Password" class="form-control"
+                                    <input type="password" asp-for="Password" id="password" class="form-control"
                                            placeholder="Mật khẩu">
                                 </div>
                                 <div class="col-md-12 form-group">
@@ -42,7 +42,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12 form-group">
-                                    <button type="submit" value="submit" class="primary-btn">Đăng nhập</button>
+                                    <button type="submit" value="submit" class="primary-btn btnLogin">Đăng nhập</button>
                                     <!-- Divider Text -->
                                     <div class="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
                                         <div class="border-bottom w-100 ml-5"></div>
@@ -62,30 +62,3 @@
         </section>
     </div>
 </div>
-
-<script>
-    setTimeout(function () {
-        $.ajax({
-            value: "submit",
-            type: "submit",
-            success: function (result) {
-                Swal.fire({
-                    position: 'top',
-                    icon: 'success',
-                    title: 'Đăng nhập thành công!',
-                    showConfirmButton: false,
-                    timer: 1000
-                })
-            },
-            error: function (e) {
-                Swal.fire({
-                    position: 'top',
-                    icon: 'error',
-                    title: 'Đăng nhập thất bại!',
-                    showConfirmButton: true,
-                    timer: 1000
-                })
-            }
-        })
-    }, 500);
-</script>
