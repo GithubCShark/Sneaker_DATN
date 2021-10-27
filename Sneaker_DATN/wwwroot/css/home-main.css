@@ -5749,15 +5749,16 @@ h6 {
         object-fit: cover;
     }
 
-    .mySwiper2 .swiper-button {
-        color: rgb(224, 224, 224);
-        opacity: 0.5;
-    }
+.mySwiper2 .swiper-button {
+    font-weight: bold;
+    color: #808080;
+    opacity: 0.5;
+}
 
-        .mySwiper2 .swiper-button:hover {
-            color: rgb(185, 185, 185);
-            opacity: 1;
-        }
+    .mySwiper2 .swiper-button:hover {
+        color: #737373;
+        opacity: 1;
+    }
     /*  */
     /* Single Product Area css
 ============================================================================================ */
