@@ -386,11 +386,11 @@ namespace Sneaker_DATN.Controllers
                     _userMemSvc.EditUserMem(id, user);
                     return RedirectToAction(nameof(Index));
                 }
-                return PartialView();
+                return View();
             }
             catch (Exception)
             {
-                return PartialView();
+                return View();
             }
         }
         public IActionResult Info()
@@ -410,6 +410,17 @@ namespace Sneaker_DATN.Controllers
         {
 
             return View(user);
+        }
+
+        public IActionResult InfoMenu()
+        {
+            var role = _context.Roles.ToList();
+            ViewData["RoleN"] = new SelectList(role, "RoleID", "Role");
+
+            int id = (int)HttpContext.Session.GetInt32(SessionKey.Guest.Guest_ID.ToString());
+            var _user = _userMemSvc.GetUserMem(id);
+
+            return View(_user);
         }
 
     }

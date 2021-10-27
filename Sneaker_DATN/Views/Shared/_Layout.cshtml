@@ -27,6 +27,7 @@
     <!--
         CSS
         ============================================= -->
+    <link rel="stylesheet" href="~/css/test.css">
     <link rel="stylesheet" href="~/css/linearicons.css">
     <link rel="stylesheet" href="~/css/font-awesome.min.css">
     <link rel="stylesheet" href="~/css/themify-icons.css">
@@ -44,7 +45,8 @@
     @*<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
         <script src="https://code.angularjs.org/1.8.2/angular-route.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />*@
-
+    <!-- MDB -->
+    @*<link rel="stylesheet" href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/css/mdb5/3.9.0/compiled.min.css?ver=3.9.0-update.4">*@
     <style>
     .banner-area {
         /* background: url(~/images/banner/banner-bg.png) center no-repeat;*/
@@ -61,10 +63,13 @@
         .img-user img{
             width: 50px;
             height: 50px;
-            border: 1px solid #fff;
             border-radius: 50%;
         }
-        .iframe-chatbox{
+        .img-non-user {
+            width: 50px;
+            height: 50px;
+        }
+        .iframe-chatbox {
             display: none;
         }
     .modal-body {
@@ -76,6 +81,8 @@
             display: flex;
             align-items: center;
         }
+
+
     </style>
 </head>
 <body>
@@ -112,25 +119,25 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="nav-item submenu dropdown">
                                 @*<a href='@Url.Action("MiniCart","Home")' class="minicart-btn cart">*@
-                                    <a class="minicart-btn cart" id="cart" href='@Url.Action("MiniCart","Home")' >
-                                        @if (cart != null && cart != "")
-                                        {
-                                            <img id="imgCart" src="~/images/bag.png" style="width:25px" />
-                                        }
-                                        else
-                                        {
-                                            <img id="imgCart" src="~/images/bagA.png" style="width:25px" />
-                                        }
-                                    </a>
-                                    @*<span class="bx bx-shopping-bag bx-sm"></span>*@
-                                    <!-- <div class="notification"></div> -->
+                                <a class="minicart-btn cart" id="cart" href='@Url.Action("MiniCart","Home")'>
+                                    @if (cart != null && cart != "")
+                                    {
+                                        <img id="imgCart" src="~/images/bag.png" style="width:25px" />
+                                    }
+                                    else
+                                    {
+                                        <img id="imgCart" src="~/images/bagA.png" style="width:25px" />
+                                    }
+                                </a>
+                                @*<span class="bx bx-shopping-bag bx-sm"></span>*@
+                                <!-- <div class="notification"></div> -->
                                 @*</a>*@
                                 <a href="cart.html" class="cart cart-mobile">
                                     <span class="bx bx-shopping-bag bx-sm"></span>
                                     <!-- <div class="notification"></div> -->
                                 </a>
                             </li>
-                            <li class="nav-item submenu dropdown">
+                            <li class="nav-item submenu dropdown d-flex">
                                 <button class="search">
                                     <img src="~/images/search.png" id="search" style="width:25px" />
                                 </button>
@@ -140,7 +147,9 @@
                                    role="button" aria-haspopup="true" aria-expanded="false">
                                     @if (avatar == null || avatar == "")
                                     {
+                                    <span class="img-non-user">
                                         <img src="~/images/user.png" style="width:25px" />
+                                    </span>
                                     }
                                     else
                                     {
@@ -150,9 +159,9 @@
                                 <ul class="dropdown-menu">
                                     @if (userName != null && userName != "")
                                     {
-                                        <li class="nav-item"><a class="nav-link btn-information" asp-controller="Home" asp-action="Info">Thông tin cá nhân</a></li>
+                                        <li class="nav-item"><a class="nav-link btn-information" asp-controller="Home" asp-action="InfoMenu">Thông tin cá nhân</a></li>
                                         <li class="nav-item"><a class="nav-link" asp-action="Cart" asp-route-id="@id">Đơn hàng</a></li>
-                                        <li class="nav-item"><a class="nav-link btn-changePass" href='@Url.Action("ChangePass","Home")'>Đổi mật khẩu</a></li>
+                                        @*<li class="nav-item"><a class="nav-link btn-changePass" href='@Url.Action("ChangePass","Home")'>Đổi mật khẩu</a></li>*@
                                         <partial name="_LogoutPartialHome" />
                                     }
                                     else
@@ -202,25 +211,25 @@
     </div>
     <!-- Modal Register -->
     <!-- Modal Minicart -->
-    <div class="modal fade" id="miniCartModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade right" id="miniCartModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <!-- empty -->
         </div>
     </div>
     <!-- Modal Minicart -->
     <!-- Modal ChangePass -->
-    <div class="container modal fade" id="changePassModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+    <!--<div class="container modal fade" id="changePassModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">-->
             <!-- empty -->
-        </div>
-    </div>
+        <!--</div>
+    </div>-->
     <!-- Modal ChangePass -->
     <!-- Modal ChangePass -->
-    <div class="container modal fade" @*id="infoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"*@ aria-hidden="true">
-        <div class="modal-dialog">
+    <!--<div class="container modal fade"--> @*id="infoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"*@ <!--aria-hidden="true">
+        <div class="modal-dialog">-->
             <!-- empty -->
-        </div>
-    </div>
+        <!--</div>
+    </div>-->
     <!-- Modal ChangePass -->
 
     <main role="main" class="pb-3">
@@ -230,7 +239,7 @@
     <!-- start footer Area -->
     <footer class="footer-area section_gap">
         <div class="container">
-            <div class="row"   data-aos="fade-up">
+            <div class="row" data-aos="fade-up">
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="single-footer-widget single-footer-me">
                         <h6>D-ACH Sneaker</h6>
@@ -410,27 +419,27 @@
     </script>
 
     @*<script>
-        var run = 0;
-        var a = '@userName';
+            var run = 0;
+            var a = '@userName';
 
-        if (a != null && a != "") {
-            run = 2;
-        }
-        else {
-            run = 1;
-        }
-
-        if (run == 1 || run == 2) {
-            if (a != null & a != "") {
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Đăng nhập thành công!',
-                    showConfirmButton: false,
-                    timer: 1000
-                });
+            if (a != null && a != "") {
+                run = 2;
             }
-        }
-    </script>*@
+            else {
+                run = 1;
+            }
+
+            if (run == 1 || run == 2) {
+                if (a != null & a != "") {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Đăng nhập thành công!',
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+                }
+            }
+        </script>*@
 </body>
 </html>

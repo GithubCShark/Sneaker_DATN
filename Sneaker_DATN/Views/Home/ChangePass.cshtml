@@ -1,49 +1,120 @@
 ﻿@model Sneaker_DATN.Models.Users
 @{
     ViewData["Title"] = "Đổi mật khẩu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container modal-content ">
-    <div class="modal-body">
-        <section class="login_box_area">
-            <div class="row">
-                <div class="col-lg-7">
-                    <div class="login_box_img">
-                        <img class="img-fluid w-75" src="~/images/login.gif" alt="">
-                        <div class="hover">
-                            <!-- <h4>New to our website?</h4>
-                            <p>There are advances being made in science and technology everyday, and a good example of
-                                this is the</p>
-                            <a class="primary-btn" href="registration.html">Create an Account</a> -->
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+        </div>
+    </div>
+</section>
+<!-- End Banner Area -->
+<!-- Start breadcumb Area -->
+<section class="breadcrumb-login">
+    <div class="container">
+        <nav aria-label="breadcrumb ">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-action="index">Trang chủ</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Thông tin cá nhân</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+<!-- End breadcumb Area -->
+<!-- Infomation -->
+<section class="infomation-user pb-5">
+    <div class="">
+        <div class="container">
+            <div class="row col-lg-12">
+                <div class="col-lg-4 infomation-user-left">
+                    <div class="infomation-user-left-img">
+                        <img alt='' src="~/images/avatar/@Model.ImgUser" />
+                        <span class="">
+                            @Html.DisplayFor(model => model.FullName)
+                        </span>
+                    </div>
+
+                    <ul class="nav flex-column infomation-user-left-nav">
+                        <li class="nav-link">
+                            <a asp-controller="Home" asp-action="InfoMenu">Tài khoản</a>
+                            <!-- empty -->
+                        </li>
+                        <li class="nav-link">
+                            <a asp-controller="Home" asp-action="Info">Thông tin</a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="">Đơn hàng</a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="">Địa chỉ</a>
+                        </li>
+                        <li class="nav-link">
+                            <a asp-controller="Home" asp-action="ChangePass"  class="nav-info-active">Đổi mật khẩu</a>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="col-lg-8 infomation-user-right">
+                    <div class="infomation-user-info col-lg-12">
+
+                        <div class="login_form_inner">
+                            <h3>Đổi mật khẩu</h3>
+                            <div class="text-danger" asp-validation-summary="All"></div>
+                            <form asp-action="ChangePass" class="row changepass_form login_form" method="post" id="contactForm"
+                                  novalidate="novalidate">
+                                <div class="col-md-12 form-group d-none">
+                                    <input type="text" asp-for="UserName" id="username" class="form-control" readonly>
+                                </div>
+                                <div class="col-lg-12 form-group">
+                                    <input type="password" asp-for="ConfirmPassword" id="confirmpassword" class="form-control"
+                                           placeholder="Mật khẩu cũ">
+                                </div>
+                                <div class="col-lg-12 form-group">
+                                    <input type="password" asp-for="Password" id="password" class="form-control"
+                                           placeholder="Mật khẩu mới">
+                                </div>
+                                <div class="col-lg-12 form-group">
+                                    <input type="password" asp-for="Password" id="password" class="form-control"
+                                           placeholder="Xác nhận mật khẩu">
+                                </div>
+
+                                <div class="col-md-12 form-group mt-5">
+                                    <button type="submit" value="submit" class="primary-btn btnLogin">Đổi mật khẩu</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-5">
-                    <div class="login_form_inner">
-                        <button type="button" class="close close-login" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h3>Đổi mật khẩu</h3>
-                        <div class="text-danger" asp-validation-summary="All"></div>
-                        <form asp-action="ChangePass" class="row login_form" method="post" id="contactForm"
-                              novalidate="novalidate">
-                            <div class="col-md-12 form-group">
-                                <input type="text" asp-for="UserName" id="username" class="form-control" readonly>
-                            </div>
-                            <div class="col-md-12 form-group">
-                                <input type="password" asp-for="ConfirmPassword" id="confirmpassword" class="form-control"
-                                       placeholder="Mật khẩu cũ">
-                            </div>
-                            <div class="col-md-12 form-group">
-                                <input type="password" asp-for="Password" id="password" class="form-control"
-                                       placeholder="Mật khẩu mới">
-                            </div>
-
-                            <div class="col-md-12 form-group">
-                                <button type="submit" value="submit" class="primary-btn btnLogin">Đổi mật khẩu</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
             </div>
-        </section>
+        </div>
     </div>
-</div>
+</section>
+
+
+@*<div class="login_form_inner">
+    <button type="button" class="close close-login" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h3>Đổi mật khẩu</h3>
+    <div class="text-danger" asp-validation-summary="All"></div>
+    <form asp-action="ChangePass" class="row login_form" method="post" id="contactForm"
+          novalidate="novalidate">
+        <div class="col-md-12 form-group">
+            <input type="text" asp-for="UserName" id="username" class="form-control" readonly>
+        </div>
+        <div class="col-md-12 form-group">
+            <input type="password" asp-for="ConfirmPassword" id="confirmpassword" class="form-control"
+                   placeholder="Mật khẩu cũ">
+        </div>
+        <div class="col-md-12 form-group">
+            <input type="password" asp-for="Password" id="password" class="form-control"
+                   placeholder="Mật khẩu mới">
+        </div>
+
+        <div class="col-md-12 form-group">
+            <button type="submit" value="submit" class="primary-btn btnLogin">Đổi mật khẩu</button>
+        </div>
+    </form>
+</div>*@

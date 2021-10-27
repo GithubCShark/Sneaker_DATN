@@ -61,25 +61,25 @@ $(document).ready(function () {
 
 });
 // Modal ChangePass
-$(document).ready(function () {
+//$(document).ready(function () {
 
-    $('.btn-changePass').click(function (e) {
-        e.preventDefault();
+//    $('.btn-changePass').click(function (e) {
+//        e.preventDefault();
 
-        var $modal = $('#changePassModal');
-        var $modalDialog = $('.modal-dialog');
-        var href = $(this).prop('href');
+//        var $modal = $('#changePassModal');
+//        var $modalDialog = $('.modal-dialog');
+//        var href = $(this).prop('href');
 
-        // không cho phép tắt modal khi click bên ngoài modal
-        var option = { backdrop: true };
+//        // không cho phép tắt modal khi click bên ngoài modal
+//        var option = { backdrop: true };
 
-        // load modal
-        $modalDialog.load(href, function () {
-            $modal.modal(option, 'show');
-        });
-    });
+//        // load modal
+//        $modalDialog.load(href, function () {
+//            $modal.modal(option, 'show');
+//        });
+//    });
 
-});
+//});
 // Modal Info
 //$(document).ready(function () {
 

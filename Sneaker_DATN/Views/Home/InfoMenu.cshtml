@@ -1,0 +1,102 @@
+﻿@model Sneaker_DATN.Models.Users
+@{
+    ViewData["Title"] = "Thông tin cá nhân";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+        </div>
+    </div>
+</section>
+<!-- End Banner Area -->
+<!-- Start breadcumb Area -->
+<section class="breadcrumb-login">
+    <div class="container">
+        <nav aria-label="breadcrumb ">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Thông tin cá nhân</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+<!-- End breadcumb Area -->
+<!-- Infomation -->
+<section class="infomation-user pb-5">
+    <div class="">
+        <div class="container">
+            <div class="row col-lg-12">
+                <div class="col-lg-4 infomation-user-left">
+                    <div class="infomation-user-left-img">
+                        <img alt='' src="~/images/avatar/@Model.ImgUser" />
+                        <span class="">
+                            @Html.DisplayFor(model => model.FullName)
+                        </span>
+                    </div>
+
+                    <ul class="nav flex-column infomation-user-left-nav">
+                        <li class="nav-link">
+                            <a asp-controller="Home" asp-action="InfoMenu" class="nav-info-active">Tài khoản</a>
+                            <!-- empty -->
+                        </li>
+                        <li class="nav-link">
+                            <a asp-controller="Home" asp-action="Info">Thông tin</a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="">Đơn hàng</a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="">Địa chỉ</a>
+                        </li>
+                        <li class="nav-link">
+                            <a asp-controller="Home" asp-action="ChangePass">Đổi mật khẩu</a>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="col-lg-8 infomation-user-right">
+                    <div class="infomation-user-right-txt">
+                        <p>
+                            Xin chào <strong>@Html.DisplayFor(model => model.Email)</strong> (không phải tài khoản
+                                     <strong>@Html.DisplayFor(model => model.Email)</strong>? Hãy <a href="">
+                                thoát
+                                ra
+                            </a> và đăng nhập vào tài khoản của bạn)
+                        </p>
+                        <p>
+                            Từ trang quản lý tài khoản bạn có thể xem <a href="">đơn hàng mới</a>, quản lý
+                            <a href="">
+                                địa chỉ giao hàng và
+                                thanh toán
+                            </a>, and <a href="">
+                                sửa mật khẩu và thông
+                                tin tài khoản
+                            </a>.
+                        </p>
+                    </div>
+                    <ul class="nav infomation-user-right-nav">
+                        <li class="nav-link">
+                            <a asp-controller="Home" asp-action="InfoMenu">Tài khoảng</a>
+                        </li>
+                        <li class="nav-link">
+                            <a asp-controller="Home" asp-action="Info">Thông tin</a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="">Đơn hàng</a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="">Địa chỉ</a>
+                        </li>
+                        <li class="nav-link">
+                            <a asp-controller="Home" asp-action="ChangePass">Đổi mật khẩu</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

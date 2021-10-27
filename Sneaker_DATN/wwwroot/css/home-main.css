@@ -1359,6 +1359,7 @@ h6 {
     -moz-transition: all 0.3s ease 0s;
     -o-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
+    border-radius: 6px;
 }
 
 .is-sticky .header_area #search_input_box {
@@ -10282,3 +10283,42 @@ h6 {
 /* info don hang */
 /* info dia chi */
 
+/* custom modal right */
+
+/*@media(min-width:992px) {
+    .modal .modal-side {
+        position: absolute;
+        width: 100%;
+        right: 10px;
+        bottom: 10px;
+        margin: 0
+    }
+}*/
+/*
+@media(min-width:992px) {
+    .modal-non-invasive-open .modal.modal-non-invasive-show .modal-dialog.modal-bottom-left,
+    .modal-non-invasive-open .modal.modal-non-invasive-show .modal-dialog.modal-bottom-right,
+    .modal-non-invasive-open .modal.modal-non-invasive-show .modal-side {
+        bottom: 0
+    }
+    .modal-non-invasive-open .modal.modal-non-invasive-show .modal-side.modal-bottom-left .modal-content,
+    .modal-non-invasive-open .modal.modal-non-invasive-show .modal-side.modal-bottom-right .modal-content {
+        -webkit-box-shadow: 0 -10px 20px 0 rgba(0, 0, 0, .05);
+        box-shadow: 0 -10px 20px 0 rgba(0, 0, 0, .05)
+    }
+}
+
+
+.modal-non-invasive-open .modal.modal-non-invasive-show .modal-side {
+    right: 0
+}*/
+/*@media(min-width:768px) {
+    .modal .modal-dialog.modal-top-right {
+        top: 10px;
+        right: 10px
+    }
+}*/
+.modal.fade.right:not(.show) .modal-dialog {
+    -webkit-transform: translate3d(25%, 0, 0);
+    transform: translate3d(25%, 0, 0)
+}

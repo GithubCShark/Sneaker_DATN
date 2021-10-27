@@ -1,0 +1,54 @@
+﻿.header_area .main_menu .main_box{
+    border-radius: 6px;
+}
+
+.nav-info-active {
+    color: #567ee0 !important;
+}
+
+/*@media(min-width:992px) {
+    .modal .modal-side {
+        position: absolute;
+        width: 100%;
+        right: 10px;
+        bottom: 10px;
+        margin: 0
+    }
+}*/
+/*
+@media(min-width:992px) {
+    .modal-non-invasive-open .modal.modal-non-invasive-show .modal-dialog.modal-bottom-left,
+    .modal-non-invasive-open .modal.modal-non-invasive-show .modal-dialog.modal-bottom-right,
+    .modal-non-invasive-open .modal.modal-non-invasive-show .modal-side {
+        bottom: 0
+    }
+    .modal-non-invasive-open .modal.modal-non-invasive-show .modal-side.modal-bottom-left .modal-content,
+    .modal-non-invasive-open .modal.modal-non-invasive-show .modal-side.modal-bottom-right .modal-content {
+        -webkit-box-shadow: 0 -10px 20px 0 rgba(0, 0, 0, .05);
+        box-shadow: 0 -10px 20px 0 rgba(0, 0, 0, .05)
+    }
+}
+
+
+.modal-non-invasive-open .modal.modal-non-invasive-show .modal-side {
+    right: 0
+}*/
+/*@media(min-width:768px) {
+    .modal .modal-dialog.modal-top-right {
+        top: 10px;
+        right: 10px
+    }
+}*/
+    .modal.fade.right:not(.show) .modal-dialog {
+        -webkit-transform: translate3d(25%, 0, 0);
+        transform: translate3d(25%, 0, 0)
+    }
+
+.select-custom-home .list{
+    width: 100% !important;
+}
+
+.login_form_inner .changepass_form {
+    width: 80% !important;
+    max-width: 80% !important;
+}

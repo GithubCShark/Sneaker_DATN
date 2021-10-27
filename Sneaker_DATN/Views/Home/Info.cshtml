@@ -39,17 +39,20 @@
 
                     <ul class="nav flex-column infomation-user-left-nav">
                         <li class="nav-link">
-                            <a href="">Tài khoản</a>
+                            <a asp-controller="Home" asp-action="InfoMenu">Tài khoản</a>
                             <!-- empty -->
                         </li>
                         <li class="nav-link">
-                            <a href="">Thông tin</a>
+                            <a asp-controller="Home" asp-action="Info" class="nav-info-active">Thông tin</a>
                         </li>
                         <li class="nav-link">
                             <a href="">Đơn hàng</a>
                         </li>
                         <li class="nav-link">
                             <a href="">Địa chỉ</a>
+                        </li>
+                        <li class="nav-link">
+                            <a asp-controller="Home" asp-action="ChangePass">Đổi mật khẩu</a>
                         </li>
 
                     </ul>
@@ -84,15 +87,15 @@
                                            class="form-control">
                                 </div>
                                 <!-- Gender -->
-                                <div class="form-group col-lg-3 mb-4">
+                                <div class="form-group col-lg-6 mb-4">
                                     <label asp-for="Gender" class="control-label col-lg-12"></label>
-                                    <select asp-for="Gender" class="form-control-select">
+                                    <select asp-for="Gender" class="form-select select-custom-home">
                                         <option value="true">Nam</option>
                                         <option value="false">Nữ</option>
                                     </select>
                                 </div>
                                 <!-- RoleID  -->
-                                <div class="form-group col-lg-3 mb-4">
+                                <div class="form-group col-lg-6 mb-4 d-none">
                                     <label asp-for="RoleID" class="control-label col-lg-12"></label>
                                     <select id="RoleID" asp-for="RoleID" name="RoleID" asp-items="ViewBag.RoleN"
                                             class="form-control-select"></select>
@@ -100,20 +103,19 @@
                                 <!-- ImageUser -->
                                 <div class="form-group col-lg-6 mb-4">
                                     <label asp-for="ImageUser" class="control-label"></label>
-                                    <input id="ImageUser" asp-for="ImageUser" type="file" name="ImageUser"
-                                           class="form-control">
+                                    <input id="ImageUser" asp-for="ImageUser" type="file" name="ImageUser">
                                 </div>
                                 <!-- PhoneNumber -->
-                                <div class="form-group col-lg-6 mb-4">
+                                <div class="form-group col-lg-12 mb-4">
                                     <label asp-for="PhoneNumber" class="control-label"></label>
                                     <input id="PhoneNumber" asp-for="PhoneNumber" type="tel" name="PhoneNumber"
                                            class="form-control">
                                 </div>
                                 <!-- Address -->
-                                <div class="form-group col-lg-6 mb-4">
+                                <div class="form-group col-lg-12 mb-4">
                                     <label asp-for="Address" class="control-label"></label>
-                                    <input id="Address" asp-for="Address" name="Address"
-                                           class="form-control">
+                                    <textarea id="Address" asp-for="Address" name="Address"
+                                           class="form-control" rows="5"></textarea>
                                 </div>
                                 <!-- Submit Button -->
                                 <div class="form-group col-lg-12 text-center mx-auto mb-0">
