@@ -338,6 +338,9 @@
 <!-- End brand Area -->
 
 <script>
+    function clearCart() {
+        $("#imgCart").attr("src", '/images/bag.png');
+    }
     function addCart(id) {
         $("#imgCart").attr("src", '/images/bagA.png');
         $("#imgBusy_" + id).show();

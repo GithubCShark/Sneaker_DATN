@@ -97,7 +97,9 @@
                                         <td class="pro-price"><span id="tdTien_@iD">@totalSub</span></td>
                                         <td class="pro-remove"><a href="javascript:delCart(@iD);"><i class='bx bx-x bx-sm'></i></a></td>
                                     </tr>
+
                                 }
+                                
                             }
                         </tbody>
                     </table>
@@ -167,7 +169,9 @@
 </p>*@
 
 <script>
-
+    function clearCart() {
+        $("#imgCart").attr("src", '/images/bag.png');
+    }
     function delCart(id) {
         $.ajax({
             type: "POST",
@@ -180,7 +184,10 @@
                 $("#spTotal").html(result);
 
                 if (result == "0") {
-                    $("#imgCart").attr("src", '/images/cart.png');
+                    $("#imgCart").attr("src", '/images/bag.png');
+                }
+                else{
+                    $("#imgCart").attr("src", '/images/bagA.png');
                 }
 
             }
@@ -204,7 +211,10 @@
             success: function (result) {
                 $("#spTotal").html(result);
                 if (result == "0") {
-                    $("#imgCart").attr("src", '/images/cart.png');
+                    $("#imgCart").attr("src", '/images/bag.png');
+                }
+                else {
+                    $("#imgCart").attr("src", '/images/bagA.png');
                 }
             }
         });

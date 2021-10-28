@@ -122,20 +122,20 @@
                                 <a class="minicart-btn cart" id="cart" href='@Url.Action("MiniCart","Home")'>
                                     @if (cart != null && cart != "")
                                     {
-                                        <img id="imgCart" src="~/images/bag.png" style="width:25px" />
+                                        <img id="imgCart" src="~/images/bagA.png" style="width:25px" />
                                     }
                                     else
                                     {
-                                        <img id="imgCart" src="~/images/bagA.png" style="width:25px" />
+                                        <img id="imgCart" src="~/images/bag.png" style="width:25px" />
                                     }
                                 </a>
                                 @*<span class="bx bx-shopping-bag bx-sm"></span>*@
                                 <!-- <div class="notification"></div> -->
                                 @*</a>*@
-                                <a href="cart.html" class="cart cart-mobile">
-                                    <span class="bx bx-shopping-bag bx-sm"></span>
+                                <!--<a class="cart cart-mobile">
+                                    <span class="bx bx-shopping-bag bx-sm"></span>-->
                                     <!-- <div class="notification"></div> -->
-                                </a>
+                                <!--</a>-->
                             </li>
                             <li class="nav-item submenu dropdown d-flex">
                                 <button class="search">
@@ -417,7 +417,6 @@
         }
 
     </script>
-
     @*<script>
             var run = 0;
             var a = '@userName';

@@ -81,7 +81,7 @@
                                                     <input class="cart-quantity" name="sl" type="number" id="@txt_Id" onchange="updateCart(@iD)" value="@item.Quantity" disabled /> x
                                                     <span class="cart-price" id="tdGia_@iD">@item.Products.Price</span>
                                                     @*<span class="cart-price" id="tdTien_@iD">@totalSub </span>*@
-                                                </p>
+                                                </p>                                                
                                             </div>
                                             <a class="minicart-remove" href="javascript:delCart(@iD);"><i class='bx bx-x'></i></a>
                                         </li>
@@ -127,6 +127,9 @@
 </div>
 
 <script>
+    function clearCart() {
+        $("#imgCart").attr("src", '/images/bag.png');
+    }
     function delCart(id) {
         $.ajax({
             type: "POST",
@@ -139,7 +142,10 @@
                 $("#spTotal").html(result);
 
                 if (result == "0") {
-                    $("#imgCart").attr("src", '/images/cart.png');
+                    $("#imgCart").attr("src", '/images/bag.png');
+                }
+                else {
+                    $("#imgCart").attr("src", '/images/bagA.png');
                 }
 
             }
