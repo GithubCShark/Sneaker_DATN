@@ -1,4 +1,4 @@
-// Loading page
+﻿// Loading page
 // var loaderPage = function () {
 //   $(".colorlib-loader").fadeOut("slow");
 // };
@@ -38,7 +38,7 @@ $(document).ready(function () {
   $("#search_input_box").hide();
   $("#search").on("click", function () {
     $("#search_input_box").slideToggle();
-    $("#search_input").focus();
+      $(".searchstring_input").focus();
   });
   $("#close_search").on("click", function () {
     $('#search_input_box').slideUp(500);
@@ -627,3 +627,15 @@ document.querySelector('.slide-prev').addEventListener('click', () => {
 })
 
 showSlide()
+
+// Page loading animation
+
+//$("#preloader").animate({
+//    'opacity': '0'
+//}, 600, function () {
+//    setTimeout(function () {
+//        $("#preloader").css("visibility", "hidden").fadeOut();
+//    }, 300);
+//});
+
+

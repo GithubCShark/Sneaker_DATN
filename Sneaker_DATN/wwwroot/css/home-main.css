@@ -1410,6 +1410,7 @@ h6 {
 @media (max-width: 991px) {
     .header_area .navbar .navbar-collapse {
         margin-top: 30px;
+        margin-bottom: 30px;
     }
 
         .header_area .navbar .navbar-collapse .nav-item {
@@ -1431,6 +1432,11 @@ h6 {
     margin-right: 45px;
 }
 
+@media (min-width: 991px) {
+    .header_area .navbar .nav.nav-center .nav-item {
+        margin-right: 0px;
+    }
+}
     .header_area .navbar .nav .nav-item .nav-link {
         text-transform: uppercase;
         padding: 0px;
@@ -1622,18 +1628,18 @@ h6 {
     }
 
     @media (min-width: 991px) {
-        .header_area .navbar .nav.navbar-nav.navbar-right {
+        .header_area .navbar .nav.navbar-right {
             display: -webkit-inline-box;
         }
     }
 
-    .header_area .navbar .nav.navbar-nav.navbar-right li {
+    .header_area .navbar .nav.navbar-right li {
         text-align: right;
         margin-left: 25px;
         margin-right: 0px;
     }
 
-    .header_area .navbar .nav.navbar-nav.navbar-right .cart-mobile {
+    .header_area .navbar .nav.navbar-right .cart-mobile {
         display: none;
     }
 
@@ -1641,18 +1647,18 @@ h6 {
         /*  .header_area .navbar .nav.navbar-nav.navbar-right li:nth-child(1) {
     margin-top: -2%;
   }*/
-        .header_area .navbar .nav.navbar-nav.navbar-right li {
+        .header_area .navbar .nav.navbar-right li {
             margin-left: 6px;
             margin-top: -3%;
             padding: 0;
             margin-right: 20px;
         }
 
-        .header_area .navbar .nav.navbar-nav.navbar-right .minicart-btn {
+        .header_area .navbar .nav.navbar-right .minicart-btn {
             display: none;
         }
 
-        .header_area .navbar .nav.navbar-nav.navbar-right .cart-mobile {
+        .header_area .navbar .nav.navbar-right .cart-mobile {
             display: block;
         }
     }
@@ -1664,20 +1670,20 @@ h6 {
     display: none;
   }
 } */
-    .header_area .navbar .nav.navbar-nav.navbar-right li span {
+    .header_area .navbar .nav.navbar-right li span {
         color: #222222;
         line-height: 80px;
         font-weight: 500;
     }
 
-    .header_area .navbar .nav.navbar-nav.navbar-right .search {
+    .header_area .navbar .nav.navbar-right .search {
         background: transparent;
         border: 0;
         cursor: pointer;
         padding: 0;
     }
 
-    .header_area .navbar .nav.navbar-nav.navbar-right .home-logout-nav {
+    .header_area .navbar .nav.navbar-right .home-logout-nav {
         border: none;
         width: 100%;
         background-color: #fff;

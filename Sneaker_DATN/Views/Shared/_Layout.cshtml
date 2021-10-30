@@ -27,6 +27,7 @@
     <!--
         CSS
         ============================================= -->
+    <link rel="stylesheet" href="~/css/loader.css">
     <link rel="stylesheet" href="~/css/test.css">
     <link rel="stylesheet" href="~/css/linearicons.css">
     <link rel="stylesheet" href="~/css/font-awesome.min.css">
@@ -83,112 +84,149 @@
         }
 
 
+#preloader {
+    overflow: hidden;
+    background: #f33f3f;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    position: fixed;
+    z-index: 9999999;
+    color: #fff;
+}
+
+    #preloader .jumper {
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        display: block;
+        position: absolute;
+        margin: auto;
+        width: 50px;
+        height: 50px;
+    }
+
+        #preloader .jumper > div {
+            background-color: #fff;
+            width: 10px;
+            height: 10px;
+            border-radius: 100%;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+            position: absolute;
+            opacity: 0;
+            width: 50px;
+            height: 50px;
+            -webkit-animation: jumper 1s 0s linear infinite;
+            animation: jumper 1s 0s linear infinite;
+        }
+
+            #preloader .jumper > div:nth-child(2) {
+                -webkit-animation-delay: 0.33333s;
+                animation-delay: 0.33333s;
+            }
+
+            #preloader .jumper > div:nth-child(3) {
+                -webkit-animation-delay: 0.66666s;
+                animation-delay: 0.66666s;
+            }
+
+
+
     </style>
 </head>
-<body>
+<body class="preloading">
     <header class="header_area sticky-header">
         <div class="main_menu">
-            <nav class="navbar navbar-expand-lg navbar-light main_box">
+            <nav class="navbar navbar-expand-lg navbar-light main_box" id="ftco-navbar">
                 <div class="container">
-                    <!-- Brand and toggle get grouped for better mobile display -->
                     <a class="navbar-brand logo_h" asp-controller="Home" asp-action="Index"><img src="~/images/avatar/Logoteam.png" alt=""></a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse"
-                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-                        <ul class="nav navbar-nav menu_nav ml-auto">
-                            <li class="nav-item active"><a class="nav-link" asp-controller="Home" asp-action="Index">Trang chủ</a></li>
-                            <li class="nav-item submenu dropdown">
-                                <a asp-controller="Home" asp-action="Products" class="nav-link">Sản phẩm</a>
-                            </li>
-                            <li class="nav-item submenu dropdown">
-                                <a asp-controller="Home" asp-action="Blog" class="nav-link">Tin tức</a>
-                            </li>
-                            <li class="nav-item submenu dropdown">
-                                <a href="#" class="nav-link">Sale</a>
-                            </li>
-                            <li class="nav-item">
-                                <a asp-controller="Home" asp-action="Contact" class="nav-link">Liên hệ</a>
-                            </li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li class="nav-item submenu dropdown">
-                                @*<a href='@Url.Action("MiniCart","Home")' class="minicart-btn cart">*@
-                                <a class="minicart-btn cart" id="cart" href='@Url.Action("MiniCart","Home")'>
-                                    @if (cart != null && cart != "")
-                                    {
-                                        <img id="imgCart" src="~/images/bagA.png" style="width:25px" />
-                                    }
-                                    else
-                                    {
-                                        <img id="imgCart" src="~/images/bag.png" style="width:25px" />
-                                    }
-                                </a>
-                                @*<span class="bx bx-shopping-bag bx-sm"></span>*@
-                                <!-- <div class="notification"></div> -->
-                                @*</a>*@
-                                <!--<a class="cart cart-mobile">
-                                    <span class="bx bx-shopping-bag bx-sm"></span>-->
-                                    <!-- <div class="notification"></div> -->
-                                <!--</a>-->
-                            </li>
-                            <li class="nav-item submenu dropdown d-flex">
-                                <button class="search">
-                                    <img src="~/images/search.png" id="search" style="width:25px" />
-                                </button>
-                            </li>
-                            <li class="nav-item submenu submenu-user dropdown">
-                                <a href="#" class="user nav-link-right dropdown-toggle" data-toggle="dropdown"
-                                   role="button" aria-haspopup="true" aria-expanded="false">
-                                    @if (avatar == null || avatar == "")
-                                    {
+                    <ul class="social-media order-lg-last nav navbar-right nav-center">
+                        <li class="nav-item submenu dropdown">
+                            <a class="minicart-btn cart" id="cart" href='@Url.Action("MiniCart","Home")'>
+                                @if (cart != null && cart != "")
+                                {
+                                    <img id="imgCart" src="~/images/bagA.png" style="width:25px" />
+                                }
+                                else
+                                {
+                                    <img id="imgCart" src="~/images/bag.png" style="width:25px" />
+                                }
+                            </a>
+                            <a asp-controller="Home" asp-action="Cart" class="cart cart-mobile">
+                                <span class="bx bx-shopping-bag bx-sm"></span>
+                            </a>
+                        </li>
+                        <li class="nav-item submenu dropdown d-flex">
+                            <button class="search">
+                                <img src="~/images/search.png" id="search" style="width:25px" />
+                            </button>
+                        </li>
+                        <li class="nav-item submenu submenu-user dropdown">
+                            <a href="#" class="user nav-link-right dropdown-toggle" data-toggle="dropdown"
+                               role="button" aria-haspopup="true" aria-expanded="false">
+                                @if (avatar == null || avatar == "")
+                                {
                                     <span class="img-non-user">
                                         <img src="~/images/user.png" style="width:25px" />
                                     </span>
-                                    }
-                                    else
-                                    {
-                                        <span class="img-user"><img src="~/images/avatar/@avatar" alt="" /></span>
-                                    }
-                                </a>
-                                <ul class="dropdown-menu">
-                                    @if (userName != null && userName != "")
-                                    {
-                                        <li class="nav-item"><a class="nav-link btn-information" asp-controller="Home" asp-action="InfoMenu">Thông tin cá nhân</a></li>
-                                        <li class="nav-item"><a class="nav-link" asp-action="Cart" asp-route-id="@id">Đơn hàng</a></li>
-                                        @*<li class="nav-item"><a class="nav-link btn-changePass" href='@Url.Action("ChangePass","Home")'>Đổi mật khẩu</a></li>*@
-                                        <partial name="_LogoutPartialHome" />
-                                    }
-                                    else
-                                    {
+                                }
+                                else
+                                {
+                                    <span class="img-user"><img src="~/images/avatar/@avatar" alt="" /></span>
+                                }
+                            </a>
+                            <ul class="dropdown-menu">
+                                @if (userName != null && userName != "")
+                                {
+                                    <li class="nav-item"><a class="nav-link btn-information" asp-controller="Home" asp-action="InfoMenu">Thông tin cá nhân</a></li>
+                                    <li class="nav-item"><a class="nav-link" asp-action="Cart" asp-route-id="@id">Đơn hàng</a></li>
+                                    @*<li class="nav-item"><a class="nav-link btn-changePass" href='@Url.Action("ChangePass","Home")'>Đổi mật khẩu</a></li>*@
+                                    <partial name="_LogoutPartialHome" />
+                                }
+                                else
+                                {
 
-                                        @*<li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Login">Đăng nhập</a></li>*@
-                                        <li class="nav-item"><a href='@Url.Action("Login","Home")' class="nav-link btn-login">Đăng nhập</a></li>
-                                        @*<li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Register">Đăng ký</a></li>*@
-                                        <li class="nav-item"><a href='@Url.Action("Register","Home")' class="nav-link btn-register">Đăng ký</a></li>
-                                    }
-                                </ul>
+                                    @*<li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Login">Đăng nhập</a></li>*@
+                                    <li class="nav-item"><a href='@Url.Action("Login","Home")' class="nav-link btn-login">Đăng nhập</a></li>
+                                    @*<li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Register">Đăng ký</a></li>*@
+                                    <li class="nav-item"><a href='@Url.Action("Register","Home")' class="nav-link btn-register">Đăng ký</a></li>
+                                }
+                            </ul>
+                        </li>
+                    </ul>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="bx bx-menu"></span>
+                    </button>
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav menu_nav ml-auto">
+                            <li class="nav-item active"><a class="nav-link" asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+                            <li class="nav-item submenu">
+                                <a class="nav-link" asp-controller="Home" asp-action="Products">Sản phẩm</a>
                             </li>
-                            @*<li class="nav-item submenu dropdown">
-                                    <a href="#">
-                                        <span class="bx bx-exit bx-sm"></span>
-                                    </a>
-                                </li>*@
-
+                            <li class="nav-item submenu">
+                                <a class="nav-link" asp-controller="Home" asp-action="Blog">Tin tức</a>
+                            </li>
+                            <li class="nav-item submenu">
+                                <a class="nav-link" asp-controller="Home" asp-action="ProductSales">Sale</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Home" asp-action="Contact">Liên hệ</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </nav>
+
         </div>
         <div class="search_input" id="search_input_box">
             <div class="container">
-                <form class="d-flex justify-content-between">
-                    <input type="text" class="form-control" id="search_input" placeholder="Search Here">
+                <form class="d-flex justify-content-between" asp-action="Search" asp-controller="Home" method="get">
+                    <input type="text" id="searchString" name="SearchString" class="form-control" chass="searchstring_input" placeholder="Search Here">
                     <button type="submit" class="btn"></button>
                     <span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
                 </form>
@@ -220,15 +258,16 @@
     <!-- Modal ChangePass -->
     <!--<div class="container modal fade" id="changePassModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">-->
-            <!-- empty -->
-        <!--</div>
+    <!-- empty -->
+    <!--</div>
     </div>-->
     <!-- Modal ChangePass -->
     <!-- Modal ChangePass -->
-    <!--<div class="container modal fade"--> @*id="infoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"*@ <!--aria-hidden="true">
-        <div class="modal-dialog">-->
-            <!-- empty -->
-        <!--</div>
+    <!--<div class="container modal fade"--> @*id="infoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"*@
+    <!--aria-hidden="true">
+    <div class="modal-dialog">-->
+    <!-- empty -->
+    <!--</div>
     </div>-->
     <!-- Modal ChangePass -->
 
@@ -305,6 +344,10 @@
 
     </footer>
 
+    <!-- Hiệu ứng load -->
+    @*<div class="load">
+        <img src="~/images/loader1.gif">
+    </div>*@
 
     <!-- Scroll to top start -->
     <div class="scroll-top not-visible">
@@ -312,6 +355,7 @@
     </div>
     <!-- Scroll to Top End -->
 
+    @*<script type="text/javascript" src="~/js/loader.js"></script>*@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="~/js/vendor/jquery-2.2.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
@@ -322,7 +366,7 @@
     <script src="~/js/jquery.nice-select.min.js"></script>
     <script src="~/js/jquery.sticky.js"></script>
     <script src="~/js/nouislider.min.js"></script>
-    <script src="~/js/countdown.js"></script>
+    @*<script src="~/js/countdown.js"></script>*@
     <script src="~/js/jquery.magnific-popup.min.js"></script>
     <script src="~/js/owl.carousel.min.js"></script>
     <!--gmaps Js-->
@@ -336,7 +380,7 @@
     @*<script src="~/lib/jquery/dist/jquery.min.js"></script>*@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     @*  *@
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>*@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -347,6 +391,13 @@
     <script>
         AOS.init();
 
+        //$(window).on('load', function (event) {
+        //    $('body').removeClass('preloading');
+        //    $('.load').delay(500).fadeOut('fast');
+        //    // $('.loader').delay(1000).fadeOut('fast');
+        //});
+
+        // Botchat FPT AI
         // Configs
         let liveChatBaseUrl = document.location.protocol + '//' + 'livechat.fpt.ai/v36/src'
         let LiveChatSocketUrl = 'livechat.fpt.ai:443'
@@ -415,7 +466,6 @@
         FptLiveChatScript.onload = function () {
             fpt_ai_render_chatbox(FptLiveChatConfigs, liveChatBaseUrl, LiveChatSocketUrl)
         }
-
     </script>
     @*<script>
             var run = 0;

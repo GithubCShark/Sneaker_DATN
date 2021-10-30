@@ -18,6 +18,8 @@ namespace Sneaker_DATN.Services
 
         Brands GetBrand(int id);
         //ProductColor GetColor(int id);
+
+        List<Products> SneakerSearchString(string name);
     }
     public class ProductSvc : IProductSvc
     {
@@ -25,6 +27,11 @@ namespace Sneaker_DATN.Services
         public ProductSvc(DataContext context)
         {
             _context = context;
+        }
+
+        public List<Products> SneakerSearchString(string name)
+        {
+            return _context.Products.Where(x => x.ProductName.Contains(name.Trim())).ToList();
         }
 
         public List<Products> GetProductAll()

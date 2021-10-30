@@ -1,0 +1,270 @@
+﻿@model X.PagedList.IPagedList<Sneaker_DATN.Models.Products>
+@using X.PagedList.Mvc.Core;
+
+@{
+    ViewData["Title"] = "Products";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+
+    .pagination-container .pagination li a {
+        cursor: pointer;
+        border: 0.5px solid #e6e6e6;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 35px;
+        height: 35px;
+        color: #000;
+        background-color: #fff;
+        font-size: 16px;
+        border-radius: 4px;
+        margin-right: 1px;
+    }
+
+    .pagination-container .pagination .active {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background-color: #576ee0;
+        color: #fff;
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+        border-radius: 4px;
+        margin-right: 1px;
+        border: 0.5px solid #e6e6e6;
+    }
+
+    /*  .pagination-container .pagination li:hover {
+        background-color: #576ee0;
+    }*/
+
+    .pagination-container .pagination a:hover {
+        background-color: #576ee0;
+        color: #fff !important;
+    }
+
+    .pagin-home .pagin-left {
+        color: #fff;
+        font-size: 14px;
+    }
+
+    .pagin-home .pagin-right {
+        margin-top: 10px;
+    }
+</style>
+
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+
+        </div>
+    </div>
+</section>
+
+<!-- Start breadcumb Area -->
+<section class="breadcrumb-ctn mt-3">
+    <div class="container">
+        <nav aria-label="breadcrumb ">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Sản phẩm</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+<!-- End breadcumb Area -->
+<!-- End Banner Area -->
+<div class="container pb-5">
+    <div class="row">
+        <div class="col-xl-3 col-lg-4 col-md-5">
+            <div class="sidebar-filter mt-50">
+                <div class="top-filter-head">Danh mục</div>
+                <div class="common-filter">
+                    <div class="head">Thương thiệu</div>
+                    <form action="#">
+                        <ul>
+                            <li class="filter-list">
+                                <input class="pixel-radio" type="checkbox" id="nike"
+                                       name="brand"><label for="nike">Nike<span>(29)</span></label>
+                            </li>
+                            <li class="filter-list">
+                                <input class="pixel-radio" type="checkbox" id="adidas"
+                                       name="brand"><label for="adidas">Adidas<span>(29)</span></label>
+                            </li>
+                            <li class="filter-list">
+                                <input class="pixel-radio" type="checkbox" id="converse"
+                                       name="brand"><label for="converse">Converse<span>(19)</span></label>
+                            </li>
+                            <li class="filter-list">
+                                <input class="pixel-radio" type="checkbox" id="puma"
+                                       name="brand"><label for="puma">Puma<span>(19)</span></label>
+                            </li>
+                            <li class="filter-list">
+                                <input class="pixel-radio" type="checkbox" id="vans"
+                                       name="brand"><label for="vans">Vans<span>(19)</span></label>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+                <div class="common-filter">
+                    <div class="head">Chọn size</div>
+                    <form action="#">
+                        <ul>
+                            <li class="filter-list">
+                                <input class="pixel-radio" type="checkbox" id="36"
+                                       name="size"><label for="36">36<span>(29)</span></label>
+                            </li>
+                            <li class="filter-list">
+                                <input class="pixel-radio" type="checkbox" id="37"
+                                       name="size"><label for="37">37<span>(29)</span></label>
+                            </li>
+                            <li class="filter-list">
+                                <input class="pixel-radio" type="checkbox" id="38"
+                                       name="size"><label for="38">38<span>(19)</span></label>
+                            </li>
+                            <li class="filter-list">
+                                <input class="pixel-radio" type="checkbox" id="39"
+                                       name="size"><label for="39">39<span>(19)</span></label>
+                            </li>
+                            <li class="filter-list">
+                                <input class="pixel-radio" type="checkbox" id="40"
+                                       name="size"><label for="40">40<span>(19)</span></label>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+                <div class="common-filter">
+                    <div class="head">Màu sắc</div>
+                    <form action="#">
+                        <ul>
+                            <li class="filter-list">
+                                <input class="pixel-radio" type="checkbox" id="black"
+                                       name="color"><label for="black">Đen<span>(29)</span></label>
+                            </li>
+                            <li class="filter-list">
+                                <input class="pixel-radio" type="checkbox" id="white"
+                                       name="color"><label for="white">Trắngr<span>(29)</span></label>
+                            </li>
+                            <li class="filter-list">
+                                <input class="pixel-radio" type="checkbox" id="red"
+                                       name="color"><label for="red">Đỏ<span>(19)</span></label>
+                            </li>
+                            <li class="filter-list">
+                                <input class="pixel-radio" type="checkbox" id="gold"
+                                       name="color"><label for="gold">Vàng<span>(19)</span></label>
+                            </li>
+                            <li class="filter-list">
+                                <input class="pixel-radio" type="checkbox" id="blue"
+                                       name="color"><label for="blue">Xanh<span>(19)</span></label>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+                <div class="common-filter">
+                    <div class="head">Giá</div>
+                    <div class="price-range-area">
+                        <div id="price-range"></div>
+                        <div class="value-wrapper d-flex">
+                            <div class="price">Từ</div>
+                            <div id="lower-value"></div>
+                            <span>đ</span>
+                            <div class="to">đến</div>
+                            <div id="upper-value"></div>
+                            <span>đ</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-9 col-lg-8 col-md-7">
+            <!-- Start Filter Bar -->
+            <div class="filter-bar d-flex flex-wrap align-items-center">
+                <div class="sorting">
+                    <select>
+                        <option value="1">Mới nhất</option>
+                        <option value="1">Giá: từ thấp lên cao</option>
+                        <option value="1">Giá: từ cao xuống thấp</option>
+                    </select>
+                </div>
+                <div class="sorting mr-auto">
+                    <select>
+                        <option value="1">Trang 1</option>
+                        <option value="1">Trang 2</option>
+                        <option value="1">Trang 3</option>
+                    </select>
+                </div>
+                <div class="pagin-right pagination mt-2">
+                    @Html.PagedListPager(Model, page => Url.Action("Products", new { page }))
+                </div>
+            </div>
+            <!-- End Filter Bar -->
+            <!-- Start Best Seller -->
+            <section class="lattest-product-area category-list">
+                <div class="row" data-aos="fade-up">
+                    <!-- single product -->
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-product">
+                                <img class="img-fluid" src="~/images/Product/@item.Image" alt="">
+                                @*sale*@
+                                @if (item.Price >= 3000000)
+                                {
+                                    <div class="badge-overlay badge-products">
+                                        <span class="badge">Sale 0%</span>
+                                    </div>
+                                }
+                                <div class="product-details">
+                                    <h6>@Html.DisplayFor(modelItem => item.ProductName)</h6>
+                                    <div class="price">
+                                        <h6>@Html.DisplayFor(modelItem => item.Price)</h6>
+                                        @*discount*@
+                                        @if (item.Price >= 3000000)
+                                        {
+                                            <h6 class="l-through">$@Html.DisplayFor(modelItem => item.Price)</h6>
+                                        }
+
+                                    </div>
+                                    <div class="prd-bottom">
+                                        <a href="" class="social-info">
+                                            <span class="ti-bag"></span>
+                                            <p class="hover-text">Giỏ hàng</p>
+                                        </a>
+                                        <a href="" class="social-info">
+                                            <span class="lnr lnr-heart"></span>
+                                            <p class="hover-text">Yêu thích</p>
+                                        </a>
+                                        <!-- <a href="" class="social-info">
+                                            <span class="lnr lnr-sync"></span>
+                                            <p class="hover-text">compare</p>
+                                        </a> -->
+                                        <a asp-action="Details" asp-route-id="@item.ProductID" class="social-info">
+                                            <span class="lnr lnr-move"></span>
+                                            <p class="hover-text">Xem Thêm</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <!-- single product -->
+                </div>
+            </section>
+            <!-- End Best Seller -->
+            <!-- Start Filter Bar -->
+            <div class="pagin-home filter-bar d-flex flex-wrap align-items-center">
+                <div class="pagin-left sorting mr-auto">
+                    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+                </div>
+                <div class="pagin-right pagination">
+                    @Html.PagedListPager(Model, page => Url.Action("Products", new { page }))
+                </div>
+            </div>
+            <!-- End Filter Bar -->
+        </div>
+    </div>
+</div>
