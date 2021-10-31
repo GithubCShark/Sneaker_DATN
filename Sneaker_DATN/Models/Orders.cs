@@ -47,6 +47,10 @@ namespace Sneaker_DATN.Models
         [Display(Name = "Số điện thoại")]
         public string PhoneNumber { get; set; }
 
+        [Display(Name = "Ngày tạo")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        public DateTime DateCreated { get; set; }
+
         public Users Users { get; set; }
     }
 }

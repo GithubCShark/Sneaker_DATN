@@ -73,6 +73,10 @@ namespace Sneaker_DATN.Models
         [Display(Name = "Quyền")]
         public int RoleID { get; set; }
 
+        [Display(Name = "Ngày tạo")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        public DateTime DateCreated { get; set; }
+
         public Roles Roles { get; set; }
     }
 }
