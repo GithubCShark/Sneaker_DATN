@@ -10,8 +10,8 @@ using Sneaker_DATN.Models;
 namespace Sneaker_DATN.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20211031112632_EditDB")]
-    partial class EditDB
+    [Migration("20211101084523_DB")]
+    partial class DB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -96,9 +96,6 @@ namespace Sneaker_DATN.Migrations
                     b.Property<DateTime>("DateCreate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -155,6 +152,8 @@ namespace Sneaker_DATN.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ProductID", "SizeID");
+
+                    b.HasIndex("SizeID");
 
                     b.ToTable("ProductSizes");
                 });
@@ -249,7 +248,7 @@ namespace Sneaker_DATN.Migrations
                         .IsRequired()
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateCreated")
+                    b.Property<DateTime?>("DateCreated")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
@@ -355,6 +354,25 @@ namespace Sneaker_DATN.Migrations
                     b.Navigation("Colors");
 
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("Sneaker_DATN.Models.ProductSize", b =>
+                {
+                    b.HasOne("Sneaker_DATN.Models.Products", "Products")
+                        .WithMany()
+                        .HasForeignKey("ProductID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Sneaker_DATN.Models.Sizes", "Sizes")
+                        .WithMany()
+                        .HasForeignKey("SizeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Products");
+
+                    b.Navigation("Sizes");
                 });
 
             modelBuilder.Entity("Sneaker_DATN.Models.Products", b =>

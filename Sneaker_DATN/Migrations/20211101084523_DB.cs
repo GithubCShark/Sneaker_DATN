@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Sneaker_DATN.Migrations
 {
-    public partial class Init : Migration
+    public partial class DB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -93,13 +93,17 @@ namespace Sneaker_DATN.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserName = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     FullName = table.Column<string>(type: "nvarchar(100)", nullable: false),
-                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Gender = table.Column<bool>(type: "bit", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImgUser = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     DOB = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Password = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true),
+                    Password = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
                     ConfirmPassword = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true),
-                    RoleID = table.Column<int>(type: "int", nullable: false)
+                    Lock = table.Column<bool>(type: "bit", nullable: false),
+                    RoleID = table.Column<int>(type: "int", nullable: false),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {

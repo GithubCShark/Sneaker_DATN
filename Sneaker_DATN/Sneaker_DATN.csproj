@@ -22,7 +22,6 @@
     <PackageReference Include="X.PagedList.Mvc.Core" Version="8.1.0" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Migrations\" />
     <Folder Include="wwwroot\images\Product\" />
   </ItemGroup>
 </Project>
