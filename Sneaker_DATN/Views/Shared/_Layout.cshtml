@@ -24,24 +24,23 @@
     <!-- Boxicon -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!--
-        CSS
-        ============================================= -->
+    <!-- slide -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <!-- CSS -->
     <link rel="stylesheet" href="~/css/loader.css">
     <link rel="stylesheet" href="~/css/test.css">
-    <link rel="stylesheet" href="~/css/linearicons.css">
-    <link rel="stylesheet" href="~/css/font-awesome.min.css">
-    <link rel="stylesheet" href="~/css/themify-icons.css">
     <link rel="stylesheet" href="~/css/bootstrap.css">
     <link rel="stylesheet" href="~/css/owl.carousel.css">
     <link rel="stylesheet" href="~/css/nice-select.css">
-    <link rel="stylesheet" href="~/css/nouislider.min.css">
-    <link rel="stylesheet" href="~/css/ion.rangeSlider.css" />
-    <link rel="stylesheet" href="~/css/ion.rangeSlider.skinFlat.css" />
-    <link rel="stylesheet" href="~/css/magnific-popup.css">
     <link rel="stylesheet" href="~/css/home-main.css">
-    <!-- slide -->
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="~/css/nouislider.min.css">
+    @*<link rel="stylesheet" href="~/css/magnific-popup.css">*@
+    @*<link rel="stylesheet" href="~/css/ion.rangeSlider.css" />
+        <link rel="stylesheet" href="~/css/ion.rangeSlider.skinFlat.css" />*@
+    @*<link rel="stylesheet" href="~/css/linearicons.css">
+        <link rel="stylesheet" href="~/css/font-awesome.min.css">
+        <link rel="stylesheet" href="~/css/themify-icons.css">*@
+
     <!-- Angular JS-->
     @*<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
         <script src="https://code.angularjs.org/1.8.2/angular-route.min.js"></script>
@@ -61,80 +60,6 @@
         background-size: cover;
         padding-top: 130px;
     }
-        .img-user img{
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-        }
-        .img-non-user {
-            width: 50px;
-            height: 50px;
-        }
-        .iframe-chatbox {
-            display: none;
-        }
-    .modal-body {
-        margin-top: 1.2rem;
-        background-color: #fff;
-        border-radius: 18px;
-    }
-        .navbar-right li:first-child{
-            display: flex;
-            align-items: center;
-        }
-
-
-#preloader {
-    overflow: hidden;
-    background: #f33f3f;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    position: fixed;
-    z-index: 9999999;
-    color: #fff;
-}
-
-    #preloader .jumper {
-        left: 0;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        display: block;
-        position: absolute;
-        margin: auto;
-        width: 50px;
-        height: 50px;
-    }
-
-        #preloader .jumper > div {
-            background-color: #fff;
-            width: 10px;
-            height: 10px;
-            border-radius: 100%;
-            -webkit-animation-fill-mode: both;
-            animation-fill-mode: both;
-            position: absolute;
-            opacity: 0;
-            width: 50px;
-            height: 50px;
-            -webkit-animation: jumper 1s 0s linear infinite;
-            animation: jumper 1s 0s linear infinite;
-        }
-
-            #preloader .jumper > div:nth-child(2) {
-                -webkit-animation-delay: 0.33333s;
-                animation-delay: 0.33333s;
-            }
-
-            #preloader .jumper > div:nth-child(3) {
-                -webkit-animation-delay: 0.66666s;
-                animation-delay: 0.66666s;
-            }
-
-
-
     </style>
 </head>
 <body class="preloading">
@@ -143,25 +68,34 @@
             <nav class="navbar navbar-expand-lg navbar-light main_box" id="ftco-navbar">
                 <div class="container">
                     <a class="navbar-brand logo_h" asp-controller="Home" asp-action="Index"><img src="~/images/avatar/Logoteam.png" alt=""></a>
+
                     <ul class="social-media order-lg-last nav navbar-right nav-center">
                         <li class="nav-item submenu dropdown">
                             <a class="minicart-btn cart" id="cart" href='@Url.Action("MiniCart","Home")'>
                                 @if (cart != null && cart != "")
                                 {
-                                    <img id="imgCart" src="~/images/bagA.png" style="width:25px" />
+                                    <span class="bx bx-shopping-bag bx-sm">
+                                        <span class="num-cart-product">0</span>
+                                    </span>
                                 }
                                 else
                                 {
-                                    <img id="imgCart" src="~/images/bag.png" style="width:25px" />
+                                    <span class="bx bx-shopping-bag bx-sm">
+                                        <span class="num-cart-product">0</span>
+                                    </span>
                                 }
                             </a>
                             <a asp-controller="Home" asp-action="Cart" class="cart cart-mobile">
-                                <span class="bx bx-shopping-bag bx-sm"></span>
+                                <span class="bx bx-shopping-bag bx-sm">
+                                    <span class="num-cart-product">0</span>
+                                </span>
                             </a>
                         </li>
-                        <li class="nav-item submenu dropdown d-flex">
+                        <li class="nav-item submenu dropdown">
                             <button class="search">
-                                <img src="~/images/search.png" id="search" style="width:25px" />
+                                <span class="bx bx-search-alt-2 bx-sm" id="search">
+                                </span>
+                                @*<img src="~/images/search.png" id="search" style="width:25px" />*@
                             </button>
                         </li>
                         <li class="nav-item submenu submenu-user dropdown">
@@ -170,7 +104,8 @@
                                 @if (avatar == null || avatar == "")
                                 {
                                     <span class="img-non-user">
-                                        <img src="~/images/user.png" style="width:25px" />
+                                        <span class="bx bx-user-circle bx-sm"></span>
+                                        @*<img src="~/images/user.png" style="width:25px" />*@
                                     </span>
                                 }
                                 else
@@ -225,10 +160,10 @@
         </div>
         <div class="search_input" id="search_input_box">
             <div class="container">
-                <form class="d-flex justify-content-between" asp-action="Search" asp-controller="Home" method="get">
-                    <input type="text" id="searchString" name="SearchString" class="form-control" chass="searchstring_input" placeholder="Search Here">
+                <form class="d-flex justify-content-between search-text" asp-action="Search" asp-controller="Home" method="get">
+                    <input type="text" id="searchString" name="SearchString" class="form-control" chass="searchstring_input" placeholder="Tìm kiếm">
                     <button type="submit" class="btn"></button>
-                    <span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
+                    <span class="bx bx-x btn-search" id="close_search" title="Close Search"></span>
                 </form>
             </div>
         </div>
@@ -241,6 +176,7 @@
             <!-- empty -->
         </div>
     </div>
+    <!-- Modal Login -->
     <!-- Modal Register -->
     <div class="container modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -249,27 +185,12 @@
     </div>
     <!-- Modal Register -->
     <!-- Modal Minicart -->
-    <div class="modal fade right" id="miniCartModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-right modal fade right" id="miniCartModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <!-- empty -->
         </div>
     </div>
     <!-- Modal Minicart -->
-    <!-- Modal ChangePass -->
-    <!--<div class="container modal fade" id="changePassModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">-->
-    <!-- empty -->
-    <!--</div>
-    </div>-->
-    <!-- Modal ChangePass -->
-    <!-- Modal ChangePass -->
-    <!--<div class="container modal fade"--> @*id="infoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"*@
-    <!--aria-hidden="true">
-    <div class="modal-dialog">-->
-    <!-- empty -->
-    <!--</div>
-    </div>-->
-    <!-- Modal ChangePass -->
 
     <main role="main" class="pb-3">
         @RenderBody()
@@ -293,13 +214,11 @@
                     <div class="single-footer-widget">
                         <h6>Danh mục</h6>
                         <ul class="single-footer-links">
-                            <li><a href="#">Trang chủ</a></li>
-                            <li><a href="#">Trang chủ</a></li>
-                            <li><a href="#">Trang chủ</a></li>
-                            <li><a href="#">Trang chủ</a></li>
-                            <li><a href="#">Trang chủ</a></li>
-                            <li><a href="#">Trang chủ</a></li>
-                            <li><a href="#">Trang chủ</a></li>
+                            <li><a asp-action="Index" asp-controller="Home">Trang chủ</a></li>
+                            <li><a asp-action="Products" asp-controller="Home">Sản phẩm</a></li>
+                            <li><a asp-action="ProductSales" asp-controller="Home">Sale</a></li>
+                            <li><a asp-action="Blog" asp-controller="Home">Tin tức</a></li>
+                            <li><a asp-action="Contact" asp-controller="Home">Liên hệ</a></li>
                         </ul>
                     </div>
                 </div>
@@ -307,13 +226,12 @@
                     <div class="single-footer-widget">
                         <h6 class="mb-20">Thông tin</h6>
                         <ul class="single-footer-links">
-                            <li><a href="#">Trang chủ</a></li>
-                            <li><a href="#">Trang chủ</a></li>
-                            <li><a href="#">Trang chủ</a></li>
-                            <li><a href="#">Trang chủ</a></li>
-                            <li><a href="#">Trang chủ</a></li>
-                            <li><a href="#">Trang chủ</a></li>
-                            <li><a href="#">Trang chủ</a></li>
+                            <li><a href="#">Chính sách đổi trả</a></li>
+                            <li><a href="#">Chính sách vận chuyển</a></li>
+                            <li><a href="#">Chính sách bảo hành</a></li>
+                            <li><a href="#">Hình thức thanh toán</a></li>
+                            <li><a href="#">Hướng dẫn mua hàng</a></li>
+                            <li><a href="#">Thông tin bảo mật</a></li>
                         </ul>
                     </div>
                 </div>
@@ -346,44 +264,49 @@
 
     <!-- Hiệu ứng load -->
     @*<div class="load">
-        <img src="~/images/loader1.gif">
-    </div>*@
+            <img src="~/images/loader1.gif">
+        </div>*@
 
     <!-- Scroll to top start -->
     <div class="scroll-top not-visible">
         <i class='bx bxs-chevron-up'></i>
     </div>
     <!-- Scroll to Top End -->
-
     @*<script type="text/javascript" src="~/js/loader.js"></script>*@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="~/js/vendor/jquery-2.2.4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
-            integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-            crossorigin="anonymous"></script>
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+        crossorigin="anonymous"></script>*@
     <script src="~/js/vendor/bootstrap.min.js"></script>
     <script src="~/js/jquery.ajaxchimp.min.js"></script>
-    <script src="~/js/jquery.nice-select.min.js"></script>
     <script src="~/js/jquery.sticky.js"></script>
     <script src="~/js/nouislider.min.js"></script>
-    @*<script src="~/js/countdown.js"></script>*@
-    <script src="~/js/jquery.magnific-popup.min.js"></script>
     <script src="~/js/owl.carousel.min.js"></script>
-    <!--gmaps Js-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
-    <script src="~/js/gmaps.min.js"></script>
     <script src="~/js/main.js"></script>
     <script src="~/js/loadHomeModal.js"></script>
-    <!-- slide -->
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
-    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>*@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    @*  *@
-    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>*@
+
+    <script src="~/js/jquery.nice-select.min.js"></script>
+    <script src="~/js/jquery.magnific-popup.min.js"></script>
+
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <!-- slide -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+
+    <!--<script src="~/js/countdown.js"></script>-->
+    @*gmaps Js*@
+    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+    <script src="~/js/gmaps.min.js"></script>-->
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>*@
+
+    @*  *@
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>*@
+
     @*<script src="~/js/site.js" asp-append-version="true"></script>*@
     @*@CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();*@
     @*await __tagHelperRunner.RunAsync(__tagHelperExecutionContext)*@

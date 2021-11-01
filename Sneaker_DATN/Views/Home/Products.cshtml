@@ -217,36 +217,32 @@
                                         <span class="badge">Sale 0%</span>
                                     </div>
                                 }
-                                <div class="product-details">
-                                    <h6>@Html.DisplayFor(modelItem => item.ProductName)</h6>
-                                    <div class="price">
-                                        <h6>@Html.DisplayFor(modelItem => item.Price)</h6>
-                                        @*discount*@
-                                        @if (item.Price >= 3000000)
-                                        {
-                                            <h6 class="l-through">$@Html.DisplayFor(modelItem => item.Price)</h6>
-                                        }
+                            <div class="product-details">
+                                <h6>@Html.DisplayFor(modelItem => item.ProductName)</h6>
+                                <div class="price">
+                                    <h6>@Html.DisplayFor(modelItem => item.Price)</h6>
+                                    @*discount*@
+                                    @if (item.Price >= 3000000)
+                                    {
+                                        <h6 class="l-through">$@Html.DisplayFor(modelItem => item.Price)</h6>
+                                    }
 
-                                    </div>
-                                    <div class="prd-bottom">
-                                        <a href="" class="social-info">
-                                            <span class="ti-bag"></span>
-                                            <p class="hover-text">Giỏ hàng</p>
-                                        </a>
-                                        <a href="" class="social-info">
-                                            <span class="lnr lnr-heart"></span>
-                                            <p class="hover-text">Yêu thích</p>
-                                        </a>
-                                        <!-- <a href="" class="social-info">
-                                            <span class="lnr lnr-sync"></span>
-                                            <p class="hover-text">compare</p>
-                                        </a> -->
-                                        <a asp-action="Details" asp-route-id="@item.ProductID" class="social-info">
-                                            <span class="lnr lnr-move"></span>
-                                            <p class="hover-text">Xem Thêm</p>
-                                        </a>
-                                    </div>
                                 </div>
+                                <div class="prd-bottom">
+                                    <a class="addProduct social-info" href="javascript:addCart(@item.ProductID);">
+                                        <span class='bx bx-basket'></span>
+                                        <p class="hover-text">Giỏ hàng</p>
+                                    </a>
+                                    <a class="social-info">
+                                        <span class='bx bx-heart'></span>
+                                        <p class="hover-text">Yêu thích</p>
+                                    </a>
+                                    <a asp-action="Details" asp-route-id="@item.ProductID" class="social-info">
+                                        <span class='bx bx-move'></span>
+                                        <p class="hover-text">Xem Thêm</p>
+                                    </a>
+                                </div>
+                            </div>
                             </div>
                         </div>
                     }
