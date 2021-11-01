@@ -41,6 +41,7 @@ namespace Sneaker_DATN.Services
             int ret = 0;
             try
             {
+                orders.DateCreate = DateTime.Now;
                 _context.Add(orders);
                 _context.SaveChanges();
                 ret = orders.OrderID;

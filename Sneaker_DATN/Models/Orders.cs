@@ -15,7 +15,6 @@ namespace Sneaker_DATN.Models
         [ForeignKey("Users")]
         public int UserID { get; set; }
 
-        [Required(ErrorMessage = "Vui lòng nhập ngày đặt")]
         [Display(Name = "Ngày Đặt")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime DateCreate { get; set; }
@@ -46,10 +45,6 @@ namespace Sneaker_DATN.Models
         [Required(ErrorMessage = "{0} không được để trống")]
         [Display(Name = "Số điện thoại")]
         public string PhoneNumber { get; set; }
-
-        [Display(Name = "Ngày tạo")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
-        public DateTime DateCreated { get; set; }
 
         public Users Users { get; set; }
     }

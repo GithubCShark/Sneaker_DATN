@@ -40,6 +40,7 @@ namespace Sneaker_DATN.Services
             {
                 user.Password = _encodeHelper.Encode(user.Password);
                 user.ConfirmPassword = user.Password;
+                user.DateCreated = DateTime.Now;
                 _context.Add(user);
                 _context.SaveChanges();
                 ret = user.UserID;

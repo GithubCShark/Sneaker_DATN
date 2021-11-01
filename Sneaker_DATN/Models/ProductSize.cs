@@ -21,5 +21,8 @@ namespace Sneaker_DATN.Models
         //public IEnumerable<Sizes> SizesProperty { get; set; }
         //[NotMapped]
         //public int[] SelectSize { get; set; }
+        public Products Products { get; set; }
+
+        public Sizes Sizes { get; set; }
     }
 }
