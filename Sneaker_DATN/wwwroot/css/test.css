@@ -6,44 +6,6 @@
     color: #567ee0 !important;
 }
 
-/*@media(min-width:992px) {
-    .modal .modal-side {
-        position: absolute;
-        width: 100%;
-        right: 10px;
-        bottom: 10px;
-        margin: 0
-    }
-}*/
-/*
-@media(min-width:992px) {
-    .modal-non-invasive-open .modal.modal-non-invasive-show .modal-dialog.modal-bottom-left,
-    .modal-non-invasive-open .modal.modal-non-invasive-show .modal-dialog.modal-bottom-right,
-    .modal-non-invasive-open .modal.modal-non-invasive-show .modal-side {
-        bottom: 0
-    }
-    .modal-non-invasive-open .modal.modal-non-invasive-show .modal-side.modal-bottom-left .modal-content,
-    .modal-non-invasive-open .modal.modal-non-invasive-show .modal-side.modal-bottom-right .modal-content {
-        -webkit-box-shadow: 0 -10px 20px 0 rgba(0, 0, 0, .05);
-        box-shadow: 0 -10px 20px 0 rgba(0, 0, 0, .05)
-    }
-}
-
-
-.modal-non-invasive-open .modal.modal-non-invasive-show .modal-side {
-    right: 0
-}*/
-/*@media(min-width:768px) {
-    .modal .modal-dialog.modal-top-right {
-        top: 10px;
-        right: 10px
-    }
-}*/
-    .modal.fade.right:not(.show) .modal-dialog {
-        -webkit-transform: translate3d(25%, 0, 0);
-        transform: translate3d(25%, 0, 0)
-    }
-
 .select-custom-home .list{
     width: 100% !important;
 }
@@ -180,7 +142,7 @@
 
 /*   */
 .modal-body {
-    /*        margin-top: 1.2rem;*/
+/*            margin-top: 1.2rem;*/
     background-color: #fff;
     border-radius: 18px;
 }
@@ -205,3 +167,33 @@
 .iframe-chatbox {
     display: none;
 }
+
+/*modal fade*/
+.fade-scale {
+    transform: scale(0);
+    opacity: 0;
+    -webkit-transition: all .25s linear;
+    -o-transition: all .25s linear;
+    transition: all .25s linear;
+}
+
+    .fade-scale.show {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+.fade-scale-right {
+    -webkit-transform: translate3d(25%, 0, 0);
+    transform: translate3d(25%, 0, 0);
+ /*   transform: translate(20rem, 0);*/
+    opacity: 0;
+    -webkit-transition: all .25s linear;
+    -o-transition: all .25s linear;
+    transition: all .25s linear;
+}
+
+    .fade-scale-right.show {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+       /* transform: translate(0px, 0px);*/
+    }
