@@ -128,7 +128,7 @@
     font-size: 14px;
     border-radius: 50%;
     background-color: #576ee0;
-    color: #fff;
+    color: #fff !important;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -196,4 +196,26 @@
         opacity: 1;
         transform: translate3d(0, 0, 0);
        /* transform: translate(0px, 0px);*/
+    }
+
+    /*scrollbar*/
+/*html {
+    -ms-overflow-style: scrollbar;
+}*/
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.4);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+    ::-webkit-scrollbar-thumb:window-inactive {
+        background: rgba(253, 253, 253, 0.4);
     }

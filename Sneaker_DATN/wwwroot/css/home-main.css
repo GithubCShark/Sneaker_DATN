@@ -178,6 +178,10 @@ body {
     background: #fff;
 }
 
+html {
+    -ms-overflow-style: scrollbar;
+}
+
 html,
 body {
     height: 100%;
