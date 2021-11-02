@@ -99,7 +99,7 @@
                             </a>
                             <ul class="cat-sub-menu">
                                 <li>
-                                    <a ng-click="acside(4)" asp-controller="Chart" asp-action="Index" >Thống Kê</a>
+                                    <a ng-click="acside(4)" asp-controller="Chart" asp-action="Index">Thống Kê</a>
                                 </li>
                                 <li>
                                     <a ng-click="acside(4)" href="#">Báo Cáo</a>
@@ -283,30 +283,31 @@
                 </footer>*@
         </div>
     </div>
+    <!-- Chart library -->
+    <script src="~/plugins/chart.min.js"></script>
+    <!-- Icons library -->
+    <script src="~/plugins/feather.min.js"></script>
+    <!-- Custom scripts -->
+    <script src="~/js/script.js"></script>
+    <script src="~/js/chosen.jquery.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/loadAdminModal.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 
 </html>
-<!-- Chart library -->
-<script src="~/plugins/chart.min.js"></script>
-<!-- Icons library -->
-<script src="~/plugins/feather.min.js"></script>
-<!-- Custom scripts -->
-<script src="~/js/script.js"></script>
-<script src="~/js/chosen.jquery.min.js"></script>
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<script src="~/js/loadAdminModal.js"></script>
+
 <script>
-    var header = document.getElementById("myDIV");
-    var btns = header.getElementsByClassName("dashboard-menu");
-    for (var i = 0; i < btns.length; i++) {
-        btns[i].addEventListener("click", function () {
-            var current = document.getElementsByClassName("active");
-            current[0].className = current[0].className.replace(" active", "");
-            this.className += " active";
-        });
-    }
+    //var header = document.getElementById("myDIV");
+    //var btns = header.getElementsByClassName("dashboard-menu");
+    //for (var i = 0; i < btns.length; i++) {
+    //    btns[i].addEventListener("click", function () {
+    //        var current = document.getElementsByClassName("active");
+    //        current[0].className = current[0].className.replace(" active", "");
+    //        this.className += " active";
+    //    });
+    //}
     //var header = document.getElementById("myDIV");
     //var btns = header.getElementsByClassName("dashboard-menu");
     //for (var i = 0; i < btns.length; i++) {
