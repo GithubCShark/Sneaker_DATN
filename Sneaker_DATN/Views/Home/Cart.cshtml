@@ -99,13 +99,14 @@
                                     </tr>
 
                                 }
-                                
+
                             }
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
+        <input type="hidden" id="stt" value="@stt" />
         <div class="row row-pb-lg">
             <div class="col-md-12">
                 <div class="total-wrap">
@@ -136,15 +137,15 @@
                             </div>
                             <div class="checkout_btn_inner mt-3">
                                 <!-- <a class="grays_btn" href="index.html">Tiếp tục mua sắm</a> -->
-                                    @*@if (emailAddress != null && emailAddress != "")
-                                    {
-                                        <a class="primary-btn addProduct" href="javascript:orderCart(true); ">Tiến hành thanh toán</a>
-                                    }
-                                    else
-                                    {
-                                        <span> Bạn cần <a class="addProduct" href="javascript:orderCart(false); ">đăng nhập</a> để đặt hàng.</span>
+                                @*@if (emailAddress != null && emailAddress != "")
+                                {
+                                    <a class="primary-btn addProduct" href="javascript:orderCart(true); ">Tiến hành thanh toán</a>
+                                }
+                                else
+                                {
+                                    <span> Bạn cần <a class="addProduct" href="javascript:orderCart(false); ">đăng nhập</a> để đặt hàng.</span>
 
-                                    }*@
+                                }*@
                                 <a class="primary-btn" <a asp-controller="Home" asp-action="Checkout">Tiến hành thanh toán</a>
                             </div>
                         </div>
