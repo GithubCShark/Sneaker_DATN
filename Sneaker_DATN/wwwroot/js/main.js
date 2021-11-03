@@ -312,43 +312,43 @@ $(document).ready(function () {
 
 
 
-  var value,
-    quantity = document.getElementsByClassName('quantity-container');
+  //var value,
+  //  quantity = document.getElementsByClassName('quantity-container');
 
-  function createBindings(quantityContainer) {
-    var quantityAmount = quantityContainer.getElementsByClassName('quantity-amount')[0];
-    var increase = quantityContainer.getElementsByClassName('increase')[0];
-    var decrease = quantityContainer.getElementsByClassName('decrease')[0];
-    increase.addEventListener('click', function () { increaseValue(quantityAmount); });
-    decrease.addEventListener('click', function () { decreaseValue(quantityAmount); });
-  }
+  //function createBindings(quantityContainer) {
+  //  var quantityAmount = quantityContainer.getElementsByClassName('quantity-amount')[0];
+  //  var increase = quantityContainer.getElementsByClassName('increase')[0];
+  //  var decrease = quantityContainer.getElementsByClassName('decrease')[0];
+  //  increase.addEventListener('click', function () { increaseValue(quantityAmount); });
+  //  decrease.addEventListener('click', function () { decreaseValue(quantityAmount); });
+  //}
 
-  function init() {
-    for (var i = 0; i < quantity.length; i++) {
-      createBindings(quantity[i]);
-    }
-  };
+  //function init() {
+  //  for (var i = 0; i < quantity.length; i++) {
+  //    createBindings(quantity[i]);
+  //  }
+  //};
 
-  function increaseValue(quantityAmount) {
-    value = parseInt(quantityAmount.value, 10);
+  //function increaseValue(quantityAmount) {
+  //  value = parseInt(quantityAmount.value, 10);
 
-    console.log(quantityAmount, quantityAmount.value);
+  //  console.log(quantityAmount, quantityAmount.value);
 
-    value = isNaN(value) ? 0 : value;
-    value++;
-    quantityAmount.value = value;
-  }
+  //  value = isNaN(value) ? 0 : value;
+  //  value++;
+  //  quantityAmount.value = value;
+  //}
 
-  function decreaseValue(quantityAmount) {
-    value = parseInt(quantityAmount.value, 10);
+  //function decreaseValue(quantityAmount) {
+  //  value = parseInt(quantityAmount.value, 10);
 
-    value = isNaN(value) ? 0 : value;
-    if (value > 0) value--;
+  //  value = isNaN(value) ? 0 : value;
+  //  if (value > 0) value--;
 
-    quantityAmount.value = value;
-  }
+  //  quantityAmount.value = value;
+  //}
 
-  init();
+  //init();
 
   //------- End Quantity Increase & Decrease Value --------//
 
@@ -356,212 +356,212 @@ $(document).ready(function () {
   /*  Google map js
     /*----------------------------------------------------*/
 
-  if ($("#mapBox").length) {
-    var $lat = $("#mapBox").data("lat");
-    var $lon = $("#mapBox").data("lon");
-    var $zoom = $("#mapBox").data("zoom");
-    var $marker = $("#mapBox").data("marker");
-    var $info = $("#mapBox").data("info");
-    var $markerLat = $("#mapBox").data("mlat");
-    var $markerLon = $("#mapBox").data("mlon");
-    var map = new GMaps({
-      el: "#mapBox",
-      lat: $lat,
-      lng: $lon,
-      scrollwheel: false,
-      scaleControl: true,
-      streetViewControl: false,
-      panControl: true,
-      disableDoubleClickZoom: true,
-      mapTypeControl: false,
-      zoom: $zoom,
-      styles: [
-        {
-          featureType: "water",
-          elementType: "geometry.fill",
-          stylers: [
-            {
-              color: "#dcdfe6"
-            }
-          ]
-        },
-        {
-          featureType: "transit",
-          stylers: [
-            {
-              color: "#808080"
-            },
-            {
-              visibility: "off"
-            }
-          ]
-        },
-        {
-          featureType: "road.highway",
-          elementType: "geometry.stroke",
-          stylers: [
-            {
-              visibility: "on"
-            },
-            {
-              color: "#dcdfe6"
-            }
-          ]
-        },
-        {
-          featureType: "road.highway",
-          elementType: "geometry.fill",
-          stylers: [
-            {
-              color: "#ffffff"
-            }
-          ]
-        },
-        {
-          featureType: "road.local",
-          elementType: "geometry.fill",
-          stylers: [
-            {
-              visibility: "on"
-            },
-            {
-              color: "#ffffff"
-            },
-            {
-              weight: 1.8
-            }
-          ]
-        },
-        {
-          featureType: "road.local",
-          elementType: "geometry.stroke",
-          stylers: [
-            {
-              color: "#d7d7d7"
-            }
-          ]
-        },
-        {
-          featureType: "poi",
-          elementType: "geometry.fill",
-          stylers: [
-            {
-              visibility: "on"
-            },
-            {
-              color: "#ebebeb"
-            }
-          ]
-        },
-        {
-          featureType: "administrative",
-          elementType: "geometry",
-          stylers: [
-            {
-              color: "#a7a7a7"
-            }
-          ]
-        },
-        {
-          featureType: "road.arterial",
-          elementType: "geometry.fill",
-          stylers: [
-            {
-              color: "#ffffff"
-            }
-          ]
-        },
-        {
-          featureType: "road.arterial",
-          elementType: "geometry.fill",
-          stylers: [
-            {
-              color: "#ffffff"
-            }
-          ]
-        },
-        {
-          featureType: "landscape",
-          elementType: "geometry.fill",
-          stylers: [
-            {
-              visibility: "on"
-            },
-            {
-              color: "#efefef"
-            }
-          ]
-        },
-        {
-          featureType: "road",
-          elementType: "labels.text.fill",
-          stylers: [
-            {
-              color: "#696969"
-            }
-          ]
-        },
-        {
-          featureType: "administrative",
-          elementType: "labels.text.fill",
-          stylers: [
-            {
-              visibility: "on"
-            },
-            {
-              color: "#737373"
-            }
-          ]
-        },
-        {
-          featureType: "poi",
-          elementType: "labels.icon",
-          stylers: [
-            {
-              visibility: "off"
-            }
-          ]
-        },
-        {
-          featureType: "poi",
-          elementType: "labels",
-          stylers: [
-            {
-              visibility: "off"
-            }
-          ]
-        },
-        {
-          featureType: "road.arterial",
-          elementType: "geometry.stroke",
-          stylers: [
-            {
-              color: "#d6d6d6"
-            }
-          ]
-        },
-        {
-          featureType: "road",
-          elementType: "labels.icon",
-          stylers: [
-            {
-              visibility: "off"
-            }
-          ]
-        },
-        {},
-        {
-          featureType: "poi",
-          elementType: "geometry.fill",
-          stylers: [
-            {
-              color: "#dadada"
-            }
-          ]
-        }
-      ]
-    });
-  }
+  //if ($("#mapBox").length) {
+  //  var $lat = $("#mapBox").data("lat");
+  //  var $lon = $("#mapBox").data("lon");
+  //  var $zoom = $("#mapBox").data("zoom");
+  //  var $marker = $("#mapBox").data("marker");
+  //  var $info = $("#mapBox").data("info");
+  //  var $markerLat = $("#mapBox").data("mlat");
+  //  var $markerLon = $("#mapBox").data("mlon");
+  //  var map = new GMaps({
+  //    el: "#mapBox",
+  //    lat: $lat,
+  //    lng: $lon,
+  //    scrollwheel: false,
+  //    scaleControl: true,
+  //    streetViewControl: false,
+  //    panControl: true,
+  //    disableDoubleClickZoom: true,
+  //    mapTypeControl: false,
+  //    zoom: $zoom,
+  //    styles: [
+  //      {
+  //        featureType: "water",
+  //        elementType: "geometry.fill",
+  //        stylers: [
+  //          {
+  //            color: "#dcdfe6"
+  //          }
+  //        ]
+  //      },
+  //      {
+  //        featureType: "transit",
+  //        stylers: [
+  //          {
+  //            color: "#808080"
+  //          },
+  //          {
+  //            visibility: "off"
+  //          }
+  //        ]
+  //      },
+  //      {
+  //        featureType: "road.highway",
+  //        elementType: "geometry.stroke",
+  //        stylers: [
+  //          {
+  //            visibility: "on"
+  //          },
+  //          {
+  //            color: "#dcdfe6"
+  //          }
+  //        ]
+  //      },
+  //      {
+  //        featureType: "road.highway",
+  //        elementType: "geometry.fill",
+  //        stylers: [
+  //          {
+  //            color: "#ffffff"
+  //          }
+  //        ]
+  //      },
+  //      {
+  //        featureType: "road.local",
+  //        elementType: "geometry.fill",
+  //        stylers: [
+  //          {
+  //            visibility: "on"
+  //          },
+  //          {
+  //            color: "#ffffff"
+  //          },
+  //          {
+  //            weight: 1.8
+  //          }
+  //        ]
+  //      },
+  //      {
+  //        featureType: "road.local",
+  //        elementType: "geometry.stroke",
+  //        stylers: [
+  //          {
+  //            color: "#d7d7d7"
+  //          }
+  //        ]
+  //      },
+  //      {
+  //        featureType: "poi",
+  //        elementType: "geometry.fill",
+  //        stylers: [
+  //          {
+  //            visibility: "on"
+  //          },
+  //          {
+  //            color: "#ebebeb"
+  //          }
+  //        ]
+  //      },
+  //      {
+  //        featureType: "administrative",
+  //        elementType: "geometry",
+  //        stylers: [
+  //          {
+  //            color: "#a7a7a7"
+  //          }
+  //        ]
+  //      },
+  //      {
+  //        featureType: "road.arterial",
+  //        elementType: "geometry.fill",
+  //        stylers: [
+  //          {
+  //            color: "#ffffff"
+  //          }
+  //        ]
+  //      },
+  //      {
+  //        featureType: "road.arterial",
+  //        elementType: "geometry.fill",
+  //        stylers: [
+  //          {
+  //            color: "#ffffff"
+  //          }
+  //        ]
+  //      },
+  //      {
+  //        featureType: "landscape",
+  //        elementType: "geometry.fill",
+  //        stylers: [
+  //          {
+  //            visibility: "on"
+  //          },
+  //          {
+  //            color: "#efefef"
+  //          }
+  //        ]
+  //      },
+  //      {
+  //        featureType: "road",
+  //        elementType: "labels.text.fill",
+  //        stylers: [
+  //          {
+  //            color: "#696969"
+  //          }
+  //        ]
+  //      },
+  //      {
+  //        featureType: "administrative",
+  //        elementType: "labels.text.fill",
+  //        stylers: [
+  //          {
+  //            visibility: "on"
+  //          },
+  //          {
+  //            color: "#737373"
+  //          }
+  //        ]
+  //      },
+  //      {
+  //        featureType: "poi",
+  //        elementType: "labels.icon",
+  //        stylers: [
+  //          {
+  //            visibility: "off"
+  //          }
+  //        ]
+  //      },
+  //      {
+  //        featureType: "poi",
+  //        elementType: "labels",
+  //        stylers: [
+  //          {
+  //            visibility: "off"
+  //          }
+  //        ]
+  //      },
+  //      {
+  //        featureType: "road.arterial",
+  //        elementType: "geometry.stroke",
+  //        stylers: [
+  //          {
+  //            color: "#d6d6d6"
+  //          }
+  //        ]
+  //      },
+  //      {
+  //        featureType: "road",
+  //        elementType: "labels.icon",
+  //        stylers: [
+  //          {
+  //            visibility: "off"
+  //          }
+  //        ]
+  //      },
+  //      {},
+  //      {
+  //        featureType: "poi",
+  //        elementType: "geometry.fill",
+  //        stylers: [
+  //          {
+  //            color: "#dadada"
+  //          }
+  //        ]
+  //      }
+  //    ]
+  //  });
+  //}
   // mimi cart
   //$(".minicart-btn").on('click', function () {
   //  $("body").addClass('fix');
@@ -587,46 +587,46 @@ $(document).ready(function () {
   });
 });
 
-// slide show
-let slide_index = 0
-let slide_play = true
-let slides = document.querySelectorAll('.slide')
+//// slide show
+//let slide_index = 0
+//let slide_play = true
+//let slides = document.querySelectorAll('.slide')
 
-hideAllSlide = () => {
-    slides.forEach(e => {
-        e.classList.remove('active')
-    })
-}
+//hideAllSlide = () => {
+//    slides.forEach(e => {
+//        e.classList.remove('active')
+//    })
+//}
 
-showSlide = () => {
-    hideAllSlide()
-    slides[slide_index].classList.add('active')
-}
+//showSlide = () => {
+//    hideAllSlide()
+//    slides[slide_index].classList.add('active')
+//}
 
-nextSlide = () => slide_index = slide_index + 1 === slides.length ? 0 : slide_index + 1
+//nextSlide = () => slide_index = slide_index + 1 === slides.length ? 0 : slide_index + 1
 
-prevSlide = () => slide_index = slide_index - 1 < 0 ? slides.length - 1 : slide_index - 1
+//prevSlide = () => slide_index = slide_index - 1 < 0 ? slides.length - 1 : slide_index - 1
 
-// pause slide when hover slider
+//// pause slide when hover slider
 
-document.querySelector('.slider').addEventListener('mouseover', () => slide_play = false)
+//document.querySelector('.slider').addEventListener('mouseover', () => slide_play = false)
 
-// enable slide when mouse leave out slider
-document.querySelector('.slider').addEventListener('mouseleave', () => slide_play = true)
+//// enable slide when mouse leave out slider
+//document.querySelector('.slider').addEventListener('mouseleave', () => slide_play = true)
 
-// slider controll
+//// slider controll
 
-document.querySelector('.slide-next').addEventListener('click', () => {
-    nextSlide()
-    showSlide()
-})
+//document.querySelector('.slide-next').addEventListener('click', () => {
+//    nextSlide()
+//    showSlide()
+//})
 
-document.querySelector('.slide-prev').addEventListener('click', () => {
-    prevSlide()
-    showSlide()
-})
+//document.querySelector('.slide-prev').addEventListener('click', () => {
+//    prevSlide()
+//    showSlide()
+//})
 
-showSlide()
+//showSlide()
 
 // Page loading animation
 

@@ -10,6 +10,20 @@
     width: 100% !important;
 }
 
+.select-custom-provine {
+    width: 100% !important;
+    border: none;
+}
+
+    .select-custom-provine .list {
+        width: 100% !important
+    }
+
+.select-custom-provine-city .list {
+    height: 400px;
+    overflow-y: scroll;
+}
+
 .login_form_inner .changepass_form {
     width: 80% !important;
     max-width: 80% !important;

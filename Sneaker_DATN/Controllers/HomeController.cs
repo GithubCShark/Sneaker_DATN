@@ -346,7 +346,13 @@ namespace Sneaker_DATN.Controllers
         }
         public IActionResult Checkout()
         {
-            return View();
+            List<ViewCart> dataCart = new List<ViewCart>();
+            var cart = HttpContext.Session.GetString("cart");
+            if (cart != null)
+            {
+                dataCart = JsonConvert.DeserializeObject<List<ViewCart>>(cart);
+            }
+            return View(dataCart);
         }
         public IActionResult Contact()
         {
