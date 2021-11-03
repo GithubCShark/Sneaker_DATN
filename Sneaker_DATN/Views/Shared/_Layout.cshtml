@@ -79,7 +79,7 @@
                                 @if (cart != null && cart != "")
                                 {
                                     <span class="bx bx-shopping-bag bx-sm">
-                                        <span class="num-cart-product">0</span>
+                                        <span class="num-cart-product"></span>
                                     </span>
                                 }
                                 else
@@ -393,28 +393,11 @@
             fpt_ai_render_chatbox(FptLiveChatConfigs, liveChatBaseUrl, LiveChatSocketUrl)
         }
     </script>
-    @*<script>
-            var run = 0;
-            var a = '@userName';
-
-            if (a != null && a != "") {
-                run = 2;
-            }
-            else {
-                run = 1;
-            }
-
-            if (run == 1 || run == 2) {
-                if (a != null & a != "") {
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Đăng nhập thành công!',
-                        showConfirmButton: false,
-                        timer: 1000
-                    });
-                }
-            }
-        </script>*@
+    <script>
+        $(document).ready(function loadCountCart() {
+            var a = document.getElementById("stt").value;
+            $('.num-cart-product').text(a);
+        });
+    </script>
 </body>
 </html>
