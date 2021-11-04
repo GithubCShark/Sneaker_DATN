@@ -86,80 +86,43 @@
                     <div class="head">Thương thiệu</div>
                     <form action="#">
                         <ul>
-                            <li class="filter-list">
-                                <input class="pixel-radio" type="checkbox" id="nike"
-                                       name="brand"><label for="nike">Nike<span>(29)</span></label>
-                            </li>
-                            <li class="filter-list">
-                                <input class="pixel-radio" type="checkbox" id="adidas"
-                                       name="brand"><label for="adidas">Adidas<span>(29)</span></label>
-                            </li>
-                            <li class="filter-list">
-                                <input class="pixel-radio" type="checkbox" id="converse"
-                                       name="brand"><label for="converse">Converse<span>(19)</span></label>
-                            </li>
-                            <li class="filter-list">
-                                <input class="pixel-radio" type="checkbox" id="puma"
-                                       name="brand"><label for="puma">Puma<span>(19)</span></label>
-                            </li>
-                            <li class="filter-list">
-                                <input class="pixel-radio" type="checkbox" id="vans"
-                                       name="brand"><label for="vans">Vans<span>(19)</span></label>
-                            </li>
-                        </ul>
+                            @foreach (var i in ViewBag.brand)
+                            {
+                                <li class="filter-list">
+                                    <input class="pixel-radio" type="checkbox" id="nike"
+                                           name="brand" value=""><label> @i.BrandName </label>
+                                </li>
+                            }
+                            </ul>
                     </form>
                 </div>
                 <div class="common-filter">
                     <div class="head">Chọn size</div>
                     <form action="#">
                         <ul>
-                            <li class="filter-list">
-                                <input class="pixel-radio" type="checkbox" id="36"
-                                       name="size"><label for="36">36<span>(29)</span></label>
-                            </li>
-                            <li class="filter-list">
-                                <input class="pixel-radio" type="checkbox" id="37"
-                                       name="size"><label for="37">37<span>(29)</span></label>
-                            </li>
-                            <li class="filter-list">
-                                <input class="pixel-radio" type="checkbox" id="38"
-                                       name="size"><label for="38">38<span>(19)</span></label>
-                            </li>
-                            <li class="filter-list">
-                                <input class="pixel-radio" type="checkbox" id="39"
-                                       name="size"><label for="39">39<span>(19)</span></label>
-                            </li>
-                            <li class="filter-list">
-                                <input class="pixel-radio" type="checkbox" id="40"
-                                       name="size"><label for="40">40<span>(19)</span></label>
-                            </li>
-                        </ul>
+                            @foreach (var i in ViewBag.size)
+                            {
+                                <li class="filter-list">
+                                    <input class="pixel-radio" type="checkbox" id="36"
+                                           name="size" value="">
+                                    <label>@i.Size
+                                    </label>
+                                </li>
+                            }
+                            </ul>
                     </form>
                 </div>
                 <div class="common-filter">
                     <div class="head">Màu sắc</div>
                     <form action="#">
                         <ul>
-                            <li class="filter-list">
-                                <input class="pixel-radio" type="checkbox" id="black"
-                                       name="color"><label for="black">Đen<span>(29)</span></label>
-                            </li>
-                            <li class="filter-list">
-                                <input class="pixel-radio" type="checkbox" id="white"
-                                       name="color"><label for="white">Trắngr<span>(29)</span></label>
-                            </li>
-                            <li class="filter-list">
-                                <input class="pixel-radio" type="checkbox" id="red"
-                                       name="color"><label for="red">Đỏ<span>(19)</span></label>
-                            </li>
-                            <li class="filter-list">
-                                <input class="pixel-radio" type="checkbox" id="gold"
-                                       name="color"><label for="gold">Vàng<span>(19)</span></label>
-                            </li>
-                            <li class="filter-list">
-                                <input class="pixel-radio" type="checkbox" id="blue"
-                                       name="color"><label for="blue">Xanh<span>(19)</span></label>
-                            </li>
+                            @foreach (var i in ViewBag.color)
+                            {
+                                <li class="filter-list">
+                                    <input class="pixel-radio" type="checkbox" id="black"
+                                           name="color" value=""><label>@i.Color</label>
+                                </li>
+                            }
                         </ul>
                     </form>
                 </div>

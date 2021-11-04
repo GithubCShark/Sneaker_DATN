@@ -145,7 +145,10 @@ namespace Sneaker_DATN.Controllers
             //int checkTotal = (int)(sizes.ToList().Count / pageSize) + 1;
             //// Nếu trang vượt qua tổng số trang thì thiết lập là 1 hoặc tổng số trang
             //if (pageNumber > checkTotal) pageNumber = checkTotal;
+
             ViewData["brand"] = _context.Brands.ToList();
+            ViewData["size"] = _context.Sizes.ToList();
+            ViewData["color"] = _context.Colors.ToList();
             return View(_context.Products.ToPagedList(pageNumber, pageSize));
             //return View(await _context.Sizes.ToListAsync());
 
