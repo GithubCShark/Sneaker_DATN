@@ -58,5 +58,7 @@ namespace Sneaker_DATN.Models
         public IFormFile ImageFile2 { get; set; }
 
         public Brands Brands { get; set; }
+        public List<ProductSize> ProductSizes { get; set; }
+        public List<ProductColor> ProductColors { get; set; }
     }
 }

@@ -1,24 +1,11 @@
-﻿@*@model IEnumerable<Sneaker_DATN.Models.Sizes>*@
-@model Sneaker_DATN.Models.Products
+﻿@model Sneaker_DATN.Models.Products
 
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_LayoutManager.cshtml";
 }
 
-
-<!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css">
-<script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>-->
-@*<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></script>*@
-@*<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>*@
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>-->
-@*<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css">*@
-<!--<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/davidstutz/bootstrap-multiselect@master/dist/css/bootstrap-multiselect.css">
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/davidstutz/bootstrap-multiselect@master/dist/js/bootstrap-multiselect.js"></script>-->
-
+<link rel="stylesheet" href="~/lib/multiple-select/multiple-select.min.css" />
 
 
 <div class="container">
@@ -30,7 +17,7 @@
                 </a>
                 <h2 class="main-title text-center text-uppercase mt-n3">Thêm mới sản phẩm</h2>
                 <form class="form-edit" asp-action="Create" enctype="multipart/form-data">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div asp-validation-summary="All" class="text-danger"></div>
                     <div class="form-group">
                         <label asp-for="ProductName" class="control-label"></label>
                         <input asp-for="ProductName" class="form-control" />
@@ -82,13 +69,14 @@
                         </label>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">Chọn Size</label>
-                        <select id="ListSize" multiple="multiple">
-                            @foreach (var item in ViewBag.size)
-                            {
-                                <option value="@item.SizeID">@item.Size</option>
-                            }
-                        </select>
+                        <label class="control-label">Chọn danh mục</label>
+                        @Html.ListBox("selectedSize", ViewBag.categories,
+                            new { @class = "w-100", id = "selectedSize" })
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Chọn danh mục</label>
+                        @Html.ListBox("selectedColor", ViewBag.color,
+                            new { @class = "w-100", id = "selectedColor" })
                     </div>
                     <div class="form-group mt-3">
                         <label asp-for="Description" class="control-label"></label>
@@ -106,40 +94,21 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <script type="text/javascript">
-        $(document).ready(function () {
-
-            $("#ListSize").multiselect({
-                includeSelectOption: true
-            })
-
-            $("#btnSave").click(function () {
-                SaveSelectSize();
-            });
-
+    <script src="~/lib/multiple-select/multiple-select.min.js"></script>
+    <script>
+        $('#selectedSize').multipleSelect({
+            selectAll: false,
+            keepOpen: false,
+            isOpen: false
         });
-        function SaveSelectSize() {
-            var sizeList = "";
-            $.each($("#ListSize option:selected"),
-                function (index, data) {
-                    sizeList += $(this).val() + " " + $(this).text() + "\n";
-                }
-            )
-        };
-        $.ajax({
-            async: true,
-            type: 'POST',
-            dataType: 'JSON',
-            contentType: 'application/json; charset=utf8',
-            url: '/Home/Index',
-            data: JSON.stringify({ listOfsize: listOfsize }),
-            success: function (data) {
-
-            },
-            error: function () {
-                alert('Have some problem')
-            }
+    </script>
+    <script>
+        $('#selectedColor').multipleSelect({
+            selectAll: false,
+            keepOpen: false,
+            isOpen: false
         });
     </script>
 
 }
+

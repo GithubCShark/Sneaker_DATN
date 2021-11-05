@@ -16,7 +16,7 @@
                     </a>
                 </button>
             </div>
-            <dl class="shadow-lg">
+            <dl class="shadow-lg" enctype="multipart/form-data">
                 <dt class="col-sm-2">
                     @Html.DisplayNameFor(model => model.ProductName)
                 </dt>
@@ -65,13 +65,43 @@
                 <dd class="col-sm-10">
                     @ViewBag.brdetails
                 </dd>
-                <dd class="col-sm-10">
-                    @ViewBag.brsz
+                <dt class="col-sm-2">
+                    Size
+                </dt>
+                <dd>
+                    @foreach (var sz in ViewBag.productSize)
+                    {
+                        if (sz.ID == Model.ProductID)
+                        {
+                            foreach (var s in ViewBag.size)
+                            {
+                                if (s.SizeID == sz.IdSize)
+                                {
+                                    @string.Join(", ", s.Size)<br />
+                                }
+                            }
+                        }
+                    }
+                </dd>
+                <dt class="col-sm-2">
+                    Colors
+                </dt>
+                <dd>
+                    @foreach (var sz in ViewBag.productColor)
+                    {
+                        if (sz.ID == Model.ProductID)
+                        {
+                            foreach (var s in ViewBag.colors)
+                            {
+                                if (s.ColorID == sz.ColorID)
+                                {
+                                    @string.Join(", ", s.Color);
+                                }
+                            }
+                        }
+                    }
                 </dd>
             </dl>
-        </div></div>
-        @*<div>
-            <a asp-action="Edit" asp-route-id="@Model.ProductID">Sửa</a> |
-            <a asp-action="Index">Trở về danh sách</a>
-        </div>*@
+        </div>
     </div>
+</div>

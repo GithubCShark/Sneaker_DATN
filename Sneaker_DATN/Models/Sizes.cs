@@ -14,5 +14,7 @@ namespace Sneaker_DATN.Models
         public int SizeID { get; set; }
 
         public int Size { get; set; }
+
+        public List<ProductSize> ProductSizes { get; set; }
     }
 }

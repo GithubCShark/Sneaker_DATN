@@ -17,7 +17,8 @@ namespace Sneaker_DATN.Services
         int EditProduct(int id, Products product);
 
         Brands GetBrand(int id);
-        //ProductColor GetColor(int id);
+        //ProductSize GetSizes(int id);
+        //ProductColor GetColors(int id);
 
         List<Products> SneakerSearchString(string name);
     }
@@ -51,7 +52,6 @@ namespace Sneaker_DATN.Services
             product = _context.Products.Find(id);
             return product;
         }
-
         public int AddProduct(Products product)
         {
             int ret = 0;
@@ -67,16 +67,12 @@ namespace Sneaker_DATN.Services
             }
             return ret;
         }
-        public int EditProduct(int id, Products product/*, Sizes size*/)
+        public int EditProduct(int id, Products product)
         {
             int ret = 0;
             try
             {
                 Products _product = null;
-                //Sizes _size = null;
-                //_size = _context.Sizes.Find(id);
-                //_size.SizeID = size.SizeID;
-                //_size.Size = size.Size;
 
                 _product = _context.Products.Find(id);
 
@@ -85,12 +81,16 @@ namespace Sneaker_DATN.Services
                 _product.Image = product.Image;
                 _product.Image1 = product.Image1;
                 _product.Image2 = product.Image2;
+                _product.ImageFile = product.ImageFile;
+                _product.ImageFile1 = product.ImageFile1;
+                _product.ImageFile2 = product.ImageFile2;
                 _product.BrandID = product.BrandID;
                 _product.Status = product.Status;
                 _product.Description = product.Description;
                 _context.Update(_product);
 
                 _context.SaveChanges();
+
                 ret = product.ProductID;
             }
             catch
