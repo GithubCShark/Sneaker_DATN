@@ -44,7 +44,7 @@ namespace Sneaker_DATN.Controllers
                 });
             }
             //return View(dataChart);
-            return View(JsonConvert.SerializeObject(dataChart));
+            return Json(JsonConvert.SerializeObject(dataChart));
             //return Json(listcount, JsonRequestBehavior.AllowGet);
         }
     }
