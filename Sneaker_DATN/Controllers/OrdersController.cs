@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Sneaker_DATN.Models;
 using Sneaker_DATN.Services;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,8 @@ namespace Sneaker_DATN.Controllers
         // GET: OrdersController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Orders lsOrders = _orderSvc.GetOrder(id);
+            return View(lsOrders);
         }
 
         // GET: OrdersController/Create
@@ -51,21 +53,31 @@ namespace Sneaker_DATN.Controllers
         // GET: OrdersController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Orders lsOrders = _orderSvc.GetOrder(id);
+            return View(lsOrders);
         }
 
         // POST: OrdersController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Orders orders)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                if (ModelState.IsValid)
+                {
+                    _orderSvc.EditOrder(id, orders);
+
+                    return RedirectToAction(nameof(Index), new { id = orders.OrderID });
+                }
+                else
+                {
+                    return View(orders);
+                }
             }
             catch
             {
-                return View();
+                return RedirectToAction(nameof(Index));
             }
         }
 

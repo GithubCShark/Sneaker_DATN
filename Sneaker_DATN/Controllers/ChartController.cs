@@ -39,10 +39,11 @@ namespace Sneaker_DATN.Controllers
             {
                 dataChart.Add(new ViewChar
                 {
-                    Thang = item.Thang,
+                    Thang = item.Thang.ToString(),
                     SoLuong = item.SoLuong
                 });
             }
+            ViewData["DataList"] = dataChart.ToList();
             //return View(dataChart);
             return Json(JsonConvert.SerializeObject(dataChart));
             //return Json(listcount, JsonRequestBehavior.AllowGet);

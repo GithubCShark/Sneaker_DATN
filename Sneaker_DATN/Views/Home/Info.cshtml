@@ -67,24 +67,28 @@
                                     <label asp-for="UserName" class="control-label"></label>
                                     <input id="UserName" asp-for="UserName" type="text" name="UserName"
                                            readonly class="form-control">
+                                    <span asp-validation-for="UserName" class="text-danger"></span>
                                 </div>
                                 <!-- Full Name -->
                                 <div class="form-group col-lg-6 mb-4">
                                     <label asp-for="FullName" class="control-label"></label>
                                     <input id="FullName" asp-for="FullName" type="text" name="FullName"
                                            class="form-control">
+                                    <span asp-validation-for="FullName" class="text-danger"></span>
                                 </div>
                                 <!-- DOB -->
                                 <div class="form-group col-lg-6 mb-4">
                                     <label asp-for="DOB" class="control-label"></label>
                                     <input id="DOB" asp-for="DOB" type="date" name="DOB"
                                            class="form-control">
+                                    <span asp-validation-for="DOB" class="text-danger"></span>
                                 </div>
                                 <!-- Email Address -->
                                 <div class="form-group col-lg-6 mb-4">
                                     <label asp-for="Email" class="control-label"></label>s
                                     <input id="Email" asp-for="Email" type="email" name="Email"
                                            class="form-control">
+                                    <span asp-validation-for="Email" class="text-danger"></span>
                                 </div>
                                 <!-- Gender -->
                                 <div class="form-group col-lg-6 mb-4">
@@ -106,17 +110,35 @@
                                     <input id="ImageUser" asp-for="ImageUser" type="file" name="ImageUser">
                                 </div>
                                 <!-- PhoneNumber -->
-                                <div class="form-group col-lg-12 mb-4">
+                                <div class="form-group col-lg-6 mb-4">
                                     <label asp-for="PhoneNumber" class="control-label"></label>
                                     <input id="PhoneNumber" asp-for="PhoneNumber" type="tel" name="PhoneNumber"
                                            class="form-control">
+                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-lg-6 mb-4">
+                                    <label asp-for="DateCreated" class="control-label">Ngày tạo tài khoản</label>
+                                    <input id="DateCreated" asp-for="DateCreated" type="date" name="DateCreated"
+                                           class="form-control" readonly>
+                                    <span asp-validation-for="DateCreated" class="text-danger"></span>
                                 </div>
                                 <!-- Address -->
                                 <div class="form-group col-lg-12 mb-4">
                                     <label asp-for="Address" class="control-label"></label>
                                     <textarea id="Address" asp-for="Address" name="Address"
-                                           class="form-control" rows="5"></textarea>
+                                              class="form-control" rows="5"></textarea>
+                                    <span asp-validation-for="Address" class="text-danger"></span>
                                 </div>
+                                @*<div class="form-group" style="display: none">
+                                    <label asp-for="Password" class="control-label"></label>
+                                    <input asp-for="Password" class="form-control" type="text" disabled />
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                                <div class="form-group" style="display: none">
+                                    <label asp-for="ConfirmPassword" class="control-label"></label>
+                                    <input asp-for="ConfirmPassword" class="form-control" type="text" disabled />
+                                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                </div>*@
                                 <!-- Submit Button -->
                                 <div class="form-group col-lg-12 text-center mx-auto mb-0">
                                     <button type="submit" class="col-lg-3 infomation-user-info-btn primary-btn">

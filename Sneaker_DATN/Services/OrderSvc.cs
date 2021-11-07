@@ -13,6 +13,8 @@ namespace Sneaker_DATN.Services
         Orders GetOrder(int id);
 
         int AddOrder(Orders orders);
+
+        int EditOrder(int id, Orders orders);
     }
     public class OrderSvc : IOrderSvc
     {
@@ -47,6 +49,36 @@ namespace Sneaker_DATN.Services
                 ret = orders.OrderID;
             }
             catch
+            {
+                ret = 0;
+            }
+            return ret;
+        }
+        public int EditOrder(int id, Orders orders)
+        {
+            int ret = 0;
+            try
+            {
+                Orders _orders = null;
+                _orders = _context.Orders.Find(id);
+
+                //_orders.OrderID = orders.OrderID;
+                //_orders.UserID = orders.UserID;
+                //_orders.FullName = orders.FullName;
+                //_orders.DateCreate = orders.DateCreate;
+                //_orders.Total = orders.Total;
+                //_orders.Address = orders.Address;
+
+                _orders.Email = orders.Email;
+                _orders.PhoneNumber = orders.PhoneNumber;
+                _orders.Note = orders.Note;
+                _orders.Status = orders.Status;
+
+                _context.Update(_orders);
+                _context.SaveChanges();
+                ret = orders.OrderID;
+            }
+            catch (Exception)
             {
                 ret = 0;
             }

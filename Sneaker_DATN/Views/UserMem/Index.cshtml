@@ -60,8 +60,11 @@
                             @Html.DisplayNameFor(model => model.DOB)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Roles)
+                            @Html.DisplayNameFor(model => model.Address)
                         </th>
+                        @*<th>
+                            @Html.DisplayNameFor(model => model.Roles)
+                        </th>*@
                         <th>
                             @Html.DisplayNameFor(model => model.Lock)
                         </th>
@@ -98,12 +101,15 @@
                             @Html.DisplayFor(modelItem => item.DOB)
                         </td>
                         <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <!--<td>
                             @if (item.RoleID == 3)
                             {
                                 <span>Khách hàng</span>
-                            }
+                            }-->
                             @*@Html.DisplayFor(modelItem => item.RoleID)*@
-                        </td>
+                        <!--</td>-->
                         <td>
                             @Html.DisplayFor(modelItem => item.Lock)
                         </td>

@@ -394,7 +394,7 @@ namespace Sneaker_DATN.Controllers
                     user.ImgUser = _user.ImgUser;
                     user.Lock = _user.Lock;
                     user.RoleID = _user.RoleID;
-
+                    user.ConfirmPassword = user.Password;
 
                     _userMemSvc.EditUserMem(id, user);
                     return RedirectToAction(nameof(Index));
@@ -422,8 +422,30 @@ namespace Sneaker_DATN.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Info(Users user)
         {
-
-            return View(user);
+            string thumuccon = "avatar";
+            int id = (int)HttpContext.Session.GetInt32(SessionKey.Guest.Guest_ID.ToString());
+            try
+            {
+                //if (ModelState.IsValid)
+                //{
+                    if (user.ImageUser != null && user.ImageUser.Length > 0)
+                    {
+                        string rootPath = Path.Combine(_webHostEnviroment.WebRootPath, "images");
+                        _uploadHelper.UploadImage(user.ImageUser, rootPath, thumuccon);
+                        user.ImgUser = user.ImageUser.FileName;
+                    }
+                    _userMemSvc.EditUserMem(id, user);
+                    return RedirectToAction(nameof(InfoMenu), new { id = user.UserID });
+                //}
+                //else
+                //{
+                //    return View(user);
+                //}
+            }
+            catch
+            {
+                return RedirectToAction(nameof(Info));
+            }
         }
 
         public IActionResult InfoMenu()

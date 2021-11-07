@@ -53,7 +53,7 @@
 
 @section Scripts {
     @*<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js" type="text/javascript"></script>*@
-    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    @*<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>*@
 
     <script src="https://www.chartjs.org/dist/2.9.3/Chart.min.js" type="text/javascript"></script>
 
@@ -86,35 +86,37 @@
                 var lsLabel = [];
                 var lsDataSource = [];
 
-                $.each(dataChart, function (index, item) {
+                $.each(JSON.parse(dataChart), function (index, item) {
                     lsLabel.push(item.Thang);
                     lsDataSource.push(item.SoLuong);
                 });
 
+                var ctx = document.getElementById('chartProduct');
                 var dataT = {
                     labels: lsLabel,
-                    datasets: [{
-                        label: "Thành viên",
-                        data: lsDataSource,
-                        fill: false,
-                        backgroundColor: ["rgba(54, 162, 235, 0.2)", "rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
-                        borderColor: ["rgb(54, 162, 235)", "rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(153, 102, 255)", "rgb(201, 203, 207)"],
-                        borderWidth: 1
-                    }]
+                    datasets: [
+                        {
+                            label: 'Sản phẩm',
+                            backgroundColor: "#0b9663",
+                            borderWidth: 1,
+                            data: [15, 20, 18, 21, 13, 20, 17, 12, 16, 19, 14, 20]
+                        },
+                        {
+                            label: "Thành viên",
+                            data: lsDataSource,
+                            backgroundColor: "#CC975E",
+                            borderWidth: 1
+
+                        //fill: false,
+                        //backgroundColor: ["rgba(54, 162, 235, 0.2)", "rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
+                        //borderColor: ["rgb(54, 162, 235)", "rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(153, 102, 255)", "rgb(201, 203, 207)"],
+                        }
+                    ]
                 };
-                var ctx = $("#chartProduct").get(0).getContext("2d");
-                var myNewChart = new Chart(ctx, {
+
+                var myBarChart = new Chart(ctx, {
                     type: 'bar',
                     data: dataT,
-                    options: {
-                        responsive: true,
-                        //title: { display: true, text: 'CHART.JS DEMO CHART' },
-                        //legend: { position: 'bottom' },
-                        scales: {
-                            xAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' } }],
-                            yAxes: [{ gridLines: { display: false }, display: true, scaleLabel: { display: false, labelString: '' }, ticks: { stepSize: 50, beginAtZero: true } }]
-                        },
-                    }
                 });
             }
         });
@@ -141,55 +143,6 @@
             //    $("canvas#chartProduct").remove();
             //    $('#dvChart').html('<canvas id="chartProduct"></canvas>')
             //}
-
-            //var lsLabel = [];
-            //var lsDataSource = [];
-
-            //$.each(listcount, function (index, item) {
-            //    lsLabel.push(item.Thang);
-            //    lsDataSource.push(item.SoLuong);
-            //});
-
-            //var ctx = document.getElementById('chartProduct');
-
-            //var barChartData = {
-            //    labels: ['1','2','3','4','5','6','7','8','9','10','11','12'],//lsLabel
-            //    datasets: [
-            //        {
-            //            label: 'Sản phẩm',
-            //            backgroundColor: "#0b9663",
-            //            borderWidth: 1,
-            //            data: [15, 20, 18, 21, 13, 20, 17, 12, 16, 19, 14, 20]
-            //        },
-            //        {
-            //            label: 'Khách hàng',
-            //            backgroundColor: "#CC975E",
-            //            borderWidth: 1,
-            //            data: [7, 10, 9, 11, 6, 10, 9, 6, 8, 9, 7, 10]//lsDataSource
-            //        }
-            //    ]
-            //};
-            //var myBarChart = new Chart(ctx, {
-            //    type: 'bar',
-            //    data: barChartData,
-            //});
-
-            var ctx1 = document.getElementById('chartPrice');
-            var barChartData1 = {
-                labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
-                datasets: [
-                    {
-                        label: 'Tổng tiền',
-                        backgroundColor: "#D9880F",
-                        borderWidth: 1,
-                        data: [15000000, 20000000, 18000000, 21000000, 13000000, 20000000, 17000000, 12000000, 16000000, 19000000, 14000000, 20000000]
-                    }
-                ]
-            };
-            var myBarChart1 = new Chart(ctx1, {
-                type: 'bar',
-                data: barChartData1,
-            });
     </script>
 
 }

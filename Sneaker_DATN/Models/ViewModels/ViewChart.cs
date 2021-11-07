@@ -7,7 +7,7 @@ namespace Sneaker_DATN.Models
 {
     public class ViewChar
     {
-        public int Thang { get; set; }
+        public string Thang { get; set; }
         public int SoLuong { get; set; }
     }
 }
