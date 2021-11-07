@@ -46,3 +46,24 @@ $(document).ready(function () {
     });
 
 });
+
+// Modal Delete Size
+$(document).ready(function () {
+
+    $('.btn-delete-size').click(function (e) {
+        e.preventDefault();
+
+        var $modal = $('#deleteSizeModal');
+        var $modalDialog = $('.modal-dialog');
+        var href = $(this).prop('href');
+ 
+        // không cho phép tắt modal khi click bên ngoài modal
+        var option = { backdrop: true };
+
+        // load modal
+        $modalDialog.load(href, function () {
+            $modal.modal(option, 'show');
+        });
+    });
+
+});

@@ -8,33 +8,10 @@
 
 <div class="color-dashboard">
     <h2 class="main-title text-center pt-4">DANH SÁCH SIZE</h2>
-    <div class="col-lg-12 m-auto px-5 pb-4">
-        <div class="card shadow-sm">
-            <div class="card-body justify-content-around">
-                <div class="row col-lg-12">
-                    <div class="input-group col-lg-8 col-sm-6">
-                        <div class="form-outline d-flex">
-                            <input type="search" class="input-group col-lg-8" placeholder="Tìm kiếm..." />
-                            <button type="button" class="search-btn btn btn-primary">
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </div>
-
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <a href="@Url.Action("Create", "Sizes")" class="color-btn-create btn btn-primary btn-create-size float-right"><i class="fas fa-plus pr-2"></i>Thêm mới</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="col-lg-12 m-auto px-5">
         <div class="users-table table-wrapper">
             <table class="posts-table mt-3">
                 <thead>
-                    @*<tr>
-                            @Html.Raw(ViewBag.Headings)
-                        </tr>*@
                     <tr class="users-table-info">
                         <th class="dashboard-txt">
                             @Html.DisplayNameFor(model => model.First().SizeID)
@@ -42,7 +19,9 @@
                         <th class="dashboard-txt">
                             @Html.DisplayNameFor(model => model.First().Size)
                         </th>
-                        <th class="dashboard-icon"></th>
+                        <th class="dashboard-icon">
+                            <a href="@Url.Action("Create", "Sizes")" class="color-btn-create btn btn-primary btn-create-size mr-3"><i class="fas fa-plus pr-2"></i>Thêm mới</a>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -57,7 +36,7 @@
                             </td>
                             <td>
                                 <a href="@Url.Action("Edit", "Sizes", new { id = @item.SizeID })" class="btn-edit-size"><i class="far fa-edit dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
-                                <a href="@Url.Action("Delete", "Sizes")"><i class="far fa-trash-alt ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
+                                <a href="@Url.Action("Delete", "Sizes", new { id = item.SizeID })" class="btn-delete-size"><i class="far fa-trash-alt ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
                                 <input type="hidden" class="id" value="@item.SizeID" />
                             </td>
                         </tr>
@@ -94,7 +73,7 @@
 </div>
 
 <!-- Modal Details -->
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="deleteSizeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <!-- empty -->
     </div>

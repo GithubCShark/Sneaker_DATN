@@ -92,9 +92,13 @@
                                         <td class="pro-title"><a href="#"> @item.Products.ProductName</a></td>
                                         <td class="pro-quantity"><span>37</span></td>
                                         <td class="pro-quantity"><span>Đen</span></td>
-                                        <td class="pro-quantity"><span><input name="sl" type="number" id="@txt_Id" onchange="updateCart(@iD)" value="@item.Quantity" /></span></td>
-                                        <td class="pro-subtotal"><span id="tdGia_@iD">@item.Products.Price</span></td>
-                                        <td class="pro-price"><span id="tdTien_@iD">@totalSub</span></td>
+                                        <td class="pro-quantity">
+                                            <span>
+                                                <input name="sl" min="1" max="99" type="number" id="@txt_Id" onchange="updateCart(@iD)" value="@item.Quantity" />
+                                            </span>
+                                        </td>
+                                        <td class="pro-subtotal"><span id="tdGia_@iD">@String.Format("{0:n0}", @item.Products.Price)</span></td>
+                                        <td class="pro-price"><span id="tdTien_@iD">@String.Format("{0:n0}", @totalSub)</span></td>
                                         <td class="pro-remove"><a href="javascript:delCart(@iD);"><i class='bx bx-x bx-sm'></i></a></td>
                                     </tr>
 
@@ -127,26 +131,25 @@
                         <div class="col-sm-5 text-center">
                             <div class="total">
                                 <div class="sub">
-                                    <p><span>Tổng:</span> <span>$200.00</span></p>
-                                    <p><span>Phí vận chuyển:</span> <span>$0.00</span></p>
-                                    <p><span>Giảm giá:</span> <span>$45.00</span></p>
+                                    <p><span>Tổng:</span> <span>@String.Format("{0:n0}", @total)</span></p>
+                                    <p><span>Phí vận chuyển:</span> <span>0.00</span></p>
+                                    <p><span>Giảm giá:</span> <span>0.00</span></p>
                                 </div>
                                 <div class="grand-total">
-                                    <p><span><strong>Tổng tiền:</strong></span> <span id="spTotal">@total</span></p>
+                                    <p><span><strong>Tổng tiền:</strong></span> <span id="spTotal">@String.Format("{0:n0}", @total) VNĐ</span></p>
                                 </div>
                             </div>
                             <div class="checkout_btn_inner mt-3">
-                                <!-- <a class="grays_btn" href="index.html">Tiếp tục mua sắm</a> -->
-                                @*@if (emailAddress != null && emailAddress != "")
+                                @if (fullName != null && fullName != "")
                                 {
-                                    <a class="primary-btn addProduct" href="javascript:orderCart(true); ">Tiến hành thanh toán</a>
+                                    <a class="primary-btn" asp-controller="Home" asp-action="Checkout">Tiến hành thanh toán</a>
                                 }
                                 else
                                 {
-                                    <span> Bạn cần <a class="addProduct" href="javascript:orderCart(false); ">đăng nhập</a> để đặt hàng.</span>
-
-                                }*@
-                                <a class="primary-btn" <a asp-controller="Home" asp-action="Checkout">Tiến hành thanh toán</a>
+                                    <a class="primary-btn" onclick="return false" asp-controller="Home" asp-action="Checkout">Tiến hành thanh toán</a>
+                                    <br/>
+                                    <span>Bạn cần đăng nhập để đặt hàng</span>
+                                }
                             </div>
                         </div>
                     </div>
@@ -156,24 +159,12 @@
     </div>
 </div>
 
-
-@*<p>
-    @if (emailAddress != null && emailAddress != "")
-    {
-        <a class="addProduct" href="javascript:orderCart(true); ">Đặt Hàng</a>
-    }
-    else
-    {
-        <span> Bạn cần <a class="addProduct" href="javascript:orderCart(false); ">đăng nhập</a> để đặt hàng.</span>
-
-    }
-</p>*@
-
 <script>
     function clearCart() {
         $("#imgCart").attr("src", '/images/bag.png');
     }
     function delCart(id) {
+        location.reload();
         $.ajax({
             type: "POST",
             url: "/Home/DeleteCart",
@@ -200,7 +191,7 @@
         var gia = $("#tdGia_" + id).html();
         var thanhtien = soluong * gia;
         $("#tdTien_" + id).html(thanhtien);
-
+        location.reload();
 
         $.ajax({
             type: "POST",
@@ -220,23 +211,4 @@
             }
         });
     }
-
-    function orderCart(flagLogin) {
-        if (!flagLogin) {
-            //alert("Bạn cần đăng nhập để đặt hàng.");
-            window.location = "Login";
-        }
-        return false;
-    }
-
-    $.ajax({
-        type: "POST",
-        url: "/Home/OrderCart",
-        data: {
-        },
-        success: function (result) {
-            window.location = "/Home/History";
-        }
-    });
-
 </script>

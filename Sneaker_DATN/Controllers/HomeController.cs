@@ -128,37 +128,23 @@ namespace Sneaker_DATN.Controllers
 
         public IActionResult Products(int? page)
         {
-            // Tham số int? dùng để thể hiện null và kiểu int
-            // page có thể có giá trị là null và kiểu int.
-            // Nếu page = null thì đặt lại là 1.
             if (page == null) page = 1;
-            // Tạo truy vấn, lưu ý phải sắp xếp theo trường nào đó, ví dụ OrderBy
-            // theo BookID mới có thể phân trang.
             var sizes = _context.Products.Include(b => b.ProductName)
                 .OrderBy(b => b.ProductID);
-            // Tạo kích thước trang (pageSize) hay là số Link hiển thị trên 1 trang
             int pageSize = 4;
-            // Toán tử ?? trong C# mô tả nếu page khác null thì lấy giá trị page, còn
-            // nếu page = null thì lấy giá trị 1 cho biến pageNumber.
             int pageNumber = (page ?? 1);
-            // Lấy tổng số record chia cho kích thước để biết bao nhiêu trang
-            //int checkTotal = (int)(sizes.ToList().Count / pageSize) + 1;
-            //// Nếu trang vượt qua tổng số trang thì thiết lập là 1 hoặc tổng số trang
-            //if (pageNumber > checkTotal) pageNumber = checkTotal;
 
             ViewData["brand"] = _context.Brands.ToList();
             ViewData["size"] = _context.Sizes.ToList();
             ViewData["color"] = _context.Colors.ToList();
             return View(_context.Products.ToPagedList(pageNumber, pageSize));
-            //return View(await _context.Sizes.ToListAsync());
-
-            //return View(_productSvc.GetProductAll());
         }
+
         public IActionResult Index()
         {
             return View(_productSvc.GetProductAll());
         }
-        #region cart
+
         public IActionResult AddCart(int id)
         {
             var cart = HttpContext.Session.GetString("cart");
@@ -200,6 +186,7 @@ namespace Sneaker_DATN.Controllers
             }
             return Ok();
         }
+
         public IActionResult Cart()
         {
             List<ViewCart> dataCart = new List<ViewCart>();
@@ -210,6 +197,7 @@ namespace Sneaker_DATN.Controllers
             }
             return View(dataCart);
         }
+
         public IActionResult UpdateCart(int id, int soluong)
         {
             var cart = HttpContext.Session.GetString("cart");
@@ -231,6 +219,7 @@ namespace Sneaker_DATN.Controllers
             }
             return BadRequest();
         }
+
         public IActionResult DeleteCart(int id)
         {
             double total = 0;
@@ -263,50 +252,48 @@ namespace Sneaker_DATN.Controllers
             var cart = HttpContext.Session.GetString("cart");
             if (cart != null && cart.Count() > 0)
             {
-                #region DonHang
-                var G_Context = HttpContext.Session.GetString(SessionKey.Guest.GuestContext);
-                var khachhangId = JsonConvert.DeserializeObject<Users>(G_Context).UserID;
-
+                var GuestContext = HttpContext.Session.GetString(SessionKey.Guest.GuestContext);
+                var GuestID = JsonConvert.DeserializeObject<Users>(GuestContext).UserID;
+                var user = _context.Users.Find(GuestID);
                 double total = Tongtien();
 
                 var order = new Orders()
                 {
-                    UserID = khachhangId,
-                    Total = total,
+                    UserID = GuestID,
                     DateCreate = DateTime.Now,
-                    Note = "",
-
+                    Total = total,
+                    Address = user.Address,
+                    Status = "Đang xử lý",
+                    FullName = user.FullName,
+                    Email = user.Email,
+                    PhoneNumber = user.PhoneNumber
                 };
+                _context.Orders.Add(order);
+                _context.SaveChanges();
 
-                _orderSvc.AddOrder(order);
-                int orderiD = order.OrderID;
-
-                #region Chitiet
+                int orderID = order.OrderID;
                 List<ViewCart> dataCart = JsonConvert.DeserializeObject<List<ViewCart>>(cart);
                 for (int i = 0; i < dataCart.Count; i++)
                 {
-                    OrderDetails detail = new OrderDetails()
+                    OrderDetails details = new OrderDetails()
                     {
-                        OrderID = orderiD,
+                        OrderID = orderID,
                         ProductID = dataCart[i].Products.ProductID,
                         Quantity = dataCart[i].Quantity,
-                        Price = dataCart[i].Products.Price * dataCart[i].Quantity,
-
+                        Price = dataCart[i].Products.Price,
+                        ColorID = 1,
+                        SizeID = 1
                     };
-                    _orderDetailSvc.AddOrderDetail(detail);
+                    _context.OrderDetails.Add(details);
+                    _context.SaveChanges();
                 }
-
-                #endregion
-                #endregion
-                #endregion
-
-
                 HttpContext.Session.Remove("cart");
-
                 return Ok();
+
             }
-            return BadRequest();
+            return RedirectToAction(nameof(OrderComplete),"Home");
         }
+
         public IActionResult MiniCart()
         {
             List<ViewCart> dataCart = new List<ViewCart>();
@@ -333,12 +320,16 @@ namespace Sneaker_DATN.Controllers
             }
             return total;
         }
+
         public IActionResult Details(int id)
         {
             var product = _productSvc.GetProduct(id);
 
-            var brd = _productSvc.GetBrand(product.BrandID);
-            ViewData["brdetails"] = brd.BrandName;
+            ViewBag.prosz = _context.ProductSizes.ToList();
+            ViewBag.sz = _context.Sizes.ToList();
+
+            ViewBag.procol = _context.ProductColors.ToList();
+            ViewBag.col = _context.Colors.ToList();
 
             return View(product);
         }
@@ -347,29 +338,42 @@ namespace Sneaker_DATN.Controllers
         {
             return View();
         }
+
         public IActionResult Checkout()
         {
+            string guest = HttpContext.Session.GetString(SessionKey.Guest.Guest_FullName);
+            if (guest != null && guest != "")
+            {
+                int id = (int)HttpContext.Session.GetInt32(SessionKey.Guest.Guest_ID.ToString());
+                ViewBag.InfoUser = _context.Users.Find(id);
+            }
+
             List<ViewCart> dataCart = new List<ViewCart>();
             var cart = HttpContext.Session.GetString("cart");
+
             if (cart != null)
             {
                 dataCart = JsonConvert.DeserializeObject<List<ViewCart>>(cart);
             }
             return View(dataCart);
         }
+
         public IActionResult Contact()
         {
             return View();
         }
+
         public IActionResult OrderComplete()
         {
             return View();
         }
+
         public IActionResult ChangePass()
         {
             var user = _userMemSvc.GetUserMem((int)HttpContext.Session.GetInt32(SessionKey.Guest.Guest_ID.ToString()));
             return PartialView(user);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult ChangePass(Users user)
@@ -402,6 +406,7 @@ namespace Sneaker_DATN.Controllers
                 return View();
             }
         }
+
         public IActionResult Info()
         {
             var role = _context.Roles.ToList();

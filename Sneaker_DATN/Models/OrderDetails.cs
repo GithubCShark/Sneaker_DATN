@@ -10,6 +10,8 @@ namespace Sneaker_DATN.Models
     public class OrderDetails
     {
         [Key]
+        public int DetailID { get; set; }
+
         [ForeignKey("Orders")]
         public int OrderID { get; set; }
 

@@ -104,34 +104,38 @@
                                 }
                             </td>
                             <td>
-                                @foreach (var sz in ViewBag.productSize)
-                                {
-                                    if (sz.ID == item.ProductID)
+                                <select>
+                                    @foreach (var sz in ViewBag.productSize)
                                     {
-                                        foreach (var s in ViewBag.size)
+                                        if (sz.ID == item.ProductID)
                                         {
-                                            if (s.SizeID == sz.IdSize)
+                                            foreach (var s in ViewBag.size)
                                             {
-                                                @string.Join(", ", s.Size);
+                                                if (s.SizeID == sz.IdSize)
+                                                {
+                                                    <option>@s.Size</option>
+                                                }
                                             }
                                         }
                                     }
-                                }
+                                </select>    
                             </td>
                             <td>
-                                @foreach (var sz in ViewBag.productColor)
-                                {
-                                    if (sz.ID == item.ProductID)
+                                <select>
+                                    @foreach (var sz in ViewBag.productColor)
                                     {
-                                        foreach (var s in ViewBag.colors)
+                                        if (sz.ID == item.ProductID)
                                         {
-                                            if (s.ColorID == sz.ColorID)
+                                            foreach (var s in ViewBag.colors)
                                             {
-                                                @string.Join(", ", s.Color);
+                                                if (s.ColorID == sz.ColorID)
+                                                {
+                                                    <option>@s.Color</option>
+                                                }
                                             }
                                         }
                                     }
-                                }
+                                </select>
                             </td>
                             <td>
                                 <a asp-action="Edit" asp-route-id="@item.ProductID"><i class="far fa-edit dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>

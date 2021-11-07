@@ -75,22 +75,40 @@
                             <h4>Size</h4>
                             <select class="nice-select">
                                 <option value="">Chọn size:</option>
-                                <option value="40" class="attached enabled">40</option>
-                                <option value="41" class="attached enabled">41</option>
-                                <option value="42" class="attached enabled">42</option>
-                                <option value="43" class="attached enabled">43</option>
-                                <option value="44" class="attached enabled">44</option>
+                                @foreach (var item in ViewBag.prosz)
+                                {
+                                    if (item.ID == Model.ProductID)
+                                    {
+                                        foreach (var i in ViewBag.sz)
+                                        {
+                                            if (i.SizeID == item.IdSize)
+                                            {
+                                                <option value="">@i.Size</option>
+                                            }
+                                        }
+                                    }
+                                }
                             </select>
                         </div>
 
                         <div class="block-26-color mb-4">
                             <h4>Màu sắc</h4>
-                            <ul class="">
-                                <li><input class="color-checkbox colors1" type="radio" name="color"></li>
-                                <li><input class="color-checkbox colors2" type="radio" name="color"></li>
-                                <li><input class="color-checkbox colors3" type="radio" name="color"></li>
-                                <li><input class="color-checkbox colors4" type="radio" name="color"></li>
-                            </ul>
+                            <select class="nice-select">
+                                <option value="">Chọn Color:</option>
+                                @foreach (var item in ViewBag.procol)
+                                {
+                                    if (item.ID == Model.ProductID)
+                                    {
+                                        foreach (var i in ViewBag.col)
+                                        {
+                                            if (i.ColorID == item.ColorID)
+                                            {
+                                                <option value="">@i.Color</option>
+                                            }
+                                        }
+                                    }
+                                }
+                                </select>
                         </div>
                          <div class="block-26-color product_count">
                             <h4>Số lượng:</h4>
