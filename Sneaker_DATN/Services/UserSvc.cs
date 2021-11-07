@@ -66,13 +66,17 @@ namespace Sneaker_DATN.Services
                 _user.PhoneNumber = user.PhoneNumber;
                 _user.Address = user.Address;
                 _user.DOB = user.DOB;
-                _user.ImgUser = user.ImgUser;
                 _user.Lock = user.Lock;
                 _user.RoleID = user.RoleID;
                 if (user.Password != null)
                 {
                     user.Password = _encodeHelper.Encode(user.Password);
                     _user.Password = user.Password;
+                    _user.ConfirmPassword = user.Password;
+                }
+                if (user.ImgUser != null & user.ImgUser != "")
+                {
+                    _user.ImgUser = user.ImgUser;
                 }
                 _context.Update(_user);
                 _context.SaveChanges();

@@ -108,6 +108,7 @@ namespace Sneaker_DATN.Controllers
                         _uploadHelper.UploadImage(user.ImageUser, rootPath, thumuccon);
                         user.ImgUser = user.ImageUser.FileName;
                     }
+                    user.Password = null;
                     _userSvc.EditUser(id, user);
                     return RedirectToAction(nameof(Index), new { id = user.UserID });
                 }
