@@ -222,11 +222,11 @@
                             <div class="product-details">
                                 <h6><a class="text-decoration-none text-link-hover" asp-action="Details" asp-route-id="@item.ProductID">@Html.DisplayFor(modelItem => item.ProductName)</a></h6>
                                 <div class="price d-flex">
-                                    <h6 class="d-flex">@Html.DisplayFor(modelItem => item.Price) <span class="text-lowercase"> ₫</span></h6>
+                                    <h6 class="d-flex">@string.Format("{0:0,0 vnđ}", item.Price) <span class="text-lowercase"></span></h6>
                                     @*discount*@
                                     @if (item.Price >= 3000000)
                                     {
-                                        <h6 class="d-flex l-through">$@Html.DisplayFor(modelItem => item.Price) <span class="text-lowercase"> ₫</span></h6>
+                                        <h6 class="d-flex l-through">@string.Format("{0:0,0 vnđ}", item.Price) <span class="text-lowercase"></span></h6>
                                     }
 
                                 </div>

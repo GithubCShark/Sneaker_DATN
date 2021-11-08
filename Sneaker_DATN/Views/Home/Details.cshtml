@@ -68,13 +68,13 @@
             <div class="col-lg-5 offset-lg-1">
                 <div class="s_product_text">
                     <h3>@Html.DisplayFor(model => model.ProductName)</h3>
-                    <h2>@Html.DisplayFor(model => model.Price)₫</h2>
+                    <h2>@string.Format("{0:0,0 vnđ}", Model.Price)</h2>
                     <p></p>
                     <div class="size-wrap">
                         <div class="block-26 slt-detail-product mb-5">
                             <h4>Size</h4>
-                            <select class="nice-select">
-                                <option value="">Chọn size:</option>
+                            <select class="nice-select" id="size">
+                                <option value="0">Chọn size:</option>
                                 @foreach (var item in ViewBag.prosz)
                                 {
                                     if (item.ID == Model.ProductID)
@@ -83,7 +83,7 @@
                                         {
                                             if (i.SizeID == item.IdSize)
                                             {
-                                                <option value="">@i.Size</option>
+                                                <option value="@i.Size">@i.Size</option>
                                             }
                                         }
                                     }
@@ -93,8 +93,8 @@
 
                         <div class="block-26-color mb-4">
                             <h4>Màu sắc</h4>
-                            <select class="nice-select">
-                                <option value="">Chọn Color:</option>
+                            <select class="nice-select" id="color">
+                                <option value="Random">Chọn Color:</option>
                                 @foreach (var item in ViewBag.procol)
                                 {
                                     if (item.ID == Model.ProductID)
@@ -103,7 +103,7 @@
                                         {
                                             if (i.ColorID == item.ColorID)
                                             {
-                                                <option value="">@i.Color</option>
+                                                <option value="@i.Color">@i.Color</option>
                                             }
                                         }
                                     }
@@ -116,7 +116,7 @@
                                 class="input-text qty">
                         </div> 
                         <div class="card_area align-items-center">
-                            <a class="primary-btn" href="#">Thêm vào giỏ hàng</a>
+                            <a class="primary-btn" href="javascript:addCart(@Model.ProductID);">Thêm vào giỏ hàng</a>
                             <button class="icon_btn"><i class='bx bxs-heart bx-lg'></i></button>
                         </div>
                     </div>
@@ -451,4 +451,41 @@
             swiper: swiper,
         },
     });
+
+    function addCart(id) {
+        $("#imgCart").attr("src", '/images/bagA.png');
+        $("#imgBusy_" + id).show();
+        var size = $("#size").val();
+        var color = $("#color").val();
+        setTimeout(function () {
+            $.ajax({
+                url: "/Home/AddCart",
+                type: "Post",
+                data: {
+                    id: id,
+                    size: size,
+                    color: color
+                },
+                success: function (result) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Thêm vào giỏ thành thành công!',
+                        showConfirmButton: false,
+                        timer: 1000
+                    })
+                },
+                error: function (e) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'Thêm vào giỏ thành thất bại!',
+                        showConfirmButton: true,
+                        timer: 1000
+                    })
+                }
+            })
+            $("#imgBusy_" + id).hide();
+        }, 500);
+    }
 </script>

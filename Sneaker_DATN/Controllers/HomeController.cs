@@ -151,7 +151,7 @@ namespace Sneaker_DATN.Controllers
             return View(_context.Products.ToPagedList(pageNumber, pageSize));
         }
 
-        public IActionResult AddCart(int id)
+        public IActionResult AddCart(int id, int size, string color)
         {
             var cart = HttpContext.Session.GetString("cart");
             if (cart == null)
@@ -162,7 +162,9 @@ namespace Sneaker_DATN.Controllers
                     new ViewCart
                     {
                         Products = product,
-                        Quantity = 1
+                        Quantity = 1,
+                        Size = size,
+                        Color =  color
                     }
                 };
                 HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(listCart));
@@ -185,7 +187,9 @@ namespace Sneaker_DATN.Controllers
                     dataCart.Add(new ViewCart
                     {
                         Products = product,
-                        Quantity = 1
+                        Quantity = 1,
+                        Size = size,
+                        Color = color
                     });
                 }
                 HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(dataCart));
