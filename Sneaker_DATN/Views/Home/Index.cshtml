@@ -4,6 +4,16 @@
     ViewData["Title"] = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<style>
+    .text-link-hover{
+        color: #000;
+    }
+    .text-link-hover:hover {
+        color: #576ee0;
+    }
+</style>
+
 <!-- start banner Area -->
 <section class="banner-area">
     <div class="container">
@@ -188,7 +198,7 @@
             <div class="row justify-content-center" data-aos="fade-up">
                 <div class="col-lg-6 text-center">
                     <div class="section-title">
-                        <h1>Sản phẩm</h1>
+                        <h1><a asp-controller="Home" asp-action="Products" class="text-decoration-none text-link-hover">Sản phẩm</a></h1>
                         <p>Các sản phẩm bán chạy.</p>
                     </div>
                 </div>
@@ -199,22 +209,24 @@
 
                     <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="single-product">
-                            <img class="img-fluid" src="~/images/Product/@item.Image" alt="">
-                            @*sale*@
-                            @if (item.Price >= 3000000)
-                            {
-                                <div class="badge-overlay">
-                                    <span class="badge">Sale 0%</span>
-                                </div>
-                            }
+                            <a asp-action="Details" asp-route-id="@item.ProductID">
+                                <img class="img-fluid" src="~/images/Product/@item.Image" alt="">
+                                @*sale*@
+                                @if (item.Price >= 3000000)
+                                {
+                                    <div class="badge-overlay">
+                                        <span class="badge">Sale 0%</span>
+                                    </div>
+                                }
+                            </a>
                             <div class="product-details">
-                                <h6>@Html.DisplayFor(modelItem => item.ProductName)</h6>
-                                <div class="price">
-                                    <h6>@Html.DisplayFor(modelItem => item.Price)</h6>
+                                <h6><a class="text-decoration-none text-link-hover" asp-action="Details" asp-route-id="@item.ProductID">@Html.DisplayFor(modelItem => item.ProductName)</a></h6>
+                                <div class="price d-flex">
+                                    <h6 class="d-flex">@Html.DisplayFor(modelItem => item.Price) <span class="text-lowercase"> ₫</span></h6>
                                     @*discount*@
                                     @if (item.Price >= 3000000)
                                     {
-                                        <h6 class="l-through">$@Html.DisplayFor(modelItem => item.Price)</h6>
+                                        <h6 class="d-flex l-through">$@Html.DisplayFor(modelItem => item.Price) <span class="text-lowercase"> ₫</span></h6>
                                     }
 
                                 </div>

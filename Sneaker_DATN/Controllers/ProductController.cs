@@ -42,7 +42,7 @@ namespace Sneaker_DATN.Controllers
             var products = _context.Products.Include(b => b.ProductName)
                 .OrderBy(b => b.ProductID);
 
-            int pageSize = 9;
+            int pageSize = 4;
 
             int pageNumber = (page ?? 1);
 

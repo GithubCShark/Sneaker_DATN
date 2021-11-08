@@ -131,7 +131,7 @@ namespace Sneaker_DATN.Controllers
             if (page == null) page = 1;
             var sizes = _context.Products.Include(b => b.ProductName)
                 .OrderBy(b => b.ProductID);
-            int pageSize = 4;
+            int pageSize = 9;
             int pageNumber = (page ?? 1);
 
             ViewData["brand"] = _context.Brands.ToList();
@@ -140,9 +140,15 @@ namespace Sneaker_DATN.Controllers
             return View(_context.Products.ToPagedList(pageNumber, pageSize));
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int? page)
         {
-            return View(_productSvc.GetProductAll());
+            if (page == null) page = 1;
+            var products = _context.Products.Include(b => b.ProductName)
+                .OrderBy(b => b.ProductID);
+            int pageSize = 8;
+            int pageNumber = (page ?? 1);
+
+            return View(_context.Products.ToPagedList(pageNumber, pageSize));
         }
 
         public IActionResult AddCart(int id)
