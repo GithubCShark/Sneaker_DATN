@@ -22,12 +22,13 @@ namespace Sneaker_DATN.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult GetAllDateUserMem()
+        public IActionResult GetAllDateUserMem(int year)
         {
             List<Users> list = new List<Users>();
             list = _context.Users.Where(p => p.RoleID.Equals(3)).ToList();
+
             var listcount = from p in list
-                            where p.DateCreated.Value.Year == 2021
+                            where p.DateCreated.Value.Year == year
                             group p by p.DateCreated.Value.Month into List
                             select  new
                             {

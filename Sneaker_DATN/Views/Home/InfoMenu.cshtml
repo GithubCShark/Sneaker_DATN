@@ -1,8 +1,12 @@
 ﻿@model Sneaker_DATN.Models.Users
+@using Sneaker_DATN.Constant
+@using Microsoft.AspNetCore.Http
+
 @{
     ViewData["Title"] = "Thông tin cá nhân";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@{ string avatar = Context.Session.GetString(SessionKey.Guest.Guest_Avatar);}
 
 <!-- Start Banner Area -->
 <section class="banner-area organic-breadcrumb">
@@ -31,7 +35,17 @@
             <div class="row col-lg-12">
                 <div class="col-lg-4 infomation-user-left">
                     <div class="infomation-user-left-img">
-                        <img alt='' src="~/images/avatar/@Model.ImgUser" />
+                        @if (avatar == null || avatar == "")
+                        {
+                            <span class="img-non-user">
+                                <span class="bx bx-user-circle bx-sm"></span>
+                                @*<img src="~/images/user.png" style="width:25px" />*@
+                            </span>
+                        }
+                        else
+                        {
+                            <img alt='' src="~/images/avatar/@Model.ImgUser" />
+                        }
                         <span class="">
                             @Html.DisplayFor(model => model.FullName)
                         </span>
@@ -62,7 +76,7 @@
                     <div class="infomation-user-right-txt">
                         <p>
                             Xin chào <strong>@Html.DisplayFor(model => model.Email)</strong> (không phải tài khoản
-                                     <strong>@Html.DisplayFor(model => model.Email)</strong>? Hãy <a href="">
+                            <strong>@Html.DisplayFor(model => model.Email)</strong>? Hãy <a href="">
                                 thoát
                                 ra
                             </a> và đăng nhập vào tài khoản của bạn)
