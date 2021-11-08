@@ -9,8 +9,8 @@
 
 
 <div class="container">
-    <div class="col-lg-12 col-md-12 col-sm-12 custom-form mt-4">
-        <div class="card flex-row shadow-lg">
+    <div class="col-lg-12 col-md-12 col-sm-12 custom-form mt-4 pb-5">
+        <div class="card flex-row shadow-lg pb-5">
             <div class="card-body col-lg-12 col-md-12 col-sm-12">
                 <a asp-action="Index" class="dashbroad-icon-hover">
                     <i class="icon-back fas fa-chevron-left fa-2x d-flex"></i>
@@ -63,27 +63,29 @@
                         <select asp-for="BrandID" class="form-control-select" asp-items="ViewBag.brands"></select>
                         <span asp-validation-for="BrandID" class="text-danger"></span>
                     </div>
-                    <div class="form-group form-check">
-                        <label class="form-check-label">
-                            <input class="form-check-input" asp-for="Status" /> @Html.DisplayNameFor(model => model.Status)
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Chọn danh mục</label>
+
+                    <div class="form-group mt-3">
+                        <label class="control-label">Chọn size</label>
                         @Html.ListBox("selectedSize", ViewBag.categories,
-                            new { @class = "w-100", id = "selectedSize" })
+                            new { @class = "form-control-select form-custom-select", id = "selectedSize" })
                     </div>
                     <div class="form-group">
-                        <label class="control-label">Chọn danh mục</label>
+                        <label class="control-label">Chọn màu</label>
                         @Html.ListBox("selectedColor", ViewBag.color,
-                            new { @class = "w-100", id = "selectedColor" })
+                            new { @class = "form-control-select form-custom-select", id = "selectedColor" })
+                    </div>
+                    <div class="form-group form-check mt-3">
+                        <label class="form-check-label form-check-lbl">
+                            <input class="form-check-input form-custom-check" asp-for="Status" />
+                            <span class="form-check-input-span">@Html.DisplayNameFor(model => model.Status)</span>
+                        </label>
                     </div>
                     <div class="form-group mt-3">
                         <label asp-for="Description" class="control-label"></label>
-                        <input asp-for="Description" class="form-control-description form-control" />
+                        <textarea asp-for="Description" class="form-control-description form-control"></textarea>
                         <span asp-validation-for="Description" class="text-danger"></span>
                     </div>
-                    <div class="text-center">
+                    <div class="text-center mt-4">
                         <input type="submit" value="Thêm sản phẩm" class="mt-2 col-lg-6 btn btn-primary" />
                     </div>
                 </form>

@@ -104,7 +104,7 @@
                                 }
                             </td>
                             <td>
-                                <select>
+                                <select class="custom-select-product">
                                     @foreach (var sz in ViewBag.productSize)
                                     {
                                         if (sz.ID == item.ProductID)
@@ -113,7 +113,7 @@
                                             {
                                                 if (s.SizeID == sz.IdSize)
                                                 {
-                                                    <option>@s.Size</option>
+                                                    <option class="custom-select-product-opt">@s.Size</option>
                                                 }
                                             }
                                         }
@@ -121,7 +121,7 @@
                                 </select>    
                             </td>
                             <td>
-                                <select>
+                                <select class="custom-select-product">
                                     @foreach (var sz in ViewBag.productColor)
                                     {
                                         if (sz.ID == item.ProductID)
@@ -130,7 +130,7 @@
                                             {
                                                 if (s.ColorID == sz.ColorID)
                                                 {
-                                                    <option>@s.Color</option>
+                                                    <option class="custom-select-product-opt">@s.Color</option>
                                                 }
                                             }
                                         }

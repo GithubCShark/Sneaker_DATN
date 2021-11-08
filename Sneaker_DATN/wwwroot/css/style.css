@@ -4665,8 +4665,9 @@ Audio
     width: 10rem;
 }
 .color-dashboard .posts-table tbody tr td:nth-child(1) {
-    width:13rem;
+    width: 15rem;
     padding-left: 3rem;
+    padding-right: 1rem;
 }
 .color-dashboard .posts-table thead tr th:nth-child(1) {
     padding-left: 3rem;
@@ -4939,4 +4940,11 @@ dd {
 .darkmode .pagination-container .pagination li:hover {
     background: #576ee0;
     color: #fff;
+}
+
+/*modal input*/
+.form-modal-input {
+    border: none !important;
+    border-radius: 6px !important;
+    background: rgb(245, 245, 245) !important;
 }

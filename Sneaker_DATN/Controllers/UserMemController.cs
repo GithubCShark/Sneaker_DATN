@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Sneaker_DATN.Helpers;
 using Sneaker_DATN.Models;
 using Sneaker_DATN.Services;
@@ -10,6 +11,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace Sneaker_DATN.Controllers
 {
@@ -27,9 +29,14 @@ namespace Sneaker_DATN.Controllers
             _uploadHelper = uploadHelper;
         }
         // GET: UserController
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View(_userMemSvc.GetAllUserMem());
+            if (page == null) page = 1;
+            var user = _context.Users.Include(b => b.UserName).OrderBy(b => b.UserID);
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+
+            return View(_context.Users.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: UserController/Details/5

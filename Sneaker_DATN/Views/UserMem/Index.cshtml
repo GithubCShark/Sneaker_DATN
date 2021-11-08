@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Sneaker_DATN.Models.Users>
+﻿@model X.PagedList.IPagedList<Sneaker_DATN.Models.Users>
+@using X.PagedList.Mvc.Core;
 
 @{
     ViewData["Title"] = "ListUser";
@@ -42,31 +43,31 @@
                 <thead>
                     <tr class="users-table-info">
                         @*<th>
-            @Html.DisplayNameFor(model => model.UserName)
-        </th>*@
+                                @Html.DisplayNameFor(model => model.UserName)
+                            </th>*@
                         <th>
-                            @Html.DisplayNameFor(model => model.FullName)
+                            @Html.DisplayNameFor(model => model.First().FullName)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Email)
+                            @Html.DisplayNameFor(model => model.First().Email)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Gender)
+                            @Html.DisplayNameFor(model => model.First().Gender)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.PhoneNumber)
+                            @Html.DisplayNameFor(model => model.First().PhoneNumber)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.DOB)
+                            @Html.DisplayNameFor(model => model.First().DOB)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Address)
+                            @Html.DisplayNameFor(model => model.First().Address)
                         </th>
                         @*<th>
-                            @Html.DisplayNameFor(model => model.Roles)
-                        </th>*@
+                                @Html.DisplayNameFor(model => model.Roles)
+                            </th>*@
                         <th>
-                            @Html.DisplayNameFor(model => model.Lock)
+                            @Html.DisplayNameFor(model => model.First().Lock)
                         </th>
                         <th></th>
                     </tr>
@@ -74,53 +75,63 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                    <tr>
-                        @*<td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>*@
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FullName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Email)
-                        </td>
-                        <td>
-                            @if (item.Gender)
-                            {
-                                <span>Nam</span>
-                            }
-                            else
-                            {
-                                <span>Nữ</span>
-                            }
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PhoneNumber)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DOB)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Address)
-                        </td>
-                        <!--<td>
-                            @if (item.RoleID == 3)
-                            {
-                                <span>Khách hàng</span>
-                            }-->
+                        <tr>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.UserName)
+                                </td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FullName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                @if (item.Gender)
+                                {
+                                    <span>Nam</span>
+                                }
+                                else
+                                {
+                                    <span>Nữ</span>
+                                }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PhoneNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DOB)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Address)
+                            </td>
+                            <!--<td>
+                                @if (item.RoleID == 3)
+                                {
+                                    <span>Khách hàng</span>
+                                }-->
                             @*@Html.DisplayFor(modelItem => item.RoleID)*@
-                        <!--</td>-->
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Lock)
-                        </td>
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@item.UserID"><i class="far fa-edit dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
-                            <a asp-action="Details" asp-route-id="@item.UserID"><i class="far fa-eye ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
-                        </td>
-                    </tr>
+                            <!--</td>-->
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Lock)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.UserID"><i class="far fa-edit dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
+                                <a asp-action="Details" asp-route-id="@item.UserID"><i class="far fa-eye ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </table>
+        </div>
+    </div>
+    <div class="col-lg-12 m-auto px-5 pb-5">
+        <div class="pagin-admin shadow-sm">
+            <div class="pagin-left float-left">
+                Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+            </div>
+            <div class="pagin-right float-right">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+            </div>
         </div>
     </div>
 </div>

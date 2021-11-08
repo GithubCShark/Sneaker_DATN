@@ -1,0 +1,39 @@
+﻿/*modal input*/
+.form-modal-input {
+    border: none !important;
+    border-radius: 6px !important;
+    background: rgb(245, 245, 245) !important;
+}
+.custom-select-product{
+    cursor: pointer;
+    width: 5rem;
+}
+.form-control-description {
+    border-radius: 8px;
+    border: none;
+    height: 100px !important;
+    max-height: 100px !important;
+}
+.form-custom-select button {
+    border-radius: 8px;
+    height: 40px;
+    background-color: rgb(245, 245, 245);
+    border: none;
+}
+    .form-custom-select button span {
+        margin-top: 0.5rem;
+        border-radius: 8px;
+        background-color: transparent;
+    }
+.form-check-lbl{
+    display: flex;
+    align-items: end;
+}
+.form-custom-check {
+    background-color: #576ee0 !important;
+    width: 25px;
+    height: 25px;
+}
+.form-check-input-span{
+    margin-left: 1rem;
+}
