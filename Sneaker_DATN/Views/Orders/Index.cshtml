@@ -46,19 +46,19 @@
                             @Html.DisplayNameFor(model => model.FullName)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.DateCreate)
-                        </th>
-                        <th>
                             @Html.DisplayNameFor(model => model.Total)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Address)
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.Status)
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.PhoneNumber)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Address)
+                        </th>
+                        <th class="col-lg-1">
+                            @Html.DisplayNameFor(model => model.DateCreate)
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.Note)
@@ -77,20 +77,20 @@
                                 @Html.DisplayFor(modelItem => item.FullName)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.DateCreate)
-                            </td>
-                            <td>
                                 @*@Html.DisplayFor(modelItem => item.Total)*@
                                 @string.Format("{0:0,0}", item.Total)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Address)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Status)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.PhoneNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Address)
+                            </td>
+                            <td class="col-lg-1">
+                                @Html.DisplayFor(modelItem => item.DateCreate)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Note)

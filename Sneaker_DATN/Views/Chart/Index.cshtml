@@ -75,51 +75,63 @@
             type: 'bar',
             data: barChartData1,
         });
-
-
-        $.ajax({
-            url: "/Chart/GetAllDateUserMem",
-            type: "POST",
-            //contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: function (dataChart) {
-                var lsLabel = [];
-                var lsDataSource = [];
-
-                $.each(JSON.parse(dataChart), function (index, item) {
-                    lsLabel.push(item.Thang);
-                    lsDataSource.push(item.SoLuong);
-                });
-
-                var ctx = document.getElementById('chartProduct');
-                var dataT = {
-                    labels: lsLabel,
-                    datasets: [
-                        {
-                            label: 'Sản phẩm',
-                            backgroundColor: "#0b9663",
-                            borderWidth: 1,
-                            data: [15, 20, 18, 21, 13, 20, 17, 12, 16, 19, 14, 20]
-                        },
-                        {
-                            label: "Thành viên",
-                            data: lsDataSource,
-                            backgroundColor: "#CC975E",
-                            borderWidth: 1
-
-                        //fill: false,
-                        //backgroundColor: ["rgba(54, 162, 235, 0.2)", "rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
-                        //borderColor: ["rgb(54, 162, 235)", "rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(153, 102, 255)", "rgb(201, 203, 207)"],
-                        }
-                    ]
-                };
-
-                var myBarChart = new Chart(ctx, {
-                    type: 'bar',
-                    data: dataT,
-                });
-            }
+        // Chọn năm và truyền
+        $('#ddlYear').on('change', function () {
+            var year = $(this).val();
+            GetReportList(year);
         });
+
+        // Set năm hiển thị ban đầu
+        //var dt = new Date();
+        //GetReportList(dt.getFullYear());
+        GetReportList(2021);
+
+        //// Đọc năm và trả về object
+        function GetReportList(year) {
+            $.ajax({
+                url: "/Chart/GetAllDateUserMem?year=" + year,
+                type: "POST",
+                //contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (dataChart) {
+                    var lsLabel = [];
+                    var lsDataSource = [];
+
+                    $.each(JSON.parse(dataChart), function (index, item) {
+                        lsLabel.push(item.Thang);
+                        lsDataSource.push(item.SoLuong);
+                    });
+
+                    var ctx = document.getElementById('chartProduct');
+                    var dataT = {
+                        labels: lsLabel,
+                        datasets: [
+                            {
+                                label: 'Sản phẩm',
+                                backgroundColor: "#0b9663",
+                                borderWidth: 1,
+                                data: [15, 20, 18, 21, 13, 20, 17, 12, 16, 19, 14, 20]
+                            },
+                            {
+                                label: "Thành viên",
+                                data: lsDataSource,
+                                backgroundColor: "#CC975E",
+                                borderWidth: 1
+
+                                //fill: false,
+                                //backgroundColor: ["rgba(54, 162, 235, 0.2)", "rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
+                                //borderColor: ["rgb(54, 162, 235)", "rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(153, 102, 255)", "rgb(201, 203, 207)"],
+                            }
+                        ]
+                    };
+
+                    var myBarChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: dataT,
+                    });
+                }
+            });
+        }
 
             // Chọn năm và truyền
             //$('#ddlYear').on('change', function(){
