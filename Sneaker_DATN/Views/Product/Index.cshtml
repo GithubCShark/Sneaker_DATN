@@ -39,11 +39,12 @@
     </div>
     <div class="col-lg-12 m-auto px-5">
         <div class="users-table table-wrapper">
-            <table class="posts-table mt-3" enctype="multipart/form-data">
+            <table class="posts-table mt-3 admin-product" enctype="multipart/form-data">
                 <thead>
                     <tr class="users-table-info">
                         <th>
-                            @Html.DisplayNameFor(model => model.First().ProductID)
+                            ID
+                            @*@Html.DisplayNameFor(model => model.First().ProductID)*@
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.First().ProductName)
@@ -52,16 +53,20 @@
                             @Html.DisplayNameFor(model => model.First().Price)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.First().Image)
+                            Hình
+                            @*@Html.DisplayNameFor(model => model.First().Image)*@
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.First().Image1)
+                            Hình
+                            @*@Html.DisplayNameFor(model => model.First().Image1)*@
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.First().Image2)
+                            Hình
+                            @*@Html.DisplayNameFor(model => model.First().Image2)*@
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.First().Status)
+                            Trạng thái
+                            @*@Html.DisplayNameFor(model => model.First().Status)*@
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.First().Brands)

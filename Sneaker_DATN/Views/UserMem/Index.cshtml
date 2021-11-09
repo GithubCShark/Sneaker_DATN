@@ -79,13 +79,13 @@
                             @*<td>
                                     @Html.DisplayFor(modelItem => item.UserName)
                                 </td>*@
-                            <td>
+                            <td class="col-lg-2">
                                 @Html.DisplayFor(modelItem => item.FullName)
                             </td>
-                            <td>
+                            <td class="col-lg-1">
                                 @Html.DisplayFor(modelItem => item.Email)
                             </td>
-                            <td>
+                            <td class="col-lg-1"> 
                                 @if (item.Gender)
                                 {
                                     <span>Nam</span>
@@ -95,13 +95,13 @@
                                     <span>Nữ</span>
                                 }
                             </td>
-                            <td>
+                            <td class="col-lg-1">
                                 @Html.DisplayFor(modelItem => item.PhoneNumber)
                             </td>
-                            <td>
+                            <td class="col-lg-1">
                                 @Html.DisplayFor(modelItem => item.DOB)
                             </td>
-                            <td>
+                            <td class="col-lg-3">
                                 @Html.DisplayFor(modelItem => item.Address)
                             </td>
                             <!--<td>
@@ -111,10 +111,10 @@
                                 }-->
                             @*@Html.DisplayFor(modelItem => item.RoleID)*@
                             <!--</td>-->
-                            <td>
+                            <td class="col-lg-1">
                                 @Html.DisplayFor(modelItem => item.Lock)
                             </td>
-                            <td>
+                            <td class="col-lg-2">
                                 <a asp-action="Edit" asp-route-id="@item.UserID"><i class="far fa-edit dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
                                 <a asp-action="Details" asp-route-id="@item.UserID"><i class="far fa-eye ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
                             </td>

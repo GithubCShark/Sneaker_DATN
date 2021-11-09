@@ -4664,12 +4664,17 @@ Audio
 .color-dashboard .posts-table .users-table-info th:last-child{
     width: 10rem;
 }
-.color-dashboard .posts-table tbody tr td:nth-child(1) {
+/*.color-dashboard .posts-table tbody tr td:nth-child(2) {
+    width: auto;
+}*/
+.color-dashboard .admin-product .posts-table tbody tr td:nth-child(2) {
     width: 15rem;
+}
+.color-dashboard .posts-table tbody tr td:nth-child(1) {
     padding-left: 3rem;
     padding-right: 1rem;
 }
-.color-dashboard .posts-table thead tr th:nth-child(1) {
+.color-dashboard  .posts-table thead tr th:nth-child(1) {
     padding-left: 3rem;
 }
 

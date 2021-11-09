@@ -63,9 +63,9 @@
                         <th>
                             @Html.DisplayNameFor(model => model.Note)
                         </th>
-                        <th>
+                        @*<th>
                             @Html.DisplayNameFor(model => model.Email)
-                        </th>
+                        </th>*@
                         <th></th>
                     </tr>
                 </thead>
@@ -73,32 +73,32 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td>
+                            <td class="col-lg-2">
                                 @Html.DisplayFor(modelItem => item.FullName)
                             </td>
-                            <td>
+                            <td class="col-lg-1">
                                 @*@Html.DisplayFor(modelItem => item.Total)*@
                                 @string.Format("{0:0,0}", item.Total)
                             </td>
-                            <td>
+                            <td class="col-lg-1">
                                 @Html.DisplayFor(modelItem => item.Status)
                             </td>
-                            <td>
+                            <td class="col-lg-1">
                                 @Html.DisplayFor(modelItem => item.PhoneNumber)
                             </td>
-                            <td>
+                            <td class="col-lg-1">
                                 @Html.DisplayFor(modelItem => item.Address)
                             </td>
                             <td class="col-lg-1">
                                 @Html.DisplayFor(modelItem => item.DateCreate)
                             </td>
-                            <td>
+                            <td class="col-lg-2">
                                 @Html.DisplayFor(modelItem => item.Note)
                             </td>
-                            <td>
+                            @*<td class="col-lg-1">
                                 @Html.DisplayFor(modelItem => item.Email)
-                            </td>
-                            <td>
+                            </td>*@
+                            <td class="col-lg-2">
                                 <a asp-action="Edit" asp-route-id="@item.OrderID"><i class="far fa-edit dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
                                 <a asp-controller="OrderDetails" asp-action="Details" asp-route-id="@item.OrderID"><i class="far fa-eye ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
                             </td>
