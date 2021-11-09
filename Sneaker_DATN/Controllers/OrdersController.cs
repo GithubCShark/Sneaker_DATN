@@ -1,25 +1,35 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Sneaker_DATN.Models;
 using Sneaker_DATN.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace Sneaker_DATN.Controllers
 {
     public class OrdersController : BaseController
     {
+        private readonly DataContext _context;
         private IOrderSvc _orderSvc;
-        public OrdersController(IOrderSvc orderSvc)
+        public OrdersController(IOrderSvc orderSvc, DataContext context)
         {
+            _context = context;
             _orderSvc = orderSvc;
         }
         // GET: OrdersController
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View(_orderSvc.GetOrderAll());
+            if (page == null) page = 1;
+            var sizes = _context.Orders.Include(b => b.FullName).OrderBy(b => b.OrderID);
+            int pageSize = 5;
+            int pageNumber = (page ?? 1);
+
+            return View(_context.Orders.ToPagedList(pageNumber, pageSize));
+            //return View(_orderSvc.GetOrderAll());
         }
 
         // GET: OrdersController/Details/5

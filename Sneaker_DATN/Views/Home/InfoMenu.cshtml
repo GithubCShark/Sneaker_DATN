@@ -8,6 +8,13 @@
 }
 @{ string avatar = Context.Session.GetString(SessionKey.Guest.Guest_Avatar);}
 
+<style>
+/*    .img-info-user i {
+        width: 50px !important;
+        height: 50px !important;
+    }*/
+</style>
+
 <!-- Start Banner Area -->
 <section class="banner-area organic-breadcrumb">
     <div class="container">
@@ -35,7 +42,21 @@
             <div class="row col-lg-12">
                 <div class="col-lg-4 infomation-user-left">
                     <div class="infomation-user-left-img">
-                        <img alt='' src="~/images/avatar/@Model.ImgUser" />
+
+                        @if (avatar == null || avatar == "")
+                        {
+                        <span class="img-info-user">
+                            <source srcset="~/images/avatar/avatar-illustrated-02.webp" type="image/webp">
+                            <img src="~/images/avatar/avatar-illustrated-02.png" alt="User name">
+                            @*<img src="~/images/user.png" style="width:25px" />*@
+                        </span>
+                        }
+                        else
+                        {
+                            <img alt='' src="~/images/avatar/@Model.ImgUser" />
+                        }
+
+                        @*<img alt='' src="~/images/avatar/@Model.ImgUser" />*@
                         <span class="">
                             @Html.DisplayFor(model => model.FullName)
                         </span>

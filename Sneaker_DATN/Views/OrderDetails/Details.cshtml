@@ -1,4 +1,4 @@
-﻿@model Sneaker_DATN.Models.OrderDetails
+﻿@model IEnumerable<Sneaker_DATN.Models.OrderDetails>
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_LayoutManager.cshtml";
@@ -10,17 +10,99 @@
                 <a class="dashbroad-icon-hover" asp-controller="Orders" asp-action="Index"><i class="icon-back fas fa-chevron-left fa-2x "></i></a>
                 <h4 class="main-title text-center text-uppercase mt-2">Chi tiết đơn hàng</h4>
                 <button class="custom-icon-button">
-                    <a class="font-weight-lighter" asp-controller="Orders" asp-action="Edit" asp-route-id="@Model.OrderID">
+                    @*<a class="font-weight-lighter" asp-controller="Orders" asp-action="Edit" asp-route-id="@Model.OrderID">
                         <i class="far fa-edit" style="font-size: 1.25rem;"></i> Chỉnh sửa
-                    </a>
+                    </a>*@
                 </button>
             </div>
-            <dl class="shadow-lg">
+
+            <div class="col-lg-7">
+                <table>
+                    <tr>
+                        @*<th>
+                            Hình
+                        </th>*@
+                        <th>
+                            Tên sản phẩm
+                        </th>
+                        <th>
+                            Màu
+                        </th>
+                        <th>
+                            Size
+                        </th>
+                        <th>
+                            Số lượng
+                        </th>
+                        <th>
+                            Giá
+                        </th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            @*<td>
+                                
+                            </td>*@
+                            <td>
+                                @item.ProductID
+                            </td>
+                            <td>
+                                @item.ColorID
+                            </td>
+                            <td>
+                                @item.SizeID
+                            </td>
+                            <td>
+                                @item.Quantity
+                            </td>
+                            <td>
+                                @item.Price
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+            <div class="col-lg-5">
+                <table>
+                    <tr>
+                        <th>
+                            Tên khách hàng
+                        </th>
+                        <th>
+                            Địa chỉ
+                        </th>
+                        <th>
+                            Số điện thoại
+                        </th>
+                        <th>
+                            Email
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            @ViewBag.order.FullName
+                        </td>
+                        <td>
+                            @ViewBag.order.Address
+                        </td>
+                        <td>
+                            @ViewBag.order.PhoneNumber
+                        </td>
+                        <td>
+                            @ViewBag.order.Email
+                        </td>
+                    </tr>
+                    
+                </table>
+            </div>
+
+            @*<dl class="shadow-lg">
                 <dt class="col-sm-2">
                     Tên khách hàng
                 </dt>
                 <dd class="col-sm-10">
-                    @ViewBag.orderdetail
+                    @ViewBag.order.FullName
                 </dd>
                 <dt class="col-sm-2">
                     @Html.DisplayNameFor(model => model.Quantity)
@@ -58,7 +140,7 @@
                 <dd class="col-sm-10">
                     @Html.DisplayFor(model => model.Colors.ColorID)
                 </dd>
-            </dl>
+            </dl>*@
         </div>
         @*<div>
                 <a asp-action="Edit" asp-route-id="@Model.UserID">Sửa</a> |

@@ -10,7 +10,7 @@ namespace Sneaker_DATN.Models
         public Products Products { get; set; }
         public int Quantity { get; set; }
         public int Size { get; set; }
-        public string Color { get; set; }
+        public int Color { get; set; }
 
     }
 }

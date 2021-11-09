@@ -8,7 +8,7 @@ namespace Sneaker_DATN.Services
 {
     public interface IOrderDetailSvc
     {
-        List<OrderDetails> GetOrderDetailsAll();
+        List<OrderDetails> GetOrderDetails(int id);
 
         int AddOrderDetail(OrderDetails orderDetails);
     }
@@ -19,10 +19,9 @@ namespace Sneaker_DATN.Services
         {
             _context = context;
         }
-        public List<OrderDetails> GetOrderDetailsAll()
+        public List<OrderDetails> GetOrderDetails(int id)
         {
-            List<OrderDetails> list = new List<OrderDetails>();
-            list = _context.OrderDetails.ToList();
+            List<OrderDetails> list = _context.OrderDetails.Where(x => x.OrderID == id ).ToList();
             return list;
         }
         public int AddOrderDetail(OrderDetails orderDetails)

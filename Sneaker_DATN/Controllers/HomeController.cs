@@ -151,7 +151,7 @@ namespace Sneaker_DATN.Controllers
             return View(_context.Products.ToPagedList(pageNumber, pageSize));
         }
 
-        public IActionResult AddCart(int id, int size, string color)
+        public IActionResult AddCart(int id, int size, int color)
         {
             var cart = HttpContext.Session.GetString("cart");
             if (cart == null)
@@ -201,6 +201,8 @@ namespace Sneaker_DATN.Controllers
         {
             List<ViewCart> dataCart = new List<ViewCart>();
             var cart = HttpContext.Session.GetString("cart");
+            ViewBag.sz = _context.Sizes.ToList();
+            ViewBag.col = _context.Colors.ToList();
             if (cart != null)
             {
                 dataCart = JsonConvert.DeserializeObject<List<ViewCart>>(cart);
@@ -291,8 +293,8 @@ namespace Sneaker_DATN.Controllers
                         ProductID = dataCart[i].Products.ProductID,
                         Quantity = dataCart[i].Quantity,
                         Price = dataCart[i].Products.Price,
-                        ColorID = 1,
-                        SizeID = 1
+                        ColorID = dataCart[i].Color,
+                        SizeID = dataCart[i].Size
                     };
                     _context.OrderDetails.Add(details);
                     _context.SaveChanges();
@@ -335,7 +337,8 @@ namespace Sneaker_DATN.Controllers
         {
             var product = _productSvc.GetProduct(id);
 
-            ViewBag.brd = _context.Brands.Find(id);
+            var brd = _productSvc.GetBrand(product.BrandID);
+            ViewData["brdetails"] = brd.BrandName;
 
             ViewBag.prosz = _context.ProductSizes.ToList();
             ViewBag.sz = _context.Sizes.ToList();

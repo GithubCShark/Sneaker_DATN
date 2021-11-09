@@ -135,25 +135,9 @@ namespace Sneaker_DATN.Controllers
             return View(user);
         }
 
-        // GET: UserController/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
-
-        //// POST: UserController/Delete/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Delete(int id, IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+        public ActionResult BotChat()
+        {
+            return View();
+        }
     }
 }

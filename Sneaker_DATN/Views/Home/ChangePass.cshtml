@@ -1,8 +1,12 @@
 ﻿@model Sneaker_DATN.Models.Users
+@using Sneaker_DATN.Constant
+@using Microsoft.AspNetCore.Http
+
 @{
     ViewData["Title"] = "Đổi mật khẩu";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@{ string avatar = Context.Session.GetString(SessionKey.Guest.Guest_Avatar);}
 
 <!-- Start Banner Area -->
 <section class="banner-area organic-breadcrumb">
@@ -31,7 +35,18 @@
             <div class="row col-lg-12">
                 <div class="col-lg-4 infomation-user-left">
                     <div class="infomation-user-left-img">
-                        <img alt='' src="~/images/avatar/@Model.ImgUser" />
+                        @if (avatar == null || avatar == "")
+                        {
+                            <span class="img-info-user">
+                                <source srcset="~/images/avatar/avatar-illustrated-02.webp" type="image/webp">
+                                <img src="~/images/avatar/avatar-illustrated-02.png" alt="User name">
+                                @*<img src="~/images/user.png" style="width:25px" />*@
+                            </span>
+                        }
+                        else
+                        {
+                            <img alt='' src="~/images/avatar/@Model.ImgUser" />
+                        }
                         <span class="">
                             @Html.DisplayFor(model => model.FullName)
                         </span>
@@ -49,10 +64,10 @@
                             <a href="">Đơn hàng</a>
                         </li>
                         @*<li class="nav-link">
-                            <a href="">Địa chỉ</a>
-                        </li>*@
+                                <a href="">Địa chỉ</a>
+                            </li>*@
                         <li class="nav-link">
-                            <a asp-controller="Home" asp-action="ChangePass"  class="nav-info-active">Đổi mật khẩu</a>
+                            <a asp-controller="Home" asp-action="ChangePass" class="nav-info-active">Đổi mật khẩu</a>
                         </li>
 
                     </ul>
@@ -96,25 +111,25 @@
 
 
 @*<div class="login_form_inner">
-    <button type="button" class="close close-login" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <h3>Đổi mật khẩu</h3>
-    <div class="text-danger" asp-validation-summary="All"></div>
-    <form asp-action="ChangePass" class="row login_form" method="post" id="contactForm"
-          novalidate="novalidate">
-        <div class="col-md-12 form-group">
-            <input type="text" asp-for="UserName" id="username" class="form-control" readonly>
-        </div>
-        <div class="col-md-12 form-group">
-            <input type="password" asp-for="ConfirmPassword" id="confirmpassword" class="form-control"
-                   placeholder="Mật khẩu cũ">
-        </div>
-        <div class="col-md-12 form-group">
-            <input type="password" asp-for="Password" id="password" class="form-control"
-                   placeholder="Mật khẩu mới">
-        </div>
+        <button type="button" class="close close-login" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h3>Đổi mật khẩu</h3>
+        <div class="text-danger" asp-validation-summary="All"></div>
+        <form asp-action="ChangePass" class="row login_form" method="post" id="contactForm"
+              novalidate="novalidate">
+            <div class="col-md-12 form-group">
+                <input type="text" asp-for="UserName" id="username" class="form-control" readonly>
+            </div>
+            <div class="col-md-12 form-group">
+                <input type="password" asp-for="ConfirmPassword" id="confirmpassword" class="form-control"
+                       placeholder="Mật khẩu cũ">
+            </div>
+            <div class="col-md-12 form-group">
+                <input type="password" asp-for="Password" id="password" class="form-control"
+                       placeholder="Mật khẩu mới">
+            </div>
 
-        <div class="col-md-12 form-group">
-            <button type="submit" value="submit" class="primary-btn btnLogin">Đổi mật khẩu</button>
-        </div>
-    </form>
-</div>*@
+            <div class="col-md-12 form-group">
+                <button type="submit" value="submit" class="primary-btn btnLogin">Đổi mật khẩu</button>
+            </div>
+        </form>
+    </div>*@

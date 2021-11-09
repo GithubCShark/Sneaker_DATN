@@ -87,16 +87,9 @@
             <div class="col-lg-5 offset-lg-1">
                 <div class="s_product_text">
                     <h3>@Html.DisplayFor(model => model.ProductName)</h3>
-                        @foreach (var i in ViewBag.brd)
-                        {
-                            if (i.BrandID == Model.BrandID)
-                            {
                             <span class="product-custom-brand">
-                                <h4>Thương hiệu: <h5>@i.BrandName</h5></h4> 
-                                
+                                <h4>Thương hiệu: <h5>@ViewBag.brdetails</h5></h4> 
                             </span>
-                    }
-                    }
                     <h2>@string.Format("{0:0,0 vnđ}", Model.Price)</h2>
                     <p></p>
                     <div class="size-wrap">
@@ -112,7 +105,7 @@
                                         {
                                             if (i.SizeID == item.IdSize)
                                             {
-                                                <option value="@i.Size">@i.Size</option>
+                                                <option value="@i.SizeID">@i.Size</option>
                                             }
                                         }
                                     }
@@ -132,7 +125,7 @@
                                         {
                                             if (i.ColorID == item.ColorID)
                                             {
-                                                <option value="@i.Color">@i.Color</option>
+                                                <option value="@i.ColorID">@i.Color</option>
                                             }
                                         }
                                     }

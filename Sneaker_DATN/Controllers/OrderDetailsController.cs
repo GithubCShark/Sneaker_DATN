@@ -26,30 +26,36 @@ namespace Sneaker_DATN.Controllers
         // GET: OrderDetails
         public ActionResult Index()
         {
-            return View(_orderDetailSvc.GetOrderDetailsAll());
+            return View();
         }
 
         // GET: OrderDetails/Details/5
         public async Task<IActionResult> Details(int id)
         {
-            var order = _orderSvc.GetOrder(id);
-            ViewData["orderdetail"] = order.FullName;
-            if (id == null)
-            {
-                return NotFound();
-            }
-            var orderDetails = await _context.OrderDetails
-                .Include(o => o.Colors)
-                .Include(o => o.Orders)
-                .Include(o => o.Products)
-                .Include(o => o.Sizes)
-                .FirstOrDefaultAsync(m => m.OrderID == id);
-            if (orderDetails == null)
-            {
-                return NotFound();
-            }
+            var ordetails = _orderDetailSvc.GetOrderDetails(id);
+            var order = _context.Orders.Find(id);
+
+            ViewBag.order = order;
             
-            return View(orderDetails);
+
+            //var order = _orderSvc.GetOrder(id);
+        
+            //if (id == null)
+            //{
+            //    return NotFound();
+            //}
+            //var orderDetails = await _context.OrderDetails
+            //    .Include(o => o.Colors)
+            //    .Include(o => o.Orders)
+            //    .Include(o => o.Products)
+            //    .Include(o => o.Sizes)
+            //    .FirstOrDefaultAsync(m => m.OrderID == id);
+            //if (orderDetails == null)
+            //{
+            //    return NotFound();
+            //}
+
+            return View(ordetails);
         }
 
         // GET: OrderDetails/Create

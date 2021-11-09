@@ -1,8 +1,11 @@
 ﻿@model Sneaker_DATN.Models.Users
+@using Sneaker_DATN.Constant
+@using Microsoft.AspNetCore.Http
 @{
     ViewData["Title"] = "Thông tin cá nhân";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@{ string avatar = Context.Session.GetString(SessionKey.Guest.Guest_Avatar);}
 
 <!-- Start Banner Area -->
 <section class="banner-area organic-breadcrumb">
@@ -31,7 +34,18 @@
             <div class="row col-lg-12">
                 <div class="col-lg-4 infomation-user-left">
                     <div class="infomation-user-left-img">
-                        <img alt='' src="~/images/avatar/@Model.ImgUser" />
+                        @if (avatar == null || avatar == "")
+                        {
+                            <span class="img-info-user">
+                                <source srcset="~/images/avatar/avatar-illustrated-02.webp" type="image/webp">
+                                <img src="~/images/avatar/avatar-illustrated-02.png" alt="User name">
+                                @*<img src="~/images/user.png" style="width:25px" />*@
+                            </span>
+                        }
+                        else
+                        {
+                            <img alt='' src="~/images/avatar/@Model.ImgUser" />
+                        }
                         <span class="">
                             @Html.DisplayFor(model => model.FullName)
                         </span>
@@ -49,8 +63,8 @@
                             <a href="">Đơn hàng</a>
                         </li>
                         @*<li class="nav-link">
-                            <a href="">Địa chỉ</a>
-                        </li>*@
+                                <a href="">Địa chỉ</a>
+                            </li>*@
                         <li class="nav-link">
                             <a asp-controller="Home" asp-action="ChangePass">Đổi mật khẩu</a>
                         </li>
@@ -130,15 +144,15 @@
                                     <span asp-validation-for="Address" class="text-danger"></span>
                                 </div>
                                 @*<div class="form-group" style="display: none">
-                                    <label asp-for="Password" class="control-label"></label>
-                                    <input asp-for="Password" class="form-control" type="text" disabled />
-                                    <span asp-validation-for="Password" class="text-danger"></span>
-                                </div>
-                                <div class="form-group" style="display: none">
-                                    <label asp-for="ConfirmPassword" class="control-label"></label>
-                                    <input asp-for="ConfirmPassword" class="form-control" type="text" disabled />
-                                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-                                </div>*@
+                                        <label asp-for="Password" class="control-label"></label>
+                                        <input asp-for="Password" class="form-control" type="text" disabled />
+                                        <span asp-validation-for="Password" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group" style="display: none">
+                                        <label asp-for="ConfirmPassword" class="control-label"></label>
+                                        <input asp-for="ConfirmPassword" class="form-control" type="text" disabled />
+                                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                    </div>*@
                                 <!-- Submit Button -->
                                 <div class="form-group col-lg-12 text-center mx-auto mb-0">
                                     <button type="submit" class="col-lg-3 infomation-user-info-btn primary-btn">

@@ -22,7 +22,7 @@ namespace Sneaker_DATN.Controllers
         {
             if (page == null) page = 1;
             var sizes = _context.Sizes.Include(b => b.Size).OrderBy(b => b.SizeID);
-            int pageSize = 5;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
 
             // 1. Thêm biến NameSortParm để biết trạng thái sắp xếp tăng, giảm ở View
