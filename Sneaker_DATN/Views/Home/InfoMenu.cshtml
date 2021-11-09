@@ -35,17 +35,7 @@
             <div class="row col-lg-12">
                 <div class="col-lg-4 infomation-user-left">
                     <div class="infomation-user-left-img">
-                        @if (avatar == null || avatar == "")
-                        {
-                            <span class="img-non-user">
-                                <span class="bx bx-user-circle bx-sm"></span>
-                                @*<img src="~/images/user.png" style="width:25px" />*@
-                            </span>
-                        }
-                        else
-                        {
-                            <img alt='' src="~/images/avatar/@Model.ImgUser" />
-                        }
+                        <img alt='' src="~/images/avatar/@Model.ImgUser" />
                         <span class="">
                             @Html.DisplayFor(model => model.FullName)
                         </span>
@@ -62,9 +52,9 @@
                         <li class="nav-link">
                             <a href="">Đơn hàng</a>
                         </li>
-                        <li class="nav-link">
+                        @*<li class="nav-link">
                             <a href="">Địa chỉ</a>
-                        </li>
+                        </li>*@
                         <li class="nav-link">
                             <a asp-controller="Home" asp-action="ChangePass">Đổi mật khẩu</a>
                         </li>

@@ -121,7 +121,7 @@
                                 @if (userName != null && userName != "")
                                 {
                                     <li class="nav-item"><a class="nav-link btn-information" asp-controller="Home" asp-action="InfoMenu">Thông tin cá nhân</a></li>
-                                    <li class="nav-item"><a class="nav-link" asp-action="Cart" asp-route-id="@id">Đơn hàng</a></li>
+                                    <li class="nav-item"><a class="nav-link" asp-action="Cart" asp-route-id="@id">Lịch sử đơn hàng</a></li>
                                     @*<li class="nav-item"><a class="nav-link btn-changePass" href='@Url.Action("ChangePass","Home")'>Đổi mật khẩu</a></li>*@
                                     <partial name="_LogoutPartialHome" />
                                 }

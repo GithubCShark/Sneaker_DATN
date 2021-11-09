@@ -14,10 +14,16 @@
                 <thead>
                     <tr class="users-table-info">
                         <th class="dashboard-txt">
-                            @Html.DisplayNameFor(model => model.First().SizeID)
+                            <a href="@Url.ActionLink("Index", "Sizes", new { sortOrder = ViewBag.NameSortParm })"><span style="font-weight:bold;">ID</span><i class="fas fa-sort ml-2"></i></a>
+
+                            @*@Html.ActionLink("ID", "Index", new { sortOrder = ViewBag.NameSortParm }) <i class='bx bx-sort'></i>*@
+                            @*@Html.DisplayNameFor(model => model.First().SizeID)*@
                         </th>
                         <th class="dashboard-txt">
-                            @Html.DisplayNameFor(model => model.First().Size)
+                            <a href="@Url.ActionLink("Index","Sizes", new { sortOrder = ViewBag.DescriptionSortParm })"><span style="font-weight:bold;">Name</span><i class="fas fa-sort ml-2"></i></a>
+                        
+                            @*@Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.DescriptionSortParm })*@
+                            @*@Html.DisplayNameFor(model => model.First().Size)*@
                         </th>
                         <th class="dashboard-icon">
                             <a href="@Url.Action("Create", "Sizes")" class="color-btn-create btn btn-primary btn-create-size mr-5 mb-3"><i class="fas fa-plus pr-2"></i>Thêm mới</a>
@@ -51,7 +57,7 @@
                 Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
             </div>
             <div class="pagin-right float-right">
-                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.SortOrder }))
             </div>
         </div>
     </div>

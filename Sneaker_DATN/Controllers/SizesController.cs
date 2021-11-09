@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using X.PagedList;
 using Sneaker_DATN.Models;
+using System;
 
 namespace Sneaker_DATN.Controllers
 {
@@ -17,14 +18,43 @@ namespace Sneaker_DATN.Controllers
         }
 
         // GET: Sizes
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page, string sortOrder, string sortProperty)
         {
             if (page == null) page = 1;
             var sizes = _context.Sizes.Include(b => b.Size).OrderBy(b => b.SizeID);
             int pageSize = 5;
             int pageNumber = (page ?? 1);
 
-            return View(_context.Sizes.ToPagedList(pageNumber, pageSize));
+            // 1. Thêm biến NameSortParm để biết trạng thái sắp xếp tăng, giảm ở View
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DescriptionSortParm = sortOrder == "Description" ? "description_desc" : "Description";
+
+            // 2. Truy vấn lấy tất cả đường dẫn
+            var links = from l in _context.Sizes
+                        select l;
+
+            // 3. Thứ tự sắp xếp theo thuộc tính LinkName
+            switch (sortOrder)
+            {
+                // 3.1 Nếu biến sortOrder sắp giảm thì sắp giảm theo LinkName
+                case "name_desc":
+                    links = links.OrderByDescending(s => s.SizeID);
+                    break;
+                case "Description":
+                    links = links.OrderBy(s => s.Size);
+                    break;
+                case "description_desc":
+                    links = links.OrderByDescending(s => s.Size);
+                    break;
+
+                // 3.2 Mặc định thì sẽ sắp tăng
+                default:
+                    links = links.OrderBy(s => s.SizeID);
+                    break;
+            }
+
+
+            return View(links.ToList().ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Sizes/Details/5

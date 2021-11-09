@@ -335,6 +335,8 @@ namespace Sneaker_DATN.Controllers
         {
             var product = _productSvc.GetProduct(id);
 
+            ViewBag.brd = _context.Brands.Find(id);
+
             ViewBag.prosz = _context.ProductSizes.ToList();
             ViewBag.sz = _context.Sizes.ToList();
 

@@ -43,6 +43,9 @@
                 <thead>
                     <tr class="users-table-info">
                         <th>
+                            @Html.DisplayNameFor(model => model.First().ProductID)
+                        </th>
+                        <th>
                             @Html.DisplayNameFor(model => model.First().ProductName)
                         </th>
                         <th>
@@ -75,73 +78,76 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ProductName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Price)
-                            </td>
-                            <td>
-                                <img src="~/images/Product/@item.Image" style="width:100px; height:100px;" />
-                            </td>
-                            <td>
-                                <img src="~/images/Product/@item.Image1" style="width: 100px; height: 100px;" />
-                            </td>
-                            <td>
-                                <img src="~/images/Product/@item.Image2" style="width: 100px; height:100px;" />
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Status)
-                            </td>
-                            <td>
-                                @foreach (var brd in ViewBag.brand)
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProductID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProductName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            <img src="~/images/Product/@item.Image" style="width:100px; height:100px;" />
+                        </td>
+                        <td>
+                            <img src="~/images/Product/@item.Image1" style="width: 100px; height: 100px;" />
+                        </td>
+                        <td>
+                            <img src="~/images/Product/@item.Image2" style="width: 100px; height:100px;" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            @foreach (var brd in ViewBag.brand)
+                            {
+                                if (brd.BrandID == item.BrandID)
                                 {
-                                    if (brd.BrandID == item.BrandID)
+                                    @brd.BrandName;
+                                }
+                            }
+                        </td>
+                        <td>
+                            <select class="custom-select-product">
+                                @foreach (var sz in ViewBag.productSize)
+                                {
+                                    if (sz.ID == item.ProductID)
                                     {
-                                        @brd.BrandName;
+                                        foreach (var s in ViewBag.size)
+                                        {
+                                            if (s.SizeID == sz.IdSize)
+                                            {
+                                                <option class="custom-select-product-opt">@s.Size</option>
+                                            }
+                                        }
                                     }
                                 }
-                            </td>
-                            <td>
-                                <select class="custom-select-product">
-                                    @foreach (var sz in ViewBag.productSize)
+                            </select>
+                        </td>
+                        <td>
+                            <select class="custom-select-product">
+                                @foreach (var sz in ViewBag.productColor)
+                                {
+                                    if (sz.ID == item.ProductID)
                                     {
-                                        if (sz.ID == item.ProductID)
+                                        foreach (var s in ViewBag.colors)
                                         {
-                                            foreach (var s in ViewBag.size)
+                                            if (s.ColorID == sz.ColorID)
                                             {
-                                                if (s.SizeID == sz.IdSize)
-                                                {
-                                                    <option class="custom-select-product-opt">@s.Size</option>
-                                                }
+                                                <option class="custom-select-product-opt">@s.Color</option>
                                             }
                                         }
                                     }
-                                </select>    
-                            </td>
-                            <td>
-                                <select class="custom-select-product">
-                                    @foreach (var sz in ViewBag.productColor)
-                                    {
-                                        if (sz.ID == item.ProductID)
-                                        {
-                                            foreach (var s in ViewBag.colors)
-                                            {
-                                                if (s.ColorID == sz.ColorID)
-                                                {
-                                                    <option class="custom-select-product-opt">@s.Color</option>
-                                                }
-                                            }
-                                        }
-                                    }
-                                </select>
-                            </td>
-                            <td>
-                                <a asp-action="Edit" asp-route-id="@item.ProductID"><i class="far fa-edit dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
-                                <a asp-action="Details" asp-route-id="@item.ProductID"><i class="far fa-eye ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>                            <a asp-action="Delete" asp-route-id="@item.ProductID"><i class="far fa-trash-alt ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
-                            </td>
-                        </tr>
+                                }
+                            </select>
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.ProductID"><i class="far fa-edit dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
+                            <a asp-action="Details" asp-route-id="@item.ProductID"><i class="far fa-eye ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>                            <a asp-action="Delete" asp-route-id="@item.ProductID"><i class="far fa-trash-alt ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>

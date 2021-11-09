@@ -3,6 +3,25 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .product-custom-brand{
+        padding: 0.5rem 0 0.5rem 0;
+        display: flex;
+        align-items: center;
+    }
+    .product-custom-brand h4 {
+        color: #222222;
+        font-family: Roboto;
+        font-size: 16px;
+    }
+        .product-custom-brand h5 {
+            margin-left: 1rem;
+            color: #222222;
+            font-size: 18px;
+            font-family: Roboto;
+        }
+</style>
+
 <!-- slide -->
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 <style>
@@ -68,6 +87,16 @@
             <div class="col-lg-5 offset-lg-1">
                 <div class="s_product_text">
                     <h3>@Html.DisplayFor(model => model.ProductName)</h3>
+                        @foreach (var i in ViewBag.brd)
+                        {
+                            if (i.BrandID == Model.BrandID)
+                            {
+                            <span class="product-custom-brand">
+                                <h4>Thương hiệu: <h5>@i.BrandName</h5></h4> 
+                                
+                            </span>
+                    }
+                    }
                     <h2>@string.Format("{0:0,0 vnđ}", Model.Price)</h2>
                     <p></p>
                     <div class="size-wrap">
@@ -108,19 +137,19 @@
                                         }
                                     }
                                 }
-                                </select>
+                            </select>
                         </div>
-                         <div class="block-26-color product_count">
+                        <div class="block-26-color product_count">
                             <h4>Số lượng:</h4>
                             <input type="number"
-                                class="input-text qty">
-                        </div> 
+                                   class="input-text qty">
+                        </div>
                         <div class="card_area align-items-center">
                             <a class="primary-btn" href="javascript:addCart(@Model.ProductID);">Thêm vào giỏ hàng</a>
                             <button class="icon_btn"><i class='bx bxs-heart bx-lg'></i></button>
                         </div>
                     </div>
-                </div>
+</div>
             </div>
         </div>
     </div>
