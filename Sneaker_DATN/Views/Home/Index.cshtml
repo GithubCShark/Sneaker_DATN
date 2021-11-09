@@ -354,8 +354,13 @@
         $("#imgBusy_" + id).show();
         setTimeout(function () {
             $.ajax({
-                url: "/Home/AddCart?Id=" + id,
+                url: "/Home/AddCart",
                 type: "Post",
+                data: {
+                    id: id,
+                    size: 0,
+                    color: 0
+                },
                 success: function (result) {
                     Swal.fire({
                         position: 'center',

@@ -15,12 +15,14 @@ namespace Sneaker_DATN.Controllers
         private readonly DataContext _context;
         private IOrderDetailSvc _orderDetailSvc;
         private IOrderSvc _orderSvc;
+        private IProductSvc _productSvc;
 
-        public OrderDetailsController(DataContext context, IOrderDetailSvc orderDetailSvc, IOrderSvc orderSvc)
+        public OrderDetailsController(DataContext context, IOrderDetailSvc orderDetailSvc, IOrderSvc orderSvc, IProductSvc productSvc)
         {
             _orderSvc = orderSvc;
             _context = context;
             _orderDetailSvc = orderDetailSvc;
+            _productSvc = productSvc;
         }
 
         // GET: OrderDetails
@@ -30,16 +32,19 @@ namespace Sneaker_DATN.Controllers
         }
 
         // GET: OrderDetails/Details/5
-        public async Task<IActionResult> Details(int id)
+        public IActionResult Details(int id)
         {
             var ordetails = _orderDetailSvc.GetOrderDetails(id);
             var order = _context.Orders.Find(id);
-
-            ViewBag.order = order;
             
+            ViewBag.order = order;
+
+            ViewData["Product"] = _context.Products.ToList();
+            ViewData["Color"] = _context.Colors.ToList();
+            ViewData["Size"] = _context.Sizes.ToList();
 
             //var order = _orderSvc.GetOrder(id);
-        
+
             //if (id == null)
             //{
             //    return NotFound();

@@ -154,6 +154,21 @@ namespace Sneaker_DATN.Controllers
         public IActionResult AddCart(int id, int size, int color)
         {
             var cart = HttpContext.Session.GetString("cart");
+            var sizedefault = _context.ProductSizes.Where(x => x.ID == id).FirstOrDefault();
+            var colordefault = _context.ProductColors.Where(x => x.ID == id).FirstOrDefault();
+            if (size == 0 && color == 0)
+            {
+                size = sizedefault.IdSize;
+                color = colordefault.ColorID;
+            }
+            if (size == 0 && color != 0)
+            {
+                size = sizedefault.IdSize;
+            }
+            if (size != 0 && color == 0)
+            {
+                color = colordefault.ColorID;
+            }
             if (cart == null)
             {
                 var product = _productSvc.GetProduct(id);
