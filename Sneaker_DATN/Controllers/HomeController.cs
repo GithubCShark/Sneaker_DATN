@@ -155,21 +155,6 @@ namespace Sneaker_DATN.Controllers
         public IActionResult AddCart(int id, int size, int color)
         {
             var cart = HttpContext.Session.GetString("cart");
-            var sizedefault = _context.ProductSizes.Where(x => x.ID == id).FirstOrDefault();
-            var colordefault = _context.ProductColors.Where(x => x.ID == id).FirstOrDefault();
-            if (size == 0 && color == 0)
-            {
-                size = sizedefault.IdSize;
-                color = colordefault.ColorID;
-            }
-            if (size == 0 && color != 0)
-            {
-                size = sizedefault.IdSize;
-            }
-            if (size != 0 && color == 0)
-            {
-                color = colordefault.ColorID;
-            }
             if (cart == null)
             {
                 var product = _productSvc.GetProduct(id);
@@ -219,6 +204,9 @@ namespace Sneaker_DATN.Controllers
             var cart = HttpContext.Session.GetString("cart");
             ViewBag.sz = _context.Sizes.ToList();
             ViewBag.col = _context.Colors.ToList();
+
+            ViewBag.Prosz = _context.ProductSizes.ToList();
+            ViewBag.Procol = _context.ProductColors.ToList();
             if (cart != null)
             {
                 dataCart = JsonConvert.DeserializeObject<List<ViewCart>>(cart);
@@ -226,7 +214,7 @@ namespace Sneaker_DATN.Controllers
             return View(dataCart);
         }
 
-        public IActionResult UpdateCart(int id, int soluong)
+        public IActionResult UpdateCart(int id, int soluong, int size, int color)
         {
             var cart = HttpContext.Session.GetString("cart");
             double total = 0;
@@ -238,6 +226,8 @@ namespace Sneaker_DATN.Controllers
                     if (dataCart[i].Products.ProductID == id)
                     {
                         dataCart[i].Quantity = soluong;
+                        dataCart[i].Size = size;
+                        dataCart[i].Color = color;
                         break;
                     }
                 }
@@ -319,7 +309,7 @@ namespace Sneaker_DATN.Controllers
                 return Ok();
 
             }
-            return RedirectToAction(nameof(OrderComplete),"Home");
+            return RedirectToAction(nameof(OrderComplete), "Home");
         }
 
         public IActionResult MiniCart()
@@ -332,6 +322,7 @@ namespace Sneaker_DATN.Controllers
             }
             return PartialView(dataCart);
         }
+
 
         [NonAction]
         private double Tongtien()
