@@ -16,6 +16,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using X.PagedList;
+using static Sneaker_DATN.Filters.AuthenticationFilterAttribute;
 
 namespace Sneaker_DATN.Controllers
 {
@@ -346,6 +347,16 @@ namespace Sneaker_DATN.Controllers
                 }
             }
             return total;
+        }
+
+        public IActionResult History(int id)
+        {
+            string OrGuest = HttpContext.Session.GetString(SessionKey.Guest.Guest_FullName);
+            if (OrGuest == null || OrGuest == "")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            return View(_orderSvc.GetOrderByGuest(id));
         }
 
         public IActionResult Details(int id)
