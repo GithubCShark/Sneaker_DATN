@@ -51,6 +51,9 @@
                             @Html.DisplayNameFor(model => model.First().Total)
                         </th>
                         <th>
+                            @Html.DisplayNameFor(model => model.First().PaymentAmount)
+                        </th>
+                        <th>
                             @Html.DisplayNameFor(model => model.First().Status)
                         </th>
                         <th>
@@ -66,45 +69,49 @@
                             @Html.DisplayNameFor(model => model.First().Note)
                         </th>
                         @*<th>
-                                @Html.DisplayNameFor(model => model.Email)
-                            </th>*@
+            @Html.DisplayNameFor(model => model.Email)
+        </th>*@
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td class="col-lg-2">
-                                @Html.DisplayFor(modelItem => item.FullName)
-                            </td>
-                            <td class="col-lg-1">
-                                @*@Html.DisplayFor(modelItem => item.Total)*@
-                                @string.Format("{0:0,0}", item.Total)
-                            </td>
-                            <td class="col-lg-1">
-                                @Html.DisplayFor(modelItem => item.Status)
-                            </td>
-                            <td class="col-lg-1">
-                                @Html.DisplayFor(modelItem => item.PhoneNumber)
-                            </td>
-                            <td class="col-lg-1">
-                                @Html.DisplayFor(modelItem => item.Address)
-                            </td>
-                            <td class="col-lg-1">
-                                @Html.DisplayFor(modelItem => item.DateCreate)
-                            </td>
-                            <td class="col-lg-2">
-                                @Html.DisplayFor(modelItem => item.Note)
-                            </td>
-                            @*<td class="col-lg-1">
-                                    @Html.DisplayFor(modelItem => item.Email)
-                                </td>*@
-                            <td class="col-lg-2">
-                                <a asp-action="Edit" asp-route-id="@item.OrderID"><i class="far fa-edit dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
-                                <a asp-controller="OrderDetails" asp-action="Details" asp-route-id="@item.OrderID"><i class="far fa-eye ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td class="col-lg-2">
+                            @Html.DisplayFor(modelItem => item.FullName)
+                        </td>
+                        <td class="col-lg-1">
+                            @*@Html.DisplayFor(modelItem => item.Total)*@
+                            @string.Format("{0:0,0}", item.Total)
+                        </td>
+                        <td class="col-lg-1">
+                            @*@Html.DisplayFor(modelItem => item.Total)*@
+                            @string.Format("{0:0,0}", item.PaymentAmount)
+                        </td>
+                        <td class="col-lg-1">
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td class="col-lg-1">
+                            @Html.DisplayFor(modelItem => item.PhoneNumber)
+                        </td>
+                        <td class="col-lg-1">
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td class="col-lg-1">
+                            @Html.DisplayFor(modelItem => item.DateCreate)
+                        </td>
+                        <td class="col-lg-2">
+                            @Html.DisplayFor(modelItem => item.Note)
+                        </td>
+                        @*<td class="col-lg-1">
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>*@
+                        <td class="col-lg-2">
+                            <a asp-action="Edit" asp-route-id="@item.OrderID"><i class="far fa-edit dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
+                            <a asp-controller="OrderDetails" asp-action="Details" asp-route-id="@item.OrderID"><i class="far fa-eye ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>

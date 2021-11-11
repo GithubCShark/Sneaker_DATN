@@ -28,9 +28,12 @@ namespace Sneaker_DATN.Controllers
         private IUploadHelper _uploadHelper;
         private IOrderSvc _orderSvc;
         private IOrderDetailSvc _orderDetailSvc;
+        private IDiscountSvc _discountSvc;
         private readonly DataContext _context;
         protected IEncodeHelper _encodeHelper;
-        public HomeController(IUserMemSvc userMemSvc, IProductSvc productSvc, IWebHostEnvironment webHostEnvironment, IUploadHelper uploadHelper, IOrderSvc orderSvc, IOrderDetailSvc orderDetailSvc, DataContext context, IEncodeHelper encodeHelper)
+        public HomeController(IUserMemSvc userMemSvc, IProductSvc productSvc, IWebHostEnvironment webHostEnvironment, 
+            IUploadHelper uploadHelper, IOrderSvc orderSvc, IOrderDetailSvc orderDetailSvc, DataContext context, 
+            IEncodeHelper encodeHelper, IDiscountSvc discountSvc)
         {
             _userMemSvc = userMemSvc;
             _productSvc = productSvc;
@@ -40,6 +43,7 @@ namespace Sneaker_DATN.Controllers
             _orderDetailSvc = orderDetailSvc;
             _context = context;
             _encodeHelper = encodeHelper;
+            _discountSvc = discountSvc;
         }
 
 
@@ -155,6 +159,7 @@ namespace Sneaker_DATN.Controllers
         public IActionResult AddCart(int id, int size, int color)
         {
             var cart = HttpContext.Session.GetString("cart");
+            
             if (cart == null)
             {
                 var product = _productSvc.GetProduct(id);
@@ -204,7 +209,6 @@ namespace Sneaker_DATN.Controllers
             var cart = HttpContext.Session.GetString("cart");
             ViewBag.sz = _context.Sizes.ToList();
             ViewBag.col = _context.Colors.ToList();
-
             ViewBag.Prosz = _context.ProductSizes.ToList();
             ViewBag.Procol = _context.ProductColors.ToList();
             if (cart != null)
@@ -260,8 +264,10 @@ namespace Sneaker_DATN.Controllers
             return BadRequest();
         }
 
-        public IActionResult OrderCart()
+        public IActionResult OrderCart(string voucherCode)
         {
+            var itemDiscount = _discountSvc.GetDiscount(voucherCode);
+
             string guest_Name = HttpContext.Session.GetString(SessionKey.Guest.Guest_FullName);
             if (guest_Name == null || guest_Name == "")  // đã có session
             {
@@ -280,12 +286,42 @@ namespace Sneaker_DATN.Controllers
                     UserID = GuestID,
                     DateCreate = DateTime.Now,
                     Total = total,
+                    PaymentAmount = total,
                     Address = user.Address,
                     Status = "Đang xử lý",
                     FullName = user.FullName,
                     Email = user.Email,
                     PhoneNumber = user.PhoneNumber
                 };
+
+                if (itemDiscount != null && !itemDiscount.Status) // chua su dung
+                {
+                    itemDiscount.Status = true; //  su dung
+                    itemDiscount.DateUse = DateTime.Now; //  su dung
+                    itemDiscount.CustomerId = order.UserID;
+
+                    _discountSvc.EditDiscount(itemDiscount.VoucherId, itemDiscount);
+
+                    order.VoucherCode = itemDiscount.VoucherCode;
+                    order.ExpDiscount = true;
+                    order.VoucherId = itemDiscount.VoucherId;
+                    if (itemDiscount.Classify)
+                    {
+                        if (itemDiscount.Price >= order.Total)
+                        {
+                            order.PaymentAmount = 0;
+                        }
+                        else
+                        {
+                            order.PaymentAmount = order.Total - itemDiscount.Price;
+                        }
+                    }
+                    else
+                    {
+                        order.PaymentAmount = order.Total - (order.Total * itemDiscount.Percent) / 100;
+                    }
+                }
+
                 _context.Orders.Add(order);
                 _context.SaveChanges();
 
@@ -312,6 +348,16 @@ namespace Sneaker_DATN.Controllers
             return RedirectToAction(nameof(OrderComplete), "Home");
         }
 
+        public IActionResult CheckVoucher(string voucherCode)
+        {
+            var item = _discountSvc.GetDiscount(voucherCode);
+            if (item != null && !item.Status) // chua su dung
+            {
+                return Ok(1);
+            }
+            return BadRequest();
+        }
+
         public IActionResult MiniCart()
         {
             List<ViewCart> dataCart = new List<ViewCart>();
@@ -322,7 +368,6 @@ namespace Sneaker_DATN.Controllers
             }
             return PartialView(dataCart);
         }
-
 
         [NonAction]
         private double Tongtien()
@@ -348,6 +393,20 @@ namespace Sneaker_DATN.Controllers
                 return RedirectToAction("Index", "Home");
             }
             return View(_orderSvc.GetOrderByGuest(id));
+        }
+
+        public IActionResult OrderDetails(int id)
+        {
+            var ordetails = _orderDetailSvc.GetOrderDetails(id);
+            var order = _context.Orders.Find(id);
+
+            ViewBag.order = order;
+
+            ViewData["Product"] = _context.Products.ToList();
+            ViewData["Color"] = _context.Colors.ToList();
+            ViewData["Size"] = _context.Sizes.ToList();
+
+            return View(ordetails);
         }
 
         public IActionResult Details(int id)
@@ -382,6 +441,9 @@ namespace Sneaker_DATN.Controllers
 
             List<ViewCart> dataCart = new List<ViewCart>();
             var cart = HttpContext.Session.GetString("cart");
+
+            ViewBag.sz = _context.Sizes.ToList();
+            ViewBag.col = _context.Colors.ToList();
 
             if (cart != null)
             {

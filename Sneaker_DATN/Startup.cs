@@ -44,6 +44,7 @@ namespace Sneaker_DATN
             services.AddTransient<IUploadHelper, UploadHelper>();
             services.AddTransient<IOrderSvc, OrderSvc>();
             services.AddTransient<IOrderDetailSvc, OrderDetailSvc>();
+            services.AddTransient<IDiscountSvc, DiscountSvc>();
 
             //services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddRazorPages().AddRazorRuntimeCompilation();

@@ -46,6 +46,15 @@ namespace Sneaker_DATN.Models
         [Display(Name = "Số điện thoại")]
         public string PhoneNumber { get; set; }
 
+        public bool ExpDiscount { get; set; }
+
+        public string VoucherCode { get; set; }
+
+        public int VoucherId { get; set; }
+
+        [Display(Name = "Số tiền thanh toán")]
+        public double PaymentAmount { get; set; }
+
         public Users Users { get; set; }
     }
 }

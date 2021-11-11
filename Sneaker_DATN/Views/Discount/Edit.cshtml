@@ -1,0 +1,73 @@
+﻿@model Sneaker_DATN.Models.Discounts
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_LayoutManager.cshtml";
+}
+
+<div class="container">
+    <div class="col-lg-12 col-md-10 col-sm-10 custom-form mt-4">
+        <div class="card flex-row shadow-lg">
+            <div class="card-body col-lg-12 col-md-12 col-sm-12">
+                <a asp-action="Index" class="dashbroad-icon-hover">
+                    <i class="icon-back fas fa-chevron-left fa-2x d-flex"></i>
+                </a>
+                <h2 class="main-title text-center text-uppercase mt-n3">Chỉnh sửa mã giảm giá</h2>
+                <form asp-action="Edit" class="form-edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="VoucherId" />
+                    <div class="form-group">
+                        <label asp-for="VoucherCode" class="control-label"></label>
+                        <input asp-for="VoucherCode" class="form-control" />
+                        <span asp-validation-for="VoucherCode" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DayStart" class="control-label"></label>
+                        <input asp-for="DayStart" class="form-control" type="date"/>
+                        <span asp-validation-for="DayStart" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DayEnd" class="control-label"></label>
+                        <input asp-for="DayEnd" class="form-control" type="date"/>
+                        <span asp-validation-for="DayEnd" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DateUse" class="control-label"></label>
+                        <input asp-for="DateUse" class="form-control" type="date"/>
+                        <span asp-validation-for="DateUse" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" style="display:none">
+                        <label asp-for="CustomerId" class="control-label"></label>
+                        <input asp-for="CustomerId" class="form-control" />
+                        <span asp-validation-for="CustomerId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group custom-checkbox">
+                            <label class="control-label">Khóa mã</label>
+                            <input class="form-checkbox-input ml-3" asp-for="Status" />
+                            @*@Html.DisplayNameFor(model => model.Status)*@
+                    </div>
+                    <div class="form-group custom-checkbox">
+                        <label class="control-label">Giảm theo số tiền</label>
+                        <input class="form-checkbox-input ml-3" asp-for="Classify" />
+                        @*@Html.DisplayNameFor(model => model.Classify)*@
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Price" class="control-label"></label>
+                        <input asp-for="Price" class="form-control" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Percent" class="control-label"></label>
+                        <input min="0" max="100" asp-for="Percent" class="form-control" />
+                        <span asp-validation-for="Percent" class="text-danger"></span>
+                    </div>
+                    <div class="text-center">
+                        <input type="submit" value="Lưu" class="mt-2 col-lg-6 btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

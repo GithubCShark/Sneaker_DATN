@@ -1808,11 +1808,6 @@ input:focus {
   box-shadow: 0 0 0 2px rgba(134, 182, 254, 0.5);
 }
 
-
-input:enabled:read-write:-webkit-any(:focus, :hover)::-webkit-calendar-picker-indicator {
-  display: none !important;
-}
-
 .check {
   position: relative;
   display: -webkit-box;

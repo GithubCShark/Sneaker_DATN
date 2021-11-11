@@ -43,15 +43,6 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Note)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FullName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Email)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PhoneNumber)
-                </th>
                 <th></th>
             </tr>
         </thead>
@@ -75,23 +66,27 @@
                         @Html.DisplayFor(modelItem => item.Note)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.FullName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Email)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PhoneNumber)
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.OrderID">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.OrderID">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.OrderID">Delete</a>
+                        <a class="btn btn-primary" asp-action="OrderDetails" asp-route-id="@item.OrderID">Chi tiết</a>
+                        @if (item.Status == "Đang xử lý" || item.Status == "Đang đóng gói")
+                        {
+                            <a class="btn btn-danger" onclick="show();">Hủy</a>
+                        }
+                        else if (item.Status == "Đang giao")
+                        {
+                            <a class="btn btn-danger" disabled="disabled">Hủy</a>
+                        }
+
+
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 </body>
+<script>
+    function show() {
+        alert("hi")
+    }
+</script>
 
 

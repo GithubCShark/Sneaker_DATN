@@ -40,7 +40,10 @@
                         <label asp-for="Status" class="control-label"></label>
                         <select asp-for="Status" class="form-control-select">
                             <option value="Đang xử lý">Đang xử lý</option>
+                            <option value="Đang đóng gói">Đang đóng gói</option>
                             <option value="Đang giao">Đang giao</option>
+                            <option value="Đã giao">Đã giao</option>
+                            <option value="Đã nhận">Đã nhận</option>
                             <option value="Đã hủy">Đã hủy</option>
                         </select>
                         <span asp-validation-for="Status" class="text-danger"></span>

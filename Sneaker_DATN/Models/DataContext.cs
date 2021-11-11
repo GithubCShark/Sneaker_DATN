@@ -35,5 +35,6 @@ namespace Sneaker_DATN.Models
         public DbSet<Brands> Brands { get; set; }
         public DbSet<ProductColor> ProductColors { get; set; }
         public DbSet<ProductSize> ProductSizes { get; set; }
+        public DbSet<Discounts> Discounts { get; set; }
     }
 }

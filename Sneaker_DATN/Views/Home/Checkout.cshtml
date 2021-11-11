@@ -34,6 +34,99 @@
         border: none;
         background-color: transparent;
     }
+
+    .cart-detail {
+        background: whitesmoke;
+        padding: 2em 3em;
+        float: left;
+        width: 100%;
+        margin-bottom: 20px;
+        border-radius: 16px;
+    }
+
+    @*@media (max-width: 767.98px) {
+        .cart-detail {
+            padding: 1em;
+        }
+    }*@
+
+        .cart-detail span{
+            margin-left: 1rem;
+        }
+        .cart-detail span,
+        .cart-detail h2 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+    .cart-detail ul {
+        width: 100%;
+        padding: 0;
+        float: left;
+        margin: 0;
+    }
+
+        .cart-detail ul li {
+            font-weight: 400;
+            width: 100%;
+            display: block;
+            float: left;
+        }
+
+            .cart-detail ul li span {
+                margin-bottom: 15px;
+                display: block;
+                float: left;
+                border-bottom: 1px solid #e6e6e6;
+                width: 100px;
+            }
+
+                .cart-detail ul li span:first-child {
+                    width: calc(100% - 100px);
+                }
+
+                .cart-detail ul li span:last-child {
+                    width: 100px;
+                }
+
+    .cart-detail input {
+        margin-right: 1rem;
+    }
+
+    .cart-detail-btn .primary-btn {
+        width: 70%;
+        padding: 0px 30px;
+        line-height: 38px;
+        border-radius: 8px;
+        text-transform: uppercase;
+    }
+    .custom-discount-input {
+        padding-top: 20px;
+        margin-bottom: 15px;
+        border-top: 1px solid #999;
+        height: 60px;
+    }
+        .custom-discount-input input {
+            width: 70% !important;
+            height: 100%;
+            box-shadow: none;
+            padding: 1rem;
+            margin-left: 1rem;
+            background-color: #fff;
+            border: none;
+            border-radius: 8px;
+            color: #999999;
+        }
+    .custom-discount{
+      /*  border-radius: 8px;*/
+    }
+    .pro-quantity input{
+        border: none;
+        background-color: transparent;
+    }
+    .cart-detail-total{
+        margin-top: 15px;
+    }
 </style>
 
 <!-- Start Banner Area -->
@@ -78,7 +171,86 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-7">
+
+            <div class="col-lg-12 pb-5">
+                <div class="col-md-12">
+                    <div class="cart-table table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    @*<th class="pro-quantity">STT</th>*@
+                                    <th class="pro-thumbnail">@*Sản phẩm*@</th>
+                                    <th class="pro-title">Tên</th>
+                                    <th class="pro-quantity">Size</th>
+                                    <th class="pro-quantity">Màu sắc</th>
+                                    <th class="pro-quantity">Số lượng</th>
+                                    @*<th class="pro-price">Giá</th>*@
+                                    <th class="pro-subtotal">Tổng</th>
+                                    @*<th class="pro-remove"></th>*@
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    int stt = 0;
+                                    double total = 0;
+                                    foreach (var item in Model)
+                                    {
+                                        int iD = @item.Products.ProductID;
+                                        string txt_Id = "txtQuantity_" + iD;
+                                        stt++;
+
+                                        double totalSub = item.Products.Price * item.Quantity;
+                                        total += totalSub;
+                                        <tr id="tr_@iD">
+                                            @*<td class="pro-quantity"><span>@stt</span></td>*@
+                                            <td class="pro-thumbnail">
+                                                <a href="#">
+                                                    <img class="img-fluid" src="~/images/Product/@item.Products.Image" alt="Product" />
+                                                </a>
+                                            </td>
+                                            <td class="pro-title"><a href="#"> @item.Products.ProductName</a></td>
+                                            <td class="pro-quantity">
+                                                <span>
+                                                    @foreach (var i in ViewBag.sz)
+                                                    {
+                                                        @if (item.Size == i.SizeID)
+                                                        {
+                                                            @i.Size
+                                                        }
+                                                    }
+                                                </span>
+                                            </td>
+                                            <td class="pro-quantity">
+                                                <span>
+                                                    @foreach (var i in ViewBag.col)
+                                                    {
+                                                        @if (item.Color == i.ColorID)
+                                                        {
+                                                            @i.Color
+                                                        }
+                                                    }
+                                                </span>
+                                            </td>
+                                            <td class="pro-quantity">
+                                                <span>
+                                                    <input disabled name="sl" min="1" max="99" type="number" id="@txt_Id" onchange="updateCart(@iD)" value="@item.Quantity" />
+                                                </span>
+                                            </td>
+                                            @*<td class="pro-subtotal"><span id="tdGia_@iD">@String.Format("{0:n0}", @item.Products.Price)</span></td>*@
+                                            <td class="pro-price"><span id="tdTien_@iD">@String.Format("{0:n0}", @totalSub)</span></td>
+                                            @*<td class="pro-remove"><a href="javascript:delCart(@iD);"><i class='bx bx-x bx-sm'></i></a></td>*@
+                                        </tr>
+
+                                    }
+
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
                 <form method="post" class="colorlib-form">
                     <h2>Chi tiết thanh toán</h2>
                     <div class="row">
@@ -110,49 +282,30 @@
                             <div class="form-group">
                                 <label for="note">Ghi chú</label>
                                 <textarea name="Note" class="form-control form-control-note"
-                                            style="height: 80px !important;"></textarea>
+                                          style="height: 80px !important;"></textarea>
                             </div>
                         </div>
                     </div>
                 </form>
             </div>
 
-            <div class="col-lg-5">
+            <div class="col-lg-6">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="cart-detail">
-                            <h2>Giỏ hàng</h2>
-                            <ul>
-                                <li >
-                                    <ul>
-                                        @{
-                                            int stt = 0;
-                                            double total = 0;
-                                            foreach (var item in Model)
-                                            {
-                                                int iD = @item.Products.ProductID;
-                                                string txt_Id = "txtQuantity_" + iD;
-                                                stt++;
+                            <div class="d-flex cart-detail-total">
+                                <h2>Thành tiền:</h2>
+                                <span id="spTotal">@String.Format("{0:n0}", @total) VNĐ</span>
 
-                                                double totalSub = item.Products.Price * item.Quantity;
-                                                total += totalSub;
-                                                <li id="tr_@iD">
-                                                    <span>
-                                                        @item.Products.ProductName
-                                                        <i class='bx bx-x ml-2'></i>
-                                                        <input class="custom-input-num" name="sl" type="number" id="@txt_Id" value="@item.Quantity" disabled />
-                                                    </span>
-                                                    <span id="tdGia_@iD">@String.Format("{0:n0}", @item.Products.Price)</span>
-                                                </li>
+                                <h2>Giảm giá:</h2>
+                                <span id="voucher">@String.Format("{0:n0}", @total) VNĐ</span>
 
-                                            }
-
-                                        }
-                                    </ul>
-                                </li>
-                                <li><span>Tổng đơn hàng</span> <span id="spTotal">@String.Format("{0:n0}", @total)</span></li>
-
-                            </ul>
+                                <h2>Thành tiền:</h2>
+                            </div>
+                            <div class="d-flex align-items-baseline custom-discount-input">
+                                <h2>Mã giảm giá: </h2>
+                                <input class="custom-discount form-control" id="txtVoucherCode" value="" onblur="checkVoucher();" />
+                            </div>
                         </div>
                     </div>
 
@@ -208,11 +361,33 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
 <script src='https://cdn.jsdelivr.net/gh/vietblogdao/js/districts.min.js'></script>
 <script>
+    function getVoucher() {
+        
+    }
+
+    function checkVoucher() {
+        $.ajax({
+            type: "POST",
+            url: "/Home/CheckVoucher",
+            data: {
+                voucherCode: $("#txtVoucherCode").val(),
+            },
+            success: function (result) {
+              /*  $('#voucher').val(price)*/
+                if (result == "0") {
+                    alert("Ma khuyen mai khong hop le");
+                    //$("#imgCart").attr("src", '/images/cart.png');
+                }
+            }
+        });
+    }
+
     function orderCart() {
         $.ajax({
             type: "POST",
             url: "/Home/OrderCart",
             data: {
+                voucherCode: $("#txtVoucherCode").val(),
             },
             success: function (result) {
                 window.location = "/Home/OrderComplete";
