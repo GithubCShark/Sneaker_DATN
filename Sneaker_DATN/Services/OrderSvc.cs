@@ -1,4 +1,5 @@
-﻿using Sneaker_DATN.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using Sneaker_DATN.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,13 +9,14 @@ namespace Sneaker_DATN.Services
 {
     public interface IOrderSvc
     {
-        List<Orders> GetOrderAll();
+        List<Orders> GetOrderByGuest(int id);
 
         Orders GetOrder(int id);
 
         int AddOrder(Orders orders);
 
         int EditOrder(int id, Orders orders);
+
     }
     public class OrderSvc : IOrderSvc
     {
@@ -31,10 +33,11 @@ namespace Sneaker_DATN.Services
             return order;
         }
 
-        public List<Orders> GetOrderAll()
+        public List<Orders> GetOrderByGuest(int id)
         {
             List<Orders> list = new List<Orders>();
-            list = _context.Orders.ToList();
+
+            list = _context.Orders.Where(x => x.UserID == id).ToList();
             return list;
         }
 
