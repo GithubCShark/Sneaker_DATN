@@ -8,8 +8,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @{ string emailAddress = Context.Session.GetString(SessionKey.Guest.Guest_UserName);}
-@{ string fullName = Context.Session.GetString(SessionKey.Guest.Guest_FullName);
-}
+@{ string fullName = Context.Session.GetString(SessionKey.Guest.Guest_FullName);}
+@{ int checksz = 0; int checkcol = 0;}
 
 
 <!-- Start Banner Area -->
@@ -91,26 +91,102 @@
                                         </td>
                                         <td class="pro-title"><a href="#"> @item.Products.ProductName</a></td>
                                         <td class="pro-quantity">
-                                            <span>
+                                            <select>
                                                 @foreach (var i in ViewBag.sz)
                                                 {
                                                     @if (item.Size == i.SizeID)
                                                     {
-                                                        @i.Size
+                                                        <option id="size_@iD" value="@i.SizeID">@i.Size</option>
+
+                                                        @foreach (var y in ViewBag.Prosz)
+                                                        {
+                                                            @if (item.Products.ProductID == y.ID)
+                                                            {
+                                                                @foreach (var ii in ViewBag.sz)
+                                                                {
+                                                                    @if (y.IdSize == ii.SizeID)
+                                                                    {
+                                                                        @if (y.IdSize != i.SizeID)
+                                                                        {
+                                                                            <option value="@y.IdSize">@ii.Size</option>
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                        checksz++;
+                                                    }
+                                                    if (item.Size == 0)
+                                                    {
+                                                        @foreach (var y in ViewBag.Prosz)
+                                                        {
+                                                            @if (item.Products.ProductID == y.ID)
+                                                            {
+                                                                @foreach (var ii in ViewBag.sz)
+                                                                {
+                                                                    @if (y.IdSize == ii.SizeID)
+                                                                    {
+                                                                        @if (y.IdSize != i.SizeID)
+                                                                        {
+                                                                            <option id="size_@iD" value="@y.IdSize">@ii.Size</option>
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                        break;
                                                     }
                                                 }
-                                            </span>
+                                            </select>
                                         </td>
                                         <td class="pro-quantity">
-                                            <span>
+                                            <select>
                                                 @foreach (var i in ViewBag.col)
                                                 {
                                                     @if (item.Color == i.ColorID)
                                                     {
-                                                        @i.Color
+                                                        <option id="color_@iD" value="@i.ColorID">@i.Color</option>
+
+                                                        @foreach (var y in ViewBag.Procol)
+                                                        {
+                                                            @if (item.Products.ProductID == y.ID)
+                                                            {
+                                                                @foreach (var ii in ViewBag.col)
+                                                                {
+                                                                    @if (y.ColorID == ii.ColorID)
+                                                                    {
+                                                                        @if (y.ColorID != i.ColorID)
+                                                                        {
+                                                                            <option value="@y.ColorID">@ii.Color</option>
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                        checkcol++;
+                                                    }
+                                                    if (item.Color == 0)
+                                                    {
+                                                        @foreach (var y in ViewBag.Procol)
+                                                        {
+                                                            @if (item.Products.ProductID == y.ID)
+                                                            {
+                                                                @foreach (var ii in ViewBag.col)
+                                                                {
+                                                                    @if (y.ColorID == ii.ColorID)
+                                                                    {
+                                                                        @if (y.ColorID != i.ColorID)
+                                                                        {
+                                                                            <option id="color_@iD" value="@y.ColorID">@ii.Color</option>
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                        break;
                                                     }
                                                 }
-                                            </span>
+                                            </select>
                                         </td>
                                         <td class="pro-quantity">
                                             <span>
@@ -210,6 +286,10 @@
         var soluong = $("#txtQuantity_" + id).val();
         var gia = $("#tdGia_" + id).html();
         var thanhtien = soluong * gia;
+        var sizes = $("#size_" + id).val();
+        var colors = $("#color_" + id).val();
+        //alert(sizes);
+        //alert(colors);
         $("#tdTien_" + id).html(thanhtien);
         location.reload();
 
@@ -218,7 +298,9 @@
             url: "/Home/UpdateCart",
             data: {
                 id: id,
-                soluong: soluong
+                soluong: soluong,
+                size: sizes,
+                color: colors
             },
             success: function (result) {
                 $("#spTotal").html(result);
