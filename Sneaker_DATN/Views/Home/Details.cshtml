@@ -3,24 +3,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<style>
-    .product-custom-brand{
-        padding: 0.5rem 0 0.5rem 0;
-        display: flex;
-        align-items: center;
-    }
-    .product-custom-brand h4 {
-        color: #222222;
-        font-family: Roboto;
-        font-size: 16px;
-    }
-        .product-custom-brand h5 {
-            margin-left: 1rem;
-            color: #222222;
-            font-size: 18px;
-            font-family: Roboto;
-        }
-</style>
 
 <!-- slide -->
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
@@ -401,58 +383,7 @@
 </section>
 <!--================End Product Description Area =================-->
 <!-- Start related-product Area -->
-@*<section class="related-product-area section_gap_bottom">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-6 text-center">
-                    <div class="section-title">
-                        <h1>Các sản phẩm tương tự</h1>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                @foreach (var item in Model)
-                {
 
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                        <div class="single-product">
-                            <img class="img-fluid" src="~/images/Product/@item.Image" alt="">
-                            @if (item.Price >= 3000000)
-                            {
-                                <div class="badge-overlay">
-                                    <span class="badge">Sale 0%</span>
-                                </div>
-                            }
-                            <div class="product-details">
-                                <h6>@Html.DisplayFor(modelItem => item.ProductName)</h6>
-                                <div class="price">
-                                    <h6>@Html.DisplayFor(modelItem => item.Price)</h6>
-                                    @if (item.Price >= 3000000)
-                                    {
-                                        <h6 class="l-through">$@Html.DisplayFor(modelItem => item.Price)</h6>
-                                    }
-
-                                </div>
-                                <div class="prd-bottom">
-                                    <a class="addProduct social-info" href="javascript:addCart(@item.ProductID);">
-                                        <span class="ti-bag"></span>
-                                        <p class="hover-text">Giỏ hàng</p>
-                                    </a>
-                                    <a class="social-info">
-                                        <span class="lnr lnr-heart"></span>
-                                        <p class="hover-text">Yêu thích</p>
-                                    </a>
-                                    <a asp-action="Details" asp-route-id="@item.ProductID" class="social-info">
-                                        <span class="lnr lnr-move"></span>
-                                        <p class="hover-text">Xem Thêm</p>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                }
-            </div>
-    </section>*@
 <!-- End related-product Area -->
 <!-- slide -->
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>

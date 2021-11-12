@@ -12,6 +12,21 @@
 @{ int checksz = 0; int checkcol = 0;}
 
 
+<style>
+    .colorlib-product .cart-table table{
+        overflow: hidden;
+    }
+    .cart-tbl-select-custom{
+        border: none;
+    }
+    .cart-tbl-select-custom ul{
+       display: none;
+    }
+        .nice-select:after {
+            display: none !important;
+        }
+</style>
+
 <!-- Start Banner Area -->
 <section class="banner-area organic-breadcrumb">
     <div class="container">
@@ -62,8 +77,8 @@
                                 <th class="pro-quantity">STT</th>
                                 <th class="pro-thumbnail">Sản phẩm</th>
                                 <th class="pro-title">Tên</th>
-                                <th class="pro-quantity">Size</th>
-                                <th class="pro-quantity">Màu sắc</th>
+                                <th class="pro-quantity text-center">Size</th>
+                                <th class="pro-quantity text-center">Màu sắc</th>
                                 <th class="pro-quantity">Số lượng</th>
                                 <th class="pro-price">Giá</th>
                                 <th class="pro-subtotal">Tổng</th>
@@ -90,8 +105,8 @@
                                             </a>
                                         </td>
                                         <td class="pro-title"><a href="#"> @item.Products.ProductName</a></td>
-                                        <td class="pro-quantity">
-                                            <select>
+                                        <td class="pro-quantity text-center">
+                                            <select class="cart-tbl-select-custom ml-3">
                                                 @foreach (var i in ViewBag.sz)
                                                 {
                                                     @if (item.Size == i.SizeID)
@@ -139,8 +154,8 @@
                                                 }
                                             </select>
                                         </td>
-                                        <td class="pro-quantity">
-                                            <select>
+                                        <td class="pro-quantity text-center">
+                                            <select  class="cart-tbl-select-custom ml-4">
                                                 @foreach (var i in ViewBag.col)
                                                 {
                                                     @if (item.Color == i.ColorID)
@@ -212,17 +227,17 @@
                 <div class="total-wrap">
                     <div class="row">
                         <div class="col-sm-7">
-                            <form action="#">
+                            @*<form action="#">
                                 <div class="row form-group">
                                     <div class="col-sm-10">
                                         <input type="text" name="quantity" class="form-control input-number"
                                                placeholder="Mã giảm giá...">
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-sproduct_top_bar m-3">
                                         <button class="primary-btn">Áp dụng</button>
                                     </div>
                                 </div>
-                            </form>
+                            </form>*@
                         </div>
                         <div class="col-sm-5 text-center">
                             <div class="total">

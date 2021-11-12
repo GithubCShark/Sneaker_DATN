@@ -16,7 +16,7 @@
 }
 
 <style>
-    .select-custom-provine {
+  /*  .select-custom-provine {
         width: 100% !important;
         border: none;
     }
@@ -43,12 +43,6 @@
         margin-bottom: 20px;
         border-radius: 16px;
     }
-
-    @*@media (max-width: 767.98px) {
-        .cart-detail {
-            padding: 1em;
-        }
-    }*@
 
         .cart-detail span{
             margin-left: 1rem;
@@ -117,16 +111,13 @@
             border-radius: 8px;
             color: #999999;
         }
-    .custom-discount{
-      /*  border-radius: 8px;*/
-    }
     .pro-quantity input{
         border: none;
         background-color: transparent;
     }
     .cart-detail-total{
         margin-top: 15px;
-    }
+    }*/
 </style>
 
 <!-- Start Banner Area -->
@@ -297,10 +288,10 @@
                                 <h2>Thành tiền:</h2>
                                 <span id="spTotal">@String.Format("{0:n0}", @total) VNĐ</span>
 
-                                <h2>Giảm giá:</h2>
+                                @*<h2>Giảm giá:</h2>
                                 <span id="voucher">@String.Format("{0:n0}", @total) VNĐ</span>
 
-                                <h2>Thành tiền:</h2>
+                                <h2>Thành tiền:</h2>*@
                             </div>
                             <div class="d-flex align-items-baseline custom-discount-input">
                                 <h2>Mã giảm giá: </h2>
