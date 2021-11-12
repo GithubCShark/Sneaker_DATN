@@ -46,8 +46,7 @@
                         @if (avatar == null || avatar == "")
                         {
                         <span class="img-info-user">
-                            <source srcset="~/images/avatar/avatar-illustrated-02.webp" type="image/webp">
-                            <img src="~/images/avatar/avatar-illustrated-02.png" alt="User name">
+                            <span class='bx bx-user' ></span>
                             @*<img src="~/images/user.png" style="width:25px" />*@
                         </span>
                         }
@@ -93,13 +92,12 @@
                             </a> và đăng nhập vào tài khoản của bạn)
                         </p>
                         <p>
-                            Từ trang quản lý tài khoản bạn có thể xem <a href="">đơn hàng mới</a>, quản lý
-                            <a href="">
-                                địa chỉ giao hàng và
-                                thanh toán
-                            </a>, and <a href="">
-                                sửa mật khẩu và thông
-                                tin tài khoản
+                            Từ trang quản lý tài khoản bạn có thể xem 
+                            <a asp-controller="Home" asp-action="Info">
+                                thông tin tài khoản
+                            </a> và
+                            <a asp-controller="Home" asp-action="ChangePass">
+                                đổi mật khẩu
                             </a>.
                         </p>
                     </div>
@@ -110,12 +108,12 @@
                         <li class="nav-link">
                             <a asp-controller="Home" asp-action="Info">Thông tin</a>
                         </li>
-                        <li class="nav-link">
+                        @*<li class="nav-link">
                             <a href="">Đơn hàng</a>
                         </li>
                         <li class="nav-link">
                             <a href="">Địa chỉ</a>
-                        </li>
+                        </li>*@
                         <li class="nav-link">
                             <a asp-controller="Home" asp-action="ChangePass">Đổi mật khẩu</a>
                         </li>

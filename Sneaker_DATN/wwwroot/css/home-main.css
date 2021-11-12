@@ -308,7 +308,7 @@ h6 {
     .button-group-area .genric-btn:last-child {
         margin-right: 0;
     }
-
+/*
 .genric-btn {
     display: inline-block;
     outline: none;
@@ -547,7 +547,7 @@ h6 {
     background: #f9f9ff;
     border-left: 2px solid #576ee0;
 }
-
+*//*
 .progress-table-wrap {
     overflow-x: scroll;
 }
@@ -649,22 +649,22 @@ h6 {
 
                     .progress-table .table-row .percentage .progress .progress-bar.color-8 {
                         background-color: #e66686;
-                    }
+                    }*/
 
-.single-gallery-image {
+/*.single-gallery-image {
     margin-top: 30px;
     background-repeat: no-repeat !important;
     background-position: center center !important;
     background-size: cover !important;
     height: 200px;
-}
+}*/
 
-.list-style {
+/*.list-style {
     width: 14px;
     height: 14px;
-}
+}*/
 
-.unordered-list li {
+/*.unordered-list li {
     position: relative;
     padding-left: 30px;
     line-height: 1.82em !important;
@@ -680,8 +680,8 @@ h6 {
         top: 4px;
         left: 0;
         border-radius: 50%;
-    }
-
+    }*/
+/*
 .ordered-list {
     margin-left: 30px;
 }
@@ -722,9 +722,9 @@ h6 {
     .ordered-list-roman li span {
         font-weight: 300;
         color: #777777;
-    }
+    }*/
 
-.single-input {
+/*.single-input {
     display: block;
     width: 100%;
     line-height: 40px;
@@ -736,9 +736,9 @@ h6 {
 
     .single-input:focus {
         outline: none;
-    }
+    }*/
 
-.input-group-icon {
+/*.input-group-icon {
     position: relative;
 }
 
@@ -756,9 +756,9 @@ h6 {
 
     .input-group-icon .single-input {
         padding-left: 45px;
-    }
+    }*/
 
-.single-textarea {
+/*.single-textarea {
     display: block;
     width: 100%;
     line-height: 40px;
@@ -773,8 +773,8 @@ h6 {
     .single-textarea:focus {
         outline: none;
     }
-
-.single-input-primary {
+*/
+/*.single-input-primary {
     display: block;
     width: 100%;
     line-height: 40px;
@@ -787,9 +787,9 @@ h6 {
     .single-input-primary:focus {
         outline: none;
         border: 1px solid #ffba00;
-    }
+    }*/
 
-.single-input-accent {
+/*.single-input-accent {
     display: block;
     width: 100%;
     line-height: 40px;
@@ -803,7 +803,8 @@ h6 {
         outline: none;
         border: 1px solid #eb6b55;
     }
-
+*/
+/*
 .single-input-secondary {
     display: block;
     width: 100%;
@@ -1004,8 +1005,8 @@ h6 {
 
         .confirm-switch input:checked + label:before {
             background: #4cd3e3;
-        }
-
+        }*/
+/*
 .primary-checkbox {
     width: 16px;
     height: 16px;
@@ -1081,7 +1082,8 @@ h6 {
             background: url(../img/elements/success-check.png) no-repeat center center/cover;
             border: none;
         }
-
+*/
+/*
 .disabled-checkbox {
     width: 16px;
     height: 16px;
@@ -1123,8 +1125,8 @@ h6 {
         .disabled-checkbox input:checked + label {
             background: url(../img/elements/disabled-check.png) no-repeat center center/cover;
             border: none;
-        }
-
+        }*/
+/*
 .primary-radio {
     width: 16px;
     height: 16px;
@@ -1162,7 +1164,7 @@ h6 {
             background: url(../img/elements/primary-radio.png) no-repeat center center/cover;
             border: none;
         }
-
+*//*
 .confirm-radio {
     width: 16px;
     height: 16px;
@@ -1200,7 +1202,8 @@ h6 {
             background: url(../img/elements/success-radio.png) no-repeat center center/cover;
             border: none;
         }
-
+*/
+/*
 .disabled-radio {
     width: 16px;
     height: 16px;
@@ -1242,8 +1245,8 @@ h6 {
         .disabled-radio input:checked + label {
             background: url(../img/elements/disabled-radio.png) no-repeat center center/cover;
             border: none;
-        }
-
+        }*/
+/*
 .default-select {
     height: 40px;
 }
@@ -1296,7 +1299,8 @@ h6 {
     .default-select .nice-select::after {
         right: 20px;
     }
-
+*/
+/*
 .form-select {
     height: 40px;
     width: 100%;
@@ -1350,10 +1354,12 @@ h6 {
 
     .form-select .nice-select::after {
         right: 20px;
-    }
+    }*/
 /*.main_menu{
     overflow: hidden;
 }*/
+/**/
+
 .is-sticky .header_area .main_menu .main_box {
     max-width: 100%;
     margin-top: 0;
@@ -1911,7 +1917,7 @@ h6 {
             color: #222222;
         }
     /*  */
-/*
+
     .organic-breadcrumb {
         background: url(../img/banner/common-banner.png) center no-repeat;
         background-size: cover;
@@ -1989,7 +1995,7 @@ h6 {
         .breadcrumb-banner .col-first {
             width: 100%;
         }
-    }*/
+    }
 
     .p1-gradient-bg,
     .details-tab-navigation .nav-link:hover,

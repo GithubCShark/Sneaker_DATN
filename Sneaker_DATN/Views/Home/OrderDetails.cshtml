@@ -5,7 +5,6 @@
 }
 @{ int i = 0;}
 
-
 <body>
     <!-- Start Banner Area -->
     <section class="banner-area organic-breadcrumb">
@@ -32,41 +31,141 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="process-wrap process-wrap-details d-flex justify-content-center">
-                        <div class="process text-center">
-                            <p><span class='bx bx-cog bx-spin bx-lg'></span></p>
-                            <h3>Đang xử lý</h3>
-                        </div>
-                        <div class="process text-center">
-                            <p><span class='bx bxs-package bx-tada bx-lg'></span></p>
-                            <h3>Đang đóng gói</h3>
-                        </div>
-                        <div class="process text-center process-danggiao">
-                            <p><span class='bx bxs-truck bx-fade-left bx-lg'></span></p>
-                            <h3>Đang giao</h3>
-                        </div>
-                        <div class="process text-center">
-                            <p><span class='bx bx-badge-check bx-burst bx-lg'></span></p>
-                            <h3>Đã nhận</h3>
-                        </div>
-                        <div class="process text-center">
-                            <p><span class='bx bxs-x-circle bx-flashing bx-lg'></span></p>
-                            <h3>Đã hủy</h3>
-                        </div>
+                        @*<div class="process text-center">
+            <p><span class='bx bx-cog bx-spin bx-lg'></span></p>
+            <h3>Đang xử lý</h3>
+        </div>
+        <div class="process text-center">
+            <p><span class='bx bxs-package bx-tada bx-lg'></span></p>
+            <h3>Đang đóng gói</h3>
+        </div>
+        <div class="process text-center">
+            <p><span class='bx bxs-truck bx-fade-left bx-lg'></span></p>
+            <h3>Đang giao</h3>
+        </div>
+        <div class="process text-center">
+            <p><span class='bx bx-badge-check bx-burst bx-lg'></span></p>
+            <h3>Đã nhận</h3>
+        </div>
+        <div class="process text-center">
+            <p><span class='bx bxs-x-circle bx-flashing bx-lg'></span></p>
+            <h3>Đã hủy</h3>
+        </div>*@
 
                         @if (@ViewBag.order.Status == "Đang xử lý")
                         {
+                            <div class="process text-center active">
+                                <p><span class='bx bx-cog bx-spin bx-lg'></span></p>
+                                <h3>Đang xử lý</h3>
+                            </div>
+                            <div class="process text-center">
+                                <p><span class='bx bxs-package bx-tada bx-lg'></span></p>
+                                <h3>Đang đóng gói</h3>
+                            </div>
+                            <div class="process text-center">
+                                <p><span class='bx bxs-truck bx-tada bx-lg'></span></p>
+                                <h3>Đang giao</h3>
+                            </div>
+                            <div class="process text-center">
+                                <p><span class='bx bx-badge-check bx-tada bx-lg'></span></p>
+                                <h3>Đã nhận</h3>
+                            </div>
+                            <div class="process text-center">
+                                <p><span class='bx bxs-x-circle bx-spin bx-lg'></span></p>
+                                <h3>Đã hủy</h3>
+                            </div>
                         }
                         else if (@ViewBag.order.Status == "Đang đóng gói")
                         {
+                            <div class="process text-center active">
+                                <p><span class='bx bx-cog bx-spin bx-lg'></span></p>
+                                <h3>Đang xử lý</h3>
+                            </div>
+                            <div class="process text-center active">
+                                <p><span class='bx bxs-package bx-tada bx-lg'></span></p>
+                                <h3>Đang đóng gói</h3>
+                            </div>
+                            <div class="process text-center">
+                                <p><span class='bx bxs-truck bx-tada bx-lg'></span></p>
+                                <h3>Đang giao</h3>
+                            </div>
+                            <div class="process text-center">
+                                <p><span class='bx bx-badge-check bx-tada bx-lg'></span></p>
+                                <h3>Đã nhận</h3>
+                            </div>
+                            <div class="process text-center">
+                                <p><span class='bx bxs-x-circle bx-spin bx-lg'></span></p>
+                                <h3>Đã hủy</h3>
+                            </div>
                         }
                         else if (@ViewBag.order.Status == "Đang giao")
                         {
+                            <div class="process text-center active">
+                                <p><span class='bx bx-cog bx-spin bx-lg'></span></p>
+                                <h3>Đang xử lý</h3>
+                            </div>
+                            <div class="process text-center active">
+                                <p><span class='bx bxs-package bx-tada bx-lg'></span></p>
+                                <h3>Đang đóng gói</h3>
+                            </div>
+                            <div class="process text-center active">
+                                <p><span class='bx bxs-truck bx-tada bx-lg'></span></p>
+                                <h3>Đang giao</h3>
+                            </div>
+                            <div class="process text-center">
+                                <p><span class='bx bx-badge-check bx-tada bx-lg'></span></p>
+                                <h3>Đã nhận</h3>
+                            </div>
+                            <div class="process text-center">
+                                <p><span class='bx bxs-x-circle bx-spin bx-lg'></span></p>
+                                <h3>Đã hủy</h3>
+                            </div>
                         }
                         else if (@ViewBag.order.Status == "Đã nhận")
                         {
+                            <div class="process text-center active">
+                                <p><span class='bx bx-cog bx-spin bx-lg'></span></p>
+                                <h3>Đang xử lý</h3>
+                            </div>
+                            <div class="process text-center active">
+                                <p><span class='bx bxs-package bx-tada bx-lg'></span></p>
+                                <h3>Đang đóng gói</h3>
+                            </div>
+                            <div class="process text-center active">
+                                <p><span class='bx bxs-truck bx-tada bx-lg'></span></p>
+                                <h3>Đang giao</h3>
+                            </div>
+                            <div class="process text-center active">
+                                <p><span class='bx bx-badge-check bx-tada bx-lg'></span></p>
+                                <h3>Đã nhận</h3>
+                            </div>
+                            <div class="process text-center">
+                                <p><span class='bx bxs-x-circle bx-spin bx-lg'></span></p>
+                                <h3>Đã hủy</h3>
+                            </div>
                         }
                         else if (@ViewBag.order.Status == "Đã hủy")
                         {
+                            <div class="process text-center">
+                                <p><span class='bx bx-cog bx-spin bx-lg'></span></p>
+                                <h3>Đang xử lý</h3>
+                            </div>
+                            <div class="process text-center">
+                                <p><span class='bx bxs-package bx-tada bx-lg'></span></p>
+                                <h3>Đang đóng gói</h3>
+                            </div>
+                            <div class="process text-center">
+                                <p><span class='bx bxs-truck bx-fade-left bx-lg'></span></p>
+                                <h3>Đang giao</h3>
+                            </div>
+                            <div class="process text-center">
+                                <p><span class='bx bx-badge-check bx-burst bx-lg'></span></p>
+                                <h3>Đã nhận</h3>
+                            </div>
+                            <div class="process text-center process-cancel active">
+                                <p><span class='bx bxs-x-circle bx-spin bx-lg'></span></p>
+                                <h3>Đã hủy</h3>
+                            </div>
                         }
                     </div>
                 </div>

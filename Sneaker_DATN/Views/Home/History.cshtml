@@ -4,6 +4,42 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    /*history*/
+    .custom-history {
+        display: flex;
+    }
+
+    .custom-history-trash:hover,
+    .custom-history-details:hover {
+        opacity: 0.9;
+    }
+
+    .custom-history-trash,
+    .custom-history-details {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 20px;
+        height: 40px;
+        border-radius: 8px;
+    }
+
+        .custom-history-details i,
+        .custom-history-trash i {
+            color: #fff;
+        }
+
+    .custom-history-trash {
+        margin-left: 1rem;
+        background: #dc3545 !important;
+    }
+
+    .custom-history-trash-disable {
+        cursor: no-drop;
+    }
+</style>
+
 <!-- Start Banner Area -->
 <section class="banner-area organic-breadcrumb">
     <div class="container">
@@ -56,39 +92,39 @@
                         <tbody>
                             @foreach (var item in Model)
                             {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.DateCreate)
-                                </td>
-                                <td>
-                                    @string.Format("{0:0,0}", item.Total)
-                                </td>
-                                <td>
-                                    @string.Format("{0:0,0}", item.PaymentAmount)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Address)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Status)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Note)
-                                </td>
-                                <td class="custom-history">
-                                    <a class="primary-btn custom-history-details" asp-action="OrderDetails" asp-route-id="@item.OrderID"><i class='bx bx-detail bx-sm'></i></a>
-                                    @if (item.Status == "Đang xử lý" || item.Status == "Đang đóng gói")
-                                    {
-                                        <a class="primary-btn custom-history-trash" onclick="show();"><i class='bx bx-trash bx-sm'></i></a>
-                                    }
-                                    else if (item.Status == "Đang giao")
-                                    {
-                                        <a class="primary-btn custom-history-trash  custom-history-trash-disable" disabled="disabled"><i class='bx bx-trash bx-sm'></i></a>
-                                    }
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DateCreate)
+                                    </td>
+                                    <td>
+                                        @string.Format("{0:0,0}", item.Total)
+                                    </td>
+                                    <td>
+                                        @string.Format("{0:0,0}", item.PaymentAmount)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Address)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Status)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Note)
+                                    </td>
+                                    <td class="custom-history">
+                                        <a class="primary-btn custom-history-details" asp-action="OrderDetails" asp-route-id="@item.OrderID"><i class='bx bx-detail bx-sm'></i></a>
+                                        @if (item.Status == "Đang xử lý" || item.Status == "Đang đóng gói")
+                                        {
+                                            <a class="primary-btn custom-history-trash" onclick="show();"><i class='bx bx-trash bx-sm'></i></a>
+                                        }
+                                        else if (item.Status == "Đang giao")
+                                        {
+                                            <a class="primary-btn custom-history-trash  custom-history-trash-disable" disabled="disabled"><i class='bx bx-trash bx-sm'></i></a>
+                                        }
 
 
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
                             }
                         </tbody>
                     </table>

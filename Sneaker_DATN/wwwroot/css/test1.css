@@ -1,1 +1,32 @@
-﻿
+﻿.s_product_text .size-wrap .card_area{
+    margin-top: 13rem;
+}
+.s_product_text .size-wrap .product_count input {
+    padding: 0.3rem 0 0.3rem 1rem;
+    border: 1px solid #e6e6e6;
+    color: #777;
+    border-radius: 8px;
+}
+
+.process-cancel.active p span {
+    color: #dc3545 !important;
+    border: 2px solid #dc3545 !important;
+    border-radius: 50%;
+}
+
+.single-product .img-fluid {
+    /* box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;*/
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+}
+
+.load{
+    cursor: wait;
+}
+
+.infomation-user-left-img .img-info-user span{
+    font-size: 200px;
+}
+
+.home-logout-nav{
+    cursor: pointer;
+}
