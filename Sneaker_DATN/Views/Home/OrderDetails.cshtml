@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @{ int i = 0;}
+
 <body>
     <!-- Start Banner Area -->
     <section class="banner-area organic-breadcrumb">
@@ -24,129 +25,213 @@
             </nav>
         </div>
     </section>
-    <div class="container">
-        <div class="col-lg-11 m-auto">
-            <div class="custom-detail pt-5">
-                <div class="custom-icon">
-                    <a class="dashbroad-icon-hover" asp-controller="Orders" asp-action="Index"><i class="icon-back fas fa-chevron-left fa-2x "></i></a>
-                    <h4 class="main-title text-center text-uppercase mt-2 m-auto">Chi tiết đơn hàng</h4>
-                    @*<button class="custom-icon-button">
-                            <a class="font-weight-lighter" asp-controller="Orders" asp-action="Edit" asp-route-id="@Model.OrderID">
-                            <i class="far fa-edit" style="font-size: 1.25rem;"></i> Chỉnh sửa
-                        </a>
-                        </button>*@
-                </div>
-                <dl class="shadow-lg">
-                    <dt class="col-sm-2">
-                        Tên khách hàng
-                    </dt>
-                    <dd class="col-sm-10">
-                        @ViewBag.order.FullName
-                    </dd>
-                    <dt class="col-sm-2">
-                        Địa chỉ
-                    </dt>
-                    <dd class="col-sm-10">
-                        @ViewBag.order.Address
-                    </dd>
-                    <dt class="col-sm-2">
-                        Số điện thoại
-                    </dt>
-                    <dd class="col-sm-10">
-                        @ViewBag.order.PhoneNumber
-                    </dd>
-                    <dt class="col-sm-2">
-                        Email
-                    </dt>
-                    <dd class="col-sm-10">
-                        @ViewBag.order.Email
-                    </dd>
-                    <dt class="col-sm-2">
-                        Trạng thái
-                    </dt>
-                    <dd class="col-sm-10">
-                        @ViewBag.order.Status
-                    </dd>
-                </dl>
-            </div>
-        </div>
-        <div class="col-lg-10 m-auto px-5 pt-0">
-            <div class="users-table table-wrapper">
-                <table class="posts-table mt-3 admin-product" enctype="multipart/form-data">
-                    <thead>
-                        <tr class="users-table-info">
-                            <th>
-                                &nbsp; &nbsp;Hình
-                            </th>
-                            <th>
-                                Tên sản phẩm
-                            </th>
-                            <th>
-                                Màu
-                            </th>
-                            <th>
-                                Size
-                            </th>
-                            <th>
-                                Số lượng
-                            </th>
-                            <th>
-                                Giá
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
+
+    <div class="colorlib-product colorlib-product-details ">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="process-wrap process-wrap-details d-flex justify-content-center">
+                        <div class="process text-center">
+                            <p><span class='bx bxs-cog bx-spin bx-lg'></span></p>
+                            <h3>Đang xử lý</h3>
+                        </div>
+                        <div class="process text-center">
+                            <p><span class='bx bxs-package bx-tada bx-lg'></span></p>
+                            <h3>Đang đóng gói</h3>
+                        </div>
+                        <div class="process text-center process-danggiao">
+                            <p><span class='bx bxs-truck bx-fade-left bx-lg'></span></p>
+                            <h3>Đang giao</h3>
+                        </div>
+                        <div class="process text-center">
+                            <p><span class='bx bx-badge-check bx-burst bx-lg'></span></p>
+                            <h3>Đã nhận</h3>
+                        </div>
+                        <div class="process text-center">
+                            <p><span class='bx bxs-x-circle bx-flashing bx-lg'></span></p>
+                            <h3>Đã hủy</h3>
+                        </div>
+
+                        @if (@ViewBag.order.Status == "Đang xử lý")
                         {
-                            <tr>
-                                <td>
-                                    @foreach (var x in ViewBag.Product)
-                                    {
-                                        @if (x.ProductID == item.ProductID)
-                                        {
-                                            <img src="~/images/Product/@x.Image" style="width:100px; height:100px;" />
-                                        }
-                                    }
-                                </td>
-                                <td>
-                                    @foreach (var y in ViewBag.Product)
-                                    {
-                                        @if (y.ProductID == item.ProductID)
-                                        {
-                                            @y.ProductName
-                                        }
-                                    }
-                                </td>
-                                <td>
-                                    @foreach (var z in ViewBag.Color)
-                                    {
-                                        @if (z.ColorID == item.ColorID)
-                                        {
-                                            @z.Color
-                                        }
-                                    }
-                                </td>
-                                <td>
-                                    @foreach (var g in ViewBag.Size)
-                                    {
-                                        @if (g.SizeID == item.SizeID)
-                                        {
-                                            @g.Size
-                                        }
-                                    }
-                                </td>
-                                <td>
-                                    @item.Quantity
-                                </td>
-                                <td>
-                                    @string.Format("{0:0,0}", item.Price)
-                                </td>
-                            </tr>
-                            i++;
                         }
-                    </tbody>
-                </table>
+                        else if (@ViewBag.order.Status == "Đang đóng gói")
+                        {
+                        }
+                        else if (@ViewBag.order.Status == "Đang giao")
+                        {
+                        }
+                        else if (@ViewBag.order.Status == "Đã nhận")
+                        {
+                        }
+                        else if (@ViewBag.order.Status == "Đã hủy")
+                        {
+                        }
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    <!--================Order Details Area =================-->
+    <section class="order_details">
+        <div class="container">
+            @*<h3 class="title_confirmation">Thank you. Your order has been received.</h3>*@
+            <div class="row order_d_inner">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <h4 class="mb-3">Chi tiết khách hàng</h4>
+                    <div class="details_item">
+                        <div class="col-lg-4 col-md-12 col-sm-12">
+                            <ul class="list">
+                                <li><a><span>Tên khách hàng :</span>@ViewBag.order.FullName</a></li>
+                                <li><a><span>Địa chỉ :</span>@ViewBag.order.Address</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12">
+                            <ul class="list">
+                                <li><a><span>Số điện thoại :</span>@ViewBag.order.PhoneNumber</a></li>
+                                <li><a><span>Email :</span>@ViewBag.order.Email</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12">
+                            <ul class="list">
+                                <li><a><span>Trạng thái :</span>@ViewBag.order.Status</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="order_details_table">
+                <h2>Chi Tiết Đơn Hàng</h2>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr class="order_details-info">
+                                <th scope="col"></th>
+                                <th scope="col">Tên</th>
+                                <th scope="col">Màu</th>
+                                <th scope="col">Size</th>
+                                <th scope="col">Số lượng</th>
+                                <th scope="col">Giá</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr class="orderdetails-custom">
+                                    <td class="orderdetails-img">
+                                        @foreach (var x in ViewBag.Product)
+                                        {
+                                            @if (x.ProductID == item.ProductID)
+                                            {
+                                                <img src="~/images/Product/@x.Image" style="width:100px; height:100px;" />
+                                            }
+                                        }
+                                    </td>
+                                    <td>
+                                        @foreach (var y in ViewBag.Product)
+                                        {
+                                            @if (y.ProductID == item.ProductID)
+                                            {
+                                                <h5> @y.ProductName</h5>
+                                            }
+                                        }
+                                    </td>
+                                    <td>
+                                        @foreach (var z in ViewBag.Color)
+                                        {
+                                            @if (z.ColorID == item.ColorID)
+                                            {
+                                                @z.Color
+                                            }
+                                        }
+                                    </td>
+                                    <td>
+                                        @foreach (var g in ViewBag.Size)
+                                        {
+                                            @if (g.SizeID == item.SizeID)
+                                            {
+                                                <p> @g.Size</p>
+                                            }
+                                        }
+                                        @*<h5>x 02</h5>*@
+                                    </td>
+                                    <td>
+                                        @item.Quantity
+                                        @*<p>$720.00</p>*@
+                                    </td>
+                                    <td>
+                                        @string.Format("{0:0,0}", item.Price)
+                                        @*<p>$720.00</p>*@
+                                    </td>
+                                </tr>
+                                i++;
+                            }
+                            <tr>
+                                <td>
+                                    <h4>Tổng</h4>
+                                </td>
+                                <td>
+                                    <h5></h5>
+                                </td>
+                                <td>
+                                    <h5></h5>
+                                </td>
+                                <td>
+                                    <h5></h5>
+                                </td>
+                                <td>
+                                    <h5></h5>
+                                </td>
+                                <td>
+                                    <p>@string.Format("{0:0,0}", ViewBag.order.Total)</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h4>Giảm giá</h4>
+                                </td>
+                                <td>
+                                    <h5></h5>
+                                </td>
+                                <td>
+                                    <h5></h5>
+                                </td>
+                                <td>
+                                    <h5></h5>
+                                </td>
+                                <td>
+                                    <h5></h5>
+                                </td>
+                                <td>
+                                    <p>@string.Format("{0:0,0}", ViewBag.order.Total - ViewBag.order.PaymentAmount)</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h4>Tổng tiền</h4>
+                                </td>
+                                <td>
+                                    <h5></h5>
+                                </td>
+                                <td>
+                                    <h5></h5>
+                                </td>
+                                <td>
+                                    <h5></h5>
+                                </td>
+                                <td>
+                                    <h5></h5>
+                                </td>
+                                <td>
+                                    <p>@string.Format("{0:0,0}", ViewBag.order.PaymentAmount)</p>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
