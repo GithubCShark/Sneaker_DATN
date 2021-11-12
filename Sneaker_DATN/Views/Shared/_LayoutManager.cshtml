@@ -20,8 +20,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-    <script src="https://code.angularjs.org/1.8.2/angular-route.min.js"></script>
+    @*<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.8.2/angular-route.min.js"></script>*@
     <!-- Icon -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
           integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
@@ -33,7 +33,7 @@
     <link href="~/js/chosen/chosen.min.css" rel="stylesheet" />
 </head>
 
-<body ng-app="myApp">
+<body>
     <div class="layer"></div>
     <!-- ! Body -->
     <a class="skip-link sr-only" href="#skip-target">Skip</a>
@@ -55,25 +55,25 @@
                         <span class="icon menu-toggle" aria-hidden="true"></span>
                     </button>
                 </div>
-                <div id="myDIV" class="sidebar-body" ng-controller="index">
+                <div id="myDIV" class="sidebar-body" >
                     <ul class="sidebar-body-menu">
                         <li>
-                            <a class="dashboard-menu active" ng-click="acside(0)" asp-controller="Admin" asp-action="Index">
+                            <a class="dashboard-menu" asp-controller="Admin" asp-action="Index">
                                 <span class="icon home" aria-hidden="true"></span>Trang Chủ
                             </a>
                         </li>
                         <li>
-                            <a class="dashboard-menu" ng-click="acside(1)" asp-controller="Orders" asp-action="Index">
+                            <a class="dashboard-menu" asp-controller="Orders" asp-action="Index">
                                 <span class="icon document" aria-hidden="true"></span>Đơn Hàng
                             </a>
                         </li>
                         <li>
-                            <a class="dashboard-menu" ng-click="acside(2)" asp-controller="UserMem" asp-action="Index">
+                            <a class="dashboard-menu" asp-controller="UserMem" asp-action="Index">
                                 <span class="icon user-3" aria-hidden="true"></span>Khách Hàng
                             </a>
                         </li>
                         <li>
-                            <a class="show-cat-btn {{ac3}}" href="#">
+                            <a class="show-cat-btn" href="#">
                                 <span class="icon category" aria-hidden="true"></span>Sản Phẩm
                                 <span class="category__btn transparent-btn" title="Open list">
                                     <span class="icon arrow-down" aria-hidden="true"></span>
@@ -81,18 +81,18 @@
                             </a>
                             <ul class="cat-sub-menu">
                                 <li>
-                                    <a ng-click="acside(3)" asp-controller="Product" asp-action="Index">Danh Sách</a>
+                                    <a asp-controller="Product" asp-action="Index">Danh Sách</a>
                                 </li>
                                 <li>
-                                    <a ng-click="acside(3)" asp-controller="Colors" asp-action="Index">Bảng Màu</a>
+                                    <a asp-controller="Colors" asp-action="Index">Bảng Màu</a>
                                 </li>
                                 <li>
-                                    <a ng-click="acside(3)" asp-controller="Sizes" asp-action="Index">Bảng Size</a>
+                                    <a asp-controller="Sizes" asp-action="Index">Bảng Size</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a class="show-cat-btn1 {{ac4}}" href="#">
+                            <a class="show-cat-btn1" href="#">
                                 <span class="icon report" aria-hidden="true"></span>Thống Kê, Báo Cáo
                                 <span class="category__btn1 transparent-btn" title="Open list">
                                     <span class="icon arrow-down" aria-hidden="true"></span>
@@ -100,31 +100,31 @@
                             </a>
                             <ul class="cat-sub-menu">
                                 <li>
-                                    <a ng-click="acside(4)" asp-controller="Chart" asp-action="Index">Thống Kê</a>
+                                    <a asp-controller="Chart" asp-action="Index">Thống Kê</a>
                                 </li>
                                 <li>
-                                    <a ng-click="acside(4)" href="#">Báo Cáo</a>
+                                    <a href="#">Báo Cáo</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a class="{{ac5}}" ng-click="acside(5)" href="#!marketing">
+                            <a href="#!marketing">
                                 <span class="icon marketing" aria-hidden="true"></span>Marketing
                             </a>
                         </li>
                         <li>
-                            <a class="{{ac5}}" ng-click="acside(5)" asp-controller="Discount" asp-action="Index">
-                                <span class="icon marketing" aria-hidden="true"></span>Mã giảm giá
-                            </a>
+                            <a asp-controller="Discount" asp-action="Index">
+                                <span class="icon fas fa-percent ml-1" aria-hidden="true"></span><span class="ml-2">Mã giảm giá</span>
+</a>
                         </li>
                         <li>
-                            <a class="{{ac6}}" ng-click="acside(6)" asp-controller="User" asp-action="Index">
+                            <a asp-controller="User" asp-action="Index">
                                 <span class="icon user-3" aria-hidden="true"></span>Quản lý tài khoản
-                            </a>
+</a>
                         </li>
                         <li>
-                            <a class="{{ac6}}" ng-click="acside(6)" asp-controller="User" asp-action="BotChat">
-                                <span class="icon fas fa-robot" aria-hidden="true"></span>BOT chat
+                            <a asp-controller="User" asp-action="BotChat">
+                                <span class="icon fas fa-robot ml-1" aria-hidden="true"></span><span class="ml-1">BOT chat</span>
                             </a>
                         </li>
                     </ul>
@@ -135,11 +135,11 @@
                     <span class="sidebar-user-img">
                         <picture>
                             @*<source srcset="~/images/avatar/avatar-illustrated-01.webp" type="image/webp">*@
-                            <img src="~/images/avatar/157687606_2904103233166466_77970241031104239_n.jpg" alt="Mai Thế Anh">
+                            <img src="~/images/avatar/@avatar" alt="User name">
                         </picture>
                     </span>
                     <div class="sidebar-user-info">
-                        <span class="sidebar-user__title">Mtab</span>
+                        <span class="sidebar-user__title">@*@ViewBag.user.UserName*@</span>
                         <span class="sidebar-user__subtitle">Support manager</span>
                     </div>
                 </a>
@@ -172,7 +172,7 @@
                             <span class="sr-only">Toggle menu</span>
                             <span class="icon menu-toggle--gray" aria-hidden="true"></span>
                         </button>
-                        <div class="lang-switcher-wrapper">
+                        @*<div class="lang-switcher-wrapper">
                             <button class="lang-switcher transparent-btn" type="button">
                                 VN
                                 <i data-feather="chevron-down" aria-hidden="true"></i>
@@ -180,13 +180,13 @@
                             <ul class="lang-menu dropdown">
                                 <li><a href="##">English</a></li>
                             </ul>
-                        </div>
+                        </div>*@
                         <button class="theme-switcher gray-circle-btn" type="button" title="Switch theme">
                             <span class="sr-only">Đổi giao diện</span>
                             <i class="moon-icon" data-feather="moon" aria-hidden="true"></i>
                             <i class="sun-icon" data-feather="sun" aria-hidden="true"></i>
                         </button>
-                        <div class="notification-wrapper">
+                        @*<div class="notification-wrapper">
                             <button class="gray-circle-btn dropdown-btn" title="Thông Báo" type="button">
                                 <span class="sr-only">Thông Báo</span>
                                 <i class="icon fas fa-bell"></i>
@@ -235,7 +235,7 @@
                                     <a class="link-to-page" href="##">Đến trang thông báo</a>
                                 </li>
                             </ul>
-                        </div>
+                        </div>*@
                         <div class="nav-user-wrapper">
                             <button href="##" class="nav-user-btn dropdown-btn" title="Bản Thân" type="button">
                                 <span class="sr-only">Bản Thân</span>
@@ -331,46 +331,46 @@
     //    });
     //}
 
-    var app = angular.module("myApp", ["ngRoute"]);
-    app.controller("index", function ($scope, $http) {
-        $scope.setac = function () {
-            $scope.acdefaul = ""
-            $scope.ac1 = ""
-            $scope.ac2 = ""
-            $scope.ac3 = ""
-            $scope.ac4 = ""
-            $scope.ac5 = ""
-            $scope.ac6 = ""
-        }
-        $scope.acside = function (x) {
-            if (x == "1") {
-                $scope.setac();
-                $scope.ac1 = "active"
-            }
-            else if (x == "2") {
-                $scope.setac();
-                $scope.ac2 = "active"
-            }
-            else if (x == "3") {
-                $scope.setac();
-                $scope.ac3 = "active"
-            }
-            else if (x == "4") {
-                $scope.setac();
-                $scope.ac4 = "active"
-            }
-            else if (x == "5") {
-                $scope.setac();
-                $scope.ac5 = "active"
-            }
-            else if (x == "6") {
-                $scope.setac();
-                $scope.ac6 = "active"
-            }
-            else {
-                $scope.setac();
-                $scope.acdefaul = "active"
-            }
-        }
-    })
+    //var app = angular.module("myApp", ["ngRoute"]);
+    //app.controller("index", function ($scope, $http) {
+    //    $scope.setac = function () {
+    //        $scope.acdefaul = ""
+    //        $scope.ac1 = ""
+    //        $scope.ac2 = ""
+    //        $scope.ac3 = ""
+    //        $scope.ac4 = ""
+    //        $scope.ac5 = ""
+    //        $scope.ac6 = ""
+    //    }
+    //    $scope.acside = function (x) {
+    //        if (x == "1") {
+    //            $scope.setac();
+    //            $scope.ac1 = "active"
+    //        }
+    //        else if (x == "2") {
+    //            $scope.setac();
+    //            $scope.ac2 = "active"
+    //        }
+    //        else if (x == "3") {
+    //            $scope.setac();
+    //            $scope.ac3 = "active"
+    //        }
+    //        else if (x == "4") {
+    //            $scope.setac();
+    //            $scope.ac4 = "active"
+    //        }
+    //        else if (x == "5") {
+    //            $scope.setac();
+    //            $scope.ac5 = "active"
+    //        }
+    //        else if (x == "6") {
+    //            $scope.setac();
+    //            $scope.ac6 = "active"
+    //        }
+    //        else {
+    //            $scope.setac();
+    //            $scope.acdefaul = "active"
+    //        }
+    //    }
+    //})
 </script>

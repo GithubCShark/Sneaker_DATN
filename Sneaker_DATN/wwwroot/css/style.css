@@ -4948,3 +4948,59 @@ dd {
     border-radius: 6px !important;
     background: rgb(245, 245, 245) !important;
 }
+
+/*bot chat*/
+@media (min-width: 992px) {
+    .bot-chat-flex{
+        display: flex;
+    }
+}
+.bot-chat {
+    width: 100%;
+    height: 100%;
+    margin-top: 5rem;
+    padding: 5rem 0;
+    border-radius: 18px;
+    text-align: center;
+}
+
+.bot-subtitle,
+.bot-title {
+    margin-top: 1rem;
+    justify-content: center;
+    align-items: baseline;
+    display: flex;
+}
+
+    .bot-subtitle span,
+    .bot-title span {
+        font-size: 28px;
+        font-weight: 700;
+    }
+
+    .bot-subtitle p,
+    .bot-title p {
+        margin-left: 1rem;
+        font-size: 24px;
+        font-weight: 500;
+    }
+
+.bot-btn {
+    margin-top: 4rem;
+}
+
+    .bot-btn a {
+        padding: 2rem;
+        border-radius: 8px;
+        color: #fff;
+        font-weight: 600;
+        font-size: 16px;
+        background-color: #576ee0;
+    }
+.bot-chat-svg {
+    text-align: center;
+}
+
+    .bot-chat-svg img {
+        width: 70%;
+    }
