@@ -307,6 +307,8 @@
     <script>
         AOS.init();
 
+        $(".sticky-header").sticky();
+
         $(window).on('load', function (event) {
             $('body').removeClass('preloading');
             $('.load').delay(100).fadeOut('fast'); //default 500

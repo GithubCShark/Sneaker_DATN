@@ -30,3 +30,30 @@
 .home-logout-nav{
     cursor: pointer;
 }
+
+
+.is-sticky .header_area .main_menu .main_box {
+    max-width: 100%;
+    margin-top: 0;
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+    border-radius: 6px;
+}
+
+.is-sticky .header_area #search_input_box {
+    max-width: 100%;
+}
+
+.sticky-wrapper {
+    position: absolute;
+    top: 40px;
+    width: 100%;
+}
+
+@media (max-width: 991px) {
+    .sticky-wrapper {
+        top: 0;
+    }
+}

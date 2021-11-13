@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace Sneaker_DATN.Controllers
 {
@@ -27,10 +28,55 @@ namespace Sneaker_DATN.Controllers
             _uploadHelper = uploadHelper;
         }
         // GET: UserController
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var students = from s in _context.Users
+                           select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                students = students.Where(s => s.UserName.ToUpper().Contains(searchString.ToUpper())
+                                       || s.FullName.ToUpper().Contains(searchString.ToUpper()));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    students = students.OrderByDescending(s => s.UserName);
+                    break;
+                case "Date":
+                    students = students.OrderBy(s => s.DOB);
+                    break;
+                case "date_desc":
+                    students = students.OrderByDescending(s => s.DOB);
+                    break;
+                default:  // Name ascending 
+                    students = students.OrderBy(s => s.UserName);
+                    break;
+            }
+
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+
             ViewData["role"] = _context.Roles.ToList();
-            return View(_userSvc.GetAllUser());
+
+            return View(students.ToPagedList(pageNumber, pageSize));
+
+        
+            //return View(_userSvc.GetAllUser());
         }
 
         // GET: UserController/Details/5
