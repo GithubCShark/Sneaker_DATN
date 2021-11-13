@@ -14,10 +14,16 @@
                 <div class="row col-lg-12">
                     <div class="input-group col-lg-8 col-sm-6">
                         <div class="form-outline d-flex">
-                            <input type="search" class="input-group col-lg-8" placeholder="Tìm kiếm..." />
-                            <button type="button" class="search-btn btn btn-primary">
-                                <i class="fas fa-search"></i>
-                            </button>
+                            @using (Html.BeginForm("Index", "UserMem", FormMethod.Get))
+                            {
+                                <p class="d-flex">
+                                    @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                                    @*<input type="submit" value="Search" />*@
+                                    <button type="submit" value="Search" class="search-btn btn btn-primary">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </p>
+                            }
                             <div class="ml-3">
                                 <select>
                                     <option selected>Trạng thái...</option>
@@ -43,16 +49,16 @@
                 <thead>
                     <tr class="users-table-info">
                         @*<th>
-                                @Html.DisplayNameFor(model => model.UserName)
+                                @Html.DisplayNameFor(model => model.First().UserName)
                             </th>*@
                         <th>
-                            @Html.DisplayNameFor(model => model.First().FullName)
+                            @Html.ActionLink("Họ và Tên", "Index", new { sortOrder = ViewBag.NameSortParm })
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.First().Email)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.First().Gender)
+                            @Html.ActionLink("Giới tính", "Index", new { sortOrder = ViewBag.GenderSortParm })
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.First().PhoneNumber)
@@ -85,7 +91,7 @@
                             <td class="col-lg-1">
                                 @Html.DisplayFor(modelItem => item.Email)
                             </td>
-                            <td class="col-lg-1"> 
+                            <td class="col-lg-1">
                                 @if (item.Gender)
                                 {
                                     <span>Nam</span>
@@ -104,13 +110,13 @@
                             <td class="col-lg-3">
                                 @Html.DisplayFor(modelItem => item.Address)
                             </td>
-                            <!--<td>
+                            @*<td>
                                 @if (item.RoleID == 3)
                                 {
                                     <span>Khách hàng</span>
-                                }-->
-                            @*@Html.DisplayFor(modelItem => item.RoleID)*@
-                            <!--</td>-->
+                                }
+                            @Html.DisplayFor(modelItem => item.RoleID)
+                            </td>*@
                             <td class="col-lg-1">
                                 @Html.DisplayFor(modelItem => item.Lock)
                             </td>
@@ -126,12 +132,9 @@
     </div>
     <div class="col-lg-12 m-auto px-5 pb-5">
         <div class="pagin-admin shadow-sm">
-            <div class="pagin-left float-left">
-                Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
-            </div>
-            <div class="pagin-right float-right">
-                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
-            </div>
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
         </div>
     </div>
 </div>

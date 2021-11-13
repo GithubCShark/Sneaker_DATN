@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Sneaker_DATN.Models;
+using X.PagedList;
 
 namespace Sneaker_DATN.Controllers
 {
@@ -19,9 +20,43 @@ namespace Sneaker_DATN.Controllers
         }
 
         // GET: Colors
-        public async Task<IActionResult> Index()
+        public ActionResult Index(int? page, string sortOrder, string sortProperty)
         {
-            return View(await _context.Colors.ToListAsync());
+            if (page == null) page = 1;
+            var color = _context.Colors.Include(b => b.Color).OrderBy(b => b.ColorID);
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+
+            // 1. Thêm biến NameSortParm để biết trạng thái sắp xếp tăng, giảm ở View
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DescriptionSortParm = sortOrder == "Description" ? "description_desc" : "Description";
+
+            // 2. Truy vấn lấy tất cả đường dẫn
+            var links = from l in _context.Colors
+                        select l;
+
+            // 3. Thứ tự sắp xếp theo thuộc tính LinkName
+            switch (sortOrder)
+            {
+                // 3.1 Nếu biến sortOrder sắp giảm thì sắp giảm theo LinkName
+                case "name_desc":
+                    links = links.OrderByDescending(s => s.ColorID);
+                    break;
+                case "Description":
+                    links = links.OrderBy(s => s.Color);
+                    break;
+                case "description_desc":
+                    links = links.OrderByDescending(s => s.Color);
+                    break;
+
+                // 3.2 Mặc định thì sẽ sắp tăng
+                default:
+                    links = links.OrderBy(s => s.ColorID);
+                    break;
+            }
+
+
+            return View(links.ToList().ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Colors/Details/5

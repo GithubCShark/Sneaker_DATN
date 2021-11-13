@@ -84,6 +84,7 @@ namespace Sneaker_DATN.Controllers
                 }
             }
             return PartialView(viewWebLogin);
+
         }
 
         [HttpPost]

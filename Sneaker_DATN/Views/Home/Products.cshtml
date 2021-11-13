@@ -122,46 +122,48 @@
                     <!-- single product -->
                     @foreach (var item in Model)
                     {
-                        <div class="col-lg-4 col-md-6">
-                            <div class="single-product">
-                                <a asp-action="Details" asp-route-id="@item.ProductID">
-                                    <img class="img-fluid" src="~/images/Product/@item.Image" alt="">
-                                    @*sale*@
-                                    @if (item.Price >= 3000000)
-                                    {
-                                        <div class="badge-overlay badge-products">
-                                            <span class="badge">Sale 0%</span>
-                                        </div>
-                                    }
-                                </a>
-                                <div class="product-details">
-                                    <h6><a class="text-decoration-none text-link-hover" asp-action="Details" asp-route-id="@item.ProductID">@Html.DisplayFor(modelItem => item.ProductName)</a></h6>
-                                    <div class="price d-flex">
-                                        <h6 class="d-flex">@Html.DisplayFor(modelItem => item.Price) <span class="text-lowercase"> ₫</span></h6>
-                                        @*discount*@
+                        if (item.Status)
+                        {
+                            <div class="col-lg-4 col-md-6">
+                                <div class="single-product">
+                                    <a asp-action="Details" asp-route-id="@item.ProductID">
+                                        <img class="img-fluid" src="~/images/Product/@item.Image" alt="">
                                         @if (item.Price >= 3000000)
                                         {
-                                            <h6 class="d-flex l-through">$@Html.DisplayFor(modelItem => item.Price) <span class="text-lowercase"> ₫</span></h6>
+                                            <div class="badge-overlay badge-products">
+                                                <span class="badge">Sale 0%</span>
+                                            </div>
                                         }
+                                    </a>
+                                    <div class="product-details">
+                                        <h6><a class="text-decoration-none text-link-hover" asp-action="Details" asp-route-id="@item.ProductID">@Html.DisplayFor(modelItem => item.ProductName)</a></h6>
+                                        <div class="price d-flex">
+                                            <h6 class="d-flex">@Html.DisplayFor(modelItem => item.Price) <span class="text-lowercase"> ₫</span></h6>
 
-                                    </div>
-                                    <div class="prd-bottom">
-                                        <a class="addProduct social-info" href="javascript:addCart(@item.ProductID);">
-                                            <span class='bx bx-basket'></span>
-                                            <p class="hover-text">Giỏ hàng</p>
-                                        </a>
-                                        <a class="social-info">
-                                            <span class='bx bx-heart'></span>
-                                            <p class="hover-text">Yêu thích</p>
-                                        </a>
-                                        <a asp-action="Details" asp-route-id="@item.ProductID" class="social-info">
-                                            <span class='bx bx-move'></span>
-                                            <p class="hover-text">Xem Thêm</p>
-                                        </a>
+                                            @if (item.Price >= 3000000)
+                                            {
+                                                <h6 class="d-flex l-through">$@Html.DisplayFor(modelItem => item.Price) <span class="text-lowercase"> ₫</span></h6>
+                                            }
+
+                                        </div>
+                                        <div class="prd-bottom">
+                                            <a class="addProduct social-info" href="javascript:addCart(@item.ProductID);">
+                                                <span class='bx bx-basket'></span>
+                                                <p class="hover-text">Giỏ hàng</p>
+                                            </a>
+                                            <a class="social-info">
+                                                <span class='bx bx-heart'></span>
+                                                <p class="hover-text">Yêu thích</p>
+                                            </a>
+                                            <a asp-action="Details" asp-route-id="@item.ProductID" class="social-info">
+                                                <span class='bx bx-move'></span>
+                                                <p class="hover-text">Xem Thêm</p>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        }
                     }
                     <!-- single product -->
                 </div>

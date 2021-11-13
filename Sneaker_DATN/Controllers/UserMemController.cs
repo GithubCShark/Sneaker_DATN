@@ -29,14 +29,51 @@ namespace Sneaker_DATN.Controllers
             _uploadHelper = uploadHelper;
         }
         // GET: UserController
-        public ActionResult Index(int? page)
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            if (page == null) page = 1;
-            var user = _context.Users.Include(b => b.UserName).OrderBy(b => b.UserID);
-            int pageSize = 5;
-            int pageNumber = (page ?? 1);
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.GenderSortParm = sortOrder == "Gender" ? "gender_desc" : "Gender";
 
-            return View(_context.Users.ToPagedList(pageNumber, pageSize));
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var mem = from s in _userMemSvc.GetAllUserMem()
+                           select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                mem = mem.Where(s => s.FullName.ToUpper().Contains(searchString.ToUpper()));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    mem = mem.OrderByDescending(s => s.FullName);
+                    break;
+                case "Gender":
+                    mem = mem.OrderBy(s => s.Gender);
+                    break;
+                case "gender_desc":
+                    mem = mem.OrderByDescending(s => s.Gender);
+                    break;
+                default:  // Name ascending 
+                    mem = mem.OrderBy(s => s.FullName);
+                    break;
+            }
+
+            if (page == null) page = 1;
+                    var user = _context.Users.Include(b => b.UserName).OrderBy(b => b.UserID);
+                    int pageSize = 5;
+                    int pageNumber = (page ?? 1);
+
+                    return View(mem.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: UserController/Details/5

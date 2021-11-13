@@ -34,8 +34,44 @@ namespace Sneaker_DATN.Controllers
         }
 
         // GET: ProductController
-        public ActionResult Index(int? page)
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.PriceSortParm = sortOrder == "Price" ? "price_desc" : "Price";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var students = from s in _context.Products
+                           select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                students = students.Where(s => s.ProductName.ToUpper().Contains(searchString.ToUpper()));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    students = students.OrderByDescending(s => s.ProductName);
+                    break;
+                case "Price":
+                    students = students.OrderBy(s => s.Price);
+                    break;
+                case "price_desc":
+                    students = students.OrderByDescending(s => s.Price);
+                    break;
+                default:  // Name ascending 
+                    students = students.OrderBy(s => s.ProductName);
+                    break;
+            }
 
             if (page == null) page = 1;
 
@@ -54,7 +90,7 @@ namespace Sneaker_DATN.Controllers
             ViewData["colors"] = _context.Colors.ToList();
 
             ViewData["brand"] = _context.Brands.ToList();
-            return View(_context.Products.ToPagedList(pageNumber, pageSize));
+            return View(students.ToPagedList(pageNumber, pageSize));
         }
 
         [BindProperty]

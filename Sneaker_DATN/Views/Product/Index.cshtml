@@ -13,10 +13,20 @@
                 <div class="row col-lg-12">
                     <div class="input-group col-lg-8 col-sm-6">
                         <div class="form-outline d-flex">
-                            <input type="search" class="input-group col-lg-8" placeholder="Tìm kiếm..." />
-                            <button type="button" class="search-btn btn btn-primary">
-                                <i class="fas fa-search"></i>
-                            </button>
+                            @using (Html.BeginForm("Index", "Product", FormMethod.Get))
+                            {
+                                <p class="d-flex">
+                                    @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                                    @*<input type="submit" value="Search" />*@
+                                    <button type="submit" value="Search" class="search-btn btn btn-primary">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </p>
+                            }
+                            @*<input type="search" class="input-group col-lg-8" placeholder="Tìm kiếm..." />
+                                <button type="button" class="search-btn btn btn-primary">
+                                    <i class="fas fa-search"></i>
+                                </button>*@
                             <div class="ml-3">
                                 <select>
                                     <option selected>Trạng thái...</option>
@@ -47,10 +57,16 @@
                             @*@Html.DisplayNameFor(model => model.First().ProductID)*@
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.First().ProductName)
+                            @*@Html.DisplayNameFor(model => model.First().ProductName)*@
+                            <a href="@Url.ActionLink("Index","Product", new { sortOrder =ViewBag.NameSortParm })">
+                                <span style="font-weight:bold;">Tên sản phẩm</span><i class="fas fa-sort ml-2"></i>
+                            </a>
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.First().Price)
+                            @*@Html.DisplayNameFor(model => model.First().Price)*@
+                            <a href="@Url.ActionLink("Index","Product", new { sortOrder =ViewBag.PriceSortParm })">
+                                <span style="font-weight:bold;">Giá sản phẩm </span><i class="fas fa-sort ml-2"></i>
+                            </a>
                         </th>
                         <th>
                             Hình
@@ -83,76 +99,77 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ProductID)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ProductName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Price)
-                        </td>
-                        <td>
-                            <img src="~/images/Product/@item.Image" style="width:100px; height:100px;" />
-                        </td>
-                        <td>
-                            <img src="~/images/Product/@item.Image1" style="width: 100px; height: 100px;" />
-                        </td>
-                        <td>
-                            <img src="~/images/Product/@item.Image2" style="width: 100px; height:100px;" />
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Status)
-                        </td>
-                        <td>
-                            @foreach (var brd in ViewBag.brand)
-                            {
-                                if (brd.BrandID == item.BrandID)
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProductName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Price)
+                            </td>
+                            <td>
+                                <img src="~/images/Product/@item.Image" style="width:100px; height:100px;" />
+                            </td>
+                            <td>
+                                <img src="~/images/Product/@item.Image1" style="width: 100px; height: 100px;" />
+                            </td>
+                            <td>
+                                <img src="~/images/Product/@item.Image2" style="width: 100px; height:100px;" />
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+                            <td>
+                                @foreach (var brd in ViewBag.brand)
                                 {
-                                    @brd.BrandName;
-                                }
-                            }
-                        </td>
-                        <td>
-                            <select class="custom-select-product">
-                                @foreach (var sz in ViewBag.productSize)
-                                {
-                                    if (sz.ID == item.ProductID)
+                                    if (brd.BrandID == item.BrandID)
                                     {
-                                        foreach (var s in ViewBag.size)
+                                        @brd.BrandName;
+                                    }
+                                }
+                            </td>
+                            <td>
+                                <select class="custom-select-product">
+                                    @foreach (var sz in ViewBag.productSize)
+                                    {
+                                        if (sz.ID == item.ProductID)
                                         {
-                                            if (s.SizeID == sz.IdSize)
+                                            foreach (var s in ViewBag.size)
                                             {
-                                                <option class="custom-select-product-opt">@s.Size</option>
+                                                if (s.SizeID == sz.IdSize)
+                                                {
+                                                    <option class="custom-select-product-opt">@s.Size</option>
+                                                }
                                             }
                                         }
                                     }
-                                }
-                            </select>
-                        </td>
-                        <td>
-                            <select class="custom-select-product">
-                                @foreach (var sz in ViewBag.productColor)
-                                {
-                                    if (sz.ID == item.ProductID)
+                                </select>
+                            </td>
+                            <td>
+                                <select class="custom-select-product">
+                                    @foreach (var sz in ViewBag.productColor)
                                     {
-                                        foreach (var s in ViewBag.colors)
+                                        if (sz.ID == item.ProductID)
                                         {
-                                            if (s.ColorID == sz.ColorID)
+                                            foreach (var s in ViewBag.colors)
                                             {
-                                                <option class="custom-select-product-opt">@s.Color</option>
+                                                if (s.ColorID == sz.ColorID)
+                                                {
+                                                    <option class="custom-select-product-opt">@s.Color</option>
+                                                }
                                             }
                                         }
                                     }
-                                }
-                            </select>
-                        </td>
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@item.ProductID"><i class="far fa-edit dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
-                            <a asp-action="Details" asp-route-id="@item.ProductID"><i class="far fa-eye ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>                            <a asp-action="Delete" asp-route-id="@item.ProductID"><i class="far fa-trash-alt ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
-                        </td>
-                    </tr>
+                                </select>
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.ProductID"><i class="far fa-edit dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
+                                <a asp-action="Details" asp-route-id="@item.ProductID"><i class="far fa-eye ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>                            
+                                <a asp-action="Delete" asp-route-id="@item.ProductID"><i class="far fa-trash-alt ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </table>
@@ -160,12 +177,15 @@
     </div>
     <div class="col-lg-12 m-auto px-5 pb-5">
         <div class="pagin-admin shadow-sm">
-            <div class="pagin-left float-left">
-                Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
-            </div>
-            <div class="pagin-right float-right">
-                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
-            </div>
+            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+            @*<div class="pagin-left float-left">
+                    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+                </div>
+                <div class="pagin-right float-right">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, status = ViewBag.Status }))
+                </div>*@
         </div>
     </div>
 </div>

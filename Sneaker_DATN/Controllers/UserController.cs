@@ -45,7 +45,7 @@ namespace Sneaker_DATN.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-            var students = from s in _context.Users
+            var students = from s in _userSvc.GetAllUser() 
                            select s;
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -68,7 +68,7 @@ namespace Sneaker_DATN.Controllers
                     break;
             }
 
-            int pageSize = 3;
+            int pageSize = 6;
             int pageNumber = (page ?? 1);
 
             ViewData["role"] = _context.Roles.ToList();
