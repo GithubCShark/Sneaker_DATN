@@ -17,6 +17,8 @@ namespace Sneaker_DATN.Services
 
         int EditOrder(int id, Orders orders);
 
+        int CancelOrder(int id);
+
     }
     public class OrderSvc : IOrderSvc
     {
@@ -57,6 +59,7 @@ namespace Sneaker_DATN.Services
             }
             return ret;
         }
+
         public int EditOrder(int id, Orders orders)
         {
             int ret = 0;
@@ -64,14 +67,6 @@ namespace Sneaker_DATN.Services
             {
                 Orders _orders = null;
                 _orders = _context.Orders.Find(id);
-
-                //_orders.OrderID = orders.OrderID;
-                //_orders.UserID = orders.UserID;
-                //_orders.FullName = orders.FullName;
-                //_orders.DateCreate = orders.DateCreate;
-                //_orders.Total = orders.Total;
-                //_orders.Address = orders.Address;
-
                 _orders.Email = orders.Email;
                 _orders.PhoneNumber = orders.PhoneNumber;
                 _orders.Note = orders.Note;
@@ -88,5 +83,22 @@ namespace Sneaker_DATN.Services
             return ret;
         }
 
+        public int CancelOrder(int id)
+        {
+            int ret = 0;
+            try
+            {
+                var order = _context.Orders.Find(id);
+                order.Status = "Đã hủy";
+                _context.Update(order);
+                _context.SaveChanges();
+                ret = id;
+            }
+            catch (Exception)
+            {
+                ret = 0;
+            }
+            return ret;
+        }
     }
 }

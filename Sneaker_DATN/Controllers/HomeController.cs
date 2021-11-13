@@ -396,6 +396,12 @@ namespace Sneaker_DATN.Controllers
             return View(_orderSvc.GetOrderByGuest(id));
         }
 
+        public IActionResult CancelOrder(int id)
+        {
+            _orderSvc.CancelOrder(id);
+            return Ok();
+        }
+
         public IActionResult OrderDetails(int id)
         {
             var ordetails = _orderDetailSvc.GetOrderDetails(id);

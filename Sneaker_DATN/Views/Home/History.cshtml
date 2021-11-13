@@ -113,16 +113,27 @@
                                         @Html.DisplayFor(modelItem => item.Note)
                                     </td>
                                     <td class="custom-history">
-                                        <a class="primary-btn custom-history-details" asp-action="OrderDetails" asp-route-id="@item.OrderID"><i class='bx bx-detail bx-sm'></i></a>
+                                        <a class="primary-btn custom-history-details" asp-action="OrderDetails" asp-route-id="@item.OrderID">
+                                            <i class='bx bx-detail bx-sm'></i>
+                                        </a>
                                         @if (item.Status == "Đang xử lý" || item.Status == "Đang đóng gói")
                                         {
-                                            <a class="primary-btn custom-history-trash" onclick="show();"><i class='bx bx-trash bx-sm'></i></a>
+                                            <a class="primary-btn custom-history-trash" onclick="Cancel(@item.OrderID)">
+                                                <i class="bx bx-trash bx-sm"></i> Hủy
+                                            </a>
                                         }
                                         else if (item.Status == "Đang giao")
                                         {
-                                            <a class="primary-btn custom-history-trash  custom-history-trash-disable" disabled="disabled"><i class='bx bx-trash bx-sm'></i></a>
+                                            <a class="primary-btn custom-history-trash" onclick="show();">
+                                                <i class="bx bx-trash bx-sm"></i> Hủy
+                                            </a>
                                         }
-
+                                        else if (item.Status == "Đã hủy")
+                                        {
+                                            <a class="primary-btn custom-history-trash  custom-history-trash-disable" disabled="disabled">
+                                                <i class="bx bx-trash bx-sm"></i> Đã hủy
+                                            </a>
+                                        }
 
                                     </td>
                                 </tr>
@@ -136,9 +147,35 @@
 </div>
 
 <script>
-    //function show() {
-    //    alert("hi")
-    //}
+    function show() {
+        Swal.fire({
+            icon: 'error',
+            title: 'Đơn hàng đang được giao',
+            text: 'Liên hệ với Admin: 0979 136 258'
+        })
+    }
+
+    function Cancel(id) {
+        $.ajax({
+            type: "POST",
+            url: "/Home/CancelOrder",
+            data: {
+                id: id
+            },
+            success: function (result) {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Hủy thành công',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                setTimeout(function () {
+                    location.reload();
+                }, 2000)
+            }
+        });
+    }
 </script>
 
 

@@ -360,9 +360,11 @@
                         icon: 'success',
                         title: 'Thêm vào giỏ thành thành công!',
                         showConfirmButton: false,
-                        timer: 1000
+                        timer: 1500
                     })
-                    location.reload();
+                    setTimeout(function () {
+                        location.reload();
+                    },1000)
                 },
                 error: function (e) {
                     Swal.fire({
