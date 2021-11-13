@@ -21,14 +21,22 @@ namespace Sneaker_DATN.Controllers
             _orderSvc = orderSvc;
         }
         // GET: OrdersController
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page, string status)
         {
+            ViewBag.Status = (from r in _context.Orders
+                              select r.Status).Distinct();
+
+            var sizes = from r in _context.Orders
+                        orderby r.FullName
+                        where r.Status == status || status == null || status == ""
+                        select r;
+
             if (page == null) page = 1;
-            var sizes = _context.Orders.Include(b => b.FullName).OrderBy(b => b.OrderID);
+            //var sizes = _context.Orders.Include(b => b.FullName).OrderBy(b => b.OrderID);
             int pageSize = 5;
             int pageNumber = (page ?? 1);
 
-            return View(_context.Orders.ToPagedList(pageNumber, pageSize));
+            return View(sizes.ToList().ToPagedList(pageNumber, pageSize));
             //return View(_orderSvc.GetOrderAll());
         }
 
