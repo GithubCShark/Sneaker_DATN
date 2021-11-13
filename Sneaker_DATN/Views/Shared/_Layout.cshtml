@@ -76,19 +76,8 @@
 
                     <ul class="social-media order-lg-last nav navbar-right nav-center">
                         <li class="nav-item submenu dropdown">
-                            <a class="minicart-btn cart" id="cart" href='@Url.Action("MiniCart","Home")'>
-                                @if (cart != null && cart != "")
-                                {
-                                    <span class="bx bx-shopping-bag bx-sm">
-                                        <span class="num-cart-product"></span>
-                                    </span>
-                                }
-                                else
-                                {
-                                    <span class="bx bx-shopping-bag bx-sm">
-                                        <span class="num-cart-product">0</span>
-                                    </span>
-                                }
+                            <a>
+                                @await Html.PartialAsync("_CartPartial")
                             </a>
                             <a asp-controller="Home" asp-action="Cart" class="cart cart-mobile">
                                 <span class="bx bx-shopping-bag bx-sm">

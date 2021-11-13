@@ -1,0 +1,31 @@
+﻿@using Microsoft.AspNetCore.Http
+@using Newtonsoft.Json
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    var session = HttpContextAccessor.HttpContext.Session;
+    string jsoncart = session.GetString(Sneaker_DATN.Constant.SessionKey.CARTKEY);
+
+    if (jsoncart != null)
+    {
+        var cart = JsonConvert.DeserializeObject<List<ViewCart>>(jsoncart);
+        <a class="minicart-btn cart" id="cart" href='@Url.Action("MiniCart","Home")'>
+            <span class="bx bx-shopping-bag bx-sm">
+                <span class="num-cart-product">@cart.Count</span>
+            </span>
+        </a>
+    }
+    else
+    {
+        <a class="minicart-btn cart" id="cart" href='@Url.Action("MiniCart","Home")'>
+            <span class="bx bx-shopping-bag bx-sm">
+                <span class="num-cart-product">0</span>
+            </span>
+        </a>
+    }
+    <a asp-controller="Home" asp-action="Cart" class="cart cart-mobile">
+        <span class="bx bx-shopping-bag bx-sm">
+            <span class="num-cart-product">0</span>
+        </span>
+    </a>
+}

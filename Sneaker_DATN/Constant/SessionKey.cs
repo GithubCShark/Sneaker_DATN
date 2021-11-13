@@ -26,5 +26,6 @@ namespace Sneaker_DATN.Constant
             public const int Guest_ID = 0;
             public const string GuestContext = "GuestContext";
         }
+        public const string CARTKEY = "cart";
     }
 }
