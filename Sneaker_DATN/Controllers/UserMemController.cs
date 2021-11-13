@@ -29,11 +29,13 @@ namespace Sneaker_DATN.Controllers
             _uploadHelper = uploadHelper;
         }
         // GET: UserController
-        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
+        public ActionResult Index(string sortOrder, bool status, string currentFilterSearch, string searchString, int? page, bool currentFilterStatus)
         {
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.GenderSortParm = sortOrder == "Gender" ? "gender_desc" : "Gender";
+            ViewBag.Status = (from r in _userMemSvc.GetAllUserMem()
+                              select r.Lock).Distinct();
 
             if (searchString != null)
             {
@@ -41,16 +43,30 @@ namespace Sneaker_DATN.Controllers
             }
             else
             {
-                searchString = currentFilter;
+                searchString = currentFilterSearch;
             }
 
-            ViewBag.CurrentFilter = searchString;
+            if (status != false)
+            {
+                page = 1;
+            }
+            else
+            {
+                status = currentFilterStatus;
+            }
+
+            ViewBag.CurrentFilterSearch = searchString;
+            ViewBag.CurrentFilterStatus = status;
 
             var mem = from s in _userMemSvc.GetAllUserMem()
                            select s;
             if (!String.IsNullOrEmpty(searchString))
             {
                 mem = mem.Where(s => s.FullName.ToUpper().Contains(searchString.ToUpper()));
+            }
+            if (!String.IsNullOrEmpty(status.ToString()))
+            {
+                mem = mem.Where(s => s.Lock == status);
             }
             switch (sortOrder)
             {

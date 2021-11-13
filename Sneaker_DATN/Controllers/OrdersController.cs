@@ -21,15 +21,40 @@ namespace Sneaker_DATN.Controllers
             _orderSvc = orderSvc;
         }
         // GET: OrdersController
-        public ActionResult Index(int? page, string status)
+        public ActionResult Index(int? page,string searchString, string status, string currentFilterSearch, string currentFilterStatus)
         {
             ViewBag.Status = (from r in _context.Orders
                               select r.Status).Distinct();
 
+            if (status != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                status = currentFilterStatus;
+            }
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilterSearch;
+            }
+            ViewBag.currentFilterStatus = status;
+            ViewBag.currentFilterSearch = searchString;
+
             var sizes = from r in _context.Orders
-                        orderby r.FullName
-                        where r.Status == status || status == null || status == ""
                         select r;
+            if (!String.IsNullOrEmpty(status))
+            {
+                sizes = sizes.Where(s => s.Status == status);
+            }
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                sizes = sizes.Where(s => s.FullName.ToUpper().Contains(searchString.ToUpper()));
+            }
 
             if (page == null) page = 1;
             //var sizes = _context.Orders.Include(b => b.FullName).OrderBy(b => b.OrderID);

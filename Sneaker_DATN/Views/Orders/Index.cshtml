@@ -14,10 +14,20 @@
                 <div class="row col-lg-12">
                     <div class="input-group col-lg-8 col-sm-6">
                         <div class="form-outline d-flex">
-                            <input type="search" class="input-group col-lg-8" placeholder="Tìm kiếm..." />
+                            @*<input type="search" class="input-group col-lg-8" placeholder="Tìm kiếm..." />
                             <button type="button" class="search-btn btn btn-primary">
                                 <i class="fas fa-search"></i>
-                            </button>
+                            </button>*@
+                            @using (Html.BeginForm("Index", "Orders", FormMethod.Get))
+                            {
+                                <p class="d-flex">
+                                    @Html.TextBox("SearchString", ViewBag.CurrentFilterSearch as string)
+                                    @*<input type="submit" value="Search" />*@
+                                    <button type="submit" value="Search" class="search-btn btn btn-primary">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </p>
+                            }
                             <div class="ml-3">
                                 @*<form action="/orders" method="post">
             <select id="status" name="status">
@@ -136,7 +146,7 @@
                 Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
             </div>
             <div class="pagin-right float-right">
-                @Html.PagedListPager(Model, page => Url.Action("Index", new { page, status = ViewBag.Status }))
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilterSearch = ViewBag.CurrentFilterSearch, currentFilterStatus = ViewBag.CurrentFilterStatus }))
             </div>
         </div>
     </div>

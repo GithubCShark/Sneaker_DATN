@@ -17,7 +17,7 @@
                             @using (Html.BeginForm("Index", "UserMem", FormMethod.Get))
                             {
                                 <p class="d-flex">
-                                    @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                                    @Html.TextBox("SearchString", ViewBag.CurrentFilterSearch as string)
                                     @*<input type="submit" value="Search" />*@
                                     <button type="submit" value="Search" class="search-btn btn btn-primary">
                                         <i class="fas fa-search"></i>
@@ -25,15 +25,25 @@
                                 </p>
                             }
                             <div class="ml-3">
-                                <select>
+                                @*<select>
                                     <option selected>Trạng thái...</option>
                                     <option value="1">Hoạt động</option>
                                     <option value="2">Ngừng HĐ</option>
-                                </select>
+                                </select>*@
+                                @using (Html.BeginForm("Index","UserMem",FormMethod.Get))
+                                {
+                                <div class="d-flex">
+                                    @Html.DropDownList("status", new SelectList(ViewBag.Status))
+                                    @*<input type="submit" value="Search" />*@
+                                    <button type="submit" value="Search" class="search-btn btn btn-primary">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                                }
                             </div>
-                            <button type="button" class="search-btn btn btn-primary">
+                            @*<button type="button" class="search-btn btn btn-primary">
                                 <i class="fas fa-search"></i>
-                            </button>
+                            </button>*@
                         </div>
                     </div>
                     @*<div class="col-lg-4 col-sm-6">
@@ -134,7 +144,7 @@
         <div class="pagin-admin shadow-sm">
             Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
 
-            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilterSearch = ViewBag.CurrentFilterSearch, currentFilterStatus = ViewBag.CurrentFilterStatus }))
         </div>
     </div>
 </div>
