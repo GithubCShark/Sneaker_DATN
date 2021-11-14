@@ -132,18 +132,82 @@ namespace Sneaker_DATN.Controllers
             }
         }
 
-        public IActionResult Products(int? page)
+        public IActionResult Products(int? page, string searchString, string brands, string sizes, string colors, string currentFilterSearch, string currentFilterBrand, string currentFilterSize, string currentFilterColor)
         {
+            ViewBag.BrandName = (from r in _context.Brands
+                                 select r.BrandName).Distinct();
+
+            ViewBag.Color = (from r in _context.Colors
+                             select r.Color).Distinct();
+
+            ViewBag.Size = (from r in _context.Sizes
+                            select r.Size).Distinct();
+
+            if (brands != null || colors != null || sizes != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                brands = currentFilterBrand;
+                colors = currentFilterColor;
+                sizes = currentFilterSize;
+            }
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilterSearch;
+            }
+            ViewBag.currentFilterBrand = brands;
+            ViewBag.currentFilterColor = colors;
+            ViewBag.currentFilterSize = sizes;
+            ViewBag.currentFilterSearch = searchString;
+
+            var productFilters = from r in _context.Products
+                                     //from c in _context.Colors
+                                     //from s in _context.Sizes
+                                 select r;
+
+            if (!String.IsNullOrEmpty(brands))
+            {
+                productFilters = productFilters.Where(s => s.Brands.BrandName == brands);
+            }
+            if (!String.IsNullOrEmpty(colors))
+            {
+                //var colorFilter = _context.Colors.ToList();
+
+                productFilters = productFilters.Where(s => s.Brands.BrandName == colors);
+            }
+            if (!String.IsNullOrEmpty(brands))
+            {
+                //var sizeFilter = _context.Sizes.ToList();
+
+                productFilters = productFilters.Where(s => s.Brands.BrandName == brands);
+            }
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                productFilters = productFilters.Where(s => s.ProductName.ToUpper().Contains(searchString.ToUpper()));
+            }
+
             if (page == null) page = 1;
-            var sizes = _context.Products.Include(b => b.ProductName)
-                .OrderBy(b => b.ProductID);
+            //var sizes = _context.Orders.Include(b => b.FullName).OrderBy(b => b.OrderID);
             int pageSize = 9;
             int pageNumber = (page ?? 1);
+
+            //if (page == null) page = 1;
+            //var sizes = _context.Products.Include(b => b.ProductName)
+            //    .OrderBy(b => b.ProductID);
+            //int pageSize = 9;
+            //int pageNumber = (page ?? 1);
 
             ViewData["brand"] = _context.Brands.ToList();
             ViewData["size"] = _context.Sizes.ToList();
             ViewData["color"] = _context.Colors.ToList();
-            return View(_context.Products.ToPagedList(pageNumber, pageSize));
+
+            return View(productFilters.ToPagedList(pageNumber, pageSize));
         }
 
         public IActionResult Index(int? page)

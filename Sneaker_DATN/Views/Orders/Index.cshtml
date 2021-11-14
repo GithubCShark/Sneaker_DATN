@@ -67,34 +67,34 @@
             <table class="posts-table mt-3">
                 <thead>
                     <tr class="users-table-info">
-                        <th>
+                        <th class="col-lg-1">
                             @Html.DisplayNameFor(model => model.First().FullName)
                         </th>
-                        <th>
+                        <th class="col-lg-1">
                             @Html.DisplayNameFor(model => model.First().Total)
                         </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().PaymentAmount)
+                        <th class="col-lg-1">
+                            Thanh toán
                         </th>
-                        <th>
+                        <th class="col-lg-2">
                             @Html.DisplayNameFor(model => model.First().Status)
                         </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().PhoneNumber)
+                        <th class="col-lg-1">
+                            SĐT
                         </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().Address)
+                        <th class="col-lg-1">
+                            Địa chỉ
                         </th>
                         <th class="col-lg-1">
                             @Html.DisplayNameFor(model => model.First().DateCreate)
                         </th>
-                        <th>
+                        <th class="col-lg-2">
                             @Html.DisplayNameFor(model => model.First().Note)
                         </th>
                         @*<th>
             @Html.DisplayNameFor(model => model.Email)
         </th>*@
-                        <th></th>
+                        <th class="col-lg-2"></th>
                     </tr>
                 </thead>
                 <tbody>

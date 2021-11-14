@@ -59,13 +59,13 @@
                         <th>
                             @*@Html.DisplayNameFor(model => model.First().ProductName)*@
                             <a href="@Url.ActionLink("Index","Product", new { sortOrder =ViewBag.NameSortParm })">
-                                <span style="font-weight:bold;">Tên sản phẩm</span><i class="fas fa-sort ml-2"></i>
+                                <span style="font-weight:bold;">Tên</span><i class="fas fa-sort ml-2"></i>
                             </a>
                         </th>
                         <th>
                             @*@Html.DisplayNameFor(model => model.First().Price)*@
                             <a href="@Url.ActionLink("Index","Product", new { sortOrder =ViewBag.PriceSortParm })">
-                                <span style="font-weight:bold;">Giá sản phẩm </span><i class="fas fa-sort ml-2"></i>
+                                <span style="font-weight:bold;">Giá</span><i class="fas fa-sort ml-2"></i>
                             </a>
                         </th>
                         <th>
@@ -80,17 +80,17 @@
                             Hình
                             @*@Html.DisplayNameFor(model => model.First().Image2)*@
                         </th>
-                        <th>
-                            Trạng thái
+                        <th class="text-center">
+                            Status
                             @*@Html.DisplayNameFor(model => model.First().Status)*@
                         </th>
-                        <th>
+                        @*<th>
                             @Html.DisplayNameFor(model => model.First().Brands)
-                        </th>
-                        <th>
+                        </th>*@
+                        <th class="text-center">
                             Size
                         </th>
-                        <th>
+                        <th class="text-center">
                             Color
                         </th>
                         <th></th>
@@ -118,10 +118,10 @@
                             <td>
                                 <img src="~/images/Product/@item.Image2" style="width: 100px; height:100px;" />
                             </td>
-                            <td>
+                            <td class="text-center">
                                 @Html.DisplayFor(modelItem => item.Status)
                             </td>
-                            <td>
+                            @*<td>
                                 @foreach (var brd in ViewBag.brand)
                                 {
                                     if (brd.BrandID == item.BrandID)
@@ -129,8 +129,8 @@
                                         @brd.BrandName;
                                     }
                                 }
-                            </td>
-                            <td>
+                            </td>*@
+                            <td class="text-center">
                                 <select class="custom-select-product">
                                     @foreach (var sz in ViewBag.productSize)
                                     {
@@ -147,7 +147,7 @@
                                     }
                                 </select>
                             </td>
-                            <td>
+                            <td class="text-center">
                                 <select class="custom-select-product">
                                     @foreach (var sz in ViewBag.productColor)
                                     {

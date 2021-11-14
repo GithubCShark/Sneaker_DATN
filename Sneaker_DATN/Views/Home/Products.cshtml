@@ -6,6 +6,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .search-btn-product {
+        display: flex;
+        align-items: center;
+        height: 30px;
+        border: none;
+        font-size: 18px;
+        border-radius: 8px;
+        text-align: center;
+    }
+</style>
 
 <!-- Start Banner Area -->
 <section class="banner-area organic-breadcrumb">
@@ -36,45 +47,173 @@
                 <div class="top-filter-head">Danh mục</div>
                 <div class="common-filter">
                     <div class="head">Thương thiệu</div>
-                    <form action="#">
+
+                    @*<div>
+                        @using (Html.BeginForm("Products", "Home", FormMethod.Get))
+                        {
+                            <div class="d-flex">
+                                @Html.DropDownList("brands", new SelectList(ViewBag.BrandName))
+                                <button type="submit" value="Search" class="search-btn btn btn-primary">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        }
+                    </div>*@
+
+                    @*<form action="/home/products" method="get">
                         <ul>
-                            @foreach (var i in ViewBag.brand)
+                            @using (Html.BeginForm("Products", "Home", FormMethod.Get))
                             {
-                                <li class="filter-list">
-                                    <input class="pixel-radio" type="checkbox" id="nike"
-                                           name="brand" value=""><label> @i.BrandName </label>
-                                </li>
+                                @foreach (var i in ViewBag.brand)
+                                {
+                                    <li class="filter-list">
+                                        <input class="pixel-radio" id="brands" name="brands" type="checkbox" value=""><label> @i.BrandName </label>
+                                    </li>
+
+                                    <button type="submit" value="Search" class="search-btn btn btn-primary">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                }
                             }
                             </ul>
-                    </form>
+                     </form>*@
+
+
+                <form action="/home/products" method="get">
+                    <ul>
+                        <li class="filter-list">
+                            <input class="pixel-radio" type="radio"
+                                   id="brands" name="brands" value="adidas">
+                            <label>Adidas</label>
+                        </li>
+                        <li class="filter-list">
+                            <input class="pixel-radio" type="radio"
+                                   id="brands" name="brands" value="nike">
+                            <label>Nike</label>
+                        </li>
+                        <li class="filter-list">
+                            <input class="pixel-radio" type="radio"
+                                   id="brands" name="brands" value="converse">
+                            <label>Converse</label>
+                        </li>
+                        <li class="filter-list">
+                            <input class="pixel-radio" type="radio"
+                                   id="brands" name="brands" value="vans">
+                            <label>Vans</label>
+                        </li>
+                        <li class="filter-list">
+                            <input class="pixel-radio" type="radio"
+                                   id="brands" name="brands" value="mlb">
+                            <label>MLB</label>
+                        </li>
+                    </ul>
+                    <div class="d-flex justify-content-center mt-2">
+                        <button type="submit" value="Search" class="search-btn-product primary-btn">
+                            <i class='bx bx-search-alt'></i>
+                        </button>
+                    </div>
+                </form>
+
                 </div>
                 <div class="common-filter">
                     <div class="head">Chọn size</div>
+
+                    <form action="/home/products" method="get">
+                        <ul>
+                            <li class="filter-list">
+                                <input class="pixel-radio" type="radio"
+                                       id="sizes" name="sizes" value="36">
+                                <label>36</label>
+                            </li>
+                            <li class="filter-list">
+                                <input class="pixel-radio" type="radio"
+                                        id="sizes" name="sizes" value="37">
+                                <label>37</label>
+                            </li>
+                            <li class="filter-list">
+                                <input class="pixel-radio" type="radio"
+                                        id="sizes" name="sizes" value="38">
+                                <label>38</label>
+                            </li>
+                            <li class="filter-list">
+                                <input class="pixel-radio" type="radio"
+                                        id="sizes" name="sizes" value="39">
+                                <label>39</label>
+                            </li>
+                            <li class="filter-list">
+                                <input class="pixel-radio" type="radio"
+                                        id="sizes" name="sizes" value="40">
+                                <label>40</label>
+                            </li>
+                        </ul>
+                        <div class="d-flex justify-content-center mt-2">
+                            <button type="submit" value="Search" class="search-btn-product primary-btn">
+                                <i class='bx bx-search-alt'></i>
+                            </button>
+                        </div>
+                    </form>
+
                     <form action="#">
                         <ul>
-                            @foreach (var i in ViewBag.size)
-                            {
-                                <li class="filter-list">
-                                    <input class="pixel-radio" type="checkbox" id="36"
-                                           name="size" value="">
-                                    <label>@i.Size
-                                    </label>
-                                </li>
-                            }
-                            </ul>
+                            @*@foreach (var i in ViewBag.size)
+                {
+                    <li class="filter-list">
+                        <input class="pixel-radio" type="checkbox" id="36"
+                               name="size" value="">
+                        <label>@i.Size
+                        </label>
+                    </li>
+                }*@
+                        </ul>
                     </form>
                 </div>
                 <div class="common-filter">
                     <div class="head">Màu sắc</div>
+
+                    <form action="/home/products" method="get">
+                        <ul>
+                            <li class="filter-list">
+                                <input class="pixel-radio" type="radio"
+                                       id="colors" name="colors" value="Trắng">
+                                <label>Trắng</label>
+                            </li>
+                            <li class="filter-list">
+                                <input class="pixel-radio" type="radio"
+                                       id="colors" name="colors" value="Đen">
+                                <label>Đen</label>
+                            </li>
+                            <li class="filter-list">
+                                <input class="pixel-radio" type="radio"
+                                       id="colors" name="colors" value="Xanh">
+                                <label>Xanh</label>
+                            </li>
+                            <li class="filter-list">
+                                <input class="pixel-radio" type="radio"
+                                       id="colors" name="colors" value="Đỏ">
+                                <label>Đỏ</label>
+                            </li>
+                            <li class="filter-list">
+                                <input class="pixel-radio" type="radio"
+                                       id="colors" name="colors" value="Vàng">
+                                <label>Vàng</label>
+                            </li>
+                        </ul>
+                        <div class="d-flex justify-content-center mt-2">
+                            <button type="submit" value="Search" class="search-btn-product primary-btn">
+                                <i class='bx bx-search-alt'></i>
+                            </button>
+                        </div>
+                    </form>
+
                     <form action="#">
                         <ul>
-                            @foreach (var i in ViewBag.color)
-                            {
-                                <li class="filter-list">
-                                    <input class="pixel-radio" type="checkbox" id="black"
-                                           name="color" value=""><label>@i.Color</label>
-                                </li>
-                            }
+                            @*@foreach (var i in ViewBag.color)
+                {
+                    <li class="filter-list">
+                        <input class="pixel-radio" type="checkbox" id="black"
+                               name="color" value=""><label>@i.Color</label>
+                    </li>
+                }*@
                         </ul>
                     </form>
                 </div>
@@ -175,7 +314,7 @@
                     Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
                 </div>
                 <div class="pagin-right pagination">
-                    @Html.PagedListPager(Model, page => Url.Action("Products", new { page }))
+                    @Html.PagedListPager(Model, page => Url.Action("Products", new { page, currentFilterSearch = ViewBag.CurrentFilterSearch, currentFilterBrand = ViewBag.CurrentFilterBrand, currentFilterSize = ViewBag.CurrentFilterSize, currentFilterColor= ViewBag.CurrentFilterColor }))
                 </div>
             </div>
             <!-- End Filter Bar -->
