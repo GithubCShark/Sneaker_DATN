@@ -132,18 +132,16 @@ namespace Sneaker_DATN.Controllers
             }
         }
 
-        public IActionResult Products(int? page, string searchString, string brands, string sizes, string colors, string currentFilterSearch, string currentFilterBrand, string currentFilterSize, string currentFilterColor)
+        public IActionResult Products(int? page, string searchString, string brands, int sizes, int colors, string currentFilterSearch, string currentFilterBrand, int currentFilterSize, int currentFilterColor)
         {
             ViewBag.BrandName = (from r in _context.Brands
                                  select r.BrandName).Distinct();
-
             ViewBag.Color = (from r in _context.Colors
                              select r.Color).Distinct();
-
             ViewBag.Size = (from r in _context.Sizes
                             select r.Size).Distinct();
 
-            if (brands != null || colors != null || sizes != null)
+            if (brands != null || colors != 0 || sizes != 0)
             {
                 page = 1;
             }
@@ -175,17 +173,23 @@ namespace Sneaker_DATN.Controllers
             {
                 productFilters = productFilters.Where(s => s.Brands.BrandName == brands);
             }
-            if (!String.IsNullOrEmpty(colors))
+            if (colors != 0)
             {
                 //var colorFilter = _context.Colors.ToList();
+                var lspro = from r in _context.ProductColors
+                            where r.ColorID == colors
+                            select r.Products.ProductID;
 
-                productFilters = productFilters.Where(s => s.Brands.BrandName == colors);
+                productFilters = productFilters.Where(s => lspro.Contains(s.ProductID));
             }
-            if (!String.IsNullOrEmpty(brands))
+            if (sizes != 0)
             {
-                //var sizeFilter = _context.Sizes.ToList();
+                //var colorFilter = _context.Colors.ToList();
+                var lssiz = from r in _context.ProductSizes
+                            where r.IdSize == sizes
+                            select r.Products.ProductID;
 
-                productFilters = productFilters.Where(s => s.Brands.BrandName == brands);
+                productFilters = productFilters.Where(s => lssiz.Contains(s.ProductID));
             }
             if (!String.IsNullOrEmpty(searchString))
             {
