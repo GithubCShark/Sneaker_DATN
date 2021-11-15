@@ -96,7 +96,7 @@ namespace Sneaker_DATN.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(colors);
+            return PartialView(colors);
         }
 
         // GET: Colors/Edit/5
@@ -147,7 +147,7 @@ namespace Sneaker_DATN.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(colors);
+            return PartialView(colors);
         }
 
         // GET: Colors/Delete/5

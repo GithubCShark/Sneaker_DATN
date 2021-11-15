@@ -14,50 +14,28 @@
                 <div class="row col-lg-12">
                     <div class="input-group col-lg-8 col-sm-6">
                         <div class="form-outline d-flex">
-                            @*<input type="search" class="input-group col-lg-8" placeholder="Tìm kiếm..." />
-                            <button type="button" class="search-btn btn btn-primary">
-                                <i class="fas fa-search"></i>
-                            </button>*@
                             @using (Html.BeginForm("Index", "Orders", FormMethod.Get))
                             {
                                 <p class="d-flex">
                                     @Html.TextBox("SearchString", ViewBag.CurrentFilterSearch as string)
-                                    @*<input type="submit" value="Search" />*@
                                     <button type="submit" value="Search" class="search-btn btn btn-primary">
                                         <i class="fas fa-search"></i>
                                     </button>
                                 </p>
                             }
                             <div class="ml-3">
-                                @*<form action="/orders" method="post">
-            <select id="status" name="status">
-                <option selected>Trạng thái...</option>
-                <option value="1">Đợi</option>
-                <option value="2">Xác nhận</option>
-                <option value="3">Đã giao</option>
-            </select>
-        </form>*@
-                                @using (Html.BeginForm("Index","Orders",FormMethod.Get))
+                                @using (Html.BeginForm("Index", "Orders", FormMethod.Get))
                                 {
-                                <div class="d-flex">
-                                    @Html.DropDownList("status", new SelectList(ViewBag.Status))
-                                    @*<input type="submit" value="Search" />*@
-                                    <button type="submit" value="Search" class="search-btn btn btn-primary">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                </div>
+                                    <div class="d-flex">
+                                        @Html.DropDownList("status", new SelectList(ViewBag.Status))
+                                        <button type="submit" value="Search" class="search-btn btn btn-primary">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
                                 }
                             </div>
-                         
-                            @*<button type="button" class="search-btn btn btn-primary">
-                                <i class="fas fa-search"></i>
-                            </button>*@
                         </div>
-
                     </div>
-                    @*<div class="col-lg-4 col-sm-6">
-                            <a asp-action="Create" class="color-btn-create btn btn-primary float-right">Thêm mới</a>
-                        </div>*@
                 </div>
             </div>
         </div>
@@ -91,50 +69,46 @@
                         <th class="col-lg-2">
                             @Html.DisplayNameFor(model => model.First().Note)
                         </th>
-                        @*<th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>*@
                         <th class="col-lg-2"></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
-                    <tr>
-                        <td class="col-lg-2">
-                            @Html.DisplayFor(modelItem => item.FullName)
-                        </td>
-                        <td class="col-lg-1">
-                            @*@Html.DisplayFor(modelItem => item.Total)*@
-                            @string.Format("{0:0,0}", item.Total)
-                        </td>
-                        <td class="col-lg-1">
-                            @*@Html.DisplayFor(modelItem => item.Total)*@
-                            @string.Format("{0:0,0}", item.PaymentAmount)
-                        </td>
-                        <td class="col-lg-1">
-                            @Html.DisplayFor(modelItem => item.Status)
-                        </td>
-                        <td class="col-lg-1">
-                            @Html.DisplayFor(modelItem => item.PhoneNumber)
-                        </td>
-                        <td class="col-lg-1">
-                            @Html.DisplayFor(modelItem => item.Address)
-                        </td>
-                        <td class="col-lg-1">
-                            @Html.DisplayFor(modelItem => item.DateCreate)
-                        </td>
-                        <td class="col-lg-2">
-                            @Html.DisplayFor(modelItem => item.Note)
-                        </td>
-                        @*<td class="col-lg-1">
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>*@
-                        <td class="col-lg-2">
-                            <a asp-action="Edit" asp-route-id="@item.OrderID"><i class="far fa-edit dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
-                            <a asp-controller="OrderDetails" asp-action="Details" asp-route-id="@item.OrderID"><i class="far fa-eye ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td class="col-lg-2">
+                                @Html.DisplayFor(modelItem => item.FullName)
+                            </td>
+                            <td class="col-lg-1">
+                                @string.Format("{0:0,0}", item.Total)
+                            </td>
+                            <td class="col-lg-1">
+                                @string.Format("{0:0,0}", item.PaymentAmount)
+                            </td>
+                            <td class="col-lg-1">
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+                            <td class="col-lg-1">
+                                @Html.DisplayFor(modelItem => item.PhoneNumber)
+                            </td>
+                            <td class="col-lg-1">
+                                @Html.DisplayFor(modelItem => item.Address)
+                            </td>
+                            <td class="col-lg-1">
+                                @Html.DisplayFor(modelItem => item.DateCreate)
+                            </td>
+                            <td class="col-lg-2">
+                                @Html.DisplayFor(modelItem => item.Note)
+                            </td>
+                            <td class="col-lg-2">
+                                <a href="@Url.Action("Edit", "Orders", new { id = @item.OrderID })" class="btn-edit-order">
+                                    <i class="far fa-edit dashbroad-icon-hover" style="font-size: 1.5rem;"></i>
+                                </a>
+                                <a href="@Url.Action("Details", "OrderDetails", new { id = @item.OrderID })" class="btn-details-order">
+                                    <i class="far fa-eye ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i>
+                                </a>
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </table>
@@ -149,5 +123,19 @@
                 @Html.PagedListPager(Model, page => Url.Action("Index", new { page, currentFilterSearch = ViewBag.CurrentFilterSearch, currentFilterStatus = ViewBag.CurrentFilterStatus }))
             </div>
         </div>
+    </div>
+</div>
+
+<!-- Modal Edit Order -->
+<div class="modal fade" id="editOrderModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <!-- empty -->
+    </div>
+</div>
+
+<!-- Modal Details Order -->
+<div class="modal fade" id="detailsOrderModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <!-- empty -->
     </div>
 </div>

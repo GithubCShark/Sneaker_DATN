@@ -65,13 +65,6 @@ namespace Sneaker_DATN.Controllers
             //return View(_orderSvc.GetOrderAll());
         }
 
-        // GET: OrdersController/Details/5
-        public ActionResult Details(int id)
-        {
-            Orders lsOrders = _orderSvc.GetOrder(id);
-            return View(lsOrders);
-        }
-
         // GET: OrdersController/Create
         public ActionResult Create()
         {
@@ -103,46 +96,22 @@ namespace Sneaker_DATN.Controllers
         // POST: OrdersController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Orders orders)
+        public IActionResult Edit(int id, Orders orders)
         {
-            try
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
+                try
                 {
                     _orderSvc.EditOrder(id, orders);
-
-                    return RedirectToAction(nameof(Index), new { id = orders.OrderID });
                 }
-                else
+                catch
                 {
-                    return View(orders);
+                    
                 }
+                return RedirectToAction(nameof(Index), new { id = orders.OrderID });
             }
-            catch
-            {
-                return RedirectToAction(nameof(Index));
-            }
-        }
+            return PartialView(orders);
 
-        // GET: OrdersController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: OrdersController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
         }
     }
 }

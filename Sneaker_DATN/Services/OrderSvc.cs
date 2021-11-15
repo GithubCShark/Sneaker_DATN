@@ -67,9 +67,6 @@ namespace Sneaker_DATN.Services
             {
                 Orders _orders = null;
                 _orders = _context.Orders.Find(id);
-                _orders.Email = orders.Email;
-                _orders.PhoneNumber = orders.PhoneNumber;
-                _orders.Note = orders.Note;
                 _orders.Status = orders.Status;
 
                 _context.Update(_orders);

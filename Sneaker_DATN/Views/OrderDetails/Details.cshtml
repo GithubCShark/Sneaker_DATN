@@ -1,130 +1,130 @@
 ﻿@model IEnumerable<Sneaker_DATN.Models.OrderDetails>
 @{
     ViewData["Title"] = "Details";
-    Layout = "~/Views/Shared/_LayoutManager.cshtml";
 }
 @{ int i = 0;}
-<div class="container">
-    <div class="col-lg-11 m-auto">
-        <div class="custom-detail pt-5">
-            <div class="custom-icon">
-                <a class="dashbroad-icon-hover" asp-controller="Orders" asp-action="Index"><i class="icon-back fas fa-chevron-left fa-2x "></i></a>
-                <h4 class="main-title text-center text-uppercase mt-2 m-auto">Chi tiết đơn hàng</h4>
-                @*<button class="custom-icon-button">
-                    <a class="font-weight-lighter" asp-controller="Orders" asp-action="Edit" asp-route-id="@Model.OrderID">
-                    <i class="far fa-edit" style="font-size: 1.25rem;"></i> Chỉnh sửa
-                </a>
-                </button>*@
+
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-body pb-5">
+        <div class="col-lg-11 m-auto">
+            <div class="custom-detail pt-5">
+                <div class="custom-icon">
+                    <h4 class="main-title text-center text-uppercase mt-2 m-auto">Chi tiết đơn hàng</h4>
+                </div>
+                <dl class="shadow-lg">
+                    <dt class="col-sm-2">
+                        Tên khách hàng
+                    </dt>
+                    <dd class="col-sm-10">
+                        @ViewBag.order.FullName
+                    </dd>
+                    <dt class="col-sm-2">
+                        Địa chỉ
+                    </dt>
+                    <dd class="col-sm-10">
+                        @ViewBag.order.Address
+                    </dd>
+                    <dt class="col-sm-2">
+                        Số điện thoại
+                    </dt>
+                    <dd class="col-sm-10">
+                        @ViewBag.order.PhoneNumber
+                    </dd>
+                    <dt class="col-sm-2">
+                        Email
+                    </dt>
+                    <dd class="col-sm-10">
+                        @ViewBag.order.Email
+                    </dd>
+                    <dt class="col-sm-2">
+                        Trạng thái
+                    </dt>
+                    <dd class="col-sm-10">
+                        @ViewBag.order.Status
+                    </dd>
+                </dl>
             </div>
-            <dl class="shadow-lg">
-                <dt class="col-sm-2">
-                    Tên khách hàng
-                </dt>
-                <dd class="col-sm-10">
-                    @ViewBag.order.FullName
-                </dd>
-                <dt class="col-sm-2">
-                    Địa chỉ
-                </dt>
-                <dd class="col-sm-10">
-                    @ViewBag.order.Address
-                </dd>
-                <dt class="col-sm-2">
-                    Số điện thoại
-                </dt>
-                <dd class="col-sm-10">
-                    @ViewBag.order.PhoneNumber
-                </dd>
-                <dt class="col-sm-2">
-                    Email
-                </dt>
-                <dd class="col-sm-10">
-                    @ViewBag.order.Email
-                </dd>
-                <dt class="col-sm-2">
-                    Trạng thái
-                </dt>
-                <dd class="col-sm-10">
-                    @ViewBag.order.Status
-                </dd>
-            </dl>
         </div>
-    </div>
-    <div class="col-lg-10 m-auto px-5 pt-0">
-        <div class="users-table table-wrapper">
-            <table class="posts-table mt-3 admin-product" enctype="multipart/form-data">
-                <thead>
-                    <tr class="users-table-info">
-                        <th>
-                            &nbsp; &nbsp;Hình
-                        </th>
-                        <th>
-                            Tên sản phẩm
-                        </th>
-                        <th>
-                            Màu
-                        </th>
-                        <th>
-                            Size
-                        </th>
-                        <th>
-                            Số lượng
-                        </th>
-                        <th>
-                            Giá
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>
-                                @foreach (var x in ViewBag.Product)
-                                {
-                                    @if (x.ProductID == item.ProductID)
-                                    {
-                                        <img src="~/images/Product/@x.Image" style="width:100px; height:100px;" />
-                                    }
-                                }
-                            </td>
-                            <td>
-                                @foreach (var y in ViewBag.Product)
-                                {
-                                    @if (y.ProductID == item.ProductID)
-                                    {
-                                        @y.ProductName
-                                    }
-                                }
-                            </td>
-                            <td>
-                                @foreach (var z in ViewBag.Color)
-                                {
-                                    @if (z.ColorID == item.ColorID)
-                                    {
-                                        @z.Color
-                                    }
-                                }
-                            </td>
-                            <td>
-                                @foreach (var g in ViewBag.Size)
-                                {
-                                    @if (g.SizeID == item.SizeID)
-                                    {
-                                        @g.Size
-                                    }
-                                }
-                            </td>
-                            <td>
-                                @item.Quantity
-                            </td>
-                            <td>
-                                @string.Format("{0:0,0}", item.Price)
-                            </td>
+        <div class="col-lg-10 m-auto px-5 pt-0">
+            <div class="users-table table-wrapper">
+                <table class="posts-table mt-3 admin-product" enctype="multipart/form-data">
+                    <thead>
+                        <tr class="users-table-info">
+                            <th>
+                                &nbsp; &nbsp;Hình
+                            </th>
+                            <th>
+                                Tên sản phẩm
+                            </th>
+                            <th>
+                                Màu
+                            </th>
+                            <th>
+                                Size
+                            </th>
+                            <th>
+                                Số lượng
+                            </th>
+                            <th>
+                                Giá
+                            </th>
                         </tr>
-                        i++;
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @foreach (var x in ViewBag.Product)
+                                    {
+                                        @if (x.ProductID == item.ProductID)
+                                        {
+                                            <img src="~/images/Product/@x.Image" style="width:100px; height:100px;" />
+                                        }
+                                    }
+                                </td>
+                                <td>
+                                    @foreach (var y in ViewBag.Product)
+                                    {
+                                        @if (y.ProductID == item.ProductID)
+                                        {
+                                            @y.ProductName
+                                        }
+                                    }
+                                </td>
+                                <td>
+                                    @foreach (var z in ViewBag.Color)
+                                    {
+                                        @if (z.ColorID == item.ColorID)
+                                        {
+                                            @z.Color
+                                        }
+                                    }
+                                </td>
+                                <td>
+                                    @foreach (var g in ViewBag.Size)
+                                    {
+                                        @if (g.SizeID == item.SizeID)
+                                        {
+                                            @g.Size
+                                        }
+                                    }
+                                </td>
+                                <td>
+                                    @item.Quantity
+                                </td>
+                                <td>
+                                    @string.Format("{0:0,0}", item.Price)
+                                </td>
+                            </tr>
+                            i++;
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
+</div>

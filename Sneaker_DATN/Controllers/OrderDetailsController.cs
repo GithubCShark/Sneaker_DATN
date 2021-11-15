@@ -43,24 +43,7 @@ namespace Sneaker_DATN.Controllers
             ViewData["Color"] = _context.Colors.ToList();
             ViewData["Size"] = _context.Sizes.ToList();
 
-            //var order = _orderSvc.GetOrder(id);
-
-            //if (id == null)
-            //{
-            //    return NotFound();
-            //}
-            //var orderDetails = await _context.OrderDetails
-            //    .Include(o => o.Colors)
-            //    .Include(o => o.Orders)
-            //    .Include(o => o.Products)
-            //    .Include(o => o.Sizes)
-            //    .FirstOrDefaultAsync(m => m.OrderID == id);
-            //if (orderDetails == null)
-            //{
-            //    return NotFound();
-            //}
-
-            return View(ordetails);
+            return PartialView(ordetails);
         }
 
         // GET: OrderDetails/Create

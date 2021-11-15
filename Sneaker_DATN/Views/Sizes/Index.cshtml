@@ -14,19 +14,21 @@
                 <thead>
                     <tr class="users-table-info">
                         <th class="dashboard-txt">
-                            <a href="@Url.ActionLink("Index", "Sizes", new { sortOrder = ViewBag.NameSortParm })"><span style="font-weight:bold;">ID</span><i class="fas fa-sort ml-2"></i></a>
-
-                            @*@Html.ActionLink("ID", "Index", new { sortOrder = ViewBag.NameSortParm }) <i class='bx bx-sort'></i>*@
-                            @*@Html.DisplayNameFor(model => model.First().SizeID)*@
+                            <a href="@Url.ActionLink("Index", "Sizes", new { sortOrder = ViewBag.NameSortParm })">
+                                <span style="font-weight:bold;">ID</span>
+                                <i class="fas fa-sort ml-2"></i>
+                            </a>
                         </th>
                         <th class="dashboard-txt">
-                            <a href="@Url.ActionLink("Index","Sizes", new { sortOrder = ViewBag.DescriptionSortParm })"><span style="font-weight:bold;">Name</span><i class="fas fa-sort ml-2"></i></a>
-                        
-                            @*@Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.DescriptionSortParm })*@
-                            @*@Html.DisplayNameFor(model => model.First().Size)*@
+                            <a href="@Url.ActionLink("Index","Sizes", new { sortOrder = ViewBag.DescriptionSortParm })">
+                                <span style="font-weight:bold;">Name</span>
+                                <i class="fas fa-sort ml-2"></i>
+                            </a>
                         </th>
                         <th class="dashboard-icon">
-                            <a href="@Url.Action("Create", "Sizes")" class="color-btn-create btn btn-primary btn-create-size mr-5 mb-3"><i class="fas fa-plus pr-2"></i>Thêm mới</a>
+                            <a href="@Url.Action("Create", "Sizes")" class="color-btn-create btn btn-primary btn-create-size mr-5 mb-3">
+                                <i class="fas fa-plus pr-2"></i>Thêm mới
+                            </a>
                         </th>
                     </tr>
                 </thead>
@@ -41,8 +43,12 @@
                                 @Html.DisplayFor(modelItem => item.Size)
                             </td>
                             <td>
-                                <a href="@Url.Action("Edit", "Sizes", new { id = @item.SizeID })" class="btn-edit-size"><i class="far fa-edit dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
-                                <a href="@Url.Action("Delete", "Sizes", new { id = item.SizeID })" class="btn-delete-size"><i class="far fa-trash-alt ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
+                                <a href="@Url.Action("Edit", "Sizes", new { id = @item.SizeID })" class="btn-edit-size">
+                                    <i class="far fa-edit dashbroad-icon-hover" style="font-size: 1.5rem;"></i>
+                                </a>
+                                <a href="@Url.Action("Delete", "Sizes", new { id = item.SizeID })" class="btn-delete-size">
+                                    <i class="far fa-trash-alt ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i>
+                                </a>
                                 <input type="hidden" class="id" value="@item.SizeID" />
                             </td>
                         </tr>
@@ -78,7 +84,7 @@
     </div>
 </div>
 
-<!-- Modal Details -->
+<!-- Modal Delete Size -->
 <div class="modal fade" id="deleteSizeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <!-- empty -->
