@@ -82,7 +82,7 @@
                     </div>
                     <div class="form-group mt-3">
                         <label asp-for="Description" class="control-label"></label>
-                        <textarea asp-for="Description" class="form-control-description form-control"></textarea>
+                        <textarea  id="txtDescription" asp-for="Description" class="form-control-description form-control"></textarea>
                         <span asp-validation-for="Description" class="text-danger"></span>
                     </div>
                     <div class="text-center mt-4">
@@ -97,6 +97,7 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script src="~/lib/multiple-select/multiple-select.min.js"></script>
+
     <script>
         $('#selectedSize').multipleSelect({
             selectAll: false,
