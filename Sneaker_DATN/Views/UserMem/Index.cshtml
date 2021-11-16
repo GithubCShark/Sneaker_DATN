@@ -136,6 +136,7 @@
                             <td class="col-lg-2">
                                 <a href="@Url.Action("Edit", "UserMem", new { id = @item.UserID })" class="btn-edit-usermem"><i class="far fa-edit dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
                                 <a href="@Url.Action("Details", "UserMem", new { id = @item.UserID })" class="btn-details-usermem"><i class="far fa-eye ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
+                                <input type="hidden" class="id" value="@item.UserID " />
                             </td>
                         </tr>
                     }

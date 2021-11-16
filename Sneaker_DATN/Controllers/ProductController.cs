@@ -60,7 +60,7 @@ namespace Sneaker_DATN.Controllers
             switch (sortOrder)
             {
                 case "name_desc":
-                    students = students.OrderByDescending(s => s.ProductName);
+                    students = students.OrderBy(s => s.ProductID);
                     break;
                 case "Price":
                     students = students.OrderBy(s => s.Price);
@@ -69,7 +69,7 @@ namespace Sneaker_DATN.Controllers
                     students = students.OrderByDescending(s => s.Price);
                     break;
                 default:  // Name ascending 
-                    students = students.OrderBy(s => s.ProductName);
+                    students = students.OrderByDescending(s => s.ProductID);
                     break;
             }
 
@@ -163,7 +163,7 @@ namespace Sneaker_DATN.Controllers
                     var catecolor = _context.Colors.ToList();
                     ViewData["color"] = new MultiSelectList(catecolor, "ColorID", "Color");
                 }
-                return RedirectToAction(nameof(Index), new { id = product.ProductID });
+                return RedirectToAction(nameof(Index));
 
             }
             catch
@@ -293,7 +293,7 @@ namespace Sneaker_DATN.Controllers
                     ViewData["color"] = new MultiSelectList(catecolor, "ColorID", "Color");
                 }
                 _productSvc.EditProduct(id, product);
-                return RedirectToAction(nameof(Details), new { id = product.ProductID });
+                return RedirectToAction(nameof(Index), new { id = product.ProductID });
             }
             catch
             {
@@ -341,8 +341,23 @@ namespace Sneaker_DATN.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var prod = await _context.Products.FindAsync(id);
-            _context.Products.Remove(prod);
-            await _context.SaveChangesAsync();
+            var order = from i in _context.OrderDetails
+                              group i by i.ProductID into j
+                              select new { ID = j.Key };
+            bool temp = false;
+            foreach (var item in order)
+            {
+                if( item.ID == id)
+                {
+                    temp = true;
+                    break;
+                }
+            }
+            if(!temp)
+            {
+                _context.Products.Remove(prod);
+                await _context.SaveChangesAsync();
+            }
             return RedirectToAction(nameof(Index));
         }
     }

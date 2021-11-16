@@ -158,5 +158,40 @@ namespace Sneaker_DATN.Controllers
                 return PartialView();
             }
         }
+
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var discount = await _context.Discounts
+                .FirstOrDefaultAsync(m => m.VoucherId == id);
+            if (discount == null)
+            {
+                return NotFound();
+            }
+
+            return PartialView(discount);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var discount = await _context.Discounts.FindAsync(id);
+            if( discount.CustomerId == 0)
+            {
+                _context.Discounts.Remove(discount);
+                await _context.SaveChangesAsync();
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool DiscountExists(int id)
+        {
+            return _context.Discounts.Any(e => e.VoucherId == id);
+        }
     }
 }

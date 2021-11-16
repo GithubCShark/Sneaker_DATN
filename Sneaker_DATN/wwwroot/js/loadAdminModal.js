@@ -275,26 +275,25 @@ $(document).ready(function () {
 
 });
 
-// Modal Delete Discount
-//$(document).ready(function () {
+/* Modal Delete Discount */
+$(document).ready(function () {
 
-//    $('.btn-delete-color').click(function (e) {
-//        e.preventDefault();
+    $('.btn-delete-discount').click(function (e) {
+        e.preventDefault();
 
-//        var $modal = $('#deleteColorModal');
-//        var $modalDialog = $('.modal-dialog');
-//        var href = $(this).prop('href');
+        var $modal = $('#deleteDiscountModal');
+        var $modalDialog = $('.modal-dialog');
+        var href = $(this).prop('href');
 
-//        // không cho phép tắt modal khi click bên ngoài modal
-//        var option = { backdrop: true };
+        // không cho phép tắt modal khi click bên ngoài modal
+        var option = { backdrop: true };
 
-//        // load modal
-//        $modalDialog.load(href, function () {
-//            $modal.modal(option, 'show');
-//        });
-//    });
-
-//});
+        // load modal
+        $modalDialog.load(href, function () {
+            $modal.modal(option, 'show');
+        });
+    });
+});
 
 
 // Modal Edit UserMem

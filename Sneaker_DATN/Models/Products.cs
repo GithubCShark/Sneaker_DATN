@@ -24,6 +24,10 @@ namespace Sneaker_DATN.Models
         [Display(Name = "Giá")]
         public double Price { get; set; }
 
+        [Column(TypeName = "money")]
+        [Display(Name = "Giảm giá")]
+        public double Sale { get; set; }
+
         [Display(Name = "Hình ảnh")]
         public string Image { get; set; }
 
@@ -41,8 +45,7 @@ namespace Sneaker_DATN.Models
         public bool Status { get; set; }
 
         [Display(Name = "Mô tả")]
-        [Column(TypeName = "nvarchar(250)")]
-        [StringLength(250)]
+        [Column(TypeName = "nvarchar(max)")]
         public string? Description { get; set; }
 
         [NotMapped]

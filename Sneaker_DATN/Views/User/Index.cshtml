@@ -115,11 +115,12 @@
                             </td>
                             <td>
                                 <a href="@Url.Action("Edit", "User", new { id = @item.UserID })" class="btn-edit-user">
-                                <i class="far fa-edit dashbroad-icon-hover" style="font-size: 1.5rem;"></i>
+                                    <i class="far fa-edit dashbroad-icon-hover" style="font-size: 1.5rem;"></i>
                                 </a>
                                 <a href="@Url.Action("Details", "User", new { id = @item.UserID })" class="btn-details-user">
-                                <i class="far fa-eye ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i>
+                                    <i class="far fa-eye ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i>
                                 </a>
+                                <input type="hidden" class="id" value="@item.UserID" />
                             </td>
                         </tr>
                     }

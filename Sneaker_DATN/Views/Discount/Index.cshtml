@@ -150,9 +150,12 @@
                                     <i class="far fa-edit dashbroad-icon-hover" style="font-size: 1.5rem;">
                                     </i>
                                 </a>
-                                <a href="@Url.Action("Details", "Discount", new { id = @item.VoucherId })" class="btn-details-discount"><i class="far fa-eye ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
-                                @*<a asp-action="Edit" asp-route-id="@item.VoucherId">Chỉnh sửa</a> |
-                                    <a asp-action="Details" asp-route-id="@item.VoucherId">Chi tiết</a> |*@
+                                <a href="@Url.Action("Details", "Discount", new { id = @item.VoucherId })" class="btn-details-discount">
+                                    <i class="far fa-eye ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i>
+                                </a>
+                                <a href="@Url.Action("Delete", "Discount", new { id = @item.VoucherId })" class="btn-delete-discount">
+                                    <i class="far fa-trash-alt ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i>
+                                </a>
                             </td>
                         </tr>
                     }
@@ -188,6 +191,13 @@
 
 <!-- Modal Details Discount -->
 <div class="modal fade" id="detailsDiscountModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <!-- empty -->
+    </div>
+</div>
+
+<!-- Modal Delete Discount -->
+<div class="modal fade" id="deleteDiscountModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <!-- empty -->
     </div>

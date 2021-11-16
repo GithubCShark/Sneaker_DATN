@@ -172,6 +172,7 @@
                                 <a href="@Url.Action("Delete", "Product", new { id = @item.ProductID })" class="btn-delete-product">
                                     <i class="far fa-trash-alt ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i>
                                 </a>
+                                <input type="hidden" class="id" value="@item.ProductID" />
                             </td>
                         </tr>
                     }

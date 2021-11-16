@@ -1,16 +1,18 @@
-﻿@model Sneaker_DATN.Models.Colors
+﻿@model Sneaker_DATN.Models.Discounts
 
 @{
     ViewData["Title"] = "Delete";
 }
 
-<div class="container modal-content  container-modal-small">
-    <div class="modal-body pb-5">
-        <button type="button" class="close custom-btn-modal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+<div class="container modal-content container-modal-small">
+    <div class="modal-body p-5">
+        <button type="button" class="close custom-btn-modal" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
         <form asp-action="Delete">
-            <input type="hidden" asp-for="ColorID" />
+            <input type="hidden" asp-for="VoucherId" />
             <p class="font-italic text-center mb-2 mt-3 del-notification">
-                Bạn chắc chắn muốn xóa màu <b>@Model.Color</b> ?
+                Bạn chắc chắn muốn xóa size <b>@Model.VoucherCode</b> ?
             </p>
             <div class="text-center mt-4">
                 <input type="submit" value="Xóa" class="col-lg-3 btn btn-danger font-weight-bold" />
@@ -22,4 +24,3 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
-
