@@ -353,3 +353,82 @@ $(document).ready(function () {
     });
 
 });
+
+
+// Modal Create User
+$(document).ready(function () {
+
+    $('.btn-create-user').click(function (e) {
+        e.preventDefault();
+
+        var $modal = $('#createUserModal');
+        var $modalDialog = $('.modal-dialog');
+        var href = $(this).prop('href');
+
+        // không cho phép tắt modal khi click bên ngoài modal
+        var option = { backdrop: true };
+
+        // load modal
+        $modalDialog.load(href, function () {
+            $modal.modal(option, 'show');
+        });
+    });
+
+});
+
+// Modal Edit User
+$(document).ready(function () {
+
+    $('.btn-edit-user').click(function (e) {
+        e.preventDefault();
+
+        var $modal = $('#editUserModal');
+        var $modalDialog = $('.modal-dialog');
+        var href = $(this).prop('href');
+        var id = $(this).parent().find('.id').val();
+        $.ajax({
+            type: 'GET',
+            url: 'Colors/Edit/' + id,
+            success: function (color) {
+                $('#editColorModal #id');
+            }
+        });
+        // không cho phép tắt modal khi click bên ngoài modal
+        var option = { backdrop: true };
+
+        // load modal
+        $modalDialog.load(href, function () {
+            $modal.modal(option, 'show');
+        });
+    });
+
+});
+
+// Modal Details User
+$(document).ready(function () {
+
+    $('.btn-details-user').click(function (e) {
+        e.preventDefault();
+
+        var $modal = $('#detailsUserModal');
+        var $modalDialog = $('.modal-dialog');
+        var href = $(this).prop('href');
+        var id = $(this).parent().find('.id').val();
+        $.ajax({
+            type: 'GET',
+            url: 'User/Details/' + id,
+            success: function (order) {
+                $('#detailsUserModal #id');
+            }
+        });
+
+        // không cho phép tắt modal khi click bên ngoài modal
+        var option = { backdrop: true };
+
+        // load modal
+        $modalDialog.load(href, function () {
+            $modal.modal(option, 'show');
+        });
+    });
+
+});

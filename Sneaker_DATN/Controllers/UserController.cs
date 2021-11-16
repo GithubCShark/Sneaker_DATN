@@ -86,7 +86,7 @@ namespace Sneaker_DATN.Controllers
 
             var roles = _userSvc.GetRole(user.RoleID);
             ViewData["RoleNameD"] = roles.Role;
-            return View(user);
+            return PartialView(user);
         }
 
         // GET: UserController/Create
@@ -94,7 +94,7 @@ namespace Sneaker_DATN.Controllers
         {
             var rolename = _context.Roles.ToList();
             ViewData["RoleNameC"]= new SelectList(rolename, "RoleID", "Role");
-            return View();
+            return PartialView();
         }
 
         // POST: UserController/Create
@@ -124,7 +124,7 @@ namespace Sneaker_DATN.Controllers
             }
             catch
             {
-                return View();
+                return PartialView();
             }
         }
 
@@ -135,7 +135,7 @@ namespace Sneaker_DATN.Controllers
             ViewData["RoleN"] = new SelectList(role, "RoleID", "Role");
 
             var user = _userSvc.GetUser(id);
-            return View(user);
+            return PartialView(user);
         }
 
         // POST: UserController/Edit/5
@@ -163,7 +163,7 @@ namespace Sneaker_DATN.Controllers
                     var role = _context.Roles.ToList();
                     ViewData["RoleN"] = new SelectList(role, "RoleID", "Role");
 
-                    return View(user);
+                    return PartialView(user);
                 }
             }
             catch
