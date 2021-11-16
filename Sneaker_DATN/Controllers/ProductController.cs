@@ -110,7 +110,7 @@ namespace Sneaker_DATN.Controllers
             var catecolor = _context.Colors.ToList();
             ViewData["color"] = new MultiSelectList(catecolor, "ColorID", "Color");
 
-            return View();
+            return PartialView();
         }
 
         // POST: ProductController/Create
@@ -169,7 +169,7 @@ namespace Sneaker_DATN.Controllers
             catch
             {
 
-                return View();
+                return PartialView();
             }
         }
 
@@ -195,7 +195,7 @@ namespace Sneaker_DATN.Controllers
 
             var product = _productSvc.GetProduct(id);
 
-            return View(product);
+            return PartialView(product);
         }
 
         // POST: ProductController/Edit/5
@@ -314,7 +314,7 @@ namespace Sneaker_DATN.Controllers
 
             ViewBag.productColor = _context.ProductColors.ToList();
             ViewData["colors"] = _context.Colors.ToList();
-            return View(product);
+            return PartialView(product);
         }
         // GET: ProductController/Delete/5
         public async Task<IActionResult> Delete(int? id)
@@ -332,7 +332,7 @@ namespace Sneaker_DATN.Controllers
                 return NotFound();
             }
 
-            return View(prod);
+            return PartialView(prod);
         }
 
         // POST: ProductController/Delete/5

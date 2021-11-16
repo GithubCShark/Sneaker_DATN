@@ -21,7 +21,7 @@ namespace Sneaker_DATN.Controllers
             _orderSvc = orderSvc;
         }
         // GET: OrdersController
-        public ActionResult Index(int? page,string searchString, string status, string currentFilterSearch, string currentFilterStatus)
+        public ActionResult Index(int? page, string sortOrder, string searchString, string status, string currentFilterSearch, string currentFilterStatus)
         {
             ViewBag.Status = (from r in _context.Orders
                               select r.Status).Distinct();
@@ -60,6 +60,45 @@ namespace Sneaker_DATN.Controllers
             //var sizes = _context.Orders.Include(b => b.FullName).OrderBy(b => b.OrderID);
             int pageSize = 5;
             int pageNumber = (page ?? 1);
+
+
+            // 1. Thêm biến NameSortParm để biết trạng thái sắp xếp tăng, giảm ở View
+            ViewBag.DateCreateSortParm = String.IsNullOrEmpty(sortOrder) ? "datecreate_desc" : "";
+            ViewBag.TotalSortParm = sortOrder == "total" ? "total_desc" : "total";
+            ViewBag.PaymentAmountSortParm = sortOrder == "paymentamount" ? "paymentamount_desc" : "paymentamount";
+
+            // 2. Truy vấn lấy tất cả đường dẫn
+            var links = from l in _context.Orders
+                        select l;
+
+            // 3. Thứ tự sắp xếp theo thuộc tính LinkName
+            switch (sortOrder)
+            {
+                // 3.1 Nếu biến sortOrder sắp giảm thì sắp giảm theo LinkName
+                case "datecreate_desc":
+                    links = links.OrderBy(s => s.DateCreate);
+                    break;
+
+                case "paymentamount":
+                    links = links.OrderBy(s => s.PaymentAmount);
+                    break;
+                case "paymentamount_desc":
+                    links = links.OrderByDescending(s => s.PaymentAmount);
+                    break;
+
+                case "total":
+                    links = links.OrderBy(s => s.Total);
+                    break;
+                case "total_desc":
+                    links = links.OrderByDescending(s => s.Total);
+                    break;
+
+                // 3.2 Mặc định thì sẽ sắp tăng
+                default:
+                    links = links.OrderByDescending(s => s.DateCreate);
+                    break;
+            }
+
 
             return View(sizes.ToList().ToPagedList(pageNumber, pageSize));
             //return View(_orderSvc.GetOrderAll());

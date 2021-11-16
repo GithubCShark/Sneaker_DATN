@@ -432,3 +432,104 @@ $(document).ready(function () {
     });
 
 });
+
+
+//// Modal Crete Product
+//$(document).ready(function () {
+
+//    $('.btn-create-product').click(function (e) {
+//        e.preventDefault();
+
+//        var $modal = $('#createProductModal');
+//        var $modalDialog = $('.modal-dialog');
+//        var href = $(this).prop('href');
+
+//        // không cho phép tắt modal khi click bên ngoài modal
+//        var option = { backdrop: true };
+
+//        // load modal
+//        $modalDialog.load(href, function () {
+//            $modal.modal(option, 'show');
+//        });
+//    });
+
+//});
+
+//// Modal Edit Product
+//$(document).ready(function () {
+
+//    $('.btn-edit-product').click(function (e) {
+//        e.preventDefault();
+
+//        var $modal = $('#editProductModal');
+//        var $modalDialog = $('.modal-dialog');
+//        var href = $(this).prop('href');
+//        var id = $(this).parent().find('.id').val();
+//        $.ajax({
+//            type: 'GET',
+//            url: 'Colors/Edit/' + id,
+//            success: function (color) {
+//                $('#editColorModal #id');
+//            }
+//        });
+//        // không cho phép tắt modal khi click bên ngoài modal
+//        var option = { backdrop: true };
+
+//        // load modal
+//        $modalDialog.load(href, function () {
+//            $modal.modal(option, 'show');
+//        });
+//    });
+
+//});
+
+// Modal Delete Product
+$(document).ready(function () {
+
+    $('.btn-delete-product').click(function (e) {
+        e.preventDefault();
+
+        var $modal = $('#deleteProductModal');
+        var $modalDialog = $('.modal-dialog');
+        var href = $(this).prop('href');
+
+        // không cho phép tắt modal khi click bên ngoài modal
+        var option = { backdrop: true };
+
+        // load modal
+        $modalDialog.load(href, function () {
+            $modal.modal(option, 'show');
+        });
+    });
+
+});
+
+
+// Modal Details Product
+$(document).ready(function () {
+
+    $('.btn-details-product').click(function (e) {
+        e.preventDefault();
+
+        var $modal = $('#detailsProductModal');
+        var $modalDialog = $('.modal-dialog');
+        var href = $(this).prop('href');
+        var id = $(this).parent().find('.id').val();
+        $.ajax({
+            type: 'GET',
+            url: 'User/Details/' + id,
+            success: function (order) {
+                $('#detailsProductModal #id');
+            }
+        });
+
+        // không cho phép tắt modal khi click bên ngoài modal
+        var option = { backdrop: true };
+
+        // load modal
+        $modalDialog.load(href, function () {
+            $modal.modal(option, 'show');
+        });
+    });
+
+});

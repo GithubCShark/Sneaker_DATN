@@ -1,107 +1,102 @@
 ﻿@model Sneaker_DATN.Models.Products
 
-@{
-    ViewData["Title"] = "Details";
-    Layout = "~/Views/Shared/_LayoutManager.cshtml";
-}
-<div class="container">
-    <div class="col-lg-12">
-        <div class="custom-detail pt-5">
-            <div class="custom-icon">
-                <a class="dashbroad-icon-hover" asp-action="Index"><i class="icon-back fas fa-chevron-left fa-2x "></i></a>
-                <h4 class="main-title text-center text-uppercase mt-2">Chi tiết sản phẩm</h4>
-                <button class="custom-icon-button">
-                    <a class="font-weight-lighter" asp-action="Edit" asp-route-id="@Model.ProductID">
-                        <i class="far fa-edit" style="font-size: 1.25rem;"></i> Chỉnh sửa
-                    </a>
-                </button>
+
+
+<div class="container modal-content">
+    <div class="modal-body">
+        <div class="col-lg-12">
+            <div class="custom-detail pt-3">
+                <div class="custom-icon pb-3">
+                    <h4 class="main-title text-center text-uppercase mt-2 m-auto">Chi tiết sản phẩm</h4>
+                    <button type="button" class="close custom-btn-modal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <dl class="shadow-lg" enctype="multipart/form-data">
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.ProductName)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.ProductName)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Price)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Price)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Image)
+                    </dt>
+                    <dd class="col-sm-10">
+                        <img src="~/images/Product/@Model.Image" style="width:150px" />
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Image1)
+                    </dt>
+                    <dd class="col-sm-10">
+                        <img src="~/images/Product/@Model.Image1" style="width:150px" />
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Image2)
+                    </dt>
+                    <dd class="col-sm-10">
+                        <img src="~/images/Product/@Model.Image2" style="width:150px" />
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Status)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Status)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Description)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.Raw(Model.Description)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Brands)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @ViewBag.brdetails
+                    </dd>
+                    <dt class="col-sm-2">
+                        Size
+                    </dt>
+                    <dd>
+                        @foreach (var sz in ViewBag.productSize)
+                        {
+                            if (sz.ID == Model.ProductID)
+                            {
+                                foreach (var s in ViewBag.size)
+                                {
+                                    if (s.SizeID == sz.IdSize)
+                                    {
+                                        @string.Join(", ", s.Size)<br />
+                                    }
+                                }
+                            }
+                        }
+                    </dd>
+                    <dt class="col-sm-2">
+                        Colors
+                    </dt>
+                    <dd>
+                        @foreach (var sz in ViewBag.productColor)
+                        {
+                            if (sz.ID == Model.ProductID)
+                            {
+                                foreach (var s in ViewBag.colors)
+                                {
+                                    if (s.ColorID == sz.ColorID)
+                                    {
+                                        @string.Join(", ", s.Color);
+                                    }
+                                }
+                            }
+                        }
+                    </dd>
+                </dl>
             </div>
-            <dl class="shadow-lg" enctype="multipart/form-data">
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.ProductName)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.ProductName)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Price)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Price)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Image)
-                </dt>
-                <dd class="col-sm-10">
-                    <img src="~/images/Product/@Model.Image" style="width:150px" />
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Image1)
-                </dt>
-                <dd class="col-sm-10">
-                    <img src="~/images/Product/@Model.Image1" style="width:150px" />
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Image2)
-                </dt>
-                <dd class="col-sm-10">
-                    <img src="~/images/Product/@Model.Image2" style="width:150px" />
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Status)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Status)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Description)
-                </dt>
-                <dd class="col-sm-10">
-                    @Html.Raw(Model.Description)
-                </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Brands)
-                </dt>
-                <dd class="col-sm-10">
-                    @ViewBag.brdetails
-                </dd>
-                <dt class="col-sm-2">
-                    Size
-                </dt>
-                <dd>
-                    @foreach (var sz in ViewBag.productSize)
-                    {
-                        if (sz.ID == Model.ProductID)
-                        {
-                            foreach (var s in ViewBag.size)
-                            {
-                                if (s.SizeID == sz.IdSize)
-                                {
-                                    @string.Join(", ", s.Size)<br />
-                                }
-                            }
-                        }
-                    }
-                </dd>
-                <dt class="col-sm-2">
-                    Colors
-                </dt>
-                <dd>
-                    @foreach (var sz in ViewBag.productColor)
-                    {
-                        if (sz.ID == Model.ProductID)
-                        {
-                            foreach (var s in ViewBag.colors)
-                            {
-                                if (s.ColorID == sz.ColorID)
-                                {
-                                    @string.Join(", ", s.Color);
-                                }
-                            }
-                        }
-                    }
-                </dd>
-            </dl>
         </div>
     </div>
 </div>
