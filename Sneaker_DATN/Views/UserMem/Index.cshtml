@@ -18,37 +18,24 @@
                             {
                                 <p class="d-flex">
                                     @Html.TextBox("SearchString", ViewBag.CurrentFilterSearch as string)
-                                    @*<input type="submit" value="Search" />*@
                                     <button type="submit" value="Search" class="search-btn btn btn-primary">
                                         <i class="fas fa-search"></i>
                                     </button>
                                 </p>
                             }
                             <div class="ml-3">
-                                @*<select>
-                                    <option selected>Trạng thái...</option>
-                                    <option value="1">Hoạt động</option>
-                                    <option value="2">Ngừng HĐ</option>
-                                </select>*@
-                                @using (Html.BeginForm("Index","UserMem",FormMethod.Get))
+                                @using (Html.BeginForm("Index", "UserMem", FormMethod.Get))
                                 {
-                                <div class="d-flex">
-                                    @Html.DropDownList("status", new SelectList(ViewBag.Status))
-                                    @*<input type="submit" value="Search" />*@
-                                    <button type="submit" value="Search" class="search-btn btn btn-primary">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                </div>
+                                    <div class="d-flex">
+                                        @Html.DropDownList("status", new SelectList(ViewBag.Status))
+                                        <button type="submit" value="Search" class="search-btn btn btn-primary">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
                                 }
                             </div>
-                            @*<button type="button" class="search-btn btn btn-primary">
-                                <i class="fas fa-search"></i>
-                            </button>*@
                         </div>
                     </div>
-                    @*<div class="col-lg-4 col-sm-6">
-                            <a class="color-btn-create btn btn-primary float-right">Thêm mới</a>
-                        </div>*@
                 </div>
             </div>
         </div>
@@ -62,19 +49,31 @@
                                 @Html.DisplayNameFor(model => model.First().UserName)
                             </th>*@
                         <th>
-                            @Html.ActionLink("Họ và Tên", "Index", new { sortOrder = ViewBag.NameSortParm })
+                            Họ Tên
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.First().Email)
                         </th>
-                        <th>
-                            @Html.ActionLink("Giới tính", "Index", new { sortOrder = ViewBag.GenderSortParm })
+                        <th class="text-center">
+                            <a href="@Url.ActionLink("Index", "UserMem", new { sortOrder = ViewBag.GenderSortParm  })">
+                                <span>Gender</span>
+                                <i class="fas fa-sort ml-1"></i>
+                            </a>
+                            @*@Html.ActionLink("Giới tính", "Index", new { sortOrder = ViewBag.GenderSortParm })*@
                         </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().PhoneNumber)
+                        <th class="text-center">
+                            <a href="@Url.ActionLink("Index", "UserMem", new { sortOrder = ViewBag.PhoneSortParm  })">
+                                <span>SĐT</span>
+                                <i class="fas fa-sort ml-1"></i>
+                            </a>
+                            @*@Html.DisplayNameFor(model => model.First().PhoneNumber)*@
                         </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().DOB)
+                        <th class="text-center">
+                            <a href="@Url.ActionLink("Index", "UserMem", new { sortOrder = ViewBag.DobSortParm  })">
+                                <span>Ngày sinh</span>
+                                <i class="fas fa-sort ml-1"></i>
+                            </a>
+                            @*@Html.DisplayNameFor(model => model.First().DOB)*@
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.First().Address)
@@ -83,7 +82,11 @@
                                 @Html.DisplayNameFor(model => model.Roles)
                             </th>*@
                         <th>
-                            @Html.DisplayNameFor(model => model.First().Lock)
+                            <a href="@Url.ActionLink("Index", "UserMem", new { sortOrder = ViewBag.LockSortParm  })">
+                                <span>Khóa</span>
+                                <i class="fas fa-sort ml-2"></i>
+                            </a>
+                            @*@Html.DisplayNameFor(model => model.First().Lock)*@
                         </th>
                         <th></th>
                     </tr>
@@ -101,7 +104,7 @@
                             <td class="col-lg-1">
                                 @Html.DisplayFor(modelItem => item.Email)
                             </td>
-                            <td class="col-lg-1">
+                            <td class="col-lg-1 text-center">
                                 @if (item.Gender)
                                 {
                                     <span>Nam</span>
@@ -111,28 +114,28 @@
                                     <span>Nữ</span>
                                 }
                             </td>
-                            <td class="col-lg-1">
+                            <td class="col-lg-1 text-center">
                                 @Html.DisplayFor(modelItem => item.PhoneNumber)
                             </td>
-                            <td class="col-lg-1">
+                            <td class="col-lg-2 text-center">
                                 @Html.DisplayFor(modelItem => item.DOB)
                             </td>
-                            <td class="col-lg-3">
+                            <td class="col-lg-2">
                                 @Html.DisplayFor(modelItem => item.Address)
                             </td>
                             @*<td>
-                                @if (item.RoleID == 3)
-                                {
-                                    <span>Khách hàng</span>
-                                }
-                            @Html.DisplayFor(modelItem => item.RoleID)
-                            </td>*@
+                                    @if (item.RoleID == 3)
+                                    {
+                                        <span>Khách hàng</span>
+                                    }
+                                @Html.DisplayFor(modelItem => item.RoleID)
+                                </td>*@
                             <td class="col-lg-1">
                                 @Html.DisplayFor(modelItem => item.Lock)
                             </td>
                             <td class="col-lg-2">
-                                <a asp-action="Edit" asp-route-id="@item.UserID"><i class="far fa-edit dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
-                                <a asp-action="Details" asp-route-id="@item.UserID"><i class="far fa-eye ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
+                                <a href="@Url.Action("Edit", "UserMem", new { id = @item.UserID })" class="btn-edit-usermem"><i class="far fa-edit dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
+                                <a href="@Url.Action("Details", "UserMem", new { id = @item.UserID })" class="btn-details-usermem"><i class="far fa-eye ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
                             </td>
                         </tr>
                     }
@@ -142,9 +145,23 @@
     </div>
     <div class="col-lg-12 m-auto px-5 pb-5">
         <div class="pagin-admin shadow-sm">
-            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+            Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
 
             @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilterSearch = ViewBag.CurrentFilterSearch, currentFilterStatus = ViewBag.CurrentFilterStatus }))
         </div>
+    </div>
+</div>
+
+<!-- Modal Edit Discount -->
+<div class="modal fade" id="editUserMemModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <!-- empty -->
+    </div>
+</div>
+
+<!-- Modal Details Discount -->
+<div class="modal fade" id="detailsUserMemModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <!-- empty -->
     </div>
 </div>

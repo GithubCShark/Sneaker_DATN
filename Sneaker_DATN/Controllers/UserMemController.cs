@@ -32,8 +32,13 @@ namespace Sneaker_DATN.Controllers
         public ActionResult Index(string sortOrder, bool status, string currentFilterSearch, string searchString, int? page, bool currentFilterStatus)
         {
             ViewBag.CurrentSort = sortOrder;
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateCreateSortParm = String.IsNullOrEmpty(sortOrder) ? "datecreate_desc" : "";
             ViewBag.GenderSortParm = sortOrder == "Gender" ? "gender_desc" : "Gender";
+            ViewBag.PhoneSortParm = sortOrder == "phone" ? "phone_desc" : "phone";
+            ViewBag.DobSortParm = sortOrder == "dob" ? "dob_desc" : "dob";
+            ViewBag.LockSortParm = sortOrder == "lock" ? "lock_desc" : "lock";
+
+
             ViewBag.Status = (from r in _userMemSvc.GetAllUserMem()
                               select r.Lock).Distinct();
 
@@ -70,17 +75,40 @@ namespace Sneaker_DATN.Controllers
             }
             switch (sortOrder)
             {
-                case "name_desc":
-                    mem = mem.OrderByDescending(s => s.FullName);
+                case "datecreate_desc":
+                    mem = mem.OrderBy(s => s.DateCreated);
                     break;
+
                 case "Gender":
                     mem = mem.OrderBy(s => s.Gender);
                     break;
                 case "gender_desc":
                     mem = mem.OrderByDescending(s => s.Gender);
                     break;
+
+                case "phone":
+                    mem = mem.OrderBy(s => s.PhoneNumber);
+                    break;
+                case "phone_desc":
+                    mem = mem.OrderByDescending(s => s.PhoneNumber);
+                    break;
+
+                case "dob":
+                    mem = mem.OrderBy(s => s.DOB);
+                    break;
+                case "dob_desc":
+                    mem = mem.OrderByDescending(s => s.DOB);
+                    break;
+
+                case "lock":
+                    mem = mem.OrderBy(s => s.Lock);
+                    break;
+                case "lock_desc":
+                    mem = mem.OrderByDescending(s => s.Lock);
+                    break;
+
                 default:  // Name ascending 
-                    mem = mem.OrderBy(s => s.FullName);
+                    mem = mem.OrderByDescending(s => s.DateCreated);
                     break;
             }
 
@@ -99,7 +127,7 @@ namespace Sneaker_DATN.Controllers
 
             var roles = _userMemSvc.GetRole(user.RoleID);
             ViewData["RoleNameD"] = roles.Role;
-            return View(user);
+            return PartialView(user);
         }
 
         // GET: UserController/Create
@@ -137,7 +165,7 @@ namespace Sneaker_DATN.Controllers
             ViewData["RoleN"] = new SelectList(role, "RoleID", "Role");
 
             var user = _userMemSvc.GetUserMem(id);
-            return View(user);
+            return PartialView(user);
         }
 
         // POST: UserController/Edit/5
@@ -164,7 +192,7 @@ namespace Sneaker_DATN.Controllers
                     var role = _context.Roles.ToList();
                     ViewData["RoleN"] = new SelectList(role, "RoleID", "Role");
 
-                    return View(user);
+                    return PartialView(user);
                 }
             }
             catch

@@ -295,3 +295,61 @@ $(document).ready(function () {
 //    });
 
 //});
+
+
+// Modal Edit UserMem
+$(document).ready(function () {
+
+    $('.btn-edit-usermem').click(function (e) {
+        e.preventDefault();
+
+        var $modal = $('#editUserMemModal');
+        var $modalDialog = $('.modal-dialog');
+        var href = $(this).prop('href');
+        var id = $(this).parent().find('.id').val();
+        $.ajax({
+            type: 'GET',
+            url: 'Colors/Edit/' + id,
+            success: function (color) {
+                $('#editColorModal #id');
+            }
+        });
+        // không cho phép tắt modal khi click bên ngoài modal
+        var option = { backdrop: true };
+
+        // load modal
+        $modalDialog.load(href, function () {
+            $modal.modal(option, 'show');
+        });
+    });
+
+});
+
+// Modal Details UserMem
+$(document).ready(function () {
+
+    $('.btn-details-usermem').click(function (e) {
+        e.preventDefault();
+
+        var $modal = $('#detailsUserMemModal');
+        var $modalDialog = $('.modal-dialog');
+        var href = $(this).prop('href');
+        var id = $(this).parent().find('.id').val();
+        $.ajax({
+            type: 'GET',
+            url: 'UserMem/Details/' + id,
+            success: function (order) {
+                $('#detailsUserMemModal #id');
+            }
+        });
+
+        // không cho phép tắt modal khi click bên ngoài modal
+        var option = { backdrop: true };
+
+        // load modal
+        $modalDialog.load(href, function () {
+            $modal.modal(option, 'show');
+        });
+    });
+
+});

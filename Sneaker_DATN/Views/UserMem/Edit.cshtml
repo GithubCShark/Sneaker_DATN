@@ -1,95 +1,85 @@
 ﻿@model Sneaker_DATN.Models.Users
 
-@{
-    ViewData["Title"] = "Edit";
-    Layout = "~/Views/Shared/_LayoutManager.cshtml";
-}
-
-<div class="container">
-    <div class="col-lg-12 col-md-10 col-sm-10 custom-form mt-4">
-        <div class="card flex-row shadow-lg">
-            <div class="card-body col-lg-12 col-md-12 col-sm-12">
-                <a asp-action="Index" class="dashbroad-icon-hover">
-                    <i class="icon-back fas fa-chevron-left fa-2x d-flex"></i>
-                </a>
-                <h2 class="main-title text-center text-uppercase mt-n3">Chỉnh sửa khách hàng</h2>
-                <form class="form-edit" asp-action="Edit" enctype="multipart/form-data">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <input type="hidden" asp-for="UserID" />
-                    <div class="form-group">
-                        <label asp-for="UserName" class="control-label"></label>
-                        <input asp-for="UserName" class="form-control" readonly />
-                        <span asp-validation-for="UserName" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="FullName" class="control-label"></label>
-                        <input asp-for="FullName" class="form-control" readonly/>
-                        <span asp-validation-for="FullName" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Gender" class="control-label"></label>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <select asp-for="Gender" class="form-control-select" readonly>
-                            <option value="true">Nam</option>
-                            <option value="false">Nữ</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Email" class="control-label"></label>
-                        <input asp-for="Email" class="form-control" readonly/>
-                        <span asp-validation-for="Email" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <img src="~/images/avatar/@Model.ImgUser" style="width:100px" />
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="ImageUser" class="control-label"></label>
-                        <input asp-for="ImageUser" class="form-control" type="file" readonly/>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="PhoneNumber" class="control-label"></label>
-                        <input asp-for="PhoneNumber" class="form-control" readonly/>
-                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="DOB" class="control-label"></label>
-                        <input asp-for="DOB" class="form-control" readonly/>
-                        <span asp-validation-for="DOB" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="RoleID" class="control-label"></label>
-                        <select asp-for="RoleID" class="form-control-select" asp-items="ViewBag.RoleN" readonly></select>
-                        <span asp-validation-for="RoleID" class="text-danger"></span>
-                    </div>
-                    <div class="form-group custom-checkbox">
-                        <label asp-for="Lock" class="control-label"></label>
-                        &nbsp;&nbsp;
-                        <input asp-for="Lock" class="form-checkbox-input" type="checkbox" />
-                        <span asp-validation-for="Lock" class="text-danger"></span>
-                    </div>
-                    <div class="form-group" style="display: none" >
-                        <label asp-for="Password" class="control-label"></label>
-                        <input asp-for="Password" class="form-control" type="text" readonly/>
-                        <span asp-validation-for="Password" class="text-danger"></span>
-                    </div>
-                    <div class="form-group" style="display: none" >
-                        <label asp-for="ConfirmPassword" class="control-label"></label>
-                        <input asp-for="ConfirmPassword" class="form-control" type="text" readonly/>
-                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-                    </div>
-                    <div class="text-center">
-                        <input type="submit" value="Lưu" class="mt-2 col-lg-6 btn btn-primary" />
-                    </div>
-                </form>
-
+<div class="container modal-content container-modal-large">
+    <div class="modal-body p-5">
+        <div class="custom-icon pb-3 custom-header-modal">
+            <h2 class="main-title text-center text-uppercase mt-2 m-auto">Chỉnh sửa khách hàng</h2>
+            <button type="button" class="close custom-btn-modal" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form class="form-edit" asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="UserID" />
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control" readonly />
+                <span asp-validation-for="UserName" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="FullName" class="control-label"></label>
+                <input asp-for="FullName" class="form-control" readonly />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="display: none">
+                <label asp-for="Gender" class="control-label"></label>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <select asp-for="Gender" class="form-control-select" readonly>
+                    <option value="true">Nam</option>
+                    <option value="false">Nữ</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" readonly />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="display: none">
+                <img src="~/images/avatar/@Model.ImgUser" style="width:100px" />
+            </div>
+            <div class="form-group" style="display: none">
+                <label asp-for="ImageUser" class="control-label"></label>
+                <input asp-for="ImageUser" class="form-control" type="file" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" readonly />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="display: none">
+                <label asp-for="DOB" class="control-label"></label>
+                <input asp-for="DOB" class="form-control" readonly />
+                <span asp-validation-for="DOB" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="display: none">
+                <label asp-for="RoleID" class="control-label"></label>
+                <select asp-for="RoleID" class="form-control-select" asp-items="ViewBag.RoleN" readonly></select>
+                <span asp-validation-for="RoleID" class="text-danger"></span>
+            </div>
+            <div class="form-group custom-checkbox">
+                <label asp-for="Lock" class="control-label"></label>
+                &nbsp;&nbsp;
+                <input asp-for="Lock" class="form-checkbox-input" type="checkbox" />
+                <span asp-validation-for="Lock" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="display: none">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" type="text" readonly />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="display: none">
+                <label asp-for="ConfirmPassword" class="control-label"></label>
+                <input asp-for="ConfirmPassword" class="form-control" type="text" readonly />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="text-center">
+                <input type="submit" value="Lưu" class="mt-2 col-lg-6 btn btn-primary" />
+            </div>
+        </form>
 
-        </div>
-        @*<div>
-            <a class=" pt-2">Trở về danh sách</a>
-        </div>*@
     </div>
-        </div>
+</div>
+
 
         @section Scripts {
             @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
