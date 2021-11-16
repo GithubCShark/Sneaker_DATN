@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Sneaker_DATN.Models;
 using Sneaker_DATN.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace Sneaker_DATN.Controllers
 {
@@ -22,23 +24,97 @@ namespace Sneaker_DATN.Controllers
         }
 
         // GET: MonAnController
-        public ActionResult Index()
+        public ActionResult Index(int? page, string sortOrder, string sortProperty)
         {
+            if (page == null) page = 1;
+            var sizes = _context.Discounts.Include(b => b.VoucherCode).OrderBy(b => b.VoucherId);
+            int pageSize = 6;
+            int pageNumber = (page ?? 1);
+
+            // 1. Thêm biến NameSortParm để biết trạng thái sắp xếp tăng, giảm ở View
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateUseSortParm = sortOrder == "dateuse" ? "dateuse_desc" : "dateuse";
+            ViewBag.DayEndSortParm = sortOrder == "dayend" ? "dayend_desc" : "dayend";
+            ViewBag.DayStartSortParm = sortOrder == "daystart" ? "daystart_desc" : "daystart";
+            ViewBag.PriceSortParm = sortOrder == "price" ? "price_desc" : "price";
+            ViewBag.PercentSortParm = sortOrder == "percent" ? "percent_desc" : "percent";
+            ViewBag.StatusSortParm = sortOrder == "status" ? "status_desc" : "status";
+
+            // 2. Truy vấn lấy tất cả đường dẫn
+            var links = from l in _context.Discounts
+                        select l;
+
+            // 3. Thứ tự sắp xếp theo thuộc tính LinkName
+            switch (sortOrder)
+            {
+                // 3.1 Nếu biến sortOrder sắp giảm thì sắp giảm theo LinkName
+                case "name_desc":
+                    links = links.OrderBy(s => s.VoucherId);
+                    break;
+
+                case "dateuse":
+                    links = links.OrderBy(s => s.DateUse);
+                    break;
+                case "dateuse_desc":
+                    links = links.OrderByDescending(s => s.DateUse);
+                    break;
+
+                case "dayend":
+                    links = links.OrderBy(s => s.DayEnd);
+                    break;
+                case "dayend_desc":
+                    links = links.OrderByDescending(s => s.DayEnd);
+                    break;
+
+                case "daystart":
+                    links = links.OrderBy(s => s.DayStart);
+                    break;
+                case "daystart_desc":
+                    links = links.OrderByDescending(s => s.DayStart);
+                    break;
+
+                case "price":
+                    links = links.OrderBy(s => s.DayStart);
+                    break;
+                case "price_desc":
+                    links = links.OrderByDescending(s => s.DayStart);
+                    break;
+
+                case "percent":
+                    links = links.OrderBy(s => s.DayStart);
+                    break;
+                case "percent_desc":
+                    links = links.OrderByDescending(s => s.DayStart);
+                    break;
+
+                case "status":
+                    links = links.OrderBy(s => s.Status);
+                    break;
+                case "status_desc":
+                    links = links.OrderByDescending(s => s.Status);
+                    break;
+
+                // 3.2 Mặc định thì sẽ sắp tăng
+                default:
+                    links = links.OrderByDescending(s => s.VoucherId);
+                    break;
+            }
+
             ViewBag.user = _context.Users.ToList();
-            return View(_discountSvc.GetDiscountAll());
+            return View(links.ToList().ToPagedList(pageNumber, pageSize));
         }
 
         // GET: KhachhangController/Details/5du
         public ActionResult Details(int id)
         {
-            return View(_discountSvc.GetDiscount(id));
+            return PartialView(_discountSvc.GetDiscount(id));
         }
         public ActionResult Create()
         {
             //System.Guid guid = System.Guid.NewGuid();
             var item = new Discounts();
             //item.VoucherCode = guid.ToString();
-            return View(item);
+            return PartialView(item);
         }
 
         // POST: MonAnController/Create
@@ -53,7 +129,7 @@ namespace Sneaker_DATN.Controllers
             }
             catch
             {
-                return View();
+                return PartialView();
             }
         }
 
@@ -63,7 +139,7 @@ namespace Sneaker_DATN.Controllers
         public ActionResult Edit(int id)
         {
             var discount = _discountSvc.GetDiscount(id);
-            return View(discount);
+            return PartialView(discount);
 
         }
 
@@ -79,7 +155,7 @@ namespace Sneaker_DATN.Controllers
             }
             catch
             {
-                return View();
+                return PartialView();
             }
         }
     }

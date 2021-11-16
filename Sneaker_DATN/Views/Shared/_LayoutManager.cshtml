@@ -31,6 +31,64 @@
     <link rel="stylesheet" href="~/css/style-admin.css">
     <link rel="stylesheet" href="~/css/style.css">
     @*<link href="~/js/chosen/chosen.min.css" rel="stylesheet" />*@
+
+    <style>
+        .modal-dialog {
+            max-width: initial;
+        }
+
+        .modal-content {
+            border: none;
+            background-color: transparent;
+        }
+
+        .modal-body {
+            border-radius: 18px;
+            background-color: #fff;
+        }
+
+        .custom-btn-modal {
+            border: none;
+            font-size: 36px;
+            color: #999;
+        }
+
+            .custom-btn-modal:hover {
+                border: none;
+                transform: scale(1.25);
+                color: #576ee0;
+            }
+
+        .container-modal-small {
+            max-width: 700px;
+        }
+
+        .custom-header-modal {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .custom-icon span {
+            border: none;
+            background-color: transparent;
+        }
+        .container-modal-large .form-control {
+            border: none !important;
+            border-radius: 6px !important;
+            background: rgb(245, 245, 245) !important;
+        }
+
+        .container-modal-large {
+            max-width: 800px;
+        }
+
+            .container-modal-large .form-checkbox-input {
+                cursor: pointer;
+                width: 20px;
+                height: 20px;
+                border-radius: 18px;
+            }
+    </style>
 </head>
 
 <body>
@@ -173,13 +231,7 @@
                             <span class="icon menu-toggle--gray" aria-hidden="true"></span>
                         </button>
                         @*<div class="lang-switcher-wrapper">
-                                <button class="lang-switcher transparent-btn" type="button">
-                                    VN
-                                    <i data-feather="chevron-down" aria-hidden="true"></i>
-                                </button>
-                                <ul class="lang-menu dropdown">
-                                    <li><a href="##">English</a></li>
-                                </ul>
+   
                             </div>*@
                         <button class="theme-switcher gray-circle-btn" type="button" title="Switch theme">
                             <span class="sr-only">Đổi giao diện</span>
@@ -187,54 +239,7 @@
                             <i class="sun-icon" data-feather="sun" aria-hidden="true"></i>
                         </button>
                         @*<div class="notification-wrapper">
-                                <button class="gray-circle-btn dropdown-btn" title="Thông Báo" type="button">
-                                    <span class="sr-only">Thông Báo</span>
-                                    <i class="icon fas fa-bell"></i>
-                                </button>
-                                <ul class="users-item-dropdown notification-dropdown dropdown">
-                                    <li>
-                                        <a href="##">
-                                            <div class="notification-dropdown-icon info">
-                                                <i data-feather="check"></i>
-                                            </div>
-                                            <div class="notification-dropdown-text">
-                                                <span class="notification-dropdown__title">System just updated</span>
-                                                <span class="notification-dropdown__subtitle">
-                                                    The system has been successfully upgraded. Read more
-                                                    here.
-                                                </span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="##">
-                                            <div class="notification-dropdown-icon danger">
-                                                <i data-feather="info" aria-hidden="true"></i>
-                                            </div>
-                                            <div class="notification-dropdown-text">
-                                                <span class="notification-dropdown__title">The cache is full!</span>
-                                                <span class="notification-dropdown__subtitle">
-                                                    Unnecessary caches take up a lot of memory space and
-                                                    interfere ...
-                                                </span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="##">
-                                            <div class="notification-dropdown-icon info">
-                                                <i data-feather="check" aria-hidden="true"></i>
-                                            </div>
-                                            <div class="notification-dropdown-text">
-                                                <span class="notification-dropdown__title">New Subscriber here!</span>
-                                                <span class="notification-dropdown__subtitle">A new subscriber has subscribed.</span>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="link-to-page" href="##">Đến trang thông báo</a>
-                                    </li>
-                                </ul>
+
                             </div>*@
                         <div class="nav-user-wrapper">
                             <button href="##" class="nav-user-btn dropdown-btn" title="Bản Thân" type="button">

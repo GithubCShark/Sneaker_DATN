@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Sneaker_DATN.Models.Discounts>
+﻿@model X.PagedList.IPagedList<Sneaker_DATN.Models.Discounts>
+@using X.PagedList.Mvc.Core;
 
 @{
     ViewData["Title"] = "ListUser";
@@ -12,6 +13,10 @@
         border-radius: 8px !important;
         background-color: #576ee0 !important;
         color: white !important;
+    }
+    /* de o day*/
+    .users-table td {
+        border: none;
     }
 </style>
 
@@ -27,56 +32,75 @@
                             <button type="button" class="search-btn btn btn-primary">
                                 <i class="fas fa-search"></i>
                             </button>
-                            @*<div class="ml-3">
-                                <select>
-                                    <option selected>Trạng thái...</option>
-                                    <option value="1">Hoạt động</option>
-                                    <option value="2">Ngừng HĐ</option>
-                                </select>
-                            </div>
-                            <button type="button" class="search-btn btn btn-primary">
-                                <i class="fas fa-search"></i>
-                            </button>*@
                         </div>
                     </div>
                     <div class="col-lg-4 col-sm-6">
-                        <a asp-action="Create" class="color-btn-create btn btn-primary float-right"><i class="fas fa-plus pr-2"></i>Thêm mới</a>
+                        <a href="@Url.Action("Create", "Discount")" class="btn-create-discount color-btn-create btn btn-primary float-right">
+                            <i class="fas fa-plus pr-2"></i>
+                            Thêm mới
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-lg-12 m-auto px-5 pb-5">
+    <div class="col-lg-12 m-auto px-5">
         <div class="users-table table-wrapper">
             <table class="posts-table mt-3">
                 <thead>
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => model.VoucherCode)
+                            @Html.DisplayNameFor(model => model.First().VoucherCode)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.DayStart)
+                            @*@Html.DisplayNameFor(model => model.First().DayStart)*@
+                            <a href="@Url.ActionLink("Index", "Discount", new { sortOrder = ViewBag.DayStartSortParm })">
+                                <span style="font-weight:bold;">Bắt đầu</span>
+                                <i class="fas fa-sort ml-2"></i>
+                            </a>
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.DayEnd)
+                            <a href="@Url.ActionLink("Index", "Discount", new { sortOrder = ViewBag.DayEndSortParm })">
+                                <span style="font-weight:bold;">Kết thúc</span>
+                                <i class="fas fa-sort ml-2"></i>
+                            </a>
+                            @*@Html.DisplayNameFor(model => model.First().DayEnd)*@
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.DateUse)
+                            <a href="@Url.ActionLink("Index", "Discount", new { sortOrder = ViewBag.DateUseSortParm })">
+                                <span style="font-weight:bold;">Sử dụng</span>
+                                <i class="fas fa-sort ml-2"></i>
+                            </a>
+                            @*@Html.DisplayNameFor(model => model.First().DateUse)*@
                         </th>
                         <th class="text-center">
-                            @Html.DisplayNameFor(model => model.CustomerId)
+                            KH sử dụng
+                            @*@Html.DisplayNameFor(model => model.CustomerId)*@
                         </th>
                         <th class="text-center">
-                            @Html.DisplayNameFor(model => model.Status)
+                            <a href="@Url.ActionLink("Index", "Discount", new { sortOrder = ViewBag.StatusSortParm })">
+                                <span style="font-weight:bold;">Trạng thái</span>
+                                <i class="fas fa-sort ml-2"></i>
+                            </a>
+                            @*@Html.DisplayNameFor(model => model.Status)*@
+                        </th>
+                        @*<th class="text-center">
+                                @Html.DisplayNameFor(model => model.Classify)
+                            </th>*@
+                        <th class="text-center">
+                            <a href="@Url.ActionLink("Index", "Discount", new { sortOrder = ViewBag.PriceSortParm })">
+                                <span style="font-weight:bold;">Giảm $</span>
+                                <i class="fas fa-sort ml-2"></i>
+                            </a>
+                            @*@Html.DisplayNameFor(model => model.Price)*@
                         </th>
                         <th class="text-center">
-                            @Html.DisplayNameFor(model => model.Classify)
-                        </th>
-                        <th class="text-center">
-                            @Html.DisplayNameFor(model => model.Price)
-                        </th>
-                        <th class="text-center">
-                            @Html.DisplayNameFor(model => model.Percent)
+                            <a href="@Url.ActionLink("Index", "Discount", new { sortOrder = ViewBag.PercentSortParm })">
+                                <span style="font-weight:bold;">Giảm %</span>
+                                <i class="fas fa-sort ml-2"></i>
+                            </a>
+
+                            @*@Html.DisplayNameFor(model => model.Percent)*@
                         </th>
                         <th></th>
                     </tr>
@@ -109,20 +133,26 @@
                             <td class="text-center custom-checkbox-index">
                                 @Html.DisplayFor(modelItem => item.Status)
                             </td>
-                            <td class="text-center custom-checkbox-index" >
+                            @*<td class="text-center custom-checkbox-index" >
+                                    @Html.DisplayFor(modelItem => item.Classify)
+                                </td>*@
+                            <td class="custom-checkbox-index d-flex">
                                 @Html.DisplayFor(modelItem => item.Classify)
-                            </td>
-                            <td class="text-center">
-                                @string.Format("{0:0,0}", item.Price) VNĐ
+                                <div class="ml-3">
+                                    @string.Format("{0:0,0}", item.Price) VNĐ
+                                </div>
                             </td>
                             <td class="text-center">
                                 @Html.DisplayFor(modelItem => item.Percent)%
                             </td>
                             <td>
-                                <a asp-action="Edit" asp-route-id="@item.VoucherId"><i class="far fa-edit dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
-                                <a asp-action="Details" asp-route-id="@item.VoucherId"><i class="far fa-eye ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
+                                <a href="@Url.Action("Edit", "Discount", new { id = @item.VoucherId })" class="btn-edit-discount">
+                                    <i class="far fa-edit dashbroad-icon-hover" style="font-size: 1.5rem;">
+                                    </i>
+                                </a>
+                                <a href="@Url.Action("Details", "Discount", new { id = @item.VoucherId })" class="btn-details-discount"><i class="far fa-eye ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
                                 @*<a asp-action="Edit" asp-route-id="@item.VoucherId">Chỉnh sửa</a> |
-                                <a asp-action="Details" asp-route-id="@item.VoucherId">Chi tiết</a> |*@
+                                    <a asp-action="Details" asp-route-id="@item.VoucherId">Chi tiết</a> |*@
                             </td>
                         </tr>
                     }
@@ -130,14 +160,35 @@
             </table>
         </div>
     </div>
-    @*<div class="col-lg-12 m-auto px-5 pb-5">
+    <div class="col-lg-12 m-auto px-5 pb-5">
         <div class="pagin-admin shadow-sm">
             <div class="pagin-left float-left">
                 Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
             </div>
             <div class="pagin-right float-right">
-                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.SortOrder }))
             </div>
         </div>
-    </div>*@
+    </div>
+</div>
+
+<!-- Modal Create Discount -->
+<div class="modal fade" id="createDiscountModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <!-- empty -->
+    </div>
+</div>
+
+<!-- Modal Edit Discount -->
+<div class="modal fade" id="editDiscountModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <!-- empty -->
+    </div>
+</div>
+
+<!-- Modal Details Discount -->
+<div class="modal fade" id="detailsDiscountModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <!-- empty -->
+    </div>
 </div>

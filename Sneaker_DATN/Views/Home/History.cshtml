@@ -12,7 +12,7 @@
 
     .custom-history-trash:hover,
     .custom-history-details:hover {
-        opacity: 0.9;
+        opacity: 0.5;
     }
 
     .custom-history-trash,
@@ -20,13 +20,18 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 20px;
+        width: 40px !important;
         height: 40px;
         border-radius: 8px;
     }
 
+    .custom-history-trash {
+        width: 90px !important;
+        color: #fff !important;
+    }
         .custom-history-details i,
         .custom-history-trash i {
+            padding-right: 0.3rem;
             color: #fff;
         }
 
@@ -35,7 +40,12 @@
         background: #dc3545 !important;
     }
 
+    .custom-history-trash-disable i {
+        color: #000 !important;
+    }
+
     .custom-history-trash-disable {
+        color: #000 !important;
         background: lightgrey !important;
         cursor: no-drop;
     }

@@ -274,41 +274,6 @@
     padding: 3em 0em 7em 0em;
 }
 
-/*history*/
-.custom-history {
-    display: flex;
-}
-
-.custom-history-trash:hover,
-.custom-history-details:hover {
-    opacity: 0.9;
-}
-
-.custom-history-trash,
-.custom-history-details {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 20px;
-    height: 40px;
-    border-radius: 8px;
-}
-
-    .custom-history-details i,
-    .custom-history-trash i {
-        color: #fff;
-    }
-
-.custom-history-trash {
-    margin-left: 1rem;
-    background: #dc3545 !important;
-}
-
-.custom-history-trash-disable {
-    opacity: 0.5;
-    cursor: no-drop;
-}
-
 /*checkout*/
 .select-custom-provine {
     width: 100% !important;
