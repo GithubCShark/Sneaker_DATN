@@ -46,7 +46,7 @@ namespace Sneaker_DATN.Models
 
         [Display(Name = "Mô tả")]
         [Column(TypeName = "nvarchar(max)")]
-        public string? Description { get; set; }
+        public string Description { get; set; }
 
         [NotMapped]
         [Display(Name ="Chọn hình")]

@@ -10,8 +10,8 @@ using Sneaker_DATN.Models;
 namespace Sneaker_DATN.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20211101084523_DB")]
-    partial class DB
+    [Migration("20211116150957_CreateDB")]
+    partial class CreateDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -51,12 +51,57 @@ namespace Sneaker_DATN.Migrations
                     b.ToTable("Colors");
                 });
 
-            modelBuilder.Entity("Sneaker_DATN.Models.OrderDetails", b =>
+            modelBuilder.Entity("Sneaker_DATN.Models.Discounts", b =>
                 {
-                    b.Property<int>("OrderID")
+                    b.Property<int>("VoucherId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Classify")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("DateUse")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DayEnd")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DayStart")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("Percent")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("VoucherCode")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("VoucherId");
+
+                    b.ToTable("Discounts");
+                });
+
+            modelBuilder.Entity("Sneaker_DATN.Models.OrderDetails", b =>
+                {
+                    b.Property<int>("DetailID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
                     b.Property<int>("ColorID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderID")
                         .HasColumnType("int");
 
                     b.Property<double>("Price")
@@ -71,9 +116,11 @@ namespace Sneaker_DATN.Migrations
                     b.Property<int>("SizeID")
                         .HasColumnType("int");
 
-                    b.HasKey("OrderID");
+                    b.HasKey("DetailID");
 
                     b.HasIndex("ColorID");
+
+                    b.HasIndex("OrderID");
 
                     b.HasIndex("ProductID");
 
@@ -100,6 +147,9 @@ namespace Sneaker_DATN.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("ExpDiscount")
+                        .HasColumnType("bit");
+
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -107,6 +157,9 @@ namespace Sneaker_DATN.Migrations
                     b.Property<string>("Note")
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
+
+                    b.Property<double>("PaymentAmount")
+                        .HasColumnType("float");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
@@ -121,6 +174,12 @@ namespace Sneaker_DATN.Migrations
                     b.Property<int>("UserID")
                         .HasColumnType("int");
 
+                    b.Property<string>("VoucherCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("VoucherId")
+                        .HasColumnType("int");
+
                     b.HasKey("OrderID");
 
                     b.HasIndex("UserID");
@@ -130,13 +189,13 @@ namespace Sneaker_DATN.Migrations
 
             modelBuilder.Entity("Sneaker_DATN.Models.ProductColor", b =>
                 {
-                    b.Property<int>("ProductID")
+                    b.Property<int>("ID")
                         .HasColumnType("int");
 
                     b.Property<int>("ColorID")
                         .HasColumnType("int");
 
-                    b.HasKey("ProductID", "ColorID");
+                    b.HasKey("ID", "ColorID");
 
                     b.HasIndex("ColorID");
 
@@ -145,15 +204,15 @@ namespace Sneaker_DATN.Migrations
 
             modelBuilder.Entity("Sneaker_DATN.Models.ProductSize", b =>
                 {
-                    b.Property<int>("ProductID")
+                    b.Property<int>("ID")
                         .HasColumnType("int");
 
-                    b.Property<int>("SizeID")
+                    b.Property<int>("IdSize")
                         .HasColumnType("int");
 
-                    b.HasKey("ProductID", "SizeID");
+                    b.HasKey("ID", "IdSize");
 
-                    b.HasIndex("SizeID");
+                    b.HasIndex("IdSize");
 
                     b.ToTable("ProductSizes");
                 });
@@ -169,8 +228,7 @@ namespace Sneaker_DATN.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
@@ -188,6 +246,9 @@ namespace Sneaker_DATN.Migrations
                         .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
+
+                    b.Property<decimal>("Sale")
+                        .HasColumnType("money");
 
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
@@ -340,14 +401,14 @@ namespace Sneaker_DATN.Migrations
             modelBuilder.Entity("Sneaker_DATN.Models.ProductColor", b =>
                 {
                     b.HasOne("Sneaker_DATN.Models.Colors", "Colors")
-                        .WithMany()
+                        .WithMany("ProductColors")
                         .HasForeignKey("ColorID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Sneaker_DATN.Models.Products", "Products")
-                        .WithMany()
-                        .HasForeignKey("ProductID")
+                        .WithMany("ProductColors")
+                        .HasForeignKey("ID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -359,14 +420,14 @@ namespace Sneaker_DATN.Migrations
             modelBuilder.Entity("Sneaker_DATN.Models.ProductSize", b =>
                 {
                     b.HasOne("Sneaker_DATN.Models.Products", "Products")
-                        .WithMany()
-                        .HasForeignKey("ProductID")
+                        .WithMany("ProductSizes")
+                        .HasForeignKey("ID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Sneaker_DATN.Models.Sizes", "Sizes")
-                        .WithMany()
-                        .HasForeignKey("SizeID")
+                        .WithMany("ProductSizes")
+                        .HasForeignKey("IdSize")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -395,6 +456,23 @@ namespace Sneaker_DATN.Migrations
                         .IsRequired();
 
                     b.Navigation("Roles");
+                });
+
+            modelBuilder.Entity("Sneaker_DATN.Models.Colors", b =>
+                {
+                    b.Navigation("ProductColors");
+                });
+
+            modelBuilder.Entity("Sneaker_DATN.Models.Products", b =>
+                {
+                    b.Navigation("ProductColors");
+
+                    b.Navigation("ProductSizes");
+                });
+
+            modelBuilder.Entity("Sneaker_DATN.Models.Sizes", b =>
+                {
+                    b.Navigation("ProductSizes");
                 });
 #pragma warning restore 612, 618
         }

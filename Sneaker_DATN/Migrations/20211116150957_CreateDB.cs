@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Sneaker_DATN.Migrations
 {
-    public partial class DB : Migration
+    public partial class CreateDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -31,6 +31,27 @@ namespace Sneaker_DATN.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Colors", x => x.ColorID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Discounts",
+                columns: table => new
+                {
+                    VoucherId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    VoucherCode = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    DayStart = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DayEnd = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DateUse = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CustomerId = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<bool>(type: "bit", nullable: false),
+                    Classify = table.Column<bool>(type: "bit", nullable: false),
+                    Price = table.Column<double>(type: "float", nullable: false),
+                    Percent = table.Column<double>(type: "float", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Discounts", x => x.VoucherId);
                 });
 
             migrationBuilder.CreateTable(
@@ -67,12 +88,13 @@ namespace Sneaker_DATN.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProductName = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
                     Price = table.Column<decimal>(type: "money", nullable: false),
+                    Sale = table.Column<decimal>(type: "money", nullable: true),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Image1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Image2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BrandID = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -100,7 +122,7 @@ namespace Sneaker_DATN.Migrations
                     Address = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     DOB = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Password = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
-                    ConfirmPassword = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: true),
+                    ConfirmPassword = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
                     Lock = table.Column<bool>(type: "bit", nullable: false),
                     RoleID = table.Column<int>(type: "int", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: true)
@@ -120,12 +142,12 @@ namespace Sneaker_DATN.Migrations
                 name: "ProductColors",
                 columns: table => new
                 {
-                    ProductID = table.Column<int>(type: "int", nullable: false),
+                    ID = table.Column<int>(type: "int", nullable: false),
                     ColorID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductColors", x => new { x.ProductID, x.ColorID });
+                    table.PrimaryKey("PK_ProductColors", x => new { x.ID, x.ColorID });
                     table.ForeignKey(
                         name: "FK_ProductColors_Colors_ColorID",
                         column: x => x.ColorID,
@@ -133,8 +155,8 @@ namespace Sneaker_DATN.Migrations
                         principalColumn: "ColorID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ProductColors_Products_ProductID",
-                        column: x => x.ProductID,
+                        name: "FK_ProductColors_Products_ID",
+                        column: x => x.ID,
                         principalTable: "Products",
                         principalColumn: "ProductID",
                         onDelete: ReferentialAction.Cascade);
@@ -144,21 +166,21 @@ namespace Sneaker_DATN.Migrations
                 name: "ProductSizes",
                 columns: table => new
                 {
-                    ProductID = table.Column<int>(type: "int", nullable: false),
-                    SizeID = table.Column<int>(type: "int", nullable: false)
+                    ID = table.Column<int>(type: "int", nullable: false),
+                    IdSize = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ProductSizes", x => new { x.ProductID, x.SizeID });
+                    table.PrimaryKey("PK_ProductSizes", x => new { x.ID, x.IdSize });
                     table.ForeignKey(
-                        name: "FK_ProductSizes_Products_ProductID",
-                        column: x => x.ProductID,
+                        name: "FK_ProductSizes_Products_ID",
+                        column: x => x.ID,
                         principalTable: "Products",
                         principalColumn: "ProductID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ProductSizes_Sizes_SizeID",
-                        column: x => x.SizeID,
+                        name: "FK_ProductSizes_Sizes_IdSize",
+                        column: x => x.IdSize,
                         principalTable: "Sizes",
                         principalColumn: "SizeID",
                         onDelete: ReferentialAction.Cascade);
@@ -178,7 +200,11 @@ namespace Sneaker_DATN.Migrations
                     Note = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: true),
                     FullName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ExpDiscount = table.Column<bool>(type: "bit", nullable: true),
+                    VoucherCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    VoucherId = table.Column<int>(type: "int", nullable: true),
+                    PaymentAmount = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -195,6 +221,8 @@ namespace Sneaker_DATN.Migrations
                 name: "OrderDetails",
                 columns: table => new
                 {
+                    DetailID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     OrderID = table.Column<int>(type: "int", nullable: false),
                     ProductID = table.Column<int>(type: "int", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
@@ -204,7 +232,7 @@ namespace Sneaker_DATN.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrderDetails", x => x.OrderID);
+                    table.PrimaryKey("PK_OrderDetails", x => x.DetailID);
                     table.ForeignKey(
                         name: "FK_OrderDetails_Colors_ColorID",
                         column: x => x.ColorID,
@@ -237,6 +265,11 @@ namespace Sneaker_DATN.Migrations
                 column: "ColorID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_OrderDetails_OrderID",
+                table: "OrderDetails",
+                column: "OrderID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_OrderDetails_ProductID",
                 table: "OrderDetails",
                 column: "ProductID");
@@ -262,9 +295,9 @@ namespace Sneaker_DATN.Migrations
                 column: "BrandID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductSizes_SizeID",
+                name: "IX_ProductSizes_IdSize",
                 table: "ProductSizes",
-                column: "SizeID");
+                column: "IdSize");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_RoleID",
@@ -274,6 +307,9 @@ namespace Sneaker_DATN.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Discounts");
+
             migrationBuilder.DropTable(
                 name: "OrderDetails");
 
