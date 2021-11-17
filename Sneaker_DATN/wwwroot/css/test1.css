@@ -77,3 +77,42 @@
     background: lightgrey !important;
     cursor: no-drop;
 }
+
+/*product*/
+.search-btn-product {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    border: none;
+    font-size: 18px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.custom-sort-product a {
+    display: flex;
+    align-items: center;
+    width: auto;
+    padding: 0.5rem;
+    height: auto;
+    border: 1px solid #fff;
+    background-color: transparent;
+    border-radius: 4px;
+}
+
+.custom-sort-product span {
+    font-size: 16px;
+    color: #fff;
+    font-weight: 500;
+}
+
+.custom-sort-product i {
+    font-size: 24px;
+    color: #fff;
+}
+
+.product-details .custom-title-product {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

@@ -9,45 +9,6 @@
 @*custom tooltip*@
 @*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>*@
-<style>
-    .search-btn-product {
-        display: flex;
-        align-items: center;
-        height: 30px;
-        border: none;
-        font-size: 18px;
-        border-radius: 8px;
-        text-align: center;
-    }
-
-    .custom-sort-product a {
-        display: flex;
-        align-items: center;
-        width: auto;
-        padding: 0.5rem;
-        height: auto;
-        border: 1px solid #fff;
-        background-color: transparent;
-        border-radius: 4px;
-    }
-
-    .custom-sort-product span {
-        font-size: 16px;
-        color: #fff;
-        font-weight: 500;
-    }
-
-    .custom-sort-product i {
-        font-size: 24px;
-        color: #fff;
-    }
-
-    .product-details .custom-title-product {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-</style>
 
 <!-- Start Banner Area -->
 <section class="banner-area organic-breadcrumb">
@@ -338,7 +299,44 @@
 </div>
 
 <script>
-    $(document).ready(function () {
-        $('[data-toggle="tooltip"]').tooltip();
-    });
+    function clearCart() {
+        $("#imgCart").attr("src", '/images/bag.png');
+    }
+    function addCart(id) {
+        $("#imgCart").attr("src", '/images/bagA.png');
+        $("#imgBusy_" + id).show();
+        setTimeout(function () {
+            $.ajax({
+                url: "/Home/AddCart",
+                type: "Post",
+                data: {
+                    id: id,
+                    size: 0,
+                    color: 0
+                },
+                success: function (result) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Thêm vào giỏ thành thành công!',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    setTimeout(function () {
+                        location.reload();
+                    }, 1000)
+                },
+                error: function (e) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'Thêm vào giỏ thành thất bại!',
+                        showConfirmButton: true,
+                        timer: 1000
+                    })
+                }
+            })
+            $("#imgBusy_" + id).hide();
+        }, 500);
+    }
 </script>

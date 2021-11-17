@@ -123,7 +123,7 @@
                         <div class="single-deal">
                             <div class="overlay"></div>
                             <img class="img-fluid w-100" src="~/images/category/c1.jpg" alt="">
-                            <a href="img/category/c1.jpg" class="img-pop-up" target="_blank">
+                            <a href="https://localhost:44302/home/products?brands=adidas">
                                 <div class="deal-details">
                                     <h6 class="deal-title">Adidas</h6>
                                 </div>
@@ -134,7 +134,7 @@
                         <div class="single-deal">
                             <div class="overlay"></div>
                             <img class="img-fluid w-100" src="~/images/category/c2.jpg" alt="">
-                            <a href="img/category/c2.jpg" class="img-pop-up" target="_blank">
+                            <a href="#">
                                 <div class="deal-details">
                                     <h6 class="deal-title">Sneaker for Sports</h6>
                                 </div>
@@ -145,7 +145,7 @@
                         <div class="single-deal">
                             <div class="overlay"></div>
                             <img class="img-fluid w-100" src="~/images/category/c3.jpg" alt="">
-                            <a href="img/category/c3.jpg" class="img-pop-up" target="_blank">
+                            <a href="#">
                                 <div class="deal-details">
                                     <h6 class="deal-title">Product for Couple</h6>
                                 </div>
@@ -156,7 +156,7 @@
                         <div class="single-deal">
                             <div class="overlay"></div>
                             <img class="img-fluid w-100" src="~/images/category/c4.jpg" alt="">
-                            <a href="img/category/c4.jpg" class="img-pop-up" target="_blank">
+                            <a href="https://localhost:44302/home/products?brands=nike">
                                 <div class="deal-details">
                                     <h6 class="deal-title">Nike</h6>
                                 </div>
@@ -169,7 +169,7 @@
                 <div class="single-deal">
                     <div class="overlay"></div>
                     <img class="img-fluid w-100" src="~/images/category/c5.jpg" alt="">
-                    <a href="img/category/c5.jpg" class="img-pop-up" target="_blank">
+                    <a href="#">
                         <div class="deal-details">
                             <h6 class="deal-title">Sneaker for Sports</h6>
                         </div>
@@ -190,15 +190,15 @@
                 <div class="col-lg-6 text-center">
                     <div class="section-title">
                         <h1><a asp-controller="Home" asp-action="Products" class="text-decoration-none text-link-hover">Sản phẩm</a></h1>
-                        <p>Các sản phẩm bán chạy.</p>
+                        <p>Các sản phẩm mới.</p>
                     </div>
                 </div>
             </div>
             <div class="row" data-aos="fade-up">
                 @foreach (var item in Model)
-                 {
-                     if (item.Status)
-                     {
+                {
+                    if (item.Status)
+                    {
                         <div class="col-lg-3 col-md-6 col-sm-6">
                             <div class="single-product">
                                 <a asp-action="Details" asp-route-id="@item.ProductID">
@@ -212,7 +212,11 @@
                                     }
                                 </a>
                                 <div class="product-details">
-                                    <h6><a class="text-decoration-none text-link-hover" asp-action="Details" asp-route-id="@item.ProductID">@Html.DisplayFor(modelItem => item.ProductName)</a></h6>
+                                    <h6 class="custom-title-product">
+                                        <a class="text-decoration-none text-link-hover" data-toggle="tooltip" title="@item.ProductName" asp-action="Details" asp-route-id="@item.ProductID">
+                                            @Html.DisplayFor(modelItem => item.ProductName)
+                                        </a>
+                                    </h6>
                                     <div class="price d-flex">
                                         <h6 class="d-flex">@string.Format("{0:0,0 vnđ}", item.Price) <span class="text-lowercase"></span></h6>
                                         @*discount*@
@@ -239,8 +243,8 @@
                                 </div>
                             </div>
                         </div>
-                     }
-                 }
+                    }
+                }
             </div>
         </div>
     </div>
@@ -295,6 +299,74 @@
     </div>
 </section>
 <!-- end features Area -->
+<!-- Start category brand Area -->
+<section class="category-area mb-5" data-aos="fade-up">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-12 media-small" data-aos="fade-up">
+                <div class="single-deal">
+                    <div class="overlay"></div>
+                    <img class="img-fluid w-100" src="~/images/category/d1.jpg" alt="">
+                    <a href="#">
+                        <div class="deal-details">
+                            <h6 class="deal-title">Adidas</h6>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-12">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6" data-aos="fade-up">
+                        <div class="single-deal">
+                            <div class="overlay"></div>
+                            <img class="img-fluid w-100" src="~/images/category/d2.jpg" alt="">
+                            <a href="">
+                                <div class="deal-details">
+                                    <h6 class="deal-title">Vans</h6>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6" data-aos="fade-up">
+                        <div class="single-deal">
+                            <div class="overlay"></div>
+                            <img class="img-fluid w-100" src="~/images/category/d3.jpg" alt="">
+                            <a href="#">
+                                <div class="deal-details">
+                                    <h6 class="deal-title">Converse</h6>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6" data-aos="fade-up">
+                        <div class="single-deal">
+                            <div class="overlay"></div>
+                            <img class="img-fluid w-100" src="~/images/category/d5.jpg" alt="">
+                            <a href="#">
+                                <div class="deal-details">
+                                    <h6 class="deal-title">Nike</h6>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6" data-aos="fade-up">
+                        <div class="single-deal">
+                            <div class="overlay"></div>
+                            <img class="img-fluid w-100" src="~/images/category/d4.jpg" alt="">
+                            <a href="https://localhost:44302/home/products?brands=nike">
+                                <div class="deal-details">
+                                    <h6 class="deal-title">MLB</h6>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- End category brand Area -->
 <!-- Start exclusive deal Area -->
 <section class="exclusive-deal-area" data-aos="fade-up">
     <div class="container">
@@ -364,7 +436,7 @@
                     })
                     setTimeout(function () {
                         location.reload();
-                    },1000)
+                    }, 1000)
                 },
                 error: function (e) {
                     Swal.fire({
