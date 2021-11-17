@@ -147,15 +147,11 @@
                                 {
                                     <li class="nav-item"><a class="nav-link btn-information" asp-controller="Home" asp-action="InfoMenu">Thông tin cá nhân</a></li>
                                     <li class="nav-item"><a class="nav-link" asp-action="History" asp-route-id="@id">Lịch sử đơn hàng</a></li>
-                                    @*<li class="nav-item"><a class="nav-link btn-changePass" href='@Url.Action("ChangePass","Home")'>Đổi mật khẩu</a></li>*@
                                     <partial name="_LogoutPartialHome" />
                                 }
                                 else
                                 {
-
-                                    @*<li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Login">Đăng nhập</a></li>*@
                                     <li class="nav-item"><a href='@Url.Action("Login","Home")' class="nav-link btn-login">Đăng nhập</a></li>
-                                    @*<li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Register">Đăng ký</a></li>*@
                                     <li class="nav-item"><a href='@Url.Action("Register","Home")' class="nav-link btn-register">Đăng ký</a></li>
                                 }
                             </ul>
@@ -176,7 +172,7 @@
                                 <a class="nav-link" asp-controller="Home" asp-action="Blog">Tin tức</a>
                             </li>
                             <li class="nav-item submenu">
-                                <a class="nav-link" asp-controller="Home" asp-action="ProductSales">Sale</a>
+                                <a class="nav-link" asp-controller="Home" asp-action="ProductSales">Flash Sale</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" asp-controller="Home" asp-action="Contact">Liên hệ</a>

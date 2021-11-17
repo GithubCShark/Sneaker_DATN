@@ -95,7 +95,17 @@
                                     string txt_Id = "txtQuantity_" + iD;
                                     stt++;
 
-                                    double totalSub = item.Products.Price * item.Quantity;
+                                    double totalSub = 0;
+
+                                    if (item.Products.Sale > 0)
+                                    {
+                                        totalSub = (item.Products.Price - item.Products.Sale) * item.Quantity;
+                                    }
+                                    else
+                                    {
+                                        totalSub = item.Products.Price * item.Quantity;
+                                    }
+
                                     total += totalSub;
                                     <tr id="tr_@iD">
                                         <td class="pro-quantity"><span>@stt</span></td>
@@ -155,7 +165,7 @@
                                             </select>
                                         </td>
                                         <td class="pro-quantity text-center">
-                                            <select  class="cart-tbl-select-custom ml-4">
+                                            <select class="cart-tbl-select-custom ml-4">
                                                 @foreach (var i in ViewBag.col)
                                                 {
                                                     @if (item.Color == i.ColorID)
@@ -208,7 +218,14 @@
                                                 <input name="sl" min="1" max="99" type="number" id="@txt_Id" onchange="updateCart(@iD)" value="@item.Quantity" />
                                             </span>
                                         </td>
-                                        <td class="pro-subtotal"><span id="tdGia_@iD">@String.Format("{0:n0}", @item.Products.Price)</span></td>
+                                        @if (item.Products.Sale > 0)
+                                        {
+                                            <td class="pro-subtotal"><span id="tdGia_@iD">@String.Format("{0:n0}", (@item.Products.Price - item.Products.Sale))</span></td>
+                                        }
+                                        else
+                                        {
+                                            <td class="pro-subtotal"><span id="tdGia_@iD">@String.Format("{0:n0}", @item.Products.Price)</span></td>
+                                        }
                                         <td class="pro-price"><span id="tdTien_@iD">@String.Format("{0:n0}", @totalSub)</span></td>
                                         <td class="pro-remove"><a href="javascript:delCart(@iD);"><i class='bx bx-x bx-sm'></i></a></td>
                                     </tr>

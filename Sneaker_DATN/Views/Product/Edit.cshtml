@@ -28,7 +28,11 @@
                         <input asp-for="Price" class="form-control" />
                         <span asp-validation-for="Price" class="text-danger"></span>
                     </div>
-
+                    <div class="form-group">
+                        <label asp-for="Sale" class="control-label"></label>
+                        <input asp-for="Sale" class="form-control" />
+                        <span asp-validation-for="Sale" class="text-danger"></span>
+                    </div>
                     <div class="form-group">
                         <img src="~/images/Product/@Model.Image" style="width:100px" />
                     </div>
@@ -83,7 +87,7 @@
                     </div>
                     <div class="form-group form-check mt-3">
                         <label class="form-check-label form-check-lbl">
-                            <input class="form-check-input form-custom-check" asp-for="Status" /> 
+                            <input class="form-check-input form-custom-check" asp-for="Status" />
                             <span class="form-check-input-span">@Html.DisplayNameFor(model => model.Status)</span>
                         </label>
                     </div>

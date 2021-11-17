@@ -195,20 +195,6 @@
                         </div>
                     </form>
                 </div>
-                @*<div class="common-filter">
-                        <div class="head">Giá</div>
-                        <div class="price-range-area">
-                            <div id="price-range"></div>
-                            <div class="value-wrapper d-flex">
-                                <div class="price">Từ</div>
-                                <div id="lower-value"></div>
-                                <span>đ</span>
-                                <div class="to">đến</div>
-                                <div id="upper-value"></div>
-                                <span>đ</span>
-                            </div>
-                        </div>
-                    </div>*@
             </div>
         </div>
         <div class="col-xl-9 col-lg-8 col-md-7">
@@ -233,52 +219,69 @@
                     <!-- single product -->
                     @foreach (var item in Model)
                     {
-                        if (item.Status)
-                        {
-                            <div class="col-lg-4 col-md-6">
-                                <div class="single-product">
-                                    <a asp-action="Details" asp-route-id="@item.ProductID">
-                                        <img class="img-fluid" src="~/images/Product/@item.Image" alt="">
-                                        @if (item.Price >= 3000000)
-                                        {
-                                            <div class="badge-overlay badge-products">
-                                                <span class="badge">Sale 0%</span>
-                                            </div>
-                                        }
-                                    </a>
-                                    <div class="product-details">
-                                        <h6 class="custom-title-product">
-                                            <a class="text-decoration-none text-link-hover" data-toggle="tooltip" title="@item.ProductName" asp-action="Details" asp-route-id="@item.ProductID">
-                                                @Html.DisplayFor(modelItem => item.ProductName)
-                                            </a>
-                                        </h6>
-                                        <div class="price d-flex">
-                                            <h6 class="d-flex">@string.Format("{0:0,0 vnđ}", item.Price)</h6>
-
-                                            @if (item.Price >= 3000000)
-                                            {
-                                                <h6 class="d-flex l-through">@string.Format("{0:0,0 vnđ}", item.Price)</h6>
-                                            }
-
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-product">
+                                <a asp-action="Details" asp-route-id="@item.ProductID">
+                                    <img class="img-fluid" src="~/images/Product/@item.Image" alt="">
+                                    @if (!item.Status)
+                                    {
+                                        <div class="badge-overlay badge-products">
+                                            <span class="badge">Ngừng kinh doanh</span>
                                         </div>
-                                        <div class="prd-bottom">
+                                    }
+                                    else if (item.Sale > 0)
+                                    {
+                                        var sale = Math.Round((@item.Sale / @item.Price) * 100);
+                                        <div class="badge-overlay badge-products">
+                                            <span class="badge">Sale @sale%</span>
+                                        </div>
+                                    }
+                                </a>
+                                <div class="product-details">
+                                    <h6 class="custom-title-product">
+                                        <a class="text-decoration-none text-link-hover" data-toggle="tooltip" 
+                                           title="@item.ProductName" asp-action="Details" asp-route-id="@item.ProductID">
+                                            @Html.DisplayFor(modelItem => item.ProductName)
+                                        </a>
+                                    </h6>
+                                    <div class="price d-flex">
+                                        @if (item.Sale > 0)
+                                        {
+                                            <h6 class="d-flex">@string.Format("{0:0,0 vnđ}", (item.Price - item.Sale)) <span class="text-lowercase"></span></h6>
+                                            <h6 class="d-flex l-through">@string.Format("{0:0,0 vnđ}", item.Price) <span class="text-lowercase"></span></h6>
+                                        }
+                                        else
+                                        {
+                                            <h6 class="d-flex">@string.Format("{0:0,0 vnđ}", item.Price) <span class="text-lowercase"></span></h6>
+                                        }
+                                    </div>
+                                    <div class="prd-bottom">
+                                        @if (item.Status)
+                                        {
                                             <a class="addProduct social-info" href="javascript:addCart(@item.ProductID);">
                                                 <span class='bx bx-basket'></span>
                                                 <p class="hover-text">Giỏ hàng</p>
                                             </a>
-                                            <a class="social-info">
-                                                <span class='bx bx-heart'></span>
-                                                <p class="hover-text">Yêu thích</p>
+                                        }
+                                        else
+                                        {
+                                            <a class="addProduct social-info" disabled="disabled">
+                                                <span class='bx bx-basket  custom-history-trash-disable'></span>
+                                                <p class="hover-text">Giỏ hàng</p>
                                             </a>
-                                            <a asp-action="Details" asp-route-id="@item.ProductID" class="social-info">
-                                                <span class='bx bx-move'></span>
-                                                <p class="hover-text">Xem Thêm</p>
-                                            </a>
-                                        </div>
+                                        }
+                                        <a class="social-info">
+                                            <span class='bx bx-heart'></span>
+                                            <p class="hover-text">Yêu thích</p>
+                                        </a>
+                                        <a asp-action="Details" asp-route-id="@item.ProductID" class="social-info">
+                                            <span class='bx bx-move'></span>
+                                            <p class="hover-text">Xem Thêm</p>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
-                        }
+                        </div>
                     }
                     <!-- single product -->
                 </div>
@@ -290,7 +293,16 @@
                     Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
                 </div>
                 <div class="pagin-right pagination">
-                    @Html.PagedListPager(Model, page => Url.Action("Products", new { page, sortOrder = ViewBag.SortOrder, currentFilterSearch = ViewBag.CurrentFilterSearch, currentFilterBrand = ViewBag.CurrentFilterBrand, currentFilterSize = ViewBag.CurrentFilterSize, currentFilterColor = ViewBag.CurrentFilterColor }))
+                    @Html.PagedListPager(Model, page => Url.Action("Products", 
+                        new 
+                        { 
+                            page,
+                            sortOrder = ViewBag.SortOrder,
+                            currentFilterSearch = ViewBag.CurrentFilterSearch,
+                            currentFilterBrand = ViewBag.CurrentFilterBrand,
+                            currentFilterSize = ViewBag.CurrentFilterSize,
+                            currentFilterColor = ViewBag.CurrentFilterColor 
+                        }))
                 </div>
             </div>
             <!-- End Filter Bar -->

@@ -4,7 +4,7 @@
 }
 @{ int i = 0;}
 
-<div class="container modal-content">
+<div class="container container-modal-large modal-content">
     <div class="modal-body color-dashboard pb-5 px-5">
         <div class="col-lg-12">
             <div class="custom-detail pt-3">
@@ -120,6 +120,75 @@
                             </tr>
                             i++;
                         }
+                        <tr>
+                            <td>
+                                <h6>Tổng</h6>
+                            </td>
+                            <td>
+                                <h5></h5>
+                            </td>
+                            <td>
+                                <h5></h5>
+                            </td>
+                            <td>
+                                <h5></h5>
+                            </td>
+                            <td>
+                                <h5></h5>
+                            </td>
+                            <td>
+                                <p>@string.Format("{0:0,0}", ViewBag.order.Total)</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h6>Giảm giá</h6>
+                            </td>
+                            <td>
+                                <h5></h5>
+                            </td>
+                            <td>
+                                <h5></h5>
+                            </td>
+                            <td>
+                                <h5></h5>
+                            </td>
+                            <td>
+                                <h5></h5>
+                            </td>
+                            <td>
+                                <p>
+                                    @if ((ViewBag.order.Total - ViewBag.order.PaymentAmount) == 0)
+                                    {
+                                        <span class="ml-5">0</span>
+                                    }
+                                    else
+                                    {
+                                        @string.Format("{0:0,0}", ViewBag.order.Total - ViewBag.order.PaymentAmount)
+                                    }
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h6>Tổng tiền</h6>
+                            </td>
+                            <td>
+                                <h5></h5>
+                            </td>
+                            <td>
+                                <h5></h5>
+                            </td>
+                            <td>
+                                <h5></h5>
+                            </td>
+                            <td>
+                                <h5></h5>
+                            </td>
+                            <td>
+                                <p>@string.Format("{0:0,0}", ViewBag.order.PaymentAmount)</p>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

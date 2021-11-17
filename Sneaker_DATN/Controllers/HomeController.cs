@@ -434,17 +434,34 @@ namespace Sneaker_DATN.Controllers
                 List<ViewCart> dataCart = JsonConvert.DeserializeObject<List<ViewCart>>(cart);
                 for (int i = 0; i < dataCart.Count; i++)
                 {
-                    OrderDetails details = new OrderDetails()
+                    if (dataCart[i].Products.Sale > 0)
                     {
-                        OrderID = orderID,
-                        ProductID = dataCart[i].Products.ProductID,
-                        Quantity = dataCart[i].Quantity,
-                        Price = dataCart[i].Products.Price,
-                        ColorID = dataCart[i].Color,
-                        SizeID = dataCart[i].Size
-                    };
-                    _context.OrderDetails.Add(details);
-                    _context.SaveChanges();
+                        OrderDetails details = new OrderDetails()
+                        {
+                            OrderID = orderID,
+                            ProductID = dataCart[i].Products.ProductID,
+                            Quantity = dataCart[i].Quantity,
+                            Price = (dataCart[i].Products.Price - dataCart[i].Products.Sale) * dataCart[i].Quantity,
+                            ColorID = dataCart[i].Color,
+                            SizeID = dataCart[i].Size
+                        };
+                        _context.OrderDetails.Add(details);
+                        _context.SaveChanges();
+                    }
+                    else
+                    {
+                        OrderDetails details = new OrderDetails()
+                        {
+                            OrderID = orderID,
+                            ProductID = dataCart[i].Products.ProductID,
+                            Quantity = dataCart[i].Quantity,
+                            Price = dataCart[i].Products.Price * dataCart[i].Quantity,
+                            ColorID = dataCart[i].Color,
+                            SizeID = dataCart[i].Size
+                        };
+                        _context.OrderDetails.Add(details);
+                        _context.SaveChanges();
+                    }
                 }
                 HttpContext.Session.Remove("cart");
                 return Ok();
@@ -484,7 +501,14 @@ namespace Sneaker_DATN.Controllers
                 List<ViewCart> dataCart = JsonConvert.DeserializeObject<List<ViewCart>>(cart);
                 for (int i = 0; i < dataCart.Count; i++)
                 {
-                    total += (dataCart[i].Products.Price * dataCart[i].Quantity);
+                    if (dataCart[i].Products.Sale > 0)
+                    {
+                        total += ((dataCart[i].Products.Price - dataCart[i].Products.Sale) * dataCart[i].Quantity);
+                    }
+                    else
+                    {
+                        total += (dataCart[i].Products.Price * dataCart[i].Quantity);
+                    }
                 }
             }
             return total;

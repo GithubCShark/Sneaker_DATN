@@ -85,9 +85,19 @@
                                         int iD = @item.Products.ProductID;
                                         string txt_Id = "txtQuantity_" + iD;
                                         stt++;
+                                        double totalSub = 0;
 
-                                        double totalSub = item.Products.Price * item.Quantity;
+                                        if (item.Products.Sale > 0)
+                                        {
+                                            totalSub = (item.Products.Price - item.Products.Sale) * item.Quantity;
+                                        }
+                                        else
+                                        {
+                                            totalSub = item.Products.Price * item.Quantity;
+                                        }
+
                                         total += totalSub;
+
                                         <tr id="tr_@iD">
                                             @*<td class="pro-quantity"><span>@stt</span></td>*@
                                             <td class="pro-thumbnail">
@@ -123,9 +133,7 @@
                                                     <input disabled name="sl" min="1" max="99" type="number" id="@txt_Id" onchange="updateCart(@iD)" value="@item.Quantity" />
                                                 </span>
                                             </td>
-                                            @*<td class="pro-subtotal"><span id="tdGia_@iD">@String.Format("{0:n0}", @item.Products.Price)</span></td>*@
                                             <td class="pro-price"><span id="tdTien_@iD">@String.Format("{0:n0}", @totalSub)</span></td>
-                                            @*<td class="pro-remove"><a href="javascript:delCart(@iD);"><i class='bx bx-x bx-sm'></i></a></td>*@
                                         </tr>
 
                                     }
@@ -183,11 +191,6 @@
                             <div class="d-flex cart-detail-total">
                                 <h2>Thành tiền:</h2>
                                 <span id="spTotal">@String.Format("{0:n0}", @total) VNĐ</span>
-
-                                @*<h2>Giảm giá:</h2>
-                                <span id="voucher">@String.Format("{0:n0}", @total) VNĐ</span>
-
-                                <h2>Thành tiền:</h2>*@
                             </div>
                             <div class="d-flex align-items-baseline custom-discount-input">
                                 <h2>Mã giảm giá:</h2>

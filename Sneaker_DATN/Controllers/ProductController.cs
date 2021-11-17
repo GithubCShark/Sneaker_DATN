@@ -365,6 +365,12 @@ namespace Sneaker_DATN.Controllers
                 _context.Products.Remove(prod);
                 await _context.SaveChangesAsync();
             }
+            else
+            {
+                prod.Status = false;
+                _context.Products.Update(prod);
+                await _context.SaveChangesAsync();
+            }
             return RedirectToAction(nameof(Index));
         }
     }

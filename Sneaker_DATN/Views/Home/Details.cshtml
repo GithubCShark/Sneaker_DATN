@@ -119,7 +119,14 @@
                                    class="input-text qty">
                         </div>
                         <div class="card_area align-items-center">
-                            <a class="primary-btn" href="javascript:addCart(@Model.ProductID);">Thêm vào giỏ hàng</a>
+                            @if (Model.Status)
+                            {
+                                <a class="primary-btn" href="javascript:addCart(@Model.ProductID);">Thêm vào giỏ hàng</a>
+                            }
+                            else
+                            {
+                                <a class="primary-btn custom-history-trash-disable" disabled="disabled">Thêm vào giỏ hàng</a>
+                            }
                             <button class="icon_btn"><i class='bx bxs-heart bx-lg'></i></button>
                         </div>
                     </div>

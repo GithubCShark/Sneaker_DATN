@@ -78,6 +78,10 @@ namespace Sneaker_DATN.Services
 
                 _product.ProductName = product.ProductName;
                 _product.Price = product.Price;
+                if (product.Price > product.Sale)
+                {
+                    _product.Sale = product.Sale;
+                }
                 _product.Image = product.Image;
                 _product.Image1 = product.Image1;
                 _product.Image2 = product.Image2;
