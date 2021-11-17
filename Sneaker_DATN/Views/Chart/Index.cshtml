@@ -56,7 +56,7 @@
             labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
             datasets: [
                 {
-                    label: 'Tổng tiền theo năm',
+                    label: 'Doanh Thu',
                     backgroundColor: "#D9880F",
                     borderWidth: 1,
                     data: [15000000, 20000000, 18000000, 21000000, 13000000, 20000000, 17000000, 12000000, 16000000, 19000000, 14000000, 20000000]
@@ -66,6 +66,10 @@
         var myBarChart1 = new Chart(ctx1, {
             type: 'bar',
             data: barChartData1,
+            options: {
+                responsive: true,
+                title: { display: true, text: 'Biểu đồ cột biểu thị tổng doanh thu theo từng tháng', position: 'bottom' },
+            }
         });
         // Chọn năm và truyền
         $('#ddlYear').on('change', function () {
@@ -99,13 +103,13 @@
                         labels: lsLabel,
                         datasets: [
                             {
-                                label: 'Tổng sản phẩm theo năm',
+                                label: 'Đơn hàng',
                                 backgroundColor: "#0b9663",
                                 borderWidth: 1,
                                 data: [15, 20, 18, 21, 13, 20, 17, 12, 16, 19, 14, 20]
                             },
                             {
-                                label: "Tổng thành viên theo năm",
+                                label: "Thành viên mới",
                                 data: lsDataSource,
                                 backgroundColor: "#CC975E",
                                 borderWidth: 1
@@ -120,6 +124,10 @@
                     var myBarChart = new Chart(ctx, {
                         type: 'bar',
                         data: dataT,
+                        options: {
+                            responsive: true,
+                            title: { display: true, text: 'Biểu đồ cột biểu thị tổng đơn hàng và thành viên mới theo từng tháng', position: 'bottom' },
+                        }
                     });
                 }
             });
