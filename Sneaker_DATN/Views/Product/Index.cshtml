@@ -7,7 +7,7 @@
 
 <div class="color-dashboard">
     <h2 class="main-title text-center pt-4">DANH SÁCH SẢN PHẨM</h2>
-    <div class="col-lg-12 m-auto px-5 pb-4">
+    <div class="col-lg-12 m-auto px-3 pb-4">
         <div class="card shadow-sm">
             <div class="card-body justify-content-around">
                 <div class="row col-lg-12">
@@ -23,10 +23,6 @@
                                     </button>
                                 </p>
                             }
-                            @*<input type="search" class="input-group col-lg-8" placeholder="Tìm kiếm..." />
-                                <button type="button" class="search-btn btn btn-primary">
-                                    <i class="fas fa-search"></i>
-                                </button>*@
                             <div class="ml-3">
                                 <select>
                                     <option selected>Trạng thái...</option>
@@ -47,46 +43,38 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-12 m-auto px-5">
+    <div class="col-lg-12 m-auto px-3">
         <div class="users-table table-wrapper">
             <table class="posts-table mt-3 admin-product" enctype="multipart/form-data">
                 <thead>
                     <tr class="users-table-info">
                         <th>
-                            ID
-                            @*@Html.DisplayNameFor(model => model.First().ProductID)*@
+                            @*ID*@
                         </th>
                         <th>
-                            @*@Html.DisplayNameFor(model => model.First().ProductName)*@
                             <a href="@Url.ActionLink("Index","Product", new { sortOrder =ViewBag.NameSortParm })">
-                                <span style="font-weight:bold;">Tên</span><i class="fas fa-sort ml-2"></i>
+                                <span>Tên</span><i class="fas fa-sort ml-2"></i>
                             </a>
-                        </th>
-                        <th>
-                            @*@Html.DisplayNameFor(model => model.First().Price)*@
-                            <a href="@Url.ActionLink("Index","Product", new { sortOrder =ViewBag.PriceSortParm })">
-                                <span style="font-weight:bold;">Giá</span><i class="fas fa-sort ml-2"></i>
-                            </a>
-                        </th>
-                        <th>
-                            Hình
-                            @*@Html.DisplayNameFor(model => model.First().Image)*@
-                        </th>
-                        <th>
-                            Hình
-                            @*@Html.DisplayNameFor(model => model.First().Image1)*@
-                        </th>
-                        <th>
-                            Hình
-                            @*@Html.DisplayNameFor(model => model.First().Image2)*@
                         </th>
                         <th class="text-center">
-                            Status
-                            @*@Html.DisplayNameFor(model => model.First().Status)*@
+                            <a href="@Url.ActionLink("Index","Product", new { sortOrder =ViewBag.PriceSortParm })">
+                                <span>Giá</span><i class="fas fa-sort ml-2"></i>
+                            </a>
                         </th>
-                        @*<th>
-                                @Html.DisplayNameFor(model => model.First().Brands)
-                            </th>*@
+                        <th class="text-center">
+                            Hình
+                        </th>
+                        <th class="text-center">
+                            Hình
+                        </th>
+                        <th class="text-center">
+                            Hình
+                        </th>
+                        <th class="text-center">
+                            <a href="@Url.ActionLink("Index","Product", new { sortOrder =ViewBag.StatusSortParm })">
+                                <span>Khóa</span><i class="fas fa-sort ml-2"></i>
+                            </a>
+                        </th>
                         <th class="text-center">
                             Size
                         </th>
@@ -106,16 +94,16 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.ProductName)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Price)
+                            <td class="text-center">
+                                @string.Format("{0:0,0}", item.Price)
                             </td>
-                            <td>
+                            <td class="text-center">
                                 <img src="~/images/Product/@item.Image" style="width:100px; height:100px;" />
                             </td>
-                            <td>
+                            <td class="text-center">
                                 <img src="~/images/Product/@item.Image1" style="width: 100px; height: 100px;" />
                             </td>
-                            <td>
+                            <td class="text-center">
                                 <img src="~/images/Product/@item.Image2" style="width: 100px; height:100px;" />
                             </td>
                             <td class="text-center">
@@ -180,7 +168,7 @@
             </table>
         </div>
     </div>
-    <div class="col-lg-12 m-auto px-5 pb-5">
+    <div class="col-lg-12 m-auto px-3 pb-5">
         <div class="pagin-admin shadow-sm">
             <div class="pagin-left float-left">
                 Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount

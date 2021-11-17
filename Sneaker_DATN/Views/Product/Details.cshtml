@@ -71,7 +71,11 @@
                                 {
                                     if (s.SizeID == sz.IdSize)
                                     {
-                                        @string.Join(", ", s.Size)<br />
+                                        <span class="d-inline-flex">
+                                                <span>
+                                                    @string.Join(", ", s.Size)
+                                                </span>,
+                                        </span>
                                     }
                                 }
                             }
@@ -89,7 +93,11 @@
                                 {
                                     if (s.ColorID == sz.ColorID)
                                     {
-                                        @string.Join(", ", s.Color);
+                                        <span class="d-inline-flex">
+                                            <span>
+                                                @string.Join(", ", s.Color)
+                                            </span>,
+                                        </span>
                                     }
                                 }
                             }

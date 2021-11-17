@@ -22,7 +22,7 @@
 
 <div class="color-dashboard">
     <h2 class="main-title text-center pt-4">DANH SÁCH MÃ GIẢM GIÁ</h2>
-    <div class="col-lg-12 m-auto px-5 pb-4">
+    <div class="col-lg-12 m-auto px-3 pb-4">
         <div class="card shadow-sm">
             <div class="card-body justify-content-around">
                 <div class="row col-lg-12">
@@ -44,7 +44,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-12 m-auto px-5">
+    <div class="col-lg-12 m-auto px-3">
         <div class="users-table table-wrapper">
             <table class="posts-table mt-3">
                 <thead>
@@ -55,20 +55,20 @@
                         <th>
                             @*@Html.DisplayNameFor(model => model.First().DayStart)*@
                             <a href="@Url.ActionLink("Index", "Discount", new { sortOrder = ViewBag.DayStartSortParm })">
-                                <span style="font-weight:bold;">Bắt đầu</span>
+                                <span>Bắt đầu</span>
                                 <i class="fas fa-sort ml-2"></i>
                             </a>
                         </th>
                         <th>
                             <a href="@Url.ActionLink("Index", "Discount", new { sortOrder = ViewBag.DayEndSortParm })">
-                                <span style="font-weight:bold;">Kết thúc</span>
+                                <span>Kết thúc</span>
                                 <i class="fas fa-sort ml-2"></i>
                             </a>
                             @*@Html.DisplayNameFor(model => model.First().DayEnd)*@
                         </th>
                         <th>
                             <a href="@Url.ActionLink("Index", "Discount", new { sortOrder = ViewBag.DateUseSortParm })">
-                                <span style="font-weight:bold;">Sử dụng</span>
+                                <span>HSD</span>
                                 <i class="fas fa-sort ml-2"></i>
                             </a>
                             @*@Html.DisplayNameFor(model => model.First().DateUse)*@
@@ -79,7 +79,7 @@
                         </th>
                         <th class="text-center">
                             <a href="@Url.ActionLink("Index", "Discount", new { sortOrder = ViewBag.StatusSortParm })">
-                                <span style="font-weight:bold;">Trạng thái</span>
+                                <span>Trạng thái</span>
                                 <i class="fas fa-sort ml-2"></i>
                             </a>
                             @*@Html.DisplayNameFor(model => model.Status)*@
@@ -89,14 +89,14 @@
                             </th>*@
                         <th class="text-center">
                             <a href="@Url.ActionLink("Index", "Discount", new { sortOrder = ViewBag.PriceSortParm })">
-                                <span style="font-weight:bold;">Giảm $</span>
+                                <span>Giảm $</span>
                                 <i class="fas fa-sort ml-2"></i>
                             </a>
                             @*@Html.DisplayNameFor(model => model.Price)*@
                         </th>
                         <th class="text-center">
                             <a href="@Url.ActionLink("Index", "Discount", new { sortOrder = ViewBag.PercentSortParm })">
-                                <span style="font-weight:bold;">Giảm %</span>
+                                <span>Giảm %</span>
                                 <i class="fas fa-sort ml-2"></i>
                             </a>
 
@@ -136,11 +136,11 @@
                             @*<td class="text-center custom-checkbox-index" >
                                     @Html.DisplayFor(modelItem => item.Classify)
                                 </td>*@
-                            <td class="custom-checkbox-index d-flex">
-                                @Html.DisplayFor(modelItem => item.Classify)
-                                <div class="ml-3">
-                                    @string.Format("{0:0,0}", item.Price) VNĐ
-                                </div>
+                            <td class="custom-checkbox-index d-flex justify-content-center">
+                                    @Html.DisplayFor(modelItem => item.Classify)
+                                    <div class="ml-3">
+                                        @string.Format("{0:0,0}", item.Price) VNĐ
+                                    </div>
                             </td>
                             <td class="text-center">
                                 @Html.DisplayFor(modelItem => item.Percent)%
@@ -163,7 +163,7 @@
             </table>
         </div>
     </div>
-    <div class="col-lg-12 m-auto px-5 pb-5">
+    <div class="col-lg-12 m-auto px-3 pb-5">
         <div class="pagin-admin shadow-sm">
             <div class="pagin-left float-left">
                 Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount

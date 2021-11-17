@@ -114,7 +114,7 @@ namespace Sneaker_DATN.Controllers
 
             if (page == null) page = 1;
                     var user = _context.Users.Include(b => b.UserName).OrderBy(b => b.UserID);
-                    int pageSize = 5;
+                    int pageSize = 6;
                     int pageNumber = (page ?? 1);
 
                     return View(mem.ToPagedList(pageNumber, pageSize));

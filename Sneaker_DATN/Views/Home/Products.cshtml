@@ -6,6 +6,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@*custom tooltip*@
+@*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>*@
 <style>
     .search-btn-product {
         display: flex;
@@ -15,6 +18,34 @@
         font-size: 18px;
         border-radius: 8px;
         text-align: center;
+    }
+
+    .custom-sort-product a {
+        display: flex;
+        align-items: center;
+        width: auto;
+        padding: 0.5rem;
+        height: auto;
+        border: 1px solid #fff;
+        background-color: transparent;
+        border-radius: 4px;
+    }
+
+    .custom-sort-product span {
+        font-size: 16px;
+        color: #fff;
+        font-weight: 500;
+    }
+
+    .custom-sort-product i {
+        font-size: 24px;
+        color: #fff;
+    }
+
+    .product-details .custom-title-product {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 </style>
 
@@ -47,72 +78,40 @@
                 <div class="top-filter-head">Danh mục</div>
                 <div class="common-filter">
                     <div class="head">Thương thiệu</div>
-
-                    @*<div>
-                        @using (Html.BeginForm("Products", "Home", FormMethod.Get))
-                        {
-                            <div class="d-flex">
-                                @Html.DropDownList("brands", new SelectList(ViewBag.BrandName))
-                                <button type="submit" value="Search" class="search-btn btn btn-primary">
-                                    <i class="fas fa-search"></i>
-                                </button>
-                            </div>
-                        }
-                    </div>*@
-
-                    @*<form action="/home/products" method="get">
+                    <form action="/home/products" method="get">
                         <ul>
-                            @using (Html.BeginForm("Products", "Home", FormMethod.Get))
-                            {
-                                @foreach (var i in ViewBag.brand)
-                                {
-                                    <li class="filter-list">
-                                        <input class="pixel-radio" id="brands" name="brands" type="checkbox" value=""><label> @i.BrandName </label>
-                                    </li>
-
-                                    <button type="submit" value="Search" class="search-btn btn btn-primary">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                }
-                            }
-                            </ul>
-                     </form>*@
-
-
-                <form action="/home/products" method="get">
-                    <ul>
-                        <li class="filter-list">
-                            <input class="pixel-radio" type="radio"
-                                   id="brands" name="brands" value="adidas">
-                            <label>Adidas</label>
-                        </li>
-                        <li class="filter-list">
-                            <input class="pixel-radio" type="radio"
-                                   id="brands" name="brands" value="nike">
-                            <label>Nike</label>
-                        </li>
-                        <li class="filter-list">
-                            <input class="pixel-radio" type="radio"
-                                   id="brands" name="brands" value="converse">
-                            <label>Converse</label>
-                        </li>
-                        <li class="filter-list">
-                            <input class="pixel-radio" type="radio"
-                                   id="brands" name="brands" value="vans">
-                            <label>Vans</label>
-                        </li>
-                        <li class="filter-list">
-                            <input class="pixel-radio" type="radio"
-                                   id="brands" name="brands" value="mlb">
-                            <label>MLB</label>
-                        </li>
-                    </ul>
-                    <div class="d-flex justify-content-center mt-2">
-                        <button type="submit" value="Search" class="search-btn-product primary-btn">
-                            <i class='bx bx-search-alt'></i>
-                        </button>
-                    </div>
-                </form>
+                            <li class="filter-list">
+                                <input class="pixel-radio" type="radio"
+                                       id="brands" name="brands" value="adidas">
+                                <label>Adidas</label>
+                            </li>
+                            <li class="filter-list">
+                                <input class="pixel-radio" type="radio"
+                                       id="brands" name="brands" value="nike">
+                                <label>Nike</label>
+                            </li>
+                            <li class="filter-list">
+                                <input class="pixel-radio" type="radio"
+                                       id="brands" name="brands" value="converse">
+                                <label>Converse</label>
+                            </li>
+                            <li class="filter-list">
+                                <input class="pixel-radio" type="radio"
+                                       id="brands" name="brands" value="vans">
+                                <label>Vans</label>
+                            </li>
+                            <li class="filter-list">
+                                <input class="pixel-radio" type="radio"
+                                       id="brands" name="brands" value="mlb">
+                                <label>MLB</label>
+                            </li>
+                        </ul>
+                        <div class="d-flex justify-content-center mt-2">
+                            <button type="submit" value="Search" class="search-btn-product primary-btn">
+                                <i class='bx bx-search-alt'></i>
+                            </button>
+                        </div>
+                    </form>
 
                 </div>
                 <div class="common-filter">
@@ -177,24 +176,9 @@
                             </button>
                         </div>
                     </form>
-
-                    <form action="#">
-                        <ul>
-                            @*@foreach (var i in ViewBag.size)
-                {
-                    <li class="filter-list">
-                        <input class="pixel-radio" type="checkbox" id="36"
-                               name="size" value="">
-                        <label>@i.Size
-                        </label>
-                    </li>
-                }*@
-                        </ul>
-                    </form>
                 </div>
                 <div class="common-filter">
                     <div class="head">Màu sắc</div>
-
                     <form action="/home/products" method="get">
                         <ul>
                             <li class="filter-list">
@@ -249,51 +233,33 @@
                             </button>
                         </div>
                     </form>
-
-                    <form action="#">
-                        <ul>
-                            @*@foreach (var i in ViewBag.color)
-                {
-                    <li class="filter-list">
-                        <input class="pixel-radio" type="checkbox" id="black"
-                               name="color" value=""><label>@i.Color</label>
-                    </li>
-                }*@
-                        </ul>
-                    </form>
                 </div>
-                <div class="common-filter">
-                    <div class="head">Giá</div>
-                    <div class="price-range-area">
-                        <div id="price-range"></div>
-                        <div class="value-wrapper d-flex">
-                            <div class="price">Từ</div>
-                            <div id="lower-value"></div>
-                            <span>đ</span>
-                            <div class="to">đến</div>
-                            <div id="upper-value"></div>
-                            <span>đ</span>
+                @*<div class="common-filter">
+                        <div class="head">Giá</div>
+                        <div class="price-range-area">
+                            <div id="price-range"></div>
+                            <div class="value-wrapper d-flex">
+                                <div class="price">Từ</div>
+                                <div id="lower-value"></div>
+                                <span>đ</span>
+                                <div class="to">đến</div>
+                                <div id="upper-value"></div>
+                                <span>đ</span>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    </div>*@
             </div>
         </div>
         <div class="col-xl-9 col-lg-8 col-md-7">
             <!-- Start Filter Bar -->
             <div class="filter-bar d-flex flex-wrap align-items-center">
-                <div class="sorting">
-                    <select>
-                        <option value="1">Mới nhất</option>
-                        <option value="1">Giá: từ thấp lên cao</option>
-                        <option value="1">Giá: từ cao xuống thấp</option>
-                    </select>
+                <div class="sorting custom-sort-product">
+                    <a href="@Url.ActionLink("Products", "Home", new { sortOrder = ViewBag.PriceSortParm })">
+                        <span>Giá từ: </span>
+                        <i class='bx bx-sort'></i>
+                    </a>
                 </div>
                 <div class="sorting mr-auto">
-                    <select>
-                        <option value="1">Trang 1</option>
-                        <option value="1">Trang 2</option>
-                        <option value="1">Trang 3</option>
-                    </select>
                 </div>
                 <div class="pagin-right pagination mt-2">
                     @Html.PagedListPager(Model, page => Url.Action("Products", new { page }))
@@ -320,13 +286,17 @@
                                         }
                                     </a>
                                     <div class="product-details">
-                                        <h6><a class="text-decoration-none text-link-hover" asp-action="Details" asp-route-id="@item.ProductID">@Html.DisplayFor(modelItem => item.ProductName)</a></h6>
+                                        <h6 class="custom-title-product">
+                                            <a class="text-decoration-none text-link-hover" data-toggle="tooltip" title="@item.ProductName" asp-action="Details" asp-route-id="@item.ProductID">
+                                                @Html.DisplayFor(modelItem => item.ProductName)
+                                            </a>
+                                        </h6>
                                         <div class="price d-flex">
-                                            <h6 class="d-flex">@Html.DisplayFor(modelItem => item.Price) <span class="text-lowercase"> ₫</span></h6>
+                                            <h6 class="d-flex">@string.Format("{0:0,0 vnđ}", item.Price)</h6>
 
                                             @if (item.Price >= 3000000)
                                             {
-                                                <h6 class="d-flex l-through">$@Html.DisplayFor(modelItem => item.Price) <span class="text-lowercase"> ₫</span></h6>
+                                                <h6 class="d-flex l-through">@string.Format("{0:0,0 vnđ}", item.Price)</h6>
                                             }
 
                                         </div>
@@ -359,10 +329,16 @@
                     Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
                 </div>
                 <div class="pagin-right pagination">
-                    @Html.PagedListPager(Model, page => Url.Action("Products", new { page, currentFilterSearch = ViewBag.CurrentFilterSearch, currentFilterBrand = ViewBag.CurrentFilterBrand, currentFilterSize = ViewBag.CurrentFilterSize, currentFilterColor= ViewBag.CurrentFilterColor }))
+                    @Html.PagedListPager(Model, page => Url.Action("Products", new { page, sortOrder = ViewBag.SortOrder, currentFilterSearch = ViewBag.CurrentFilterSearch, currentFilterBrand = ViewBag.CurrentFilterBrand, currentFilterSize = ViewBag.CurrentFilterSize, currentFilterColor = ViewBag.CurrentFilterColor }))
                 </div>
             </div>
             <!-- End Filter Bar -->
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>

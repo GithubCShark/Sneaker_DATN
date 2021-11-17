@@ -39,6 +39,7 @@ namespace Sneaker_DATN.Controllers
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.PriceSortParm = sortOrder == "Price" ? "price_desc" : "Price";
+            ViewBag.StatusSortParm = sortOrder == "status" ? "status_desc" : "status";
 
             if (searchString != null)
             {
@@ -68,6 +69,12 @@ namespace Sneaker_DATN.Controllers
                 case "price_desc":
                     students = students.OrderByDescending(s => s.Price);
                     break;
+                case "status":
+                    students = students.OrderBy(s => s.Status);
+                    break;
+                case "status_desc":
+                    students = students.OrderByDescending(s => s.Status);
+                    break;
                 default:  // Name ascending 
                     students = students.OrderByDescending(s => s.ProductID);
                     break;
@@ -78,7 +85,7 @@ namespace Sneaker_DATN.Controllers
             var products = _context.Products.Include(b => b.ProductName)
                 .OrderBy(b => b.ProductID);
 
-            int pageSize = 4;
+            int pageSize = 6;
 
             int pageNumber = (page ?? 1);
 

@@ -132,7 +132,7 @@ namespace Sneaker_DATN.Controllers
             }
         }
 
-        public IActionResult Products(int? page, string searchString, string brands, int sizes, int colors, string currentFilterSearch, string currentFilterBrand, int currentFilterSize, int currentFilterColor)
+        public IActionResult Products(int? page, string sortOrder, string searchString, string brands, int sizes, int colors, string currentFilterSearch, string currentFilterBrand, int currentFilterSize, int currentFilterColor)
         {
             ViewBag.BrandName = (from r in _context.Brands
                                  select r.BrandName).Distinct();
@@ -197,15 +197,35 @@ namespace Sneaker_DATN.Controllers
             }
 
             if (page == null) page = 1;
-            //var sizes = _context.Orders.Include(b => b.FullName).OrderBy(b => b.OrderID);
             int pageSize = 9;
             int pageNumber = (page ?? 1);
 
-            //if (page == null) page = 1;
-            //var sizes = _context.Products.Include(b => b.ProductName)
-            //    .OrderBy(b => b.ProductID);
-            //int pageSize = 9;
-            //int pageNumber = (page ?? 1);
+            // 1. Thêm biến NameSortParm để biết trạng thái sắp xếp tăng, giảm ở View
+            ViewBag.ProductSortParm = String.IsNullOrEmpty(sortOrder) ? "product_desc" : "";
+            ViewBag.PriceSortParm = sortOrder == "price" ? "price_desc" : "price";
+
+
+            // 3. Thứ tự sắp xếp theo thuộc tính LinkName
+            switch (sortOrder)
+            {
+                // 3.1 Nếu biến sortOrder sắp giảm thì sắp giảm theo LinkName
+                case "product_desc":
+                    productFilters = productFilters.OrderBy(s => s.ProductID);
+                    break;
+
+                case "price":
+                    productFilters = productFilters.OrderBy(s => s.Price);
+                    break;
+                case "price_desc":
+                    productFilters = productFilters.OrderByDescending(s => s.Price);
+                    break;
+
+                // 3.2 Mặc định thì sẽ sắp tăng
+                default:
+                    productFilters = productFilters.OrderByDescending(s => s.ProductID);
+                    break;
+            }
+
 
             ViewData["brand"] = _context.Brands.ToList();
             ViewData["size"] = _context.Sizes.ToList();
@@ -214,7 +234,7 @@ namespace Sneaker_DATN.Controllers
             return View(productFilters.ToPagedList(pageNumber, pageSize));
         }
 
-        public IActionResult Index(int? page)
+        public IActionResult Index(int? page, string sortOrder)
         {
             if (page == null) page = 1;
             var products = _context.Products.Include(b => b.ProductName)
@@ -222,7 +242,23 @@ namespace Sneaker_DATN.Controllers
             int pageSize = 8;
             int pageNumber = (page ?? 1);
 
-            return View(_context.Products.ToPagedList(pageNumber, pageSize));
+            var productFilters = from r in _context.Products
+                                 select r;
+
+            ViewBag.ProductSortParm = String.IsNullOrEmpty(sortOrder) ? "product_desc" : "";
+
+            switch (sortOrder)
+            {
+                case "product_desc":
+                    productFilters = productFilters.OrderBy(s => s.ProductID);
+                    break;
+
+                default:
+                    productFilters = productFilters.OrderByDescending(s => s.ProductID);
+                    break;
+            }
+
+            return View(productFilters.ToPagedList(pageNumber, pageSize));
         }
 
         public IActionResult AddCart(int id, int size, int color)
