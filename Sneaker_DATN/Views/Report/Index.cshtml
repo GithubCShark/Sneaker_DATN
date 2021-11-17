@@ -13,12 +13,17 @@
             <div class="card-body justify-content-around">
                 <div class="row col-lg-12">
                     <div class="input-group col-lg-8 col-sm-6">
-                        <div class="form-outline d-flex">
+                        <div class="d-flex">
                             @using (Html.BeginForm("Index", "Report", FormMethod.Get))
                             {
                                 <p class="d-flex">
                                     @*@Html.TextBox("SearchString", ViewBag. as string)*@
-                                    @*<input type="submit" value="Search" />*@
+                                    <select id="search" name="search">
+                                        <option selected value="0">Chọn báo cáo...</option>
+                                        <option value="1">Báo cáo doanh thu sản phẩm</option>
+                                        <option value="2">Báo cáo xếp hạng đơn hàng khách</option>
+                                        <option value="3">Báo cáo tổng khuyến mãi</option>
+                                    </select>
                                     <button type="submit" value="Search" class="search-btn btn btn-primary">
                                         <i class="fas fa-search"></i>
                                     </button>

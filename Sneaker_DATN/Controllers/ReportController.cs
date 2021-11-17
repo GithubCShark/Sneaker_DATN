@@ -16,7 +16,7 @@ namespace Sneaker_DATN.Controllers
             _context = dataContext;
         }
         // GET: ReportController
-        public IActionResult Index()
+        public IActionResult Index(int search)
         {
             var lsProduct = from x in _context.Products
                          select x;
@@ -25,25 +25,42 @@ namespace Sneaker_DATN.Controllers
 
             var lsorderd = from y in _context.OrderDetails
                            select y.ProductID;
-            var lsprod = lsProduct.Where(x => lsorderd.Contains(x.ProductID));
+            var lsprod = lsProduct.Where(x => lsorderd.Contains(x.ProductID)).ToList();
 
             List<ViewReportProducts> lsReport = new List<ViewReportProducts>();
-            foreach (var item in lsprod)
+
+            for (int i = 0; i < lsprod.Count; i++)
             {
                 var lsquantity = from x in lsOrderDetails
-                                 where x.ProductID == item.ProductID
+                                 where x.ProductID == lsprod[i].ProductID
                                  select x.Quantity;
                 var lstotal = from x in lsOrderDetails
-                              where x.ProductID == item.ProductID
+                              where x.ProductID == lsprod[i].ProductID
                               select x.Price;
 
                 lsReport.Add(new ViewReportProducts
                 {
-                    Products = item,
+                    Products = lsprod[i],
                     Quantity = lsquantity.Sum(),
                     Total = lstotal.Sum()
                 });
             }
+            //foreach (var item in lsprod)
+            //{
+            //    var lsquantity = from x in lsOrderDetails
+            //                     where x.ProductID == item.ProductID
+            //                     select x.Quantity;
+            //    var lstotal = from x in lsOrderDetails
+            //                  where x.ProductID == item.ProductID
+            //                  select x.Price;
+
+            //    lsReport.Add(new ViewReportProducts
+            //    {
+            //        Products = item,
+            //        Quantity = lsquantity.Sum(),
+            //        Total = lstotal.Sum()
+            //    });
+            //}
             var lsrp = lsReport.OrderBy(x => x.Products.ProductID).ToList();
 
             return View(lsrp);
