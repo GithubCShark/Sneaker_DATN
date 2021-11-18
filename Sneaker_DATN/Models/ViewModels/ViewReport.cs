@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 
 namespace Sneaker_DATN.Models
 {
-    public class ViewReportProducts
+    public class ViewReport
     {
         public Products Products { get; set; }
+        public Users Users { get; set; }
+
+        [Display(Name = "Thương hiệu")]
+        public string BrandName { get; set; }
 
         [Display(Name = "Số lượng")]
         public int Quantity { get; set; }
