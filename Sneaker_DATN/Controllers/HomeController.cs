@@ -605,6 +605,109 @@ namespace Sneaker_DATN.Controllers
             return View();
         }
 
+        public IActionResult FlashSale(int? page, string sortOrder, string searchString, string brands, int sizes, int colors, string currentFilterSearch, string currentFilterBrand, int currentFilterSize, int currentFilterColor)
+        {
+            ViewBag.BrandName = (from r in _context.Brands
+                                 select r.BrandName).Distinct();
+            ViewBag.Color = (from r in _context.Colors
+                             select r.Color).Distinct();
+            ViewBag.Size = (from r in _context.Sizes
+                            select r.Size).Distinct();
+
+            if (brands != null || colors != 0 || sizes != 0)
+            {
+                page = 1;
+            }
+            else
+            {
+                brands = currentFilterBrand;
+                colors = currentFilterColor;
+                sizes = currentFilterSize;
+            }
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilterSearch;
+            }
+            ViewBag.currentFilterBrand = brands;
+            ViewBag.currentFilterColor = colors;
+            ViewBag.currentFilterSize = sizes;
+            ViewBag.currentFilterSearch = searchString;
+
+            var productFilters = from r in _context.Products
+                                     //from c in _context.Colors
+                                     //from s in _context.Sizes
+                                 select r;
+
+            if (!String.IsNullOrEmpty(brands))
+            {
+                productFilters = productFilters.Where(s => s.Brands.BrandName == brands);
+            }
+            if (colors != 0)
+            {
+                //var colorFilter = _context.Colors.ToList();
+                var lspro = from r in _context.ProductColors
+                            where r.ColorID == colors
+                            select r.Products.ProductID;
+
+                productFilters = productFilters.Where(s => lspro.Contains(s.ProductID));
+            }
+            if (sizes != 0)
+            {
+                //var colorFilter = _context.Colors.ToList();
+                var lssiz = from r in _context.ProductSizes
+                            where r.IdSize == sizes
+                            select r.Products.ProductID;
+
+                productFilters = productFilters.Where(s => lssiz.Contains(s.ProductID));
+            }
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                productFilters = productFilters.Where(s => s.ProductName.ToUpper().Contains(searchString.ToUpper()));
+            }
+
+            if (page == null) page = 1;
+            int pageSize = 9;
+            int pageNumber = (page ?? 1);
+
+            // 1. Thêm biến NameSortParm để biết trạng thái sắp xếp tăng, giảm ở View
+            ViewBag.ProductSortParm = String.IsNullOrEmpty(sortOrder) ? "product_desc" : "";
+            ViewBag.PriceSortParm = sortOrder == "price" ? "price_desc" : "price";
+
+
+            // 3. Thứ tự sắp xếp theo thuộc tính LinkName
+            switch (sortOrder)
+            {
+                // 3.1 Nếu biến sortOrder sắp giảm thì sắp giảm theo LinkName
+                case "product_desc":
+                    productFilters = productFilters.OrderBy(s => s.ProductID);
+                    break;
+
+                case "price":
+                    productFilters = productFilters.OrderBy(s => s.Price);
+                    break;
+                case "price_desc":
+                    productFilters = productFilters.OrderByDescending(s => s.Price);
+                    break;
+
+                // 3.2 Mặc định thì sẽ sắp tăng
+                default:
+                    productFilters = productFilters.OrderByDescending(s => s.ProductID);
+                    break;
+            }
+
+
+            ViewData["brand"] = _context.Brands.ToList();
+            ViewData["size"] = _context.Sizes.ToList();
+            ViewData["color"] = _context.Colors.ToList();
+
+            return View(productFilters.ToPagedList(pageNumber, pageSize));
+        }
+
+
         public IActionResult Checkout()
         {
             string guest = HttpContext.Session.GetString(SessionKey.Guest.Guest_FullName);

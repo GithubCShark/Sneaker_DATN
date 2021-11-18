@@ -94,7 +94,7 @@ namespace Sneaker_DATN.Controllers
                     students = students.OrderByDescending(s => s.Status);
                     break;
 
-                default:  // Name ascending 
+                default:
                     students = students.OrderByDescending(s => s.ProductID);
                     break;
             }
