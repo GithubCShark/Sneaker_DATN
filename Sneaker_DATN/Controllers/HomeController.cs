@@ -514,14 +514,54 @@ namespace Sneaker_DATN.Controllers
             return total;
         }
 
-        public IActionResult History(int id)
+        public IActionResult History(int id, int? page, string sortOrder)
         {
             string OrGuest = HttpContext.Session.GetString(SessionKey.Guest.Guest_FullName);
             if (OrGuest == null || OrGuest == "")
             {
                 return RedirectToAction("Index", "Home");
             }
-            return View(_orderSvc.GetOrderByGuest(id));
+
+            if (page == null) page = 1;
+            var products = _context.Orders.Include(b => b.UserID)
+                .OrderBy(b => b.OrderID);
+            int pageSize = 6;
+            int pageNumber = (page ?? 1);
+
+            var orderSorters = from r in _context.Orders
+                                 select r;
+
+            ViewBag.DateCreateSortParm = String.IsNullOrEmpty(sortOrder) ? "datecreate_desc" : "";
+            ViewBag.TotalSortParm = sortOrder == "total" ? "total_desc" : "total";
+            ViewBag.PaymentSortParm = sortOrder == "payment" ? "payment_desc" : "payment";
+
+            switch (sortOrder)
+            {
+                case "datecreate_desc":
+                    orderSorters = orderSorters.OrderBy(s => s.DateCreate);
+                    break;
+
+                case "total":
+                    orderSorters = orderSorters.OrderBy(s => s.Total);
+                    break;
+                case "total_desc":
+                    orderSorters = orderSorters.OrderByDescending(s => s.Total);
+                    break;
+
+                case "payment":
+                    orderSorters = orderSorters.OrderBy(s => s.PaymentAmount);
+                    break;
+                case "payment_desc":
+                    orderSorters = orderSorters.OrderByDescending(s => s.PaymentAmount);
+                    break;
+
+                default:
+                    orderSorters = orderSorters.OrderByDescending(s => s.DateCreate);
+                    break;
+            }
+
+            return View(orderSorters.ToPagedList(pageNumber, pageSize));
+            //return View(_orderSvc.GetOrderByGuest(id));
         }
 
         public IActionResult CancelOrder(int id)

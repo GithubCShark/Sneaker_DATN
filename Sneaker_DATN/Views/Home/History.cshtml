@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Sneaker_DATN.Models.Orders>
+﻿@model X.PagedList.IPagedList<Sneaker_DATN.Models.Orders>
+@using X.PagedList.Mvc.Core;
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -29,6 +30,7 @@
         width: 90px !important;
         color: #fff !important;
     }
+
         .custom-history-details i,
         .custom-history-trash i {
             padding-right: 0.3rem;
@@ -48,6 +50,28 @@
         color: #000 !important;
         background: lightgrey !important;
         cursor: no-drop;
+    }
+
+    .custom-history-trash-success {
+        color: #fff !important;
+        background: #198754 !important;
+        cursor: no-drop;
+    }
+    .cart-table table tbody tr td:nth-child(6),
+    .cart-table table tbody tr td:nth-child(4) {
+        white-space: initial;
+    }
+    .custom-txt-history{
+        color: #777;
+        text-decoration: none;
+    }
+    .custom-txt-history:hover{
+        color: #576ee0;
+    }
+    .pagin-history {
+        border-top: 1px solid #ccc;
+        background: whitesmoke;
+        border-radius: 0 0 16px 16px;
     }
 </style>
 
@@ -80,22 +104,28 @@
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.DateCreate)
+                                    <a class="custom-txt-history" href="@Url.ActionLink("History","Home", new { sortOrder = ViewBag.DateCreateSortParm })">
+                                        <span>Ngày đặt</span><i class="bx bxs-sort-alt ml-2"></i>
+                                    </a>
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Total)
+                                    <a class="custom-txt-history" href="@Url.ActionLink("History","Home", new { sortOrder = ViewBag.TotalSortParm })">
+                                        <span>Tổng tiền</span><i class="bx bxs-sort-alt ml-2"></i>
+                                    </a>
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.PaymentAmount)
+                                    <a class="custom-txt-history" href="@Url.ActionLink("History","Home", new { sortOrder = ViewBag.PaymentSortParm })">
+                                        <span>Tiền Thanh Toán</span><i class="bx bxs-sort-alt ml-2"></i>
+                                    </a>
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Address)
+                                    @Html.DisplayNameFor(model => model.First().Address)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Status)
+                                    @Html.DisplayNameFor(model => model.First().Status)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Note)
+                                    @Html.DisplayNameFor(model => model.First().Note)
                                 </th>
                                 <th></th>
                             </tr>
@@ -146,7 +176,7 @@
                                         }
                                         else
                                         {
-                                            <a class="primary-btn custom-history-trash  custom-history-trash-disable" disabled="disabled">
+                                            <a class="primary-btn custom-history-trash  custom-history-trash-success" disabled="disabled">
                                                 <i class="bx bx-check bx-sm"></i> Đã nhận
                                             </a>
                                         }
@@ -156,6 +186,16 @@
                             }
                         </tbody>
                     </table>
+                </div>
+            </div>
+            <div class="col-lg-12 mt-3 p-3 pagin-history">
+                <div class="shadow-sm">
+                    <div class="pagin-left float-left font-weight-lighter mt-1">
+                        Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+                    </div>
+                    <div class="pagin-right float-right">
+                        @Html.PagedListPager(Model, page => Url.Action("History", new { page, sortOrder = ViewBag.CurrentSort}))
+                    </div>
                 </div>
             </div>
         </div>
