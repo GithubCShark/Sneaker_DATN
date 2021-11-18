@@ -24,15 +24,16 @@
                                 </p>
                             }
                             <div class="ml-3">
-                                <select>
-                                    <option selected>Trạng thái...</option>
-                                    <option value="1">Hoạt động</option>
-                                    <option value="2">Ngừng HĐ</option>
-                                </select>
+                                @using (Html.BeginForm("Index", "Product", FormMethod.Get))
+                                {
+                                    <div class="d-flex">
+                                        @Html.DropDownList("status", new SelectList(ViewBag.Status))
+                                        <button type="submit" value="Search" class="search-btn btn btn-primary">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                }
                             </div>
-                            <button type="button" class="search-btn btn btn-primary">
-                                <i class="fas fa-search"></i>
-                            </button>
                         </div>
 
                     </div>
@@ -78,9 +79,10 @@
                             Hình
                         </th>
                         <th class="text-center">
-                            <a href="@Url.ActionLink("Index","Product", new { sortOrder =ViewBag.StatusSortParm })">
+                            @*<a href="@Url.ActionLink("Index","Product", new { sortOrder =ViewBag.StatusSortParm })">
                                 <span>Khóa</span><i class="fas fa-sort ml-2"></i>
-                            </a>
+                            </a>*@
+                            Khóa
                         </th>
                         <th class="text-center">
                             Size
@@ -184,7 +186,7 @@
                 Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
             </div>
             <div class="pagin-right float-right">
-                @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, currentFilterStatus = ViewBag.CurrentFilterStatus }))
             </div>
         </div>
     </div>
