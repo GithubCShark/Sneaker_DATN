@@ -34,14 +34,17 @@ namespace Sneaker_DATN.Controllers
         }
 
         // GET: ProductController
-        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
+        public ActionResult Index(string sortOrder, bool status, string currentFilter, string searchString, int? page, bool currentFilterStatus)
         {
             ViewBag.CurrentSort = sortOrder;
             ViewBag.IdSortParm = String.IsNullOrEmpty(sortOrder) ? "id_desc" : "";
             ViewBag.NameSortParm = sortOrder == "name" ? "name_desc" : "name";
             ViewBag.PriceSortParm = sortOrder == "price" ? "price_desc" : "price";
             ViewBag.SaleSortParm = sortOrder == "sale" ? "sale_desc" : "sale";
-            ViewBag.StatusSortParm = sortOrder == "status" ? "status_desc" : "status";
+            //ViewBag.StatusSortParm = sortOrder == "status" ? "status_desc" : "status";
+
+            ViewBag.Status = (from r in _productSvc.GetProductAll()
+                              select r.Status).Distinct();
 
             if (searchString != null)
             {
@@ -51,14 +54,27 @@ namespace Sneaker_DATN.Controllers
             {
                 searchString = currentFilter;
             }
+            if (status != false)
+            {
+                page = 1;
+            }
+            else
+            {
+                status = currentFilterStatus;
+            }
 
             ViewBag.CurrentFilter = searchString;
+            ViewBag.CurrentFilterStatus = status;
 
             var students = from s in _context.Products
                            select s;
             if (!String.IsNullOrEmpty(searchString))
             {
                 students = students.Where(s => s.ProductName.ToUpper().Contains(searchString.ToUpper()));
+            }
+            else if(!String.IsNullOrEmpty(status.ToString()))
+            {
+                students = students.Where(s => s.Status == status);
             }
             switch (sortOrder)
             {
@@ -87,12 +103,12 @@ namespace Sneaker_DATN.Controllers
                     students = students.OrderByDescending(s => s.Sale);
                     break;
 
-                case "status":
-                    students = students.OrderBy(s => s.Status);
-                    break;
-                case "status_desc":
-                    students = students.OrderByDescending(s => s.Status);
-                    break;
+                //case "status":
+                //    students = students.OrderBy(s => s.Status);
+                //    break;
+                //case "status_desc":
+                //    students = students.OrderByDescending(s => s.Status);
+                //    break;
 
                 default:
                     students = students.OrderByDescending(s => s.ProductID);
