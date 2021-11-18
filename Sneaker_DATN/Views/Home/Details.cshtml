@@ -9,6 +9,9 @@
     .breadcrumb-details .breadcrumb {
         margin-top: 2% !important;
     }
+    .product-details-color{
+        border-radius: 8px;
+    }
 </style>
 
 <!-- Start Banner Area -->
@@ -25,6 +28,7 @@
         <nav aria-label="breadcrumb ">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Products">Sản phẩm</a></li>
                 <li class="breadcrumb-item active" aria-current="page">@Html.DisplayFor(model => model.ProductName)</li>
             </ol>
         </nav>
@@ -38,13 +42,13 @@
             <div class="col-lg-6">
                 <div class="swiper mySwiper2 shadow-lg">
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide">
+                        <div class="swiper-slide p-5">
                             <img src="~/images/Product/@Model.Image" />
                         </div>
-                        <div class="swiper-slide">
+                        <div class="swiper-slide p-5">
                             <img src="~/images/Product/@Model.Image1" />
                         </div>
-                        <div class="swiper-slide">
+                        <div class="swiper-slide p-5">
                             <img src="~/images/Product/@Model.Image2" />
                         </div>
                     </div>
@@ -95,8 +99,8 @@
                         </div>
 
                         <div class="block-26-color mb-4">
-                            <h4>Màu sắc</h4>
-                            <select class="nice-select" id="color">
+                            <h4>Màu sắc</h4>    
+                            <select class="nice-select product-details-color" id="color">
                                 <option value="Random">Chọn Color:</option>
                                 @foreach (var item in ViewBag.procol)
                                 {
