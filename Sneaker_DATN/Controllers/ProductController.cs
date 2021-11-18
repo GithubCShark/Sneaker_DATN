@@ -37,8 +37,10 @@ namespace Sneaker_DATN.Controllers
         public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
             ViewBag.CurrentSort = sortOrder;
-            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.PriceSortParm = sortOrder == "Price" ? "price_desc" : "Price";
+            ViewBag.IdSortParm = String.IsNullOrEmpty(sortOrder) ? "id_desc" : "";
+            ViewBag.NameSortParm = sortOrder == "name" ? "name_desc" : "name";
+            ViewBag.PriceSortParm = sortOrder == "price" ? "price_desc" : "price";
+            ViewBag.SaleSortParm = sortOrder == "sale" ? "sale_desc" : "sale";
             ViewBag.StatusSortParm = sortOrder == "status" ? "status_desc" : "status";
 
             if (searchString != null)
@@ -60,21 +62,38 @@ namespace Sneaker_DATN.Controllers
             }
             switch (sortOrder)
             {
-                case "name_desc":
+                case "id_desc":
                     students = students.OrderBy(s => s.ProductID);
                     break;
-                case "Price":
+
+                case "name":
+                    students = students.OrderBy(s => s.ProductName);
+                    break;
+                case "name_desc":
+                    students = students.OrderByDescending(s => s.ProductName);
+                    break;
+
+                case "price":
                     students = students.OrderBy(s => s.Price);
                     break;
                 case "price_desc":
                     students = students.OrderByDescending(s => s.Price);
                     break;
+
+                case "sale":
+                    students = students.OrderBy(s => s.Sale);
+                    break;
+                case "sale_desc":
+                    students = students.OrderByDescending(s => s.Sale);
+                    break;
+
                 case "status":
                     students = students.OrderBy(s => s.Status);
                     break;
                 case "status_desc":
                     students = students.OrderByDescending(s => s.Status);
                     break;
+
                 default:  // Name ascending 
                     students = students.OrderByDescending(s => s.ProductID);
                     break;
