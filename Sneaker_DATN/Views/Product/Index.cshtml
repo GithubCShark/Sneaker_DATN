@@ -22,18 +22,22 @@
                                     </button>
                                 </div>
                             }
-                        <div class="ml-3">
-                            @using (Html.BeginForm("Index", "Product", FormMethod.Get))
-                            {
+                            <div class="ml-3">
+                                @using (Html.BeginForm("Index", "Product", FormMethod.Get))
+                                {
 
-                                <div class="d-flex">
-                                        @Html.DropDownList("status", new SelectList(ViewBag.Status))
-                                    <button type="submit" value="Search" class="search-btn btn btn-primary">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                </div>
-                            }
-                        </div>
+                                    <div class="d-flex">                                          
+                                        <select id="status" name="status">
+                                            <option value="">Chọn trạng thái</option>
+                                            <option value=True> Ngừng kinh doanh</option>
+                                            <option value=False> Đang kinh doanh</option>
+                                        </select>
+                                        <button type="submit" value="Search" class="search-btn btn btn-primary">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                }
+                            </div>
                         </div>
 
                     </div>
@@ -129,11 +133,11 @@
                                 @*@Html.DisplayFor(modelItem => item.Status)*@
                                 @if (item.Status)
                                 {
-                                    <span class="ml-5">Đang kinh doanh</span>
+                                <span class="ml-5">Ngừng kinh doanh</span>
                                 }
                                 else
                                 {
-                                    <span class="ml-5">Ngừng kinh doanh</span>
+                                    <span class="ml-5">Đang Kinh Doanh</span>
                                 }
                             </td>
                             @*<td>

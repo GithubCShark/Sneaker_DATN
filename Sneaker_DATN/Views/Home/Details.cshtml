@@ -123,7 +123,7 @@
                                    class="input-text qty">
                         </div>
                         <div class="card_area align-items-center">
-                            @if (Model.Status)
+                            @if (!Model.Status)
                             {
                                 <a class="primary-btn" href="javascript:addCart(@Model.ProductID);">Thêm vào giỏ hàng</a>
                             }

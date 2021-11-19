@@ -217,7 +217,7 @@
                             <div class="single-product">
                                 <a asp-action="Details" asp-route-id="@item.ProductID">
                                     <img class="img-fluid" src="~/images/Product/@item.Image" alt="">
-                                    @if (!item.Status)
+                                    @if (item.Status)
                                     {
                                         <div class="badge-overlay badge-products">
                                             <span class="badge">Ngừng kinh doanh</span>
@@ -250,7 +250,7 @@
                                         }
                                     </div>
                                     <div class="prd-bottom">
-                                        @if (item.Status)
+                                        @if (!item.Status)
                                         {
                                             <a class="addProduct social-info" href="javascript:addCart(@item.ProductID);">
                                                 <span class='bx bx-basket'></span>

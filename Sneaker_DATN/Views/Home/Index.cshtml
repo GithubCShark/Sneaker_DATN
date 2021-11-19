@@ -201,7 +201,7 @@
                         <div class="single-product">
                             <a asp-action="Details" asp-route-id="@item.ProductID">
                                 <img class="img-fluid" src="~/images/Product/@item.Image" alt="">
-                                @if (!item.Status)
+                                @if (item.Status)
                                 {
                                     <div class="badge-overlay">
                                         <span class="badge">Ngừng kinh doanh</span>

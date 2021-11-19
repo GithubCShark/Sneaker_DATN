@@ -54,7 +54,7 @@ namespace Sneaker_DATN.Controllers
             {
                 searchString = currentFilter;
             }
-            if (status != false)
+            if (status)
             {
                 page = 1;
             }

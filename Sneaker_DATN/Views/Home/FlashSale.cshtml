@@ -208,10 +208,6 @@
                     <!-- single product -->
                     @foreach (var item in Model)
                     {
-                        if (item.Status)
-                        {
-                            if (item.Sale > 0)
-                            {
                                 <div class="col-lg-4 col-md-6">
                                     <div class="single-product">
                                         <a asp-action="Details" asp-route-id="@item.ProductID">
@@ -243,7 +239,7 @@
                                                 }
                                             </div>
                                             <div class="prd-bottom">
-                                                @if (item.Status)
+                                                @if (!item.Status)
                                                 {
                                                     <a class="addProduct social-info" href="javascript:addCart(@item.ProductID);">
                                                         <span class='bx bx-basket'></span>
@@ -270,8 +266,6 @@
                                     </div>
                                 </div>
                             }
-                        }
-                    }
                     <!-- single product -->
                 </div>
             </section>

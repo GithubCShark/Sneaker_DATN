@@ -10,11 +10,14 @@ namespace Sneaker_DATN.Services
 {
     public interface IAdminSvc
     {
-        List<Users> GetUserAll();
+        List<Users> GetAllUser();
 
         Users GetUser(int id);
 
         public Users Login(ViewLogin viewLogin);
+
+        int ChangePass(int id, string pass);
+
     }
 
     public class AdminSvc : IAdminSvc
@@ -35,11 +38,33 @@ namespace Sneaker_DATN.Services
             return user;
         }
 
-        public List<Users> GetUserAll()
+        public List<Users> GetAllUser()
         {
             List<Users> list = new List<Users>();
-            list = _context.Users.ToList();
+            list = _context.Users.Where(
+                p => p.RoleID.Equals(1)
+                || p.RoleID.Equals(2)
+                ).ToList();
             return list;
+        }
+
+        public int ChangePass(int id, string pass)
+        {
+            int ret = 0;
+            try
+            {
+                Users _user = _context.Users.Find(id);
+                _user.Password = _encodeHelper.Encode(pass);
+                _user.ConfirmPassword = _user.Password;
+                _context.Update(_user);
+                _context.SaveChanges();
+                ret = _user.UserID;
+            }
+            catch (Exception)
+            {
+                ret = 0;
+            }
+            return ret;
         }
 
         public Users Login(ViewLogin viewLogin)

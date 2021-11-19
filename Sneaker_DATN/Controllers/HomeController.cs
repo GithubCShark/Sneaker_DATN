@@ -533,7 +533,7 @@ namespace Sneaker_DATN.Controllers
             int pageSize = 6;
             int pageNumber = (page ?? 1);
 
-            var orderSorters = from r in _context.Orders
+            var orderSorters = from r in _orderSvc.GetOrderByGuest(id)
                                  select r;
 
             ViewBag.DateCreateSortParm = String.IsNullOrEmpty(sortOrder) ? "datecreate_desc" : "";
@@ -643,8 +643,7 @@ namespace Sneaker_DATN.Controllers
             ViewBag.currentFilterSearch = searchString;
 
             var productFilters = from r in _context.Products
-                                     //from c in _context.Colors
-                                     //from s in _context.Sizes
+                                  where r.Status == false && r.Sale > 0
                                  select r;
 
             if (!String.IsNullOrEmpty(brands))
@@ -910,7 +909,7 @@ namespace Sneaker_DATN.Controllers
         {
             if (email != null)
             {
-                var user = _context.Users.Where(u => u.Email == email).FirstOrDefault();
+                var user = _userMemSvc.GetAllUserMem().Where(u => u.Email == email).FirstOrDefault();
                 StringBuilder builder = new StringBuilder();
                 builder.Append(RandomString(4, true));
                 builder.Append(RandomNumber(1000, 9999));
