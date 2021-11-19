@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<Sneaker_DATN.Models.ViewDashBoard>;
+@{
     ViewData["Title"] = "Welcome";
     Layout = "~/Views/Shared/_LayoutManager.cshtml";
 }
@@ -13,11 +14,11 @@
                         <i class='bx bx-layer bx-sm bx-tada bx-rotate-90'></i>
                     </div>
                     <div class="stat-cards-info">
-                        <p class="stat-cards-info__num">5</p>
+                        <p class="stat-cards-info__num">@ViewBag.LsOrderDay</p>
                         <p class="stat-cards-info__title">Đơn hàng mới</p>
                         <p class="stat-cards-info__progress">
                             <span class="stat-cards-info__profit success">
-                                <i class="fas fa-chart-line"></i> 4%
+                                <i class="fas fa-chart-line"></i> ?%
                             </span>
                             Ngày trước
                         </p>
@@ -30,13 +31,13 @@
                         <i class='bx bx-layer-plus bx-sm  bx-tada'></i>
                     </div>
                     <div class="stat-cards-info">
-                        <p class="stat-cards-info__num">15</p>
-                        <p class="stat-cards-info__title">Đơn hàng trong tháng</p>
+                        <p class="stat-cards-info__num">@ViewBag.LsOrderM</p>
+                        <p class="stat-cards-info__title">Đơn hàng chưa xử lý</p>
                         <p class="stat-cards-info__progress">
                             <span class="stat-cards-info__profit danger">
-                                <i class="fas fa-chart-line-down"></i> 0.5%
+                                <i class="fas fa-chart-line-down"></i> ?%
                             </span>
-                            Tháng trước
+                            Tổng đơn tháng trước
                         </p>
                     </div>
                 </article>
@@ -47,11 +48,11 @@
                         <i class="fas fa-users"></i>
                     </div>
                     <div class="stat-cards-info">
-                        <p class="stat-cards-info__num">10</p>
+                        <p class="stat-cards-info__num">@ViewBag.LsOrderNb</p>
                         <p class="stat-cards-info__title">Thành viên mới</p>
                         <p class="stat-cards-info__progress">
                             <span class="stat-cards-info__profit success">
-                                <i class="fas fa-chart-line"></i> 5.00%
+                                <i class="fas fa-chart-line"></i> ?%
                             </span>
                             Tháng trước
                         </p>
@@ -64,13 +65,13 @@
                         <i class="fas fa-archive"></i>
                     </div>
                     <div class="stat-cards-info">
-                        <p class="stat-cards-info__num">2</p>
+                        <p class="stat-cards-info__num">@ViewBag.LsOrderDOB</p>
                         <p class="stat-cards-info__title">Sinh nhật của khách</p>
                         <p class="stat-cards-info__progress">
                             @*<span class="stat-cards-info__profit warning">
-                                <i class="fas fa-chart-line"></i> 0.00%
-                            </span>
-                            Tháng trước*@
+                                    <i class="fas fa-chart-line"></i> 0.00%
+                                </span>
+                                Tháng trước*@
                             <a class="btn-light" href="#">>> Gửi Voucher <<</a>
                         </p>
                     </div>
@@ -88,54 +89,50 @@
                                         <input type="checkbox" class="check-all">Đơn gần nhất
                                     </label>
                                 </th>
-                                <th>Nội dung</th>
                                 <th>Khách hàng</th>
-                                <th>Trang thái</th>
-                                <th>Ngày</th>
+                                <th>Ngày đặt</th>
+                                <th>Trạng thái</th>
+                                <th>Nội dung</th>
                                 <th>Hành động</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="col-2">
-                                    <label class="users-table__checkbox">
-                                        <input type="checkbox" class="check">
-                                        <div class="categories-table-img">
-                                            @*<picture>
-                                                <source srcset="~/images/categories/01.webp" type="image/webp">
-                                                <img src="~/images/categories/01.jpg"
-                                                     alt="category">
-                                            </picture>*@
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <label class="users-table__checkbox">
+                                            <input type="checkbox" class="check">
+                                            <div class="categories-table-img">
+                                                @item.Orders.UserID
+                                            </div>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <div class="pages-table-img">
+                                            <picture>
+                                                <img src="~/images/avatar/avatar-illustrated-02.png" alt="Người dùng">
+                                            </picture>
+                                            @item.Orders.FullName
                                         </div>
-                                    </label>
-                                </td>
-                                <td>
-                                    Starting your traveling blog with Vasco
-                                </td>
-                                <td>
-                                    <div class="pages-table-img">
-                                        <picture>
-                                            <source srcset="~/images/avatar/avatar-face-04.webp" type="image/webp">
-                                            <img src="~/images/avatar/avatar-face-04.png" alt="User Name">
-                                        </picture>
-                                        Jenny Wilson
-                                    </div>
-                                </td>
-                                <td><span class="badge-pending">Pending</span></td>
-                                <td>17.04.2021</td>
-                                <td>
-                                    <span class="p-relative">
-                                        <button class="dropdown-btn transparent-btn" type="button" title="More info">
-                                            <div class="sr-only">More info</div>
-                                            <i data-feather="more-horizontal" aria-hidden="true"></i>
-                                        </button>
-                                        <ul class="users-item-dropdown dropdown">
-                                            <li><a asp-controller="Orders" asp-action="Index">Xem danh sách</a></li>
-                                            <li><a href="##">Chỉnh sửa</a></li>
-                                        </ul>
-                                    </span>
-                                </td>
-                            </tr>
+                                    </td>
+                                    <td>@item.Orders.DateCreate</td>
+                                    <td><span class="badge-pending">@item.Orders.Status</span></td>
+                                    <td>@item.Orders.Note</td>
+                                    <td>
+                                        <span class="p-relative">
+                                            <button class="dropdown-btn transparent-btn" type="button" title="More info">
+                                                <div class="sr-only">More info</div>
+                                                <i data-feather="more-horizontal" aria-hidden="true"></i>
+                                            </button>
+                                            <ul class="users-item-dropdown dropdown">
+                                                <li><a asp-controller="Orders" asp-action="Index">Xem danh sách</a></li>
+                                                <li><a asp-controller="Orders" asp-action="Edit" asp-route-id="@item.Orders.OrderID">Chỉnh sửa</a></li>
+                                            </ul>
+                                        </span>
+                                    </td>
+                                </tr>
+                            }
                         </tbody>
                     </table>
                 </div>
@@ -144,79 +141,22 @@
                 <article class="white-block">
                     <div class="top-cat-title">
                         <h3>Top ưa chuộng</h3>
-                        <p>Hãng được ưa chuộng nhất</p>
+                        <p>Thương hiệu được ưa chuộng nhất:</p>
                     </div>
                     <ul class="top-cat-list">
-                        <li>
-                            <a href="##">
-                                <div class="top-cat-list__title">
-                                    Nike <span>110 đơn</span>
-                                </div>
-                                <div class="top-cat-list__subtitle">
-                                    Trung bình hàng tháng<span class="purple">+23</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="##">
-                                <div class="top-cat-list__title">
-                                    Adidas <span>101 đơn</span>
-                                </div>
-                                <div class="top-cat-list__subtitle">
-                                    Trung bình hàng tháng <span class="blue">+22</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="##">
-                                <div class="top-cat-list__title">
-                                    Converse <span>30 đơn</span>
-                                </div>
-                                <div class="top-cat-list__subtitle">
-                                    Trung bình hàng tháng <span class="danger">+10</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="##">
-                                <div class="top-cat-list__title">
-                                    Vans <span>89 đơn</span>
-                                </div>
-                                <div class="top-cat-list__subtitle">
-                                    Trung bình hàng tháng <span class="success">+17</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="##">
-                                <div class="top-cat-list__title">
-                                    MLB <span>56 đơn</span>
-                                </div>
-                                <div class="top-cat-list__subtitle">
-                                    Trung bình hàng tháng <span class="warning">+16</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="##">
-                                <div class="top-cat-list__title">
-                                    Fila <span>50 Đơn</span>
-                                </div>
-                                <div class="top-cat-list__subtitle">
-                                    Trung bình hàng tháng <span class="warning">+14</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="##">
-                                <div class="top-cat-list__title">
-                                    Puma <span>51 đơn</span>
-                                </div>
-                                <div class="top-cat-list__subtitle">
-                                    Trung bình hàng tháng <span class="warning">+14</span>
-                                </div>
-                            </a>
-                        </li>
+                        @foreach (var item in Model)
+                        {
+                            <li>
+                                <a href="#">
+                                    <div class="top-cat-list__title">
+                                        @item.BrandName <span>@item.Quantity</span>
+                                    </div>
+                                    <div class="top-cat-list__subtitle">
+                                        Trung bình hàng tháng<span class="purple">+??</span>
+                                    </div>
+                                </a>
+                            </li>
+                        }
                     </ul>
                 </article>
             </div>

@@ -102,12 +102,6 @@ namespace Sneaker_DATN.Controllers
                 var lsorderd = from y in lsOrderDetails
                                select y.ProductID;
                 var lsprod = lsProduct.Where(x => lsorderd.Contains(x.ProductID)).ToList();
-                var lsbrand = from y in lsprod
-                              group y by y.BrandID into i
-                              select new
-                              {
-                                  BrandID = i.Key
-                              };
 
                 List<ViewReport> temp = new List<ViewReport>();
                 for (int i = 0; i < lsprod.Count; i++)

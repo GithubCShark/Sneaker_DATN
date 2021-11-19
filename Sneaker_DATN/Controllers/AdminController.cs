@@ -19,12 +19,16 @@ namespace Sneaker_DATN.Controllers
         private readonly IWebHostEnvironment _webHostEnviroment;
         private IAdminSvc _adminSvc;
         protected ISendMailService _sendGmail;
+        private DataContext _context;
+        private IUserMemSvc _userMemSvc;
 
-        public AdminController(IWebHostEnvironment webHostEnvironment, IAdminSvc adminSvc, ISendMailService sendGmail)
+        public AdminController(IWebHostEnvironment webHostEnvironment, IAdminSvc adminSvc, ISendMailService sendGmail, DataContext dataContext, IUserMemSvc userMemSvc)
         {
             _webHostEnviroment = webHostEnvironment;
             _adminSvc = adminSvc;
             _sendGmail = sendGmail;
+            _context = dataContext;
+            _userMemSvc = userMemSvc;
         }
 
         public IActionResult Index()
@@ -32,7 +36,82 @@ namespace Sneaker_DATN.Controllers
             string userName = HttpContext.Session.GetString(SessionKey.User.UserName);
             if (userName != null && userName != "")
             {
-                return View();
+                //Tổng hợp nhanh
+                var today = DateTime.Now;
+                var lsorderday = from x in _context.Orders
+                               where x.DateCreate.Date == today.Date
+                               select x;
+                var lsorderm = from x in _context.Orders.Where(x => x.Status == "Đang xử lý")
+                               where x.DateCreate.Year == today.Year && x.DateCreate.Month == today.Month
+                               select x;
+                var lsordernb = from x in _context.Users.Where(x => x.RoleID == 3)
+                                where x.DateCreated.Value.Year == today.Year && x.DateCreated.Value.Month == today.Month
+                                select x;
+                var lsorderdob = from x in _context.Users.Where(x => x.RoleID == 3)
+                                where x.DOB.Value.Month == today.Month && x.DOB.Value.Day == today.Day
+                                select x;
+
+                ViewData["LsOrderDay"] = lsorderday.Count();
+                ViewData["LsOrderM"] = lsorderm.Count();
+                ViewData["LsOrderNb"] = lsordernb.Count();
+                ViewData["LsOrderDOB"] = lsorderdob.Count();
+
+                //Danh sách
+                List<ViewDashBoard> lsdb = new List<ViewDashBoard>();
+                List<ViewDashBoard> lsDashb = new List<ViewDashBoard>();
+
+                var lsBrands = from z in _context.Brands
+                               select z;
+                var lsOrderDetails = from y in _context.OrderDetails
+                                     select y;
+
+                var lsorderd = from y in lsOrderDetails
+                               select y.ProductID;
+                var lsprod = _context.Products.Where(x => lsorderd.Contains(x.ProductID)).ToList();
+                var lsOrders = _context.Orders.OrderByDescending(x => x.DateCreate).Where(x => x.Status == "Đang xử lý").Take(5).ToList();
+
+                List<ViewDashBoard> temp = new List<ViewDashBoard>();
+                for (int i = 0; i < lsprod.Count; i++)
+                {
+                    var tempbrand = "";
+                    var lsquantity = from x in lsOrderDetails
+                                     where x.ProductID == lsprod[i].ProductID
+                                     select x.Quantity;
+                    foreach (var item in lsBrands)
+                    {
+                        if (item.BrandID == lsprod[i].BrandID)
+                        {
+                            tempbrand = item.BrandName;
+                        }
+                    }
+                    temp.Add(new ViewDashBoard
+                    {
+                        BrandName = tempbrand,
+                        Quantity = lsquantity.Sum()
+                    });
+                }
+                temp = temp.OrderByDescending(x => x.Quantity).ToList();
+                var grtemp = temp.GroupBy(p => p.BrandName).ToList();
+                for (int i = 0; i < grtemp.Count; i++)
+                {
+                    int grquantity = 0;
+                    foreach (var item in temp)
+                    {
+                        if (item.BrandName == grtemp[i].Key)
+                        {
+                            grquantity += item.Quantity;
+                        }
+                    }
+                    lsDashb.Add(new ViewDashBoard
+                    {
+                        Orders = lsOrders[i],
+                        BrandName = grtemp[i].Key,
+                        Quantity = grquantity
+                    });
+                }
+
+                lsdb = lsDashb.ToList();
+                return View(lsdb);
             }
             else
             {
