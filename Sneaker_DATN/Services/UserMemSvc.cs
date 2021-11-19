@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static Sneaker_DATN.Constant.SessionKey;
 
 namespace Sneaker_DATN.Services
 {
@@ -13,6 +14,7 @@ namespace Sneaker_DATN.Services
         List<Users> GetAllUserMem();
         Users GetUserMem(int id);
         int AddUserMem(Users user);
+        int ChangePass(int id, string pass);
         int EditUserMem(int id, Users user);
         Roles GetRole(int id);
         List<Users> GetAllUser();
@@ -75,6 +77,25 @@ namespace Sneaker_DATN.Services
                 _context.Update(_user);
                 _context.SaveChanges();
                 ret = user.UserID;
+            }
+            catch (Exception)
+            {
+                ret = 0;
+            }
+            return ret;
+        }
+
+        public int ChangePass(int id, string pass)
+        {
+            int ret = 0;
+            try
+            {
+                Users _user = _context.Users.Find(id);
+                _user.Password = _encodeHelper.Encode(pass);
+                _user.ConfirmPassword = _user.Password;
+                _context.Update(_user);
+                _context.SaveChanges();
+                ret = _user.UserID;
             }
             catch (Exception)
             {

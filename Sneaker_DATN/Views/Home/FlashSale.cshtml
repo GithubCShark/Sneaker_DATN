@@ -76,13 +76,9 @@
                 </div>
                 <div class="common-filter">
                     <div class="head">Chọn size</div>
+
                     <form action="/home/flashsale" method="get">
-                        <ul>
-                            <li class="filter-list">
-                                <input class="pixel-radio" type="radio"
-                                       id="sizes" name="sizes" value="1">
-                                <label>36</label>
-                            </li>
+                        <ul class="float-right">
                             <li class="filter-list">
                                 <input class="pixel-radio" type="radio"
                                        id="sizes" name="sizes" value="2">
@@ -98,6 +94,9 @@
                                        id="sizes" name="sizes" value="4">
                                 <label>39</label>
                             </li>
+
+                        </ul>
+                        <ul>
                             <li class="filter-list">
                                 <input class="pixel-radio" type="radio"
                                        id="sizes" name="sizes" value="5">
@@ -118,16 +117,6 @@
                                        id="sizes" name="sizes" value="8">
                                 <label>43</label>
                             </li>
-                            <li class="filter-list">
-                                <input class="pixel-radio" type="radio"
-                                       id="sizes" name="sizes" value="9">
-                                <label>44</label>
-                            </li>
-                            <li class="filter-list">
-                                <input class="pixel-radio" type="radio"
-                                       id="sizes" name="sizes" value="10">
-                                <label>45</label>
-                            </li>
                         </ul>
                         <div class="d-flex justify-content-center mt-2">
                             <button type="submit" value="Search" class="search-btn-product primary-btn">
@@ -139,7 +128,7 @@
                 <div class="common-filter">
                     <div class="head">Màu sắc</div>
                     <form action="/home/flashsale" method="get">
-                        <ul>
+                        <ul class="float-right">
                             <li class="filter-list">
                                 <input class="pixel-radio" type="radio"
                                        id="colors" name="colors" value="1">
@@ -165,6 +154,8 @@
                                        id="colors" name="colors" value="5">
                                 <label>Đỏ</label>
                             </li>
+                        </ul>
+                        <ul>
                             <li class="filter-list">
                                 <input class="pixel-radio" type="radio"
                                        id="colors" name="colors" value="6">
@@ -217,73 +208,69 @@
                     <!-- single product -->
                     @foreach (var item in Model)
                     {
-                        if (item.Sale > 0)
+                        if (item.Status)
                         {
-                            <div class="col-lg-4 col-md-6">
-                                <div class="single-product">
-                                    <a asp-action="Details" asp-route-id="@item.ProductID">
-                                        <img class="img-fluid" src="~/images/Product/@item.Image" alt="">
-                                        @if (!item.Status)
-                                        {
-                                            <div class="badge-overlay badge-products">
-                                                <span class="badge">Ngừng kinh doanh</span>
-                                            </div>
-                                        }
-                                        else if (item.Sale > 0)
-                                        {
-                                            var sale = Math.Round((@item.Sale / @item.Price) * 100);
-                                            <div class="badge-overlay badge-products">
-                                                <span class="badge">Sale @sale%</span>
-                                            </div>
-                                        }
-                                    </a>
-                                    <div class="product-details">
-                                        <h6 class="custom-title-product">
-                                            <a class="text-decoration-none text-link-hover" data-toggle="tooltip"
-                                               title="@item.ProductName" asp-action="Details" asp-route-id="@item.ProductID">
-                                                @Html.DisplayFor(modelItem => item.ProductName)
-                                            </a>
-                                        </h6>
-                                        <div class="price d-flex">
+                            if (item.Sale > 0)
+                            {
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="single-product">
+                                        <a asp-action="Details" asp-route-id="@item.ProductID">
+                                            <img class="img-fluid" src="~/images/Product/@item.Image" alt="">
                                             @if (item.Sale > 0)
                                             {
-                                                <h6 class="d-flex">@string.Format("{0:0,0 vnđ}", (item.Price - item.Sale)) <span class="text-lowercase"></span></h6>
-                                                <h6 class="d-flex l-through">@string.Format("{0:0,0 vnđ}", item.Price) <span class="text-lowercase"></span></h6>
+                                                var sale = Math.Round((@item.Sale / @item.Price) * 100);
+                                                <div class="badge-overlay badge-products">
+                                                    <span class="badge">Sale @sale%</span>
+                                                </div>
                                             }
-                                            else
-                                            {
-                                                <h6 class="d-flex">@string.Format("{0:0,0 vnđ}", item.Price) <span class="text-lowercase"></span></h6>
-                                            }
-                                        </div>
-                                        <div class="prd-bottom">
-                                            @if (item.Status)
-                                            {
-                                                <a class="addProduct social-info" href="javascript:addCart(@item.ProductID);">
-                                                    <span class='bx bx-basket'></span>
-                                                    <p class="hover-text">Giỏ hàng</p>
+                                        </a>
+                                        <div class="product-details">
+                                            <h6 class="custom-title-product">
+                                                <a class="text-decoration-none text-link-hover" data-toggle="tooltip"
+                                                   title="@item.ProductName" asp-action="Details" asp-route-id="@item.ProductID">
+                                                    @Html.DisplayFor(modelItem => item.ProductName)
                                                 </a>
-                                            }
-                                            else
-                                            {
-                                                <a class="addProduct social-info" disabled="disabled">
-                                                    <span class='bx bx-basket  custom-history-trash-disable'></span>
-                                                    <p class="hover-text">Giỏ hàng</p>
+                                            </h6>
+                                            <div class="price d-flex">
+                                                @if (item.Sale > 0)
+                                                {
+                                                    <h6 class="d-flex">@string.Format("{0:0,0 vnđ}", (item.Price - item.Sale)) <span class="text-lowercase"></span></h6>
+                                                    <h6 class="d-flex l-through">@string.Format("{0:0,0 vnđ}", item.Price) <span class="text-lowercase"></span></h6>
+                                                }
+                                                else
+                                                {
+                                                    <h6 class="d-flex">@string.Format("{0:0,0 vnđ}", item.Price) <span class="text-lowercase"></span></h6>
+                                                }
+                                            </div>
+                                            <div class="prd-bottom">
+                                                @if (item.Status)
+                                                {
+                                                    <a class="addProduct social-info" href="javascript:addCart(@item.ProductID);">
+                                                        <span class='bx bx-basket'></span>
+                                                        <p class="hover-text">Giỏ hàng</p>
+                                                    </a>
+                                                }
+                                                else
+                                                {
+                                                    <a class="addProduct social-info" disabled="disabled">
+                                                        <span class='bx bx-basket  custom-history-trash-disable'></span>
+                                                        <p class="hover-text">Giỏ hàng</p>
+                                                    </a>
+                                                }
+                                                <a class="social-info">
+                                                    <span class='bx bx-heart'></span>
+                                                    <p class="hover-text">Yêu thích</p>
                                                 </a>
-                                            }
-                                            <a class="social-info">
-                                                <span class='bx bx-heart'></span>
-                                                <p class="hover-text">Yêu thích</p>
-                                            </a>
-                                            <a asp-action="Details" asp-route-id="@item.ProductID" class="social-info">
-                                                <span class='bx bx-move'></span>
-                                                <p class="hover-text">Xem Thêm</p>
-                                            </a>
+                                                <a asp-action="Details" asp-route-id="@item.ProductID" class="social-info">
+                                                    <span class='bx bx-move'></span>
+                                                    <p class="hover-text">Xem Thêm</p>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            }
                         }
-
                     }
                     <!-- single product -->
                 </div>

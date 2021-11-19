@@ -19,6 +19,7 @@ using X.PagedList;
 using MailKit.Net.Smtp;
 using MimeKit;
 using static Sneaker_DATN.Filters.AuthenticationFilterAttribute;
+using System.Text;
 
 namespace Sneaker_DATN.Controllers
 {
@@ -33,9 +34,10 @@ namespace Sneaker_DATN.Controllers
         private IDiscountSvc _discountSvc;
         private readonly DataContext _context;
         protected IEncodeHelper _encodeHelper;
-        public HomeController(IUserMemSvc userMemSvc, IProductSvc productSvc, IWebHostEnvironment webHostEnvironment, 
-            IUploadHelper uploadHelper, IOrderSvc orderSvc, IOrderDetailSvc orderDetailSvc, DataContext context, 
-            IEncodeHelper encodeHelper, IDiscountSvc discountSvc)
+        protected ISendMailService _sendGmail;
+        public HomeController(IUserMemSvc userMemSvc, IProductSvc productSvc, IWebHostEnvironment webHostEnvironment,
+             IUploadHelper uploadHelper, IOrderSvc orderSvc, IOrderDetailSvc orderDetailSvc, DataContext context,
+             IEncodeHelper encodeHelper, IDiscountSvc discountSvc, ISendMailService sendGmail)
         {
             _userMemSvc = userMemSvc;
             _productSvc = productSvc;
@@ -46,6 +48,7 @@ namespace Sneaker_DATN.Controllers
             _context = context;
             _encodeHelper = encodeHelper;
             _discountSvc = discountSvc;
+            _sendGmail = sendGmail;
         }
 
 
@@ -877,6 +880,53 @@ namespace Sneaker_DATN.Controllers
             ViewData["brand"] = _context.Brands.ToList();
 
             return View(_productSvc.SneakerSearchString(searchString).ToPagedList(pageNumber, pageSize));
+        }
+
+        [NonAction]
+        public string RandomString(int size, bool lowerCase)
+        {
+            StringBuilder builder = new StringBuilder();
+            Random random = new Random();
+            char ch;
+            for (int i = 0; i < size; i++)
+            {
+                ch = Convert.ToChar(Convert.ToInt32(Math.Floor(26 * random.NextDouble() + 65)));
+                builder.Append(ch);
+            }
+            if (lowerCase)
+            {
+                return builder.ToString().ToLower();
+            }
+            return builder.ToString();
+        }
+
+        [NonAction]
+        public int RandomNumber(int min, int max)
+        {
+            Random random = new Random();
+            return random.Next(min, max);
+        }
+        public IActionResult ForgotPassword(string email)
+        {
+            if (email != null)
+            {
+                var user = _context.Users.Where(u => u.Email == email).FirstOrDefault();
+                StringBuilder builder = new StringBuilder();
+                builder.Append(RandomString(4, true));
+                builder.Append(RandomNumber(1000, 9999));
+                builder.Append(RandomString(2, false));
+
+                _userMemSvc.ChangePass(user.UserID, builder.ToString());
+                MailContent content = new MailContent()
+                {
+                    To = email,
+                    Subject = "Quên mật khẩu",
+                    Body = "<p><strong>Mật khẩu sau khi reset: </strong></p>" + builder.ToString()
+                };
+
+                _sendGmail.SendMail(content);
+            }
+            return View();
         }
     }
 

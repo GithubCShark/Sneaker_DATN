@@ -1,5 +1,7 @@
+﻿using Castle.Core.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -7,11 +9,13 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Sneaker_DATN.Helpers;
 using Sneaker_DATN.Models;
+using Sneaker_DATN.Models.ViewModels;
 using Sneaker_DATN.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 
 namespace Sneaker_DATN
 {
@@ -20,13 +24,20 @@ namespace Sneaker_DATN
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            _configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
+        public IConfiguration _configuration;
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddOptions();
+            var mailsettings = _configuration.GetSection("MailSettings");
+            services.Configure<MailSettings>(mailsettings);
+
             services.AddControllersWithViews();
 
             services.AddDistributedMemoryCache();
@@ -45,6 +56,7 @@ namespace Sneaker_DATN
             services.AddTransient<IOrderSvc, OrderSvc>();
             services.AddTransient<IOrderDetailSvc, OrderDetailSvc>();
             services.AddTransient<IDiscountSvc, DiscountSvc>();
+            services.AddTransient<ISendMailService, SendGmailSvc>();
 
             //services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddRazorPages().AddRazorRuntimeCompilation();
@@ -81,6 +93,21 @@ namespace Sneaker_DATN
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapGet("/testmail", async context =>
+                {
+                    // Lấy dịch vụ sendmailservice
+                    var sendmailservice = context.RequestServices.GetService<ISendMailService>();
+                    MailContent content = new MailContent
+                    {
+                        To = "ngocdam2k@gmail.com",
+                        Subject = "Kiểm tra thử",
+                        Body = "<p><strong>Xin chào Dach</strong></p>"
+                    };
+
+                    await sendmailservice.SendMail(content);
+                    await context.Response.WriteAsync("Send mail");
+                });
             });
         }
     }

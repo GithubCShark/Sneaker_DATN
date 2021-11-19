@@ -79,12 +79,7 @@
                     <div class="head">Chọn size</div>
 
                     <form action="/home/products" method="get">
-                        <ul>
-                            <li class="filter-list">
-                                <input class="pixel-radio" type="radio"
-                                       id="sizes" name="sizes" value="1">
-                                <label>36</label>
-                            </li>
+                        <ul  class="float-right">
                             <li class="filter-list">
                                 <input class="pixel-radio" type="radio"
                                        id="sizes" name="sizes" value="2">
@@ -100,6 +95,9 @@
                                        id="sizes" name="sizes" value="4">
                                 <label>39</label>
                             </li>
+                                                     
+                        </ul>
+                        <ul>
                             <li class="filter-list">
                                 <input class="pixel-radio" type="radio"
                                        id="sizes" name="sizes" value="5">
@@ -120,16 +118,6 @@
                                        id="sizes" name="sizes" value="8">
                                 <label>43</label>
                             </li>
-                            <li class="filter-list">
-                                <input class="pixel-radio" type="radio"
-                                       id="sizes" name="sizes" value="9">
-                                <label>44</label>
-                            </li>
-                            <li class="filter-list">
-                                <input class="pixel-radio" type="radio"
-                                       id="sizes" name="sizes" value="10">
-                                <label>45</label>
-                            </li>
                         </ul>
                         <div class="d-flex justify-content-center mt-2">
                             <button type="submit" value="Search" class="search-btn-product primary-btn">
@@ -141,7 +129,7 @@
                 <div class="common-filter">
                     <div class="head">Màu sắc</div>
                     <form action="/home/products" method="get">
-                        <ul>
+                        <ul class="float-right">
                             <li class="filter-list">
                                 <input class="pixel-radio" type="radio"
                                        id="colors" name="colors" value="1">
@@ -167,6 +155,8 @@
                                        id="colors" name="colors" value="5">
                                 <label>Đỏ</label>
                             </li>
+                        </ul>
+                        <ul>
                             <li class="filter-list">
                                 <input class="pixel-radio" type="radio"
                                        id="colors" name="colors" value="6">

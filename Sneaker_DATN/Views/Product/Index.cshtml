@@ -15,25 +15,25 @@
                         <div class="form-outline d-flex">
                             @using (Html.BeginForm("Index", "Product", FormMethod.Get))
                             {
-                                <p class="d-flex">
-                                    @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-                                    @*<input type="submit" value="Search" />*@
+                                <div class="d-flex">
+                                    @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, "", new { placeholder = "Nhập tên" })
                                     <button type="submit" value="Search" class="search-btn btn btn-primary">
                                         <i class="fas fa-search"></i>
                                     </button>
-                                </p>
+                                </div>
                             }
-                            <div class="ml-3">
-                                @using (Html.BeginForm("Index", "Product", FormMethod.Get))
-                                {
-                                    <div class="d-flex">
+                        <div class="ml-3">
+                            @using (Html.BeginForm("Index", "Product", FormMethod.Get))
+                            {
+
+                                <div class="d-flex">
                                         @Html.DropDownList("status", new SelectList(ViewBag.Status))
-                                        <button type="submit" value="Search" class="search-btn btn btn-primary">
-                                            <i class="fas fa-search"></i>
-                                        </button>
-                                    </div>
-                                }
-                            </div>
+                                    <button type="submit" value="Search" class="search-btn btn btn-primary">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            }
+                        </div>
                         </div>
 
                     </div>
@@ -82,7 +82,7 @@
                             @*<a href="@Url.ActionLink("Index","Product", new { sortOrder =ViewBag.StatusSortParm })">
                                 <span>Khóa</span><i class="fas fa-sort ml-2"></i>
                             </a>*@
-                            Khóa
+                            Tình Trạng
                         </th>
                         <th class="text-center">
                             Size
@@ -106,8 +106,15 @@
                             <td class="text-center">
                                 @string.Format("{0:0,0}", item.Price)
                             </td>
-                            <td class="text-center">
-                                @string.Format("{0:0,0}", item.Sale)
+                            <td class="text-center">                               
+                                @if (item.Sale == 0)
+                                {
+                                    <span class="ml-5">0</span>
+                                }
+                                else
+                                {
+                                    @string.Format("{0:0,0}", item.Sale)
+                                }
                             </td>
                             <td class="text-center">
                                 <img src="~/images/Product/@item.Image" style="width:100px; height:100px;" />
@@ -119,7 +126,15 @@
                                 <img src="~/images/Product/@item.Image2" style="width: 100px; height:100px;" />
                             </td>
                             <td class="text-center">
-                                @Html.DisplayFor(modelItem => item.Status)
+                                @*@Html.DisplayFor(modelItem => item.Status)*@
+                                @if (item.Status)
+                                {
+                                    <span class="ml-5">Đang kinh doanh</span>
+                                }
+                                else
+                                {
+                                    <span class="ml-5">Ngừng kinh doanh</span>
+                                }
                             </td>
                             @*<td>
                 @foreach (var brd in ViewBag.brand)
