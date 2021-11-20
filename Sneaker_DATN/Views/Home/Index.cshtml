@@ -233,10 +233,20 @@
                                     }
                                 </div>
                                 <div class="prd-bottom">
-                                    <a class="addProduct social-info" href="javascript:addCart(@item.ProductID);">
-                                        <span class='bx bx-basket'></span>
-                                        <p class="hover-text">Giỏ hàng</p>
-                                    </a>
+                                    @if (!item.Status)
+                                    {
+                                        <a class="addProduct social-info" href="javascript:addCart(@item.ProductID);">
+                                            <span class='bx bx-basket'></span>
+                                            <p class="hover-text">Giỏ hàng</p>
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a class="addProduct social-info" disabled="disabled">
+                                            <span class='bx bx-basket  custom-history-trash-disable'></span>
+                                            <p class="hover-text">Giỏ hàng</p>
+                                        </a>
+                                    }
                                     <a class="social-info">
                                         <span class='bx bx-heart'></span>
                                         <p class="hover-text">Yêu thích</p>

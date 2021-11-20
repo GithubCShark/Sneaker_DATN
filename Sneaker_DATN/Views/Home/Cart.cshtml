@@ -116,7 +116,7 @@
                                         </td>
                                         <td class="pro-title"><a href="#"> @item.Products.ProductName</a></td>
                                         <td class="pro-quantity text-center">
-                                            <select class="cart-tbl-select-custom ml-3">
+                                            <select class="cart-tbl-select-custom ml-3" id="size_@iD">
                                                 @foreach (var i in ViewBag.sz)
                                                 {
                                                     @if (item.Size == i.SizeID)
@@ -153,7 +153,7 @@
                                                                     {
                                                                         @if (y.IdSize != i.SizeID)
                                                                         {
-                                                                            <option id="size_@iD" value="@y.IdSize">@ii.Size</option>
+                                                                            <option value="@y.IdSize">@ii.Size</option>
                                                                         }
                                                                     }
                                                                 }
@@ -165,12 +165,12 @@
                                             </select>
                                         </td>
                                         <td class="pro-quantity text-center">
-                                            <select class="cart-tbl-select-custom ml-4">
+                                            <select class="cart-tbl-select-custom ml-4" id="color_@iD">
                                                 @foreach (var i in ViewBag.col)
                                                 {
                                                     @if (item.Color == i.ColorID)
                                                     {
-                                                        <option id="color_@iD" value="@i.ColorID">@i.Color</option>
+                                                        <option value="@i.ColorID">@i.Color</option>
 
                                                         @foreach (var y in ViewBag.Procol)
                                                         {
@@ -202,7 +202,7 @@
                                                                     {
                                                                         @if (y.ColorID != i.ColorID)
                                                                         {
-                                                                            <option id="color_@iD" value="@y.ColorID">@ii.Color</option>
+                                                                            <option value="@y.ColorID">@ii.Color</option>
                                                                         }
                                                                     }
                                                                 }
