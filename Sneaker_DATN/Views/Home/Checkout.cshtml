@@ -176,7 +176,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="note">Ghi chú</label>
-                                <textarea name="Note" class="form-control form-control-note"
+                                <textarea name="Note" id="Note" class="form-control form-control-note"
                                           style="height: 80px !important;"></textarea>
                             </div>
                         </div>
@@ -278,6 +278,7 @@
             url: "/Home/OrderCart",
             data: {
                 voucherCode: $("#txtVoucherCode").val(),
+                Note: $('#Note').val()
             },
             success: function (result) {
                 window.location = "/Home/OrderComplete";

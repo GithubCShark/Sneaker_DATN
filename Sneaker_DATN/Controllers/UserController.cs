@@ -171,6 +171,7 @@ namespace Sneaker_DATN.Controllers
                 return RedirectToAction(nameof(Index));
             }
         }
+
         public ActionResult Info(int id)
         {
             var user = _userSvc.GetInfo(id);

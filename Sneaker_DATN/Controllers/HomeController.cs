@@ -374,7 +374,7 @@ namespace Sneaker_DATN.Controllers
             return BadRequest();
         }
 
-        public IActionResult OrderCart(string voucherCode)
+        public IActionResult OrderCart(string voucherCode, string Note)
         {
             var itemDiscount = _discountSvc.GetDiscount(voucherCode);
 
@@ -399,6 +399,7 @@ namespace Sneaker_DATN.Controllers
                     PaymentAmount = total,
                     Address = user.Address,
                     Status = "Đang xử lý",
+                    Note = Note,
                     FullName = user.FullName,
                     Email = user.Email,
                     PhoneNumber = user.PhoneNumber

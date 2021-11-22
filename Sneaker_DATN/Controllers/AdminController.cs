@@ -22,7 +22,8 @@ namespace Sneaker_DATN.Controllers
         private DataContext _context;
         private IUserMemSvc _userMemSvc;
 
-        public AdminController(IWebHostEnvironment webHostEnvironment, IAdminSvc adminSvc, ISendMailService sendGmail, DataContext dataContext, IUserMemSvc userMemSvc)
+        public AdminController(IWebHostEnvironment webHostEnvironment, IAdminSvc adminSvc, ISendMailService sendGmail, 
+            DataContext dataContext, IUserMemSvc userMemSvc)
         {
             _webHostEnviroment = webHostEnvironment;
             _adminSvc = adminSvc;
@@ -175,6 +176,40 @@ namespace Sneaker_DATN.Controllers
             }
         }
 
+        public IActionResult GiftDoB()
+        {
+            var today = DateTime.Now;
+            var lsuserdob = from x in _context.Users.Where(x => x.RoleID == 3)
+                             where x.DOB.Value.Month == today.Month && x.DOB.Value.Day == today.Day
+                             select x;
+            ViewBag.lsvoucher = _context.Discounts.Where(s => s.Status == false)
+                .Take(lsuserdob.Count()).ToList();
+            return View(lsuserdob);
+        }
+
+        public IActionResult SendVoucher()
+        {
+            var today = DateTime.Now;
+            var lsuserdob = from x in _context.Users.Where(x => x.RoleID == 3)
+                            where x.DOB.Value.Month == today.Month && x.DOB.Value.Day == today.Day
+                            select x;
+            var lsuser = lsuserdob.ToList();
+            var lsvoucher = _context.Discounts.Where(s => s.Status == false)
+                .Take(lsuserdob.Count()).ToList();
+            ViewBag.lsvoucher = lsvoucher;
+            for (int i = 0; i < lsuser.Count; i++)
+            {
+                MailContent content = new MailContent()
+                {
+                    To = lsuser[i].Email,
+                    Subject = "Chúc mừng sinh nhật bạn",
+                    Body = "<p><strong>D-ACH Shop gửi tặng bạn mã khuyến mãi nhân ngày sinh nhật của bạn: </strong></p>" + lsvoucher[i].VoucherCode
+                };
+                _sendGmail.SendMail(content);
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
         public string RandomString(int size, bool lowerCase)
         {
             StringBuilder builder = new StringBuilder();
@@ -198,6 +233,7 @@ namespace Sneaker_DATN.Controllers
             Random random = new Random();
             return random.Next(min, max);
         }
+
         public IActionResult ForgotPassword(string email)
         {
             if (email != null)

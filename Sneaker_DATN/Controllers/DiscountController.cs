@@ -125,7 +125,7 @@ namespace Sneaker_DATN.Controllers
             try
             {
                 _discountSvc.AddDiscount(discount);
-                return RedirectToAction(nameof(Details), new { id = discount.VoucherId });
+                return RedirectToAction(nameof(Index));
             }
             catch
             {

@@ -72,7 +72,7 @@
                                     <i class="fas fa-chart-line"></i> 0.00%
                                 </span>
                                 Tháng trước*@
-                            <a class="btn-light" href="#">>> Gửi Voucher <<</a>
+                            <a class="btn-light btn-gift-dob" href="@Url.Action("GiftDoB", "Admin")">>> Gửi Voucher <<</a>
                         </p>
                     </div>
                 </article>
@@ -127,7 +127,7 @@
                                             </button>
                                             <ul class="users-item-dropdown dropdown">
                                                 <li><a asp-controller="Orders" asp-action="Index">Xem danh sách</a></li>
-                                                <li><a asp-controller="Orders" asp-action="Edit" asp-route-id="@item.Orders.OrderID">Chỉnh sửa</a></li>
+                                                <li><a href="@Url.Action("Edit", "Orders", new { id = @item.Orders.OrderID })" class="btn-edit-order">Chỉnh sửa</a></li>
                                             </ul>
                                         </span>
                                     </td>
@@ -137,6 +137,21 @@
                     </table>
                 </div>
             </div>
+
+            <!-- Modal Edit Order -->
+            <div class="modal fade" id="editOrderModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <!-- empty -->
+                </div>
+            </div>
+
+            <!-- Modal Gift DOB -->
+            <div class="modal fade" id="GiftDoBModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <!-- empty -->
+                </div>
+            </div>
+
             <div class="col-lg-3">
                 <article class="white-block">
                     <div class="top-cat-title">

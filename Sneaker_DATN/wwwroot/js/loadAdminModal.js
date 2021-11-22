@@ -432,56 +432,6 @@ $(document).ready(function () {
 
 });
 
-
-//// Modal Crete Product
-//$(document).ready(function () {
-
-//    $('.btn-create-product').click(function (e) {
-//        e.preventDefault();
-
-//        var $modal = $('#createProductModal');
-//        var $modalDialog = $('.modal-dialog');
-//        var href = $(this).prop('href');
-
-//        // không cho phép tắt modal khi click bên ngoài modal
-//        var option = { backdrop: true };
-
-//        // load modal
-//        $modalDialog.load(href, function () {
-//            $modal.modal(option, 'show');
-//        });
-//    });
-
-//});
-
-//// Modal Edit Product
-//$(document).ready(function () {
-
-//    $('.btn-edit-product').click(function (e) {
-//        e.preventDefault();
-
-//        var $modal = $('#editProductModal');
-//        var $modalDialog = $('.modal-dialog');
-//        var href = $(this).prop('href');
-//        var id = $(this).parent().find('.id').val();
-//        $.ajax({
-//            type: 'GET',
-//            url: 'Colors/Edit/' + id,
-//            success: function (color) {
-//                $('#editColorModal #id');
-//            }
-//        });
-//        // không cho phép tắt modal khi click bên ngoài modal
-//        var option = { backdrop: true };
-
-//        // load modal
-//        $modalDialog.load(href, function () {
-//            $modal.modal(option, 'show');
-//        });
-//    });
-
-//});
-
 // Modal Delete Product
 $(document).ready(function () {
 
@@ -522,6 +472,30 @@ $(document).ready(function () {
             }
         });
 
+        // không cho phép tắt modal khi click bên ngoài modal
+        var option = { backdrop: true };
+
+        // load modal
+        $modalDialog.load(href, function () {
+            $modal.modal(option, 'show');
+        });
+    });
+
+});
+
+// Modal Edit Size
+$(document).ready(function () {
+
+    $('.btn-gift-dob').click(function (e) {
+        e.preventDefault();
+
+        var $modal = $('#GiftDoBModal');
+        var $modalDialog = $('.modal-dialog');
+        var href = $(this).prop('href');
+        $.ajax({
+            type: 'GET',
+            url: 'Admin/GiftDoB'
+        });
         // không cho phép tắt modal khi click bên ngoài modal
         var option = { backdrop: true };
 

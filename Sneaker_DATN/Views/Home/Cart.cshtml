@@ -302,14 +302,6 @@
             success: function (result) {
                 $("#tr_" + id).hide();
                 $("#spTotal").html(result);
-
-                //if (result == "0") {
-                //    $("#imgCart").attr("src", '/images/bag.png');
-                //}
-                //else{
-                //    $("#imgCart").attr("src", '/images/bagA.png');
-                //}
-
             }
         });
     }
@@ -320,8 +312,7 @@
         var thanhtien = soluong * gia;
         var sizes = $("#size_" + id).val();
         var colors = $("#color_" + id).val();
-        //alert(sizes);
-        //alert(colors);
+
         $("#tdTien_" + id).html(thanhtien);
         location.reload();
 
@@ -336,12 +327,6 @@
             },
             success: function (result) {
                 $("#spTotal").html(result);
-                //if (result == "0") {
-                //    $("#imgCart").attr("src", '/images/bag.png');
-                //}
-                //else {
-                //    $("#imgCart").attr("src", '/images/bagA.png');
-                //}
             }
         });
     }
