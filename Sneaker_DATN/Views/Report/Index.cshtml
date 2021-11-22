@@ -52,10 +52,14 @@
                             }
                         </div>
                     </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <a href="#"  class="btn-create-user color-btn-create btn btn-success float-right">
-                            <i class="fas fa-plus pr-2"></i>Xuất Exel?
-                        </a>
+                    <div class="col-lg-4 col-sm-6 float-right">
+                        @using (Html.BeginForm("Export", "Report", FormMethod.Post))
+                        {
+                            @Html.TextBox("check", check, new { style = "display:none;"});
+                            <button type="submit" class="search-btn btn btn-success float-right">
+                                Xuất Excel?
+                            </button>
+                        }
                     </div>
                 </div>
             </div>
@@ -86,7 +90,7 @@
                     {
                         <tr class="users-table-info">
                             <th>
-                                @Html.DisplayNameFor(model => model.Users.UserName)
+                                @Html.DisplayNameFor(model => model.Users.FullName)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.Users.Email)
