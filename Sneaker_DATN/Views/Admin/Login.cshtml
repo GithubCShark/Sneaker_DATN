@@ -12,8 +12,17 @@
     <link rel="shortcut icon" href="~/images/fav.png" type="image/x-icon">
     <!-- Custom styles -->
     <link rel="stylesheet" href="~/css/style.css">
-</head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 
+    <style>
+        .test {
+            display: flex;
+            justify-content: center;
+            color: #b72c39;
+        }
+    </style>
+</head>
 <body>
     <!-- <div class="layer"></div> -->
     <main class="page-center signin-ad">
@@ -22,32 +31,39 @@
             <div class="img">
                 <img src="~/images/svg/bg.svg">
             </div>
-            <div class="login-content">
-                <div class="text-danger" asp-validation-summary="All"></div>
-                <form asp-action="Login" method="post">
+            <div class="login-content" ng-app="">
+               
+                <form asp-action="Login" method="post" name="personForm">
                     <h2 class="title">ĐĂNG NHẬP</h2>
                     <input type="hidden" asp-for="ReturnUrl" />
+                    @*<div class="text-danger" asp-validation-summary="All"></div>*@
+                    <span class="test" ng-show="personForm.UserName.$dirty && personForm.UserName.$invalid ">Vui lòng nhập username!</span>
+                    <span class="test" ng-show="personForm.Password.$dirty && personForm.Password.$invalid">Vui lòng nhập password!</span>
                     <div class="input-div one">
                         <div class="i">
-                            <i class="fas fa-user"></i>
+                            <i class='bx bxs-user bx-sm'></i>
                         </div>
                         <div class="div">
                             @*<h5><label asp-for="UserName">Tài khoản</label></h5>*@
-                            <input type="text" asp-for="UserName" class="input" placeholder="UserName" />
+                            <input name="UserName" ng-model="person.fname" required type="text" asp-for="UserName" class="input" placeholder="Username" />
+
                         </div>
                     </div>
                     <div class="input-div pass">
                         <div class="i">
-                            <i class="fas fa-lock"></i>
+                            <i class='bx bxs-lock-alt bx-sm'></i>
                         </div>
                         <div class="div">
                             @*<h5><label asp-for="Password">Mật khẩu</label></h5>*@
-                            <input type="password" asp-for="Password" class="input" placeholder="Password" >
+                            <input name="Password" ng-model="person.lname" required type="password" asp-for="Password" class="input" placeholder="Password">
+
                         </div>
                     </div>
                     <a asp-action="ForgotPassword">Quên mật khẩu?</a>
-                    <input type="submit" class="btn" value="Đăng nhập">
+
+                    <input onclick="addCart(id)" type="submit" class="btn" value="Đăng nhập">
                 </form>
+                
             </div>
         </div>
     </main>
@@ -60,3 +76,39 @@
 </body>
 
 </html>
+
+<script>
+    function addCart(id) {
+        $(".btn" + id).show();
+        setTimeout(function () {
+            $.ajax({
+                url: "/Admin/Index",
+                type: "Post",
+                data: {
+                    id: id,
+                    //size: 0,
+                    //color: 0
+                },
+                success: function (result) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Thêm vào giỏ thành thành công!',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                },
+                error: function (e) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'Thêm vào giỏ thành thất bại!',
+                        showConfirmButton: true,
+                        timer: 1000
+                    })
+                }
+            })
+            $(".btn" + id).hide();
+        }, 500);
+    }
+</script>

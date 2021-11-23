@@ -17,13 +17,14 @@
                         <div class="form-outline d-flex">
                             @using (Html.BeginForm("Index", "User", FormMethod.Get))
                             {
-                                <p class="d-flex">
-                                    @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-                                    @*<input type="submit" value="Search" />*@
-                                    <button type="submit" value="Search" class="search-btn btn btn-primary">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                </p>
+                            <p class="d-flex">
+                                @*@Html.TextBox("SearchString", ViewBag.CurrentFilter as string)*@
+                                @*<input type="submit" value="Search" />*@
+                                <input class="pl-3" id="SearchString" name="SearchString" type="text" value="" placeholder="Nhập tên">
+                                <button type="submit" value="Search" class="search-btn btn btn-primary">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </p>
                             }
                         </div>
 

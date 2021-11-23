@@ -16,7 +16,8 @@
                             @using (Html.BeginForm("Index", "Product", FormMethod.Get))
                             {
                                 <div class="d-flex">
-                                    @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, "", new { placeholder = "Nhập tên" })
+                                    @*@Html.TextBox("SearchString", ViewBag.CurrentFilter as string, "", new { placeholder = "Nhập tên" })*@
+                                    <input class="pl-3" id="SearchString" name="SearchString" type="text" value="" placeholder="Nhập tên">
                                     <button type="submit" value="Search" class="search-btn btn btn-primary">
                                         <i class="fas fa-search"></i>
                                     </button>

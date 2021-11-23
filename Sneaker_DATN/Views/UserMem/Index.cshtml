@@ -17,7 +17,8 @@
                             @using (Html.BeginForm("Index", "UserMem", FormMethod.Get))
                             {
                                 <p class="d-flex">
-                                    @Html.TextBox("SearchString", ViewBag.CurrentFilterSearch as string)
+                                    @*@Html.TextBox("SearchString", ViewBag.CurrentFilterSearch as string)*@
+                                    <input class="pl-3" id="SearchString" name="SearchString" type="text" value="" placeholder="Nhập tên">
                                     <button type="submit" value="Search" class="search-btn btn btn-primary">
                                         <i class="fas fa-search"></i>
                                     </button>
@@ -27,7 +28,12 @@
                                 @using (Html.BeginForm("Index", "UserMem", FormMethod.Get))
                                 {
                                     <div class="d-flex">
-                                        @Html.DropDownList("status", new SelectList(ViewBag.Status))
+                                        @*@Html.DropDownList("status", new SelectList(ViewBag.Status))*@
+                                        <select id="status" name="status">
+                                            <option value="">Chọn trạng thái</option>
+                                            <option value=False>Đang hoạt động</option>
+                                            <option value=True>Ngừng hoạt động</option>
+                                        </select>
                                         <button type="submit" value="Search" class="search-btn btn btn-primary">
                                             <i class="fas fa-search"></i>
                                         </button>
@@ -56,7 +62,7 @@
                         </th>
                         <th class="text-center">
                             <a href="@Url.ActionLink("Index", "UserMem", new { sortOrder = ViewBag.GenderSortParm  })">
-                                <span>Gender</span>
+                                <span>Giới tính</span>
                                 <i class="fas fa-sort ml-1"></i>
                             </a>
                             @*@Html.ActionLink("Giới tính", "Index", new { sortOrder = ViewBag.GenderSortParm })*@
@@ -81,9 +87,9 @@
                         @*<th>
                                 @Html.DisplayNameFor(model => model.Roles)
                             </th>*@
-                        <th>
+                        <th class="text-center">
                             <a href="@Url.ActionLink("Index", "UserMem", new { sortOrder = ViewBag.LockSortParm  })">
-                                <span>Khóa</span>
+                                <span>Trạng thái</span>
                                 <i class="fas fa-sort ml-2"></i>
                             </a>
                             @*@Html.DisplayNameFor(model => model.First().Lock)*@
@@ -130,7 +136,7 @@
                                     }
                                 @Html.DisplayFor(modelItem => item.RoleID)
                                 </td>*@
-                            <td class="col-lg-1">
+                            <td class="col-lg-1 text-center">
                                 @Html.DisplayFor(modelItem => item.Lock)
                             </td>
                             <td class="col-lg-2">

@@ -4620,7 +4620,7 @@ Audio
     .color-dashboard .form-outline select {
         border-radius: 8px 0 0 8px;
         padding: 0rem 1rem;
-        max-width: 148px;
+        max-width: 200px;
     }
         .color-dashboard .form-outline select option {
             height: 100rem;

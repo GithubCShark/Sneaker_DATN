@@ -215,7 +215,7 @@ namespace Sneaker_DATN.Controllers
             {
                 // 3.1 Nếu biến sortOrder sắp giảm thì sắp giảm theo LinkName
                 case "product_desc":
-                    productFilters = productFilters.OrderBy(s => s.ProductID);
+                    productFilters = productFilters.OrderByDescending(s => s.Status);
                     break;
 
                 case "price":
@@ -227,7 +227,7 @@ namespace Sneaker_DATN.Controllers
 
                 // 3.2 Mặc định thì sẽ sắp tăng
                 default:
-                    productFilters = productFilters.OrderByDescending(s => s.ProductID);
+                    productFilters = productFilters.OrderBy(s => s.Status);
                     break;
             }
 
@@ -255,11 +255,11 @@ namespace Sneaker_DATN.Controllers
             switch (sortOrder)
             {
                 case "product_desc":
-                    productFilters = productFilters.OrderBy(s => s.ProductID);
+                    productFilters = productFilters.OrderByDescending(s => s.Status);
                     break;
-
+                    
                 default:
-                    productFilters = productFilters.OrderByDescending(s => s.ProductID);
+                    productFilters = productFilters.OrderBy(s => s.Status);
                     break;
             }
 
