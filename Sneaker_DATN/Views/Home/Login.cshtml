@@ -1,68 +1,78 @@
 ﻿@model Sneaker_DATN.Models.ViewModels.ViewWebLogin
 @{
     ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <style>
     .modal-body {
-        /*            margin-top: 1.2rem;*/
         background-color: #fff;
         border-radius: 18px;
     }
-
 </style>
 
-<div class="container modal-content ">
-    <div class="modal-body">
-        <section class="login_box_area">
-                <div class="row">
-                    <div class="col-lg-7">
-                        <div class="login_box_img">
-                            <img class="img-fluid" src="~/images/login.gif" alt="">
-                            <div class="hover">
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+        </div>
+    </div>
+</section>
+<!-- End Banner Area -->
+<!-- Start breadcumb Area -->
+<section class="breadcrumb-login">
+    <div class="container">
+        <nav aria-label="breadcrumb ">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Đăng nhập</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+<!-- End breadcumb Area -->
+<!--================Login Box Area =================-->
+<section class="login_box_area">
+    <div class="container shadow-lg">
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="login_box_img">
+                    <img class="img-fluid" src="~/images/Login.gif" alt="">
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="login_form_inner">
+                    <h3>Đăng nhập</h3>
+                    <div class="text-danger" asp-validation-summary="All"></div>
+                    <form asp-action="Login" class="row login_form" method="post" id="contactForm"
+                          novalidate="novalidate">
+                        <input type="hidden" asp-for="ReturnUrl" />
+                        <div class="col-md-12 form-group">
+                            <input type="text" asp-for="UserName" id="username" class="form-control"
+                                   placeholder="Tên đăng nhập">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <input type="password" asp-for="Password" id="password" class="form-control"
+                                   placeholder="Mật khẩu">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <button type="submit" value="submit" class="primary-btn btnLogin">Đăng nhập</button>
+                            <!-- Divider Text -->
+                            <div class="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
+                                <div class="border-bottom w-100 ml-5"></div>
+                                <span class="px-2 small text-muted font-weight-bold text-muted">OR</span>
+                                <div class="border-bottom w-100 mr-5"></div>
+                            </div>
+                            <a asp-action="ForgotPassword" class="text-center font-weight-bold">Quên mật khẩu ?</a>
+                            <div class="login_form_register text-center font-weight-bold">
+                                Bạn chưa có tài khoản ?
+                                <a asp-action="Register">Đăng ký</a>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-5">
-                        <div class="login_form_inner">
-                            <button type="button" class="close close-login" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h3>Đăng nhập</h3>
-                            <div class="text-danger" asp-validation-summary="All"></div>
-                            <form asp-action="Login" class="row login_form" method="post" id="contactForm"
-                                  novalidate="novalidate">
-                                <input type="hidden" asp-for="ReturnUrl" />
-                                <div class="col-md-12 form-group">
-                                    <input type="text" asp-for="UserName" id="username" class="form-control"
-                                           placeholder="Tên đăng nhập">
-                                </div>
-                                <div class="col-md-12 form-group">
-                                    <input type="password" asp-for="Password" id="password" class="form-control"
-                                           placeholder="Mật khẩu">
-                                </div>
-                                <div class="col-md-12 form-group">
-                                    <div class="creat_account">
-                                        <input type="checkbox" id="f-option2" name="selector">
-                                        <label for="f-option2">Ghi nhớ mật khẩu</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 form-group">
-                                    <button type="submit" value="submit" class="primary-btn btnLogin">Đăng nhập</button>
-                                    <!-- Divider Text -->
-                                    <div class="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
-                                        <div class="border-bottom w-100 ml-5"></div>
-                                        <span class="px-2 small text-muted font-weight-bold text-muted">OR</span>
-                                        <div class="border-bottom w-100 mr-5"></div>
-                                    </div>
-                                    <a asp-action="ForgotPassword" class="text-center login_form_fotgot">Quên mật khẩu?</a>
-                                    <div class="login_form_register text-center">
-                                        Bạn chưa có tài khoảng?
-                                        <a href="#" class="">Đăng ký</a>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                    </form>
                 </div>
-        </section>
+            </div>
+        </div>
     </div>
-</div>
+</section>
+<!--================End Login Box Area =================-->

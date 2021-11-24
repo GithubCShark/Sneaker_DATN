@@ -1,6 +1,7 @@
 ﻿@model Sneaker_DATN.Models.Users
 @{
     ViewData["Title"] = "Đăng Ký";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <style>
@@ -11,20 +12,38 @@
     }
 </style>
 
-<div class="container modal-content">
-    <div class="modal-body">
-        <section class="register_box_area">
-
-            <div class="row">
-
-                <div class="card flex-row border-0 rounded-3 overflow-hidden">
-                    <div class="col-lg-7 register_box_img">
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+        </div>
+    </div>
+</section>
+<!-- End Banner Area -->
+<!-- Start breadcumb Area -->
+<section class="breadcrumb-login">
+    <div class="container">
+        <nav aria-label="breadcrumb ">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Đăng ký</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+<!-- End breadcumb Area -->
+<!--================Register Box Area =================-->
+<section class="register_box_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card flex-row my-5 border-0 shadow-lg rounded-3 overflow-hidden">
+                    <div class="col-md-5 d-none d-md-flex  register_box_img">
                         <img src="~/images/svg/sign-up-home.svg">
                     </div>
 
                     <!-- Registeration Form -->
-                    <div class="col-lg-5 col-md-12 col-sm-12 ml-auto register_box_form">
-                        <button type="button" class="close close-register" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <div class="col-md-7 col-lg-6 ml-auto register_box_form">
                         <h3 class="text-center">Đăng ký</h3>
                         <form asp-action="Register" enctype="multipart/form-data" method="post" id="contactForm" novalidate="novalidate">
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -64,7 +83,7 @@
                                 </div>
                                 <div class="form-group col-lg-12 mb-4">
                                     <textarea asp-for="Address" placeholder="Nhập địa chỉ"
-                                           class="form-control form-control-address"></textarea>
+                                              class="form-control form-control-address"></textarea>
                                     <span asp-validation-for="Address" class="text-danger"></span>
                                 </div>
                                 <!-- Password -->
@@ -94,13 +113,12 @@
                                         Bạn đã có tài khoản? <a asp-action="Login">Login</a>
                                     </p>
                                 </div>
-
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-        </section>
-
+        </div>
     </div>
-</div>
+</section>
+<!--================End Register Box Area =================-->

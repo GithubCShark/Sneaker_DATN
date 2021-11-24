@@ -151,8 +151,9 @@
                                 }
                                 else
                                 {
-                                    <li class="nav-item"><a href='@Url.Action("Login","Home")' class="nav-link btn-login">Đăng nhập</a></li>
-                                    <li class="nav-item"><a href='@Url.Action("Register","Home")' class="nav-link btn-register">Đăng ký</a></li>
+                                    <li class="nav-item"><a asp-controller="Home" asp-action="Login" class="nav-link">Đăng nhập</a></li>
+                                    <li class="nav-item"><a asp-controller="Home" asp-action="Register" class="nav-link">Đăng ký</a></li>
+                                    <li class="nav-item"><a asp-controller="Home" asp-action="ForgotPassword" class="nav-link">Quên mật khẩu</a></li>
                                 }
                             </ul>
                         </li>
@@ -164,7 +165,7 @@
                     </button>
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                         <ul class="nav navbar-nav menu_nav ml-auto">
-                            <li class="nav-item active"><a class="nav-link" asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">Trang chủ</a></li>
                             <li class="nav-item submenu">
                                 <a class="nav-link" asp-controller="Home" asp-action="Products">Sản phẩm</a>
                             </li>
@@ -194,21 +195,6 @@
         </div>
     </header>
 
-    @* modal *@
-    <!-- Modal Login -->
-    <div class="modal fade-scale" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <!-- empty -->
-        </div>
-    </div>
-    <!-- Modal Login -->
-    <!-- Modal Register -->
-    <div class="modal fade-scale" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <!-- empty -->
-        </div>
-    </div>
-    <!-- Modal Register -->
     <!-- Modal Minicart -->
     <div class="modal fade-scale-right" id="miniCartModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">

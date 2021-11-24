@@ -26,12 +26,12 @@ namespace Sneaker_DATN.Controllers
     public class HomeController : Controller
     {
         private readonly IWebHostEnvironment _webHostEnviroment;
-        private IUserMemSvc _userMemSvc;
-        private IProductSvc _productSvc;
-        private IUploadHelper _uploadHelper;
-        private IOrderSvc _orderSvc;
-        private IOrderDetailSvc _orderDetailSvc;
-        private IDiscountSvc _discountSvc;
+        private readonly IUserMemSvc _userMemSvc;
+        private readonly IProductSvc _productSvc;
+        private readonly IUploadHelper _uploadHelper;
+        private readonly IOrderSvc _orderSvc;
+        private readonly IOrderDetailSvc _orderDetailSvc;
+        private readonly IDiscountSvc _discountSvc;
         private readonly DataContext _context;
         protected IEncodeHelper _encodeHelper;
         protected ISendMailService _sendGmail;
@@ -86,6 +86,10 @@ namespace Sneaker_DATN.Controllers
                         HttpContext.Session.SetString(SessionKey.Guest.Guest_Avatar, user.ImgUser);
                     }
                     return RedirectToAction(nameof(Index), "Home", ViewData["checklog"] = true);
+                }
+                else
+                {
+                    ModelState.AddModelError("loginError", "Tài khoản hoặc mật khẩu sai.");
                 }
             }
             return PartialView(viewWebLogin);

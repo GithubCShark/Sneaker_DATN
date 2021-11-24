@@ -6,7 +6,8 @@
 @{ string userName = Context.Session.GetString(SessionKey.User.UserName);}
 @{ string fullName = Context.Session.GetString(SessionKey.User.FullName);}
 @{ string avatar = Context.Session.GetString(SessionKey.User.Avatar);}
-@{ 
+
+@{
     int id = 0;
     if (Context.Session.GetInt32(SessionKey.User.ID.ToString()) != null)
     {
@@ -24,10 +25,7 @@
     <title>D-ACH Admin | @ViewData["Title"]</title>
     <!-- Bootstrap 4 / AngularJS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    @*<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-        <script src="https://code.angularjs.org/1.8.2/angular-route.min.js"></script>*@
+
     <!-- Icon -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
           integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
@@ -37,7 +35,6 @@
     <!-- Custom styles -->
     <link rel="stylesheet" href="~/css/style-admin.css">
     <link rel="stylesheet" href="~/css/style.css">
-    @*<link href="~/js/chosen/chosen.min.css" rel="stylesheet" />*@
 
     <style>
         .modal-dialog {
@@ -187,11 +184,6 @@
                                 <span class="icon marketing" aria-hidden="true"></span>Mã giảm giá
                             </a>
                         </li>
-                        @*<li>
-                            <a asp-controller="Discount" asp-action="Index">
-                                <span class="icon fas fa-percent ml-1" aria-hidden="true"></span><span class="ml-2">Mã giảm giá</span>
-                            </a>
-                        </li>*@
                         <li>
                             <a asp-controller="User" asp-action="Index">
                                 <span class="icon user-3" aria-hidden="true"></span>Quản lý tài khoản
@@ -214,7 +206,7 @@
                         </picture>
                     </span>
                     <div class="sidebar-user-info">
-                        @*<span class="sidebar-user__title">@ViewBag.fullname</span>*@
+                        <span class="sidebar-user__title">@fullName</span>
                         <span class="sidebar-user__subtitle">Support manager</span>
                     </div>
                 </a>
@@ -248,7 +240,7 @@
                             <span class="icon menu-toggle--gray" aria-hidden="true"></span>
                         </button>
                         @*<div class="lang-switcher-wrapper">
-   
+
                             </div>*@
                         <button class="theme-switcher gray-circle-btn" type="button" title="Switch theme">
                             <span class="sr-only">Đổi giao diện</span>
@@ -298,22 +290,6 @@
             </nav>
             <!-- ! Main -->
             @RenderBody()
-            <!-- ! Footer -->
-            @*<footer class="footer">
-                    <div class="container footer--flex">
-                        <div class="footer-start">
-                            <p>
-                                2021 © DACH Team - By: <a href="https://www.facebook.com/maitheanh.tlst/" target="_blank"
-                                                          rel="noopener noreferrer">anh.mt1602@gmail.com</a>
-                            </p>
-                        </div>
-                        <ul class="footer-end">
-                            <li><a href="##">Thông tin</a></li>
-                            <li><a href="##">Hỗ trợ</a></li>
-                            <li><a href="##">Thanh toán</a></li>
-                        </ul>
-                    </div>
-                </footer>*@
         </div>
     </div>
     <!-- Chart library -->
@@ -337,69 +313,3 @@
 </body>
 
 </html>
-
-<script>
-    //var header = document.getElementById("myDIV");
-    //var btns = header.getElementsByClassName("dashboard-menu");
-    //for (var i = 0; i < btns.length; i++) {
-    //    btns[i].addEventListener("click", function () {
-    //        var current = document.getElementsByClassName("active");
-    //        current[0].className = current[0].className.replace(" active", "");
-    //        this.className += " active";
-    //    });
-    //}
-    //var header = document.getElementById("myDIV");
-    //var btns = header.getElementsByClassName("dashboard-menu");
-    //for (var i = 0; i < btns.length; i++) {
-    //    btns[i].addEventListener("click", function () {
-    //        var current = document.getElementsByClassName("active");
-    //        if (current.length > 0) {
-    //            current[0].className = current[0].className.replace(" active", "");
-    //        }
-    //        this.className += " active";
-    //    });
-    //}
-
-    //var app = angular.module("myApp", ["ngRoute"]);
-    //app.controller("index", function ($scope, $http) {
-    //    $scope.setac = function () {
-    //        $scope.acdefaul = ""
-    //        $scope.ac1 = ""
-    //        $scope.ac2 = ""
-    //        $scope.ac3 = ""
-    //        $scope.ac4 = ""
-    //        $scope.ac5 = ""
-    //        $scope.ac6 = ""
-    //    }
-    //    $scope.acside = function (x) {
-    //        if (x == "1") {
-    //            $scope.setac();
-    //            $scope.ac1 = "active"
-    //        }
-    //        else if (x == "2") {
-    //            $scope.setac();
-    //            $scope.ac2 = "active"
-    //        }
-    //        else if (x == "3") {
-    //            $scope.setac();
-    //            $scope.ac3 = "active"
-    //        }
-    //        else if (x == "4") {
-    //            $scope.setac();
-    //            $scope.ac4 = "active"
-    //        }
-    //        else if (x == "5") {
-    //            $scope.setac();
-    //            $scope.ac5 = "active"
-    //        }
-    //        else if (x == "6") {
-    //            $scope.setac();
-    //            $scope.ac6 = "active"
-    //        }
-    //        else {
-    //            $scope.setac();
-    //            $scope.acdefaul = "active"
-    //        }
-    //    }
-    //})
-</script>

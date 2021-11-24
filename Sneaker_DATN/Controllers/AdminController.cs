@@ -17,10 +17,10 @@ namespace Sneaker_DATN.Controllers
     public class AdminController : Controller
     {
         private readonly IWebHostEnvironment _webHostEnviroment;
-        private IAdminSvc _adminSvc;
+        private readonly IAdminSvc _adminSvc;
         protected ISendMailService _sendGmail;
-        private DataContext _context;
-        private IUserMemSvc _userMemSvc;
+        private readonly DataContext _context;
+        private readonly IUserMemSvc _userMemSvc;
 
         public AdminController(IWebHostEnvironment webHostEnvironment, IAdminSvc adminSvc, ISendMailService sendGmail, 
             DataContext dataContext, IUserMemSvc userMemSvc)
@@ -156,6 +156,10 @@ namespace Sneaker_DATN.Controllers
                         HttpContext.Session.SetString(SessionKey.User.Avatar, user.ImgUser);
                     }
                     return RedirectToAction(nameof(Index), "Admin");
+                }
+                else
+                {
+                    ModelState.AddModelError("loginError", "Tài khoản hoặc mật khẩu sai.");
                 }
             }
             return View(viewLogin);
