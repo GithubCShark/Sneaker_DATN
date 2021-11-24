@@ -873,18 +873,28 @@ namespace Sneaker_DATN.Controllers
             return View(_user);
         }
 
-        public IActionResult Search(int? page, string searchString)
-        {
-            if (page == null) page = 1;
-            var sizes = _context.Products.Include(b => b.ProductName)
-                .OrderBy(b => b.ProductID);
-            int pageSize = 4;
-            int pageNumber = (page ?? 1);
+        //public IActionResult Search(int? page, string searchString, string currentFilterSearch)
+        //{
+        //    if (searchString != null)
+        //    {
+        //        page = 1;
+        //    }
+        //    else
+        //    {
+        //        searchString = currentFilterSearch;
+        //    }
+        //    ViewBag.currentFilterSearch = searchString;
 
-            ViewData["brand"] = _context.Brands.ToList();
+        //    if (page == null) page = 1;
+        //    var sizes = _context.Products.Include(b => b.ProductName)
+        //        .OrderBy(b => b.ProductID);
+        //    int pageSize = 9;
+        //    int pageNumber = (page ?? 1);
 
-            return View(_productSvc.SneakerSearchString(searchString).ToPagedList(pageNumber, pageSize));
-        }
+        //    ViewData["brand"] = _context.Brands.ToList();
+
+        //    return View(_productSvc.SneakerSearchString(searchString).ToPagedList(pageNumber, pageSize));
+        //}
 
         [NonAction]
         public string RandomString(int size, bool lowerCase)
