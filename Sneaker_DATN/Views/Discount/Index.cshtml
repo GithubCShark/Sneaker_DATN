@@ -7,13 +7,6 @@
 }
 
 <style>
-    .custom-checkbox-index input[type="checkbox"] {
-        width: 20px;
-        height: 20px;
-        border-radius: 8px !important;
-        background-color: #576ee0 !important;
-        color: white !important;
-    }
     /* de o day*/
     .users-table td {
         border: none;
@@ -52,55 +45,44 @@
                         <th>
                             @Html.DisplayNameFor(model => model.First().VoucherCode)
                         </th>
-                        <th>
-                            @*@Html.DisplayNameFor(model => model.First().DayStart)*@
+                        <th class="text-center">
                             <a href="@Url.ActionLink("Index", "Discount", new { sortOrder = ViewBag.DayStartSortParm })">
                                 <span>Bắt đầu</span>
-                                <i class="fas fa-sort ml-2"></i>
+                                <i class="fas fa-sort ml-1"></i>
                             </a>
                         </th>
-                        <th>
+                        <th class="text-center">
                             <a href="@Url.ActionLink("Index", "Discount", new { sortOrder = ViewBag.DayEndSortParm })">
                                 <span>Kết thúc</span>
-                                <i class="fas fa-sort ml-2"></i>
+                                <i class="fas fa-sort ml-1"></i>
                             </a>
-                            @*@Html.DisplayNameFor(model => model.First().DayEnd)*@
                         </th>
-                        <th>
+                        <th class="text-center">
                             <a href="@Url.ActionLink("Index", "Discount", new { sortOrder = ViewBag.DateUseSortParm })">
                                 <span>HSD</span>
-                                <i class="fas fa-sort ml-2"></i>
+                                <i class="fas fa-sort ml-1"></i>
                             </a>
-                            @*@Html.DisplayNameFor(model => model.First().DateUse)*@
                         </th>
                         <th class="text-center">
                             KH sử dụng
-                            @*@Html.DisplayNameFor(model => model.CustomerId)*@
                         </th>
                         <th class="text-center">
                             <a href="@Url.ActionLink("Index", "Discount", new { sortOrder = ViewBag.StatusSortParm })">
                                 <span>Trạng thái</span>
-                                <i class="fas fa-sort ml-2"></i>
+                                <i class="fas fa-sort ml-1"></i>
                             </a>
-                            @*@Html.DisplayNameFor(model => model.Status)*@
                         </th>
-                        @*<th class="text-center">
-                                @Html.DisplayNameFor(model => model.Classify)
-                            </th>*@
                         <th class="text-center">
                             <a href="@Url.ActionLink("Index", "Discount", new { sortOrder = ViewBag.PriceSortParm })">
                                 <span>Giảm $</span>
-                                <i class="fas fa-sort ml-2"></i>
+                                <i class="fas fa-sort ml-1"></i>
                             </a>
-                            @*@Html.DisplayNameFor(model => model.Price)*@
                         </th>
                         <th class="text-center">
                             <a href="@Url.ActionLink("Index", "Discount", new { sortOrder = ViewBag.PercentSortParm })">
                                 <span>Giảm %</span>
-                                <i class="fas fa-sort ml-2"></i>
+                                <i class="fas fa-sort ml-1"></i>
                             </a>
-
-                            @*@Html.DisplayNameFor(model => model.Percent)*@
                         </th>
                         <th></th>
                     </tr>
@@ -112,13 +94,13 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.VoucherCode)
                             </td>
-                            <td>
+                            <td class="text-center">
                                 @Html.DisplayFor(modelItem => item.DayStart)
                             </td>
-                            <td>
+                            <td class="text-center">
                                 @Html.DisplayFor(modelItem => item.DayEnd)
                             </td>
-                            <td>
+                            <td class="text-center">
                                 @Html.DisplayFor(modelItem => item.DateUse)
                             </td>
                             <td class="text-center">

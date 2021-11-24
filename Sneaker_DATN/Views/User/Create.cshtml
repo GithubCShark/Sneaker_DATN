@@ -74,10 +74,8 @@
                 <select asp-for="RoleID" class="form-control-select" asp-items="ViewBag.RoleNameC"></select>
                 <span asp-validation-for="RoleID" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label class="control-label">
-                    @Html.DisplayNameFor(model => model.Lock)
-                </label>
+            <div class="form-group custom-checkbox">
+                <label class="control-label">Trạng thái</label>
                 <input class="form-checkbox-input ml-2" asp-for="Lock" />
             </div>
             <div class="text-center">

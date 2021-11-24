@@ -8504,7 +8504,8 @@ h6 {
 
     /* cart */
     .colorlib-product {
-        padding: 3em 7em 7em 7em;
+        /*padding: 3em 7em 7em 7em;*/
+        padding: 0;
         clear: both;
     }
 

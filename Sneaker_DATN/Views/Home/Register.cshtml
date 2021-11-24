@@ -37,11 +37,10 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <div class="card flex-row my-5 border-0 shadow-lg rounded-3 overflow-hidden">
+                <div class="card flex-row my-5 border-0 shadow-lg" style="border-radius: 18px;">
                     <div class="col-md-5 d-none d-md-flex  register_box_img">
                         <img src="~/images/svg/sign-up-home.svg">
                     </div>
-
                     <!-- Registeration Form -->
                     <div class="col-md-7 col-lg-6 ml-auto register_box_form">
                         <h3 class="text-center">Đăng ký</h3>
@@ -58,7 +57,7 @@
                                            class="form-control">
                                     <span asp-validation-for="FullName" class="text-danger"></span>
                                 </div>
-                                <div class="form-group col-lg-6 mb-4">
+                                <div class="form-group custom-select-register col-lg-6 mb-4">
                                     <select asp-for="Gender" class="form-select form-control">
                                         <option value="true">Nam</option>
                                         <option value="false">Nữ</option>
@@ -83,7 +82,7 @@
                                 </div>
                                 <div class="form-group col-lg-12 mb-4">
                                     <textarea asp-for="Address" placeholder="Nhập địa chỉ"
-                                              class="form-control form-control-address"></textarea>
+                                              class="form-control form-control-address" rows="5"></textarea>
                                     <span asp-validation-for="Address" class="text-danger"></span>
                                 </div>
                                 <!-- Password -->
@@ -110,7 +109,7 @@
                                 <!-- Already Registered -->
                                 <div class="text-center w-100">
                                     <p class="text-muted font-weight-bold">
-                                        Bạn đã có tài khoản? <a asp-action="Login">Login</a>
+                                        Bạn đã có tài khoản? <a class="text-danger" asp-action="Login">Login</a>
                                     </p>
                                 </div>
                             </div>

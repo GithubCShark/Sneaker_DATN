@@ -18,8 +18,6 @@
                             @using (Html.BeginForm("Index", "User", FormMethod.Get))
                             {
                             <p class="d-flex">
-                                @*@Html.TextBox("SearchString", ViewBag.CurrentFilter as string)*@
-                                @*<input type="submit" value="Search" />*@
                                 <input class="pl-3" id="SearchString" name="SearchString" type="text" value="" placeholder="Nhập tên">
                                 <button type="submit" value="Search" class="search-btn btn btn-primary">
                                     <i class="fas fa-search"></i>
@@ -46,10 +44,8 @@
                         <th>
                             <a href="@Url.ActionLink("Index", "User", new { sortOrder = ViewBag.NameSortParm })">
                                 <span>Tài khoản</span>
-                                <i class="fas fa-sort ml-2"></i>
+                                <i class="fas fa-sort ml-1"></i>
                             </a>
-                            @*@Html.ActionLink("Tài khoản", "Index", new { sortOrder = ViewBag.NameSortParm })*@
-                            @*@Html.DisplayNameFor(model => model.First().UserName)*@
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.First().FullName)
@@ -57,25 +53,24 @@
                         <th>
                             @Html.DisplayNameFor(model => model.First().Email)
                         </th>
-                        <th>
+                        <th class="text-center">
                             @Html.DisplayNameFor(model => model.First().Gender)
                         </th>
-                        <th>
+                        <th class="text-center">
                             @Html.DisplayNameFor(model => model.First().PhoneNumber)
                         </th>
-                        <th>
+                        <th class="text-center">
                             <a href="@Url.ActionLink("Index", "User", new { sortOrder = ViewBag.DateSortParm })">
                                 <span>Ngày sinh</span>
-                                <i class="fas fa-sort ml-2"></i>
+                                <i class="fas fa-sort ml-1"></i>
                             </a>
-                            @*@Html.ActionLink("Ngày sinh", "Index", new { sortOrder = ViewBag.DateSortParm })*@
-                            @*@Html.DisplayNameFor(model => model.First().DOB)*@
                         </th>
-                        <th>
+                        <th class="text-center">
                             @Html.DisplayNameFor(model => model.First().Roles)
                         </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.First().Lock)
+                        <th class="text-center">
+                            Trạng thái
+                            @*@Html.DisplayNameFor(model => model.First().Lock)*@
                         </th>
                         <th></th>
                     </tr>
@@ -93,7 +88,7 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Email)
                             </td>
-                            <td>
+                            <td class="text-center">
                                 @if (item.Gender)
                                 {
                                     <span>Nam</span>
@@ -104,13 +99,13 @@
                                 }
                                 @*@Html.DisplayFor(modelItem => item.Gender)*@
                             </td>
-                            <td>
+                            <td class="text-center">
                                 @Html.DisplayFor(modelItem => item.PhoneNumber)
                             </td>
-                            <td>
+                            <td class="text-center">
                                 @Html.DisplayFor(modelItem => item.DOB)
                             </td>
-                            <td>
+                            <td class="text-center">
                                 @foreach (var rl in ViewBag.role)
                                 {
                                     if (rl.RoleID == item.RoleID)
@@ -119,7 +114,7 @@
                                     }
                                 }
                             </td>
-                            <td>
+                            <td class="custom-checkbox-index text-center">
                                 @Html.DisplayFor(modelItem => item.Lock)
                             </td>
                             <td>

@@ -51,10 +51,16 @@
                             @Html.DisplayNameFor(model => model.First().FullName)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.First().Total)
+                            <a href="@Url.ActionLink("Index", "Orders", new { sortOrder = ViewBag.TotalSortParm })">
+                                <span>Tổng tiền</span>
+                                <i class="fas fa-sort ml-1"></i>
+                            </a>
                         </th>
                         <th>
-                            Thanh toán
+                            <a href="@Url.ActionLink("Index", "Orders", new { sortOrder = ViewBag.PaymentAmountSortParm })">
+                                <span>Thanh toán</span>
+                                <i class="fas fa-sort ml-1"></i>
+                            </a>
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.First().Status)
@@ -66,7 +72,10 @@
                             Địa chỉ
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.First().DateCreate)
+                            <a href="@Url.ActionLink("Index", "Orders", new { sortOrder = ViewBag.DateCreateSortParm })">
+                                <span>Ngày đặt</span>
+                                <i class="fas fa-sort ml-1"></i>
+                            </a>
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.First().Note)

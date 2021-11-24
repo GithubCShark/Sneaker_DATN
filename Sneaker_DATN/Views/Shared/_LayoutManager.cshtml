@@ -92,7 +92,7 @@
             max-width: 800px;
         }
 
-        .container-modal-large .form-checkbox-input {
+        /*.container-modal-large */.form-checkbox-input {
             cursor: pointer;
             width: 20px;
             height: 20px;
@@ -102,6 +102,22 @@
         .modal-content .custom-detail {
             padding: 1rem;
         }
+        .custom-checkbox-index input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            border-radius: 8px !important;
+            background-color: #576ee0 !important;
+            color: white !important;
+        }
+        .users-table-ad-index {
+            background: #fff;
+            border-radius: 18px;
+            height: 100%;
+            padding: 1rem;
+        }
+            .users-table-ad-index .users-table-info{
+                border-top: none;
+            }
     </style>
 </head>
 
@@ -113,7 +129,7 @@
         <!-- ! Sidebar -->
         <aside class="sidebar">
             <div class="sidebar-start">
-                <div class="sidebar-head">
+                <div class="sidebar-head d-flex justify-content-center">
                     <a asp-controller="Admin" asp-action="Index" class="logo-wrapper" title="Home">
                         <span class="sr-only">Home</span>
                         <img class="icon" src="~/images/avatar/Logoteam.png" />
@@ -124,31 +140,31 @@
                     </a>
                     <button class="sidebar-toggle transparent-btn" title="Menu" type="button">
                         <span class="sr-only">Toggle menu</span>
-                        <span class="icon menu-toggle" aria-hidden="true"></span>
+                        <span class="icon bx bx-menu bx-sm text-light" aria-hidden="true"></span>
                     </button>
                 </div>
                 <div id="myDIV" class="sidebar-body">
                     <ul class="sidebar-body-menu">
                         <li>
                             <a class="dashboard-menu" asp-controller="Admin" asp-action="Index">
-                                <span class="icon home" aria-hidden="true"></span>Trang Chủ
+                                <span class="icon bx bx-home-alt bx-sm" aria-hidden="true"></span>Trang Chủ
                             </a>
                         </li>
                         <li>
                             <a class="dashboard-menu" asp-controller="Orders" asp-action="Index">
-                                <span class="icon document" aria-hidden="true"></span>Đơn Hàng
+                                <span class="icon bx bx-shopping-bag bx-sm" aria-hidden="true"></span>Đơn Hàng
                             </a>
                         </li>
                         <li>
                             <a class="dashboard-menu" asp-controller="UserMem" asp-action="Index">
-                                <span class="icon user-3" aria-hidden="true"></span>Khách Hàng
+                                <span class="icon bx bx-user bx-sm" aria-hidden="true"></span>Khách Hàng
                             </a>
                         </li>
                         <li>
                             <a class="show-cat-btn" href="#">
-                                <span class="icon category" aria-hidden="true"></span>Sản Phẩm
+                                <span class="icon bx bx-category-alt bx-sm" aria-hidden="true"></span>Sản Phẩm
                                 <span class="category__btn transparent-btn" title="Open list">
-                                    <span class="icon arrow-down" aria-hidden="true"></span>
+                                    <span class="icon bx bxs-down-arrow" aria-hidden="true"></span>
                                 </span>
                             </a>
                             <ul class="cat-sub-menu">
@@ -165,9 +181,9 @@
                         </li>
                         <li>
                             <a class="show-cat-btn1" href="#">
-                                <span class="icon report" aria-hidden="true"></span>Thống Kê, Báo Cáo
+                                <span class="icon bx bxs-report bx-sm" aria-hidden="true"></span>Thống Kê, Báo Cáo
                                 <span class="category__btn1 transparent-btn" title="Open list">
-                                    <span class="icon arrow-down" aria-hidden="true"></span>
+                                    <span class="icon bx bxs-down-arrow" aria-hidden="true"></span>
                                 </span>
                             </a>
                             <ul class="cat-sub-menu">
@@ -181,33 +197,33 @@
                         </li>
                         <li>
                             <a asp-controller="Discount" asp-action="Index">
-                                <span class="icon marketing" aria-hidden="true"></span>Mã giảm giá
+                                <span class="icon bx bxs-discount bx-sm" aria-hidden="true"></span>Mã giảm giá
                             </a>
                         </li>
                         <li>
                             <a asp-controller="User" asp-action="Index">
-                                <span class="icon user-3" aria-hidden="true"></span>Quản lý tài khoản
+                                <span class="icon bx bxs-user-account bx-sm" aria-hidden="true"></span>Quản lý tài khoản
                             </a>
                         </li>
                         <li>
                             <a asp-controller="User" asp-action="BotChat">
-                                <span class="icon fas fa-robot ml-1" aria-hidden="true"></span><span class="ml-1">BOT chat</span>
+                                <span class="icon bx bxs-bot bx-sm" aria-hidden="true"></span><span class="ml-1">BOT chat</span>
                             </a>
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="sidebar-footer">
-                <a href="##" class="sidebar-user">
-                    <span class="sidebar-user-img">
+                <a href="##" class="sidebar-user d-flex justify-content-center">
+                    <span class="sidebar-user-img mt-2">
                         <picture>
                             @*<source srcset="~/images/avatar/avatar-illustrated-01.webp" type="image/webp">*@
                             <img src="~/images/avatar/@avatar" alt="User name">
                         </picture>
                     </span>
-                    <div class="sidebar-user-info">
+                    <div class="sidebar-user-info  mt-3 pb-2">
                         <span class="sidebar-user__title">@fullName</span>
-                        <span class="sidebar-user__subtitle">Support manager</span>
+                        @*<span class="sidebar-user__subtitle">Support manager</span>*@
                     </div>
                 </a>
             </div>
@@ -271,7 +287,7 @@
                                 <li>
                                     <button class="nav-link btn btn-link">
                                         <a asp-controller="User" asp-action="Info" asp-route-id="@id" class="text-primary">
-                                            <i data-feather="user" aria-hidden="true"></i>
+                                            <i class='bx bx-info-circle bx-sm pr-2'></i>
                                             Thông Tin
                                         </a>
                                     </button>

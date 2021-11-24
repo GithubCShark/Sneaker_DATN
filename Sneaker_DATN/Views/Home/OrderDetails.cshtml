@@ -3,7 +3,19 @@
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@{ int i = 0;}
+@using Sneaker_DATN.Constant
+@using Microsoft.AspNetCore.Http
+@{ string userName = Context.Session.GetString(SessionKey.Guest.Guest_UserName);}
+@{
+    int i = 0;
+    int id = 0;
+    if (userName != null && userName != "")
+    {
+        id = (int)Context.Session.GetInt32(SessionKey.Guest.Guest_ID.ToString());
+    }
+}
+
+
 
 <body>
     <!-- Start Banner Area -->
@@ -20,7 +32,8 @@
             <nav aria-label="breadcrumb ">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Trang chủ</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Lịch sử đơn hàng</li>
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="History" asp-route-id="@id">Lịch sử</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Chi Tiết đơn hàng</li>
                 </ol>
             </nav>
         </div>
@@ -30,123 +43,194 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="process-wrap process-wrap-details d-flex justify-content-center">
+                    <div class="process-wrap process-wrap-details ">
+                        <div class="steps-timeline">
+                            @if (@ViewBag.order.Status == "Đang xử lý")
+                            {
+                                <div class="steps-one text-center active">
+                                    <p><span class='bx bx-cog bx-spin bx-lg'></span></p>
+                                    <h3 class="steps-name">
+                                        Đang xử lý
+                                    </h3>
+                                </div>
 
-                        @if (@ViewBag.order.Status == "Đang xử lý")
-                        {
-                            <div class="process text-center active">
-                                <p><span class='bx bx-cog bx-spin bx-lg'></span></p>
-                                <h3>Đang xử lý</h3>
-                            </div>
-                            <div class="process text-center">
-                                <p><span class='bx bxs-package bx-tada bx-lg'></span></p>
-                                <h3>Đang đóng gói</h3>
-                            </div>
-                            <div class="process text-center">
-                                <p><span class='bx bxs-truck bx-tada bx-lg'></span></p>
-                                <h3>Đang giao</h3>
-                            </div>
-                            <div class="process text-center">
-                                <p><span class='bx bx-badge-check bx-tada bx-lg'></span></p>
-                                <h3>Đã nhận</h3>
-                            </div>
-                            <div class="process text-center">
-                                <p><span class='bx bxs-x-circle bx-spin bx-lg'></span></p>
-                                <h3>Đã hủy</h3>
-                            </div>
-                        }
-                        else if (@ViewBag.order.Status == "Đang đóng gói")
-                        {
-                            <div class="process text-center active">
-                                <p><span class='bx bx-cog bx-spin bx-lg'></span></p>
-                                <h3>Đang xử lý</h3>
-                            </div>
-                            <div class="process text-center active">
-                                <p><span class='bx bxs-package bx-tada bx-lg'></span></p>
-                                <h3>Đang đóng gói</h3>
-                            </div>
-                            <div class="process text-center">
-                                <p><span class='bx bxs-truck bx-tada bx-lg'></span></p>
-                                <h3>Đang giao</h3>
-                            </div>
-                            <div class="process text-center">
-                                <p><span class='bx bx-badge-check bx-tada bx-lg'></span></p>
-                                <h3>Đã nhận</h3>
-                            </div>
-                            <div class="process text-center">
-                                <p><span class='bx bxs-x-circle bx-spin bx-lg'></span></p>
-                                <h3>Đã hủy</h3>
-                            </div>
-                        }
-                        else if (@ViewBag.order.Status == "Đang giao")
-                        {
-                            <div class="process text-center active">
-                                <p><span class='bx bx-cog bx-spin bx-lg'></span></p>
-                                <h3>Đang xử lý</h3>
-                            </div>
-                            <div class="process text-center active">
-                                <p><span class='bx bxs-package bx-tada bx-lg'></span></p>
-                                <h3>Đang đóng gói</h3>
-                            </div>
-                            <div class="process text-center active">
-                                <p><span class='bx bxs-truck bx-tada bx-lg'></span></p>
-                                <h3>Đang giao</h3>
-                            </div>
-                            <div class="process text-center">
-                                <p><span class='bx bx-badge-check bx-tada bx-lg'></span></p>
-                                <h3>Đã nhận</h3>
-                            </div>
-                            <div class="process text-center">
-                                <p><span class='bx bxs-x-circle bx-spin bx-lg'></span></p>
-                                <h3>Đã hủy</h3>
-                            </div>
-                        }
-                        else if (@ViewBag.order.Status == "Đã nhận")
-                        {
-                            <div class="process text-center active">
-                                <p><span class='bx bx-cog bx-spin bx-lg'></span></p>
-                                <h3>Đang xử lý</h3>
-                            </div>
-                            <div class="process text-center active">
-                                <p><span class='bx bxs-package bx-tada bx-lg'></span></p>
-                                <h3>Đang đóng gói</h3>
-                            </div>
-                            <div class="process text-center active">
-                                <p><span class='bx bxs-truck bx-tada bx-lg'></span></p>
-                                <h3>Đang giao</h3>
-                            </div>
-                            <div class="process text-center active">
-                                <p><span class='bx bx-badge-check bx-tada bx-lg'></span></p>
-                                <h3>Đã nhận</h3>
-                            </div>
-                            <div class="process text-center">
-                                <p><span class='bx bxs-x-circle bx-spin bx-lg'></span></p>
-                                <h3>Đã hủy</h3>
-                            </div>
-                        }
-                        else if (@ViewBag.order.Status == "Đã hủy")
-                        {
-                            <div class="process text-center">
-                                <p><span class='bx bx-cog bx-spin bx-lg'></span></p>
-                                <h3>Đang xử lý</h3>
-                            </div>
-                            <div class="process text-center">
-                                <p><span class='bx bxs-package bx-tada bx-lg'></span></p>
-                                <h3>Đang đóng gói</h3>
-                            </div>
-                            <div class="process text-center">
-                                <p><span class='bx bxs-truck bx-tada bx-lg'></span></p>
-                                <h3>Đang giao</h3>
-                            </div>
-                            <div class="process text-center">
-                                <p><span class='bx bx-badge-check bx-tada bx-lg'></span></p>
-                                <h3>Đã nhận</h3>
-                            </div>
-                            <div class="process text-center process-cancel active">
-                                <p><span class='bx bxs-x-circle bx-spin bx-lg'></span></p>
-                                <h3>Đã hủy</h3>
-                            </div>
-                        }
+                                <div class="steps-two text-center">
+                                    <p><span class='bx bxs-package bx-tada bx-lg'></span></p>
+                                    <h3 class="steps-name">
+                                        Đang đóng gói
+                                    </h3>
+                                </div>
+
+                                <div class="steps-three text-center">
+                                    <p><span class='bx bxs-truck bx-tada bx-lg'></span></p>
+                                    <h3 class="steps-name">
+                                        Đang giao
+                                    </h3>
+                                </div>
+
+                                <div class="steps-four text-center">
+                                    <p><span class='bx bx-badge-check bx-tada bx-lg'></span></p>
+                                    <h3 class="steps-name">
+                                        Đã nhận
+                                    </h3>
+                                </div>
+
+                                <div class="steps-five text-center">
+                                    <p><span class='bx bxs-x-circle bx-spin bx-lg'></span></p>
+                                    <h3 class="steps-name">
+                                        Đã hủy
+                                    </h3>
+                                </div>
+                            }
+                            else if (@ViewBag.order.Status == "Đang đóng gói")
+                            {
+                                <div class="steps-one text-center active">
+                                    <p><span class='bx bx-cog bx-spin bx-lg'></span></p>
+                                    <h3 class="steps-name">
+                                        Đang xử lý
+                                    </h3>
+                                </div>
+
+                                <div class="steps-two text-center active">
+                                    <p><span class='bx bxs-package bx-tada bx-lg'></span></p>
+                                    <h3 class="steps-name">
+                                        Đang đóng gói
+                                    </h3>
+                                </div>
+
+                                <div class="steps-three text-center">
+                                    <p><span class='bx bxs-truck bx-tada bx-lg'></span></p>
+                                    <h3 class="steps-name">
+                                        Đang giao
+                                    </h3>
+                                </div>
+
+                                <div class="steps-four text-center">
+                                    <p><span class='bx bx-badge-check bx-tada bx-lg'></span></p>
+                                    <h3 class="steps-name">
+                                        Đã nhận
+                                    </h3>
+                                </div>
+
+                                <div class="steps-five text-center">
+                                    <p><span class='bx bxs-x-circle bx-spin bx-lg'></span></p>
+                                    <h3 class="steps-name">
+                                        Đã hủy
+                                    </h3>
+                                </div>
+                            }
+                            else if (@ViewBag.order.Status == "Đang giao")
+                            {
+                                <div class="steps-one text-center active">
+                                    <p><span class='bx bx-cog bx-spin bx-lg'></span></p>
+                                    <h3 class="steps-name">
+                                        Đang xử lý
+                                    </h3>
+                                </div>
+
+                                <div class="steps-two text-center active">
+                                    <p><span class='bx bxs-package bx-tada bx-lg'></span></p>
+                                    <h3 class="steps-name">
+                                        Đang đóng gói
+                                    </h3>
+                                </div>
+
+                                <div class="steps-three text-center active">
+                                    <p><span class='bx bxs-truck bx-tada bx-lg'></span></p>
+                                    <h3 class="steps-name">
+                                        Đang giao
+                                    </h3>
+                                </div>
+
+                                <div class="steps-four text-center">
+                                    <p><span class='bx bx-badge-check bx-tada bx-lg'></span></p>
+                                    <h3 class="steps-name">
+                                        Đã nhận
+                                    </h3>
+                                </div>
+
+                                <div class="steps-five text-center">
+                                    <p><span class='bx bxs-x-circle bx-spin bx-lg'></span></p>
+                                    <h3 class="steps-name">
+                                        Đã hủy
+                                    </h3>
+                                </div>
+                            }
+                            else if (@ViewBag.order.Status == "Đã nhận")
+                            {
+                                <div class="steps-one text-center active">
+                                    <p><span class='bx bx-cog bx-spin bx-lg'></span></p>
+                                    <h3 class="steps-name">
+                                        Đang xử lý
+                                    </h3>
+                                </div>
+
+                                <div class="steps-two text-center active">
+                                    <p><span class='bx bxs-package bx-tada bx-lg'></span></p>
+                                    <h3 class="steps-name">
+                                        Đang đóng gói
+                                    </h3>
+                                </div>
+
+                                <div class="steps-three text-center active">
+                                    <p><span class='bx bxs-truck bx-tada bx-lg'></span></p>
+                                    <h3 class="steps-name">
+                                        Đang giao
+                                    </h3>
+                                </div>
+
+                                <div class="steps-four text-center active-success">
+                                    <p><span class='bx bx-badge-check bx-tada bx-lg'></span></p>
+                                    <h3 class="steps-name">
+                                        Đã nhận
+                                    </h3>
+                                </div>
+
+                                <div class="steps-five text-center">
+                                    <p><span class='bx bxs-x-circle bx-spin bx-lg'></span></p>
+                                    <h3 class="steps-name">
+                                        Đã hủy
+                                    </h3>
+                                </div>
+                            }
+                            else if (@ViewBag.order.Status == "Đã hủy")
+                            {
+                                <div class="steps-one text-center">
+                                    <p><span class='bx bx-cog bx-spin bx-lg'></span></p>
+                                    <h3 class="steps-name">
+                                        Đang xử lý
+                                    </h3>
+                                </div>
+
+                                <div class="steps-two text-center">
+                                    <p><span class='bx bxs-package bx-tada bx-lg'></span></p>
+                                    <h3 class="steps-name">
+                                        Đang đóng gói
+                                    </h3>
+                                </div>
+
+                                <div class="steps-three text-center">
+                                    <p><span class='bx bxs-truck bx-tada bx-lg'></span></p>
+                                    <h3 class="steps-name">
+                                        Đang giao
+                                    </h3>
+                                </div>
+
+                                <div class="steps-four text-center">
+                                    <p><span class='bx bx-badge-check bx-tada bx-lg'></span></p>
+                                    <h3 class="steps-name">
+                                        Đã nhận
+                                    </h3>
+                                </div>
+
+                                <div class="steps-five text-center active-cancel">
+                                    <p><span class='bx bxs-x-circle bx-spin bx-lg'></span></p>
+                                    <h3 class="steps-name">
+                                        Đã hủy
+                                    </h3>
+                                </div>
+                            }
+                        </div><!-- /.steps-timeline -->
                     </div>
                 </div>
             </div>
@@ -154,7 +238,7 @@
     </div>
 
     <!--================Order Details Area =================-->
-    <section class="order_details">
+    <section class="order_details pt-5">
         <div class="container">
             @*<h3 class="title_confirmation">Thank you. Your order has been received.</h3>*@
             <div class="row order_d_inner">
