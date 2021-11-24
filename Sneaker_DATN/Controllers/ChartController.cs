@@ -24,25 +24,51 @@ namespace Sneaker_DATN.Controllers
         [HttpPost]
         public IActionResult GetAllDateUserMem(int year)
         {
-            List<Users> list = new List<Users>();
-            list = _context.Users.Where(p => p.RoleID.Equals(3)).ToList();
-
-            var listcount = from p in list
+            var lsmember = from p in _context.Users.Where(p => p.RoleID.Equals(3)).ToList()
                             where p.DateCreated.Value.Year == year
                             group p by p.DateCreated.Value.Month into List
                             select  new
                             {
-                                Thang = List.Key,
+                                Thang = List.Key.ToString(),
                                 SoLuong = List.Count()
                             };
+            var lsorder = from p in _context.Orders.ToList()
+                          where p.DateCreate.Year == year
+                          group p by p.DateCreate.Month into List
+                          select new
+                          {
+                              Thang = List.Key.ToString(),
+                              SoLuong = List.Count()
+                          };
+            var lstotal = from p in _context.Orders.ToList()
+                          where p.DateCreate.Year == year
+                          group p by p.DateCreate.Month into List
+                          select List;
             List<ViewChar> dataChart = new List<ViewChar>();
-            foreach (var item in listcount)
+            for (int i = 0; i < 12; i++)
             {
-                dataChart.Add(new ViewChar
+                try
                 {
-                    Thang = item.Thang.ToString(),
-                    SoLuong = item.SoLuong
-                });
+                    dataChart.Add(new ViewChar
+                    {
+                        ThangOrder = lsorder.ToList()[i].Thang,
+                        ThangMem = lsmember.ToList()[i].Thang,
+                        SoLuongOrder = lsorder.ToList()[i].SoLuong,
+                        SoLuongMem = lsmember.ToList()[i].SoLuong,
+                        Total = lstotal.ToList()[i].Sum(x => x.Total)
+                    });
+                }
+                catch (Exception)
+                {
+                    dataChart.Add(new ViewChar
+                    {
+                        ThangOrder = i.ToString(),
+                        ThangMem = i.ToString(),
+                        SoLuongOrder = 0,
+                        SoLuongMem = 0,
+                        Total = 0
+                    });
+                }
             }
             ViewData["DataList"] = dataChart.ToList();
             //return View(dataChart);
