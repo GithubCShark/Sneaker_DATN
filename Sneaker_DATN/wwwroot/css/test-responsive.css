@@ -40,6 +40,11 @@
         .steps-timeline {
             display: block !important;
         }
+
+       /* order complete*/
+        .icon-addcart img{
+            width: 100%;
+        }
 }
 
 

@@ -27,18 +27,6 @@
     }
 }
 
-<style>
-    .img-tbl-report {
-        margin-bottom: 1.5rem;
-        background-color: #fff;
-        border-radius: 18px;
-        display: flex;
-        justify-content: center;
-    }
-    .img-tbl-report img {
-        width: 50% !important;
-    }
-</style>
 
 <div class="color-dashboard">
     <h2 class="main-title text-center pt-4">BÁO CÁO</h2>
@@ -224,15 +212,5 @@
             </table>
         </div>
     </div>
-    @*<div class="col-lg-12 m-auto px-3 pb-5">
-        <div class="pagin-admin shadow-sm">
-            <div class="pagin-left float-left">
-                Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
-            </div>
-            <div class="pagin-right float-right">
-                @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
-            </div>
-        </div>
-    </div>*@
 </div>
 

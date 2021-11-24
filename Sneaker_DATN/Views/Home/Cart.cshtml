@@ -12,20 +12,6 @@
 @{ int checksz = 0; int checkcol = 0;}
 
 
-<style>
-    .colorlib-product .cart-table table{
-        overflow: hidden;
-    }
-    .cart-tbl-select-custom{
-        border: none;
-    }
-    .cart-tbl-select-custom ul{
-       display: none;
-    }
-        .nice-select:after {
-            display: none !important;
-        }
-</style>
 
 <!-- Start Banner Area -->
 <section class="banner-area organic-breadcrumb">
@@ -114,9 +100,9 @@
                                                 <img class="img-fluid" src="~/images/Product/@item.Products.Image" alt="Product" />
                                             </a>
                                         </td>
-                                        <td class="pro-title"><a href="#"> @item.Products.ProductName</a></td>
+                                        <td class="pro-title"><a asp-action="Details" asp-route-id="Products"> @item.Products.ProductName</a></td>
                                         <td class="pro-quantity text-center">
-                                            <select class="cart-tbl-select-custom ml-3" id="size_@iD">
+                                            <select class="cart-tbl-select-custom ml-3 border-0" id="size_@iD">
                                                 @foreach (var i in ViewBag.sz)
                                                 {
                                                     @if (item.Size == i.SizeID)
@@ -165,7 +151,7 @@
                                             </select>
                                         </td>
                                         <td class="pro-quantity text-center">
-                                            <select class="cart-tbl-select-custom ml-4" id="color_@iD">
+                                            <select class="cart-tbl-select-custom ml-4 border-0" id="color_@iD">
                                                 @foreach (var i in ViewBag.col)
                                                 {
                                                     @if (item.Color == i.ColorID)
@@ -258,7 +244,7 @@
                                 {
                                     <a class="primary-btn" onclick="return false" asp-controller="Home" asp-action="Checkout">Tiến hành thanh toán</a>
                                     <br/>
-                                    <span>Bạn cần đăng nhập để đặt hàng</span>
+                                    <span>Bạn cần <a class="text-danger" asp-action="Login">đăng nhập</a> để đặt hàng</span>
                                 }
                             </div>
                         </div>

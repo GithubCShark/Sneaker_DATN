@@ -10,35 +10,6 @@
 }
 
 
-<style>
-    .minicart-custom-content {
-        display: flex;
-        align-items: flex-end;
-    }
-
-    .minicart-custom-body {
-        margin-top: -1rem;
-        width: 600px;
-        padding: 3rem 1rem 3rem 1rem;
-    }
-    .close-minicart {
-        position: absolute;
-        float: left !important;
-        top: 0.8rem;
-        left: 1rem;
-    }
-    .minicart-button-ct {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-    .minicart-item .cart-quantity{
-        border: none;
-        background-color: transparent;
-        width: 2rem;
-        max-width: 2rem;
-    }
-</style>
 
 <div class="modal-content minicart-custom-content">
     <div class="modal-body minicart-custom-body">
@@ -47,11 +18,7 @@
                 abel="Close"><span aria-hidden="true">&times;</span></button>
         <div class="offcanvas-minicart-wrapper">
             <div class="minicart-inner-box">
-                @*<div class="offcanvas-overlay"></div>*@
                 <div class="minicart-inner-content">
-                    @*<div class="minicart-close">
-                        <i class='bx bx-x bx-sm'></i>
-                    </div>*@
                     <div class="minicart-content-box">
                         @{
                             int stt = 0;
@@ -77,12 +44,9 @@
                                                 <h3 class="product-name">
                                                     <a>@item.Products.ProductName</a>
                                                 </h3>
-                                                @*<p class="pro-quantity"><span>@item.Size</span></p>
-                                                <p class="pro-quantity"><span>@item.Color</span></p>*@
                                                 <p>
                                                     <input class="cart-quantity" name="sl" type="number" id="@txt_Id" onchange="updateCart(@iD)" value="@item.Quantity" disabled /> x
                                                     <span class="cart-price" id="tdGia_@iD">@item.Products.Price</span>
-                                                    @*<span class="cart-price" id="tdTien_@iD">@totalSub </span>*@
                                                 </p>
                                             </div>
                                             <a class="minicart-remove" href="javascript:delCart(@iD);"><i class='bx bx-x'></i></a>
@@ -96,18 +60,6 @@
 
                         <div class="minicart-pricing-box">
                             <ul>
-                                @*<li>
-                    <span>sub-total</span>
-                    <span><strong>$300.00</strong></span>
-                </li>
-                <li>
-                    <span>Eco Tax (-2.00)</span>
-                    <span><strong>$10.00</strong></span>
-                </li>
-                <li>
-                    <span>VAT (20%)</span>
-                    <span><strong>$60.00</strong></span>
-                </li>*@
                                 <li class="total">
                                     <span>Tổng</span>
                                     <span id="spTotal"><strong>@total</strong></span>
@@ -125,7 +77,12 @@
                                 {
                                     <a class="col-lg-6" onclick="return false" asp-controller="Home" asp-action="Checkout"><i class='bx bx-share bx-rotate-180 bx-sm'></i> Thanh toán</a>
                                   
-                                    <span>Bạn cần đăng nhập để đặt hàng</span>
+                                    <span class="d-flex align-items-center">Bạn cần 
+                                        &nbsp; 
+                                        <a class="text-danger text-lowercase" style="border: none; background: transparent;" asp-action="Login">đăng nhập</a> 
+                                        &nbsp; 
+                                        để đặt hàng
+                                    </span>
                                 }
                             </div>
                         </div>

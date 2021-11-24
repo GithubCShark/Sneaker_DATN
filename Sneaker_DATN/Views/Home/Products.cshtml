@@ -6,10 +6,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*custom tooltip*@
-@*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>*@
-
 <!-- Start Banner Area -->
 <section class="banner-area organic-breadcrumb">
     <div class="container">
@@ -68,7 +64,7 @@
                             </li>
                         </ul>
                         <div class="d-flex justify-content-center mt-4">
-                            <button type="submit" value="Search" class="search-btn-product primary-btn">
+                            <button type="submit" value="Search" class="search-btn-product primary-btn d-flex">
                                 <i class='bx bx-search-alt'></i>
                             </button>
                         </div>
@@ -127,7 +123,7 @@
                             </ul>
                         </div>
                         <div class="d-flex justify-content-center mt-4">
-                            <button type="submit" value="Search" class="search-btn-product primary-btn">
+                            <button type="submit" value="Search" class="search-btn-product primary-btn d-flex">
                                 <i class='bx bx-search-alt'></i>
                             </button>
                         </div>
@@ -183,7 +179,7 @@
                             </ul>
                         </div>
                         <div class="d-flex justify-content-center mt-4">
-                            <button type="submit" value="Search" class="search-btn-product primary-btn">
+                            <button type="submit" value="Search" class="search-btn-product primary-btn d-flex">
                                 <i class='bx bx-search-alt'></i>
                             </button>
                         </div>
@@ -197,7 +193,7 @@
                 <div class="sorting custom-sort-product">
                     <a href="@Url.ActionLink("Products", "Home", new { sortOrder = ViewBag.PriceSortParm })">
                         <span>Giá từ: </span>
-                        <i class='bx bx-sort'></i>
+                        <i class='bx bx-sort text-white'></i>
                     </a>
                 </div>
                 <div class="sorting mr-auto">

@@ -105,7 +105,7 @@
                                                     <img class="img-fluid" src="~/images/Product/@item.Products.Image" alt="Product" />
                                                 </a>
                                             </td>
-                                            <td class="pro-title"><a href="#"> @item.Products.ProductName</a></td>
+                                            <td class="pro-title"><a asp-controller="Home" asp-action="Products"> @item.Products.ProductName</a></td>
                                             <td class="pro-quantity">
                                                 <span>
                                                     @foreach (var i in ViewBag.sz)

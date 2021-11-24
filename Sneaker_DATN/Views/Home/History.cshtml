@@ -5,75 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<style>
-    /*history*/
-    .custom-history {
-        display: flex;
-    }
-
-    .custom-history-trash:hover,
-    .custom-history-details:hover {
-        opacity: 0.5;
-    }
-
-    .custom-history-trash,
-    .custom-history-details {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 40px !important;
-        height: 40px;
-        border-radius: 8px;
-    }
-
-    .custom-history-trash {
-        width: 90px !important;
-        color: #fff !important;
-    }
-
-        .custom-history-details i,
-        .custom-history-trash i {
-            padding-right: 0.3rem;
-            color: #fff;
-        }
-
-    .custom-history-trash {
-        margin-left: 1rem;
-        background: #dc3545 !important;
-    }
-
-    .custom-history-trash-disable i {
-        color: #000 !important;
-    }
-
-    .custom-history-trash-disable {
-        color: #000 !important;
-        background: lightgrey !important;
-        cursor: no-drop;
-    }
-
-    .custom-history-trash-success {
-        color: #fff !important;
-        background: #198754 !important;
-        cursor: no-drop;
-    }
-    .cart-table table tbody tr td:nth-child(6),
-    .cart-table table tbody tr td:nth-child(4) {
-        white-space: initial;
-    }
-    .custom-txt-history{
-        color: #777;
-        text-decoration: none;
-    }
-    .custom-txt-history:hover{
-        color: #576ee0;
-    }
-    .pagin-history {
-        border-top: 1px solid #ccc;
-        background: whitesmoke;
-        border-radius: 0 0 16px 16px;
-    }
-</style>
+<link rel="stylesheet" href="~/css/test1.css">
 
 <!-- Start Banner Area -->
 <section class="banner-area organic-breadcrumb">
@@ -194,7 +126,7 @@
                         Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
                     </div>
                     <div class="pagin-right float-right">
-                        @Html.PagedListPager(Model, page => Url.Action("History", new { page, sortOrder = ViewBag.CurrentSort}))
+                        @Html.PagedListPager(Model, page => Url.Action("History", new { page, sortOrder = ViewBag.CurrentSort }))
                     </div>
                 </div>
             </div>
