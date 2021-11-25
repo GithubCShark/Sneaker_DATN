@@ -62,8 +62,8 @@ namespace Sneaker_DATN.Controllers
                 {
                     dataChart.Add(new ViewChar
                     {
-                        ThangOrder = i.ToString(),
-                        ThangMem = i.ToString(),
+                        ThangOrder = "0",
+                        ThangMem = "0",
                         SoLuongOrder = 0,
                         SoLuongMem = 0,
                         Total = 0
