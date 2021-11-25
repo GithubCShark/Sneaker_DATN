@@ -26,22 +26,25 @@ namespace Sneaker_DATN.Controllers
         {
             var lsmember = from p in _context.Users.Where(p => p.RoleID.Equals(3)).ToList()
                             where p.DateCreated.Value.Year == year
-                            group p by p.DateCreated.Value.Month into List
+                           orderby p.DateCreated
+                           group p by p.DateCreated.Value.Month into List
                             select  new
                             {
                                 Thang = List.Key.ToString(),
                                 SoLuong = List.Count()
                             };
-            var lsorder = from p in _context.Orders.ToList()
+            var lsorder = from p in _context.Orders.Where(p => p.Status == "Đã nhận").ToList()
                           where p.DateCreate.Year == year
+                          orderby p.DateCreate
                           group p by p.DateCreate.Month into List
                           select new
                           {
                               Thang = List.Key.ToString(),
                               SoLuong = List.Count()
                           };
-            var lstotal = from p in _context.Orders.ToList()
+            var lstotal = from p in _context.Orders.Where(p => p.Status == "Đã nhận").ToList()
                           where p.DateCreate.Year == year
+                          orderby p.DateCreate
                           group p by p.DateCreate.Month into List
                           select List;
             List<ViewChar> dataChart = new List<ViewChar>();
