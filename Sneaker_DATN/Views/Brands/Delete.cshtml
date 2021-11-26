@@ -1,0 +1,25 @@
+﻿@model Sneaker_DATN.Models.Brands
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="container modal-content  container-modal-small">
+    <div class="modal-body pb-5">
+        <button type="button" class="close custom-btn-modal" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="BrandID" />
+            <p class="font-italic text-center mb-2 mt-3 del-notification">
+                Bạn chắc chắn muốn xóa màu <b>@Model.BrandName</b> ?
+            </p>
+            <div class="text-center mt-4">
+                <input type="submit" value="Xóa" class="col-lg-3 btn btn-danger font-weight-bold" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

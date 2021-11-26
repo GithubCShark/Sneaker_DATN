@@ -10,11 +10,11 @@ using X.PagedList;
 
 namespace Sneaker_DATN.Controllers
 {
-    public class BrandController : BaseController
+    public class BrandsController : BaseController
     {
         private readonly DataContext _context;
 
-        public BrandController(DataContext context)
+        public BrandsController(DataContext context)
         {
             _context = context;
         }
@@ -160,7 +160,7 @@ namespace Sneaker_DATN.Controllers
         }
 
         // POST: BrandController/Delete/5
-        [HttpPost]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
