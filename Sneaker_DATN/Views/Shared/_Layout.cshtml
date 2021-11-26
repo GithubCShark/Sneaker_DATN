@@ -83,7 +83,6 @@
                             <button class="search">
                                 <span class="bx bx-search-alt-2 bx-sm" id="search">
                                 </span>
-                                @*<img src="~/images/search.png" id="search" style="width:25px" />*@
                             </button>
                         </li>
                         <li class="nav-item submenu submenu-user dropdown">
@@ -93,7 +92,6 @@
                                 {
                                     <span class="img-non-user">
                                         <span class="bx bx-user-circle bx-sm d-flex"></span>
-                                        @*<img src="~/images/user.png" style="width:25px" />*@
                                     </span>
                                 }
                                 else
@@ -237,9 +235,6 @@
     <script type="text/javascript" src="~/js/loader.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="~/js/vendor/jquery-2.2.4.min.js"></script>
-    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
-        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
-        crossorigin="anonymous"></script>*@
     <script src="~/js/vendor/bootstrap.min.js"></script>
     <script src="~/js/jquery.ajaxchimp.min.js"></script>
     <script src="~/js/jquery.sticky.js"></script>
@@ -254,23 +249,11 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>*@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <!-- slide -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-    <!--<script src="~/js/countdown.js"></script>-->
-    @*gmaps Js*@
-    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
-    <script src="~/js/gmaps.min.js"></script>-->
-    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>*@
 
-    @*  *@
-    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>*@
-
-    @*<script src="~/js/site.js" asp-append-version="true"></script>*@
-    @*@CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();*@
-    @*await __tagHelperRunner.RunAsync(__tagHelperExecutionContext)*@
 
     <script>
         AOS.init();
@@ -280,7 +263,6 @@
         $(window).on('load', function (event) {
             $('body').removeClass('preloading');
             $('.load').delay(100).fadeOut('fast'); //default 500
-            // $('.loader').delay(1000).fadeOut('fast');
         });
 
         $(document).ready(function () {
@@ -356,12 +338,6 @@
         FptLiveChatScript.onload = function () {
             fpt_ai_render_chatbox(FptLiveChatConfigs, liveChatBaseUrl, LiveChatSocketUrl)
         }
-    </script>
-    <script>
-        $(document).ready(function loadCountCart() {
-            var a = document.getElementById("stt").value;
-            $('.num-cart-product').text(a);
-        });
     </script>
 </body>
 </html>

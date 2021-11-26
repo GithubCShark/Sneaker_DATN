@@ -57,7 +57,6 @@ namespace Sneaker_DATN.Controllers
             }
 
             if (page == null) page = 1;
-            //var sizes = _context.Orders.Include(b => b.FullName).OrderBy(b => b.OrderID);
             int pageSize = 6;
             int pageNumber = (page ?? 1);
 
@@ -98,7 +97,6 @@ namespace Sneaker_DATN.Controllers
 
 
             return View(sizes.ToList().ToPagedList(pageNumber, pageSize));
-            //return View(_orderSvc.GetOrderAll());
         }
 
         // GET: OrdersController/Create

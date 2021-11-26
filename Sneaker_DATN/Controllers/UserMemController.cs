@@ -130,34 +130,6 @@ namespace Sneaker_DATN.Controllers
             return PartialView(user);
         }
 
-        // GET: UserController/Create
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
-
-        // POST: UserController/Create
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create(Users user)
-        //{
-        //    try
-        //    {
-                //    if (user.ImageUser != null && user.ImageUser.Length > 0)
-                //{
-                //    string rootPath = Path.Combine(_webHostEnviroment.WebRootPath, "images");
-                //    _uploadHelper.UploadImage(user.ImageUser, rootPath, "avatar");
-                //    user.ImgUser = user.ImageUser.FileName;
-                //}
-        //        _userMemSvc.AddUserMem(user);
-        //        return RedirectToAction(nameof(Index), new { id = user.UserID});
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
         // GET: UserController/Edit/5
         public ActionResult Edit(int id)
         {
@@ -200,26 +172,5 @@ namespace Sneaker_DATN.Controllers
                 return RedirectToAction(nameof(Index));
             }
         }
-
-        // GET: UserController/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
-
-        //// POST: UserController/Delete/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Delete(int id, IFormCollection collection)
-        //{
-        //    try
-        //    {
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
     }
 }

@@ -84,9 +84,6 @@
                             Hình
                         </th>
                         <th class="text-center">
-                            @*<a href="@Url.ActionLink("Index","Product", new { sortOrder =ViewBag.StatusSortParm })">
-                                <span>Khóa</span><i class="fas fa-sort ml-2"></i>
-                            </a>*@
                             Tình Trạng
                         </th>
                         <th class="text-center">
@@ -131,7 +128,6 @@
                                 <img src="~/images/Product/@item.Image2" style="width: 100px; height:100px;" />
                             </td>
                             <td class="text-center">
-                                @*@Html.DisplayFor(modelItem => item.Status)*@
                                 @if (item.Status)
                                 {
                                 <span class="ml-5">Ngừng kinh doanh</span>
@@ -141,15 +137,6 @@
                                     <span class="ml-5">Đang Kinh Doanh</span>
                                 }
                             </td>
-                            @*<td>
-                @foreach (var brd in ViewBag.brand)
-                {
-                    if (brd.BrandID == item.BrandID)
-                    {
-                        @brd.BrandName;
-                    }
-                }
-            </td>*@
                             <td class="text-center">
                                 <select class="custom-select-product">
                                     @foreach (var sz in ViewBag.productSize)

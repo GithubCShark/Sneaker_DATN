@@ -17,8 +17,6 @@ namespace Sneaker_DATN.Services
         int EditProduct(int id, Products product);
 
         Brands GetBrand(int id);
-        //ProductSize GetSizes(int id);
-        //ProductColor GetColors(int id);
 
         List<Products> SneakerSearchString(string name);
     }
@@ -39,10 +37,6 @@ namespace Sneaker_DATN.Services
         {
             List<Products> list = new List<Products>();
             list = _context.Products.ToList();
-            //List<ProductSize> listsize = new List<ProductSize>();
-            //listsize = _context.ProductSizes.ToList();
-            //List<ProductColor> listcolor = new List<ProductColor>();
-            //listcolor = _context.ProductColors.ToList();
             return list;
         }
 

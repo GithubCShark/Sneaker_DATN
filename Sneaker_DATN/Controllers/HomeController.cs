@@ -185,8 +185,6 @@ namespace Sneaker_DATN.Controllers
             ViewBag.currentFilterSearch = searchString;
 
             var productFilters = from r in _context.Products
-                                     //from c in _context.Colors
-                                     //from s in _context.Sizes
                                  select r;
 
             if (!String.IsNullOrEmpty(brands))
@@ -195,7 +193,6 @@ namespace Sneaker_DATN.Controllers
             }
             if (colors != 0)
             {
-                //var colorFilter = _context.Colors.ToList();
                 var lspro = from r in _context.ProductColors
                             where r.ColorID == colors
                             select r.Products.ProductID;
@@ -204,7 +201,6 @@ namespace Sneaker_DATN.Controllers
             }
             if (sizes != 0)
             {
-                //var colorFilter = _context.Colors.ToList();
                 var lssiz = from r in _context.ProductSizes
                             where r.IdSize == sizes
                             select r.Products.ProductID;
@@ -779,7 +775,6 @@ namespace Sneaker_DATN.Controllers
             }
             if (colors != 0)
             {
-                //var colorFilter = _context.Colors.ToList();
                 var lspro = from r in _context.ProductColors
                             where r.ColorID == colors
                             select r.Products.ProductID;
@@ -788,7 +783,6 @@ namespace Sneaker_DATN.Controllers
             }
             if (sizes != 0)
             {
-                //var colorFilter = _context.Colors.ToList();
                 var lssiz = from r in _context.ProductSizes
                             where r.IdSize == sizes
                             select r.Products.ProductID;
@@ -925,15 +919,38 @@ namespace Sneaker_DATN.Controllers
             return View();
         }
 
-        public IActionResult CheckoutFailed()
-        {
-            return View();
-        }
+        //[HttpPost]
+        //public IActionResult Contact(Contact formData)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return View(formData);
+        //    }
+        //    using (var client = new SmtpClient())
+        //    {
+        //        client.Connect("smtp.gmail.com");
+        //        client.Authenticate("d.achsneaker@gmail.com", "dachsneaker2021");
 
-        public IActionResult Contact()
-        {
-            return View();
-        }
+        //        var bodyBuilder = new BodyBuilder
+        //        {
+        //            HtmlBody = $"<p>{formData.Name}</p> <p>{formData.Phone}</p> <p>{formData.EmailAddress}</p>",
+        //            TextBody = "{ formData.Name } \r\n { formData.Phone } \r\n { formData.EmailAddress }"
+        //        };
+
+        //        var message = new MimeMessage
+        //        {
+        //            Body = bodyBuilder.ToMessageBody()
+        //        };
+        //        message.From.Add(new MailboxAddress("Noreply my site", "d.achsneaker@gmail.com"));
+        //        message.To.Add(new MailboxAddress("dachneaker123", formData.EmailAddress));
+        //        message.Subject = "New contact submitted data";
+        //        client.Send(message);
+
+        //        client.Disconnect(true);
+        //    }
+        //    TempData["Message"] = "Thank you";
+        //    return RedirectToAction("Contact");
+        //}
 
         public IActionResult OrderComplete()
         {
@@ -999,8 +1016,6 @@ namespace Sneaker_DATN.Controllers
             int id = (int)HttpContext.Session.GetInt32(SessionKey.Guest.Guest_ID.ToString());
             try
             {
-                //if (ModelState.IsValid)
-                //{
                     if (user.ImageUser != null && user.ImageUser.Length > 0)
                     {
                         string rootPath = Path.Combine(_webHostEnviroment.WebRootPath, "images");
@@ -1009,11 +1024,6 @@ namespace Sneaker_DATN.Controllers
                     }
                     _userMemSvc.EditUserMem(id, user);
                     return RedirectToAction(nameof(InfoMenu), new { id = user.UserID });
-                //}
-                //else
-                //{
-                //    return View(user);
-                //}
             }
             catch
             {

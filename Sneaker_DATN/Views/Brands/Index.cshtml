@@ -1,0 +1,88 @@
+﻿@model X.PagedList.IPagedList<Sneaker_DATN.Models.Brands>
+@using X.PagedList.Mvc.Core;
+
+@{
+    ViewData["Title"] = "ListBrand";
+    Layout = "~/Views/Shared/_LayoutManager.cshtml";
+}
+
+
+<div class="color-dashboard">
+    <h2 class="main-title text-center pt-4">DANH SÁCH THƯƠNG HIỆU</h2>
+    <div class="col-lg-12 m-auto px-5">
+        <div class="users-table table-wrapper">
+            <table class="posts-table mt-3">
+                <thead>
+                    <tr class="users-table-info">
+                        <th class="dashboard-txt">
+                            <a href="@Url.ActionLink("Index", "Brands", new { sortOrder = ViewBag.NameSortParm })">
+                                <span style="font-weight:bold;">ID</span><i class="fas fa-sort ml-2"></i>
+                            </a>
+
+                        </th>
+                        <th class="dashboard-txt">
+                            <a href="@Url.ActionLink("Index","Brands", new { sortOrder = ViewBag.DescriptionSortParm })">
+                                <span style="font-weight:bold;">Name</span><i class="fas fa-sort ml-2"></i>
+                            </a>
+
+                        </th>
+                        <th class="dashboard-icon pb-3">
+                            <a href="@Url.Action("Create", "Brands")" class="color-btn-create btn btn-create-color btn-primary mr-3">
+                                <i class="fas fa-plus pr-2"></i>Thêm mới
+                            </a>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BrandID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BrandName)
+                            </td>
+                            <td>
+                                <a href="@Url.Action("Edit", "Brands", new { id = @item.BrandID })" class="btn-edit-color"><i class="far fa-edit dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
+                                <a href="@Url.Action("Delete", "Brands", new { id = @item.BrandID })" class="btn-delete-color"><i class="far fa-trash-alt ml-3 dashbroad-icon-hover" style="font-size: 1.5rem;"></i></a>
+                                <input type="hidden" class="id" value="@item.BrandID" />
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-lg-12 m-auto px-5 pb-5">
+        <div class="pagin-admin shadow-sm">
+            <div class="pagin-left float-left">
+                Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+            </div>
+            <div class="pagin-right float-right">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.SortOrder }))
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Create Color -->
+<div class="modal fade" id="createColorModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <!-- empty -->
+    </div>
+</div>
+
+<!-- Modal Edit Color -->
+<div class="modal fade" id="editColorModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <!-- empty -->
+    </div>
+</div>
+
+<!-- Modal Delete Color -->
+<div class="modal fade" id="deleteColorModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <!-- empty -->
+    </div>
+</div>

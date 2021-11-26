@@ -24,7 +24,6 @@ namespace Sneaker_DATN.Services
         public List<Discounts> GetDiscountAll()
         {
             List<Discounts> list = new List<Discounts>();
-
             list = _context.Discounts.OrderByDescending(x => x.DayEnd).ToList();
             return list;
         }
@@ -33,15 +32,12 @@ namespace Sneaker_DATN.Services
         {
 
             var item = _context.Discounts.Where(x => x.VoucherCode == voucherCode).FirstOrDefault();
-
             return item;
         }
         public Discounts GetDiscount(int id)
         {
             Discounts discounts = null;
             discounts = _context.Discounts.Where(x => x.VoucherId == id).FirstOrDefault();
-
-            //product = _context.Products.Where(e => e.Id==id).FirstOrDefault(); //cách tổng quát
             return discounts;
         }
         public int AddDiscount(Discounts discounts)

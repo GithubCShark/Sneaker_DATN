@@ -1,14 +1,13 @@
-﻿@model Sneaker_DATN.Models.Sizes
+﻿@model Sneaker_DATN.Models.Brands
 
 @{
     ViewData["Title"] = "Create";
 }
 
-
 <div class="container modal-content container-modal-small">
     <div class="modal-body p-5">
         <div class="custom-icon pb-3 custom-header-modal">
-            <h2 class="main-title text-center text-uppercase mt-2 m-auto">Thêm size mới</h2>
+            <h2 class="main-title text-center text-uppercase mt-2 m-auto">Thêm thương hiệu mới</h2>
             <button type="button" class="close custom-btn-modal" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -16,17 +15,17 @@
         <form class="form-edit" asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Size" class="control-label"></label>
-                <input min="1" max="45" asp-for="Size" class="form-control form-modal-input" />
-                <span asp-validation-for="Size" class="text-danger"></span>
+                <label asp-for="BrandName" class="control-label"></label>
+                <input asp-for="BrandName" class="form-control form-modal-input" />
+                <span asp-validation-for="BrandName" class="text-danger"></span>
             </div>
-            <div class="text-center mt-4">
-                <input type="submit" value="Thêm size" class="mt-2 col-lg-6 btn btn-primary" />
+            <div class="text-center">
+                <input type="submit" value="Thêm thương hiệu" class="mt-2 col-lg-6 btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

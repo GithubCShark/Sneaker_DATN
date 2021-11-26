@@ -6,9 +6,6 @@
 
 
 <div class="container modal-content container-modal-large">
-    @*<div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        </div>*@
     <div class="modal-body p-5">
         <div class="custom-icon pb-3 custom-header-modal">
             <h2 class="main-title text-center text-uppercase mt-2 m-auto">Thêm mã giảm giá mới</h2>
@@ -46,12 +43,10 @@
             <div class="form-group custom-checkbox">
                 <label class="control-label">Khóa mã</label>
                 <input class="form-checkbox-input ml-3" asp-for="Status" />
-                @*@Html.DisplayNameFor(model => model.Status)*@
             </div>
             <div class="form-group custom-checkbox">
                 <label class="control-label">Giảm theo số tiền</label>
                 <input class="form-checkbox-input ml-3" asp-for="Classify" />
-                @*@Html.DisplayNameFor(model => model.Classify)*@
             </div>
             <div class="form-group">
                 <label asp-for="Price" class="control-label"></label>

@@ -74,9 +74,7 @@ namespace Sneaker_DATN.Controllers
                 }
             }
             ViewData["DataList"] = dataChart.ToList();
-            //return View(dataChart);
             return Json(JsonConvert.SerializeObject(dataChart));
-            //return Json(listcount, JsonRequestBehavior.AllowGet);
         }
     }
 }

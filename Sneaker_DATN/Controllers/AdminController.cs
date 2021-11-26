@@ -118,7 +118,6 @@ namespace Sneaker_DATN.Controllers
             {
                 return RedirectToAction(nameof(AdminController.Login), "Admin");
             }
-            //return View();
         }
 
         public IActionResult Login(string returnUrl)
