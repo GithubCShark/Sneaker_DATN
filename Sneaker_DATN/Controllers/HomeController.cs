@@ -919,38 +919,15 @@ namespace Sneaker_DATN.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public IActionResult Contact(Contact formData)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return View(formData);
-        //    }
-        //    using (var client = new SmtpClient())
-        //    {
-        //        client.Connect("smtp.gmail.com");
-        //        client.Authenticate("d.achsneaker@gmail.com", "dachsneaker2021");
+        public IActionResult CheckoutFailed()
+        {
+            return View();
+        }
 
-        //        var bodyBuilder = new BodyBuilder
-        //        {
-        //            HtmlBody = $"<p>{formData.Name}</p> <p>{formData.Phone}</p> <p>{formData.EmailAddress}</p>",
-        //            TextBody = "{ formData.Name } \r\n { formData.Phone } \r\n { formData.EmailAddress }"
-        //        };
-
-        //        var message = new MimeMessage
-        //        {
-        //            Body = bodyBuilder.ToMessageBody()
-        //        };
-        //        message.From.Add(new MailboxAddress("Noreply my site", "d.achsneaker@gmail.com"));
-        //        message.To.Add(new MailboxAddress("dachneaker123", formData.EmailAddress));
-        //        message.Subject = "New contact submitted data";
-        //        client.Send(message);
-
-        //        client.Disconnect(true);
-        //    }
-        //    TempData["Message"] = "Thank you";
-        //    return RedirectToAction("Contact");
-        //}
+        public IActionResult Contact()
+        {
+            return View();
+        }
 
         public IActionResult OrderComplete()
         {
