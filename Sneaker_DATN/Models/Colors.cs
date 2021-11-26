@@ -14,6 +14,7 @@ namespace Sneaker_DATN.Models
 
         [Display(Name = "Màu sắc")]
         public string Color { get; set; }
+
         public List<ProductColor> ProductColors { get; set; }
     }
 }
