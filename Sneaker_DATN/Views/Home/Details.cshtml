@@ -65,10 +65,20 @@
             <div class="col-lg-5 offset-lg-1">
                 <div class="s_product_text">
                     <h3>@Html.DisplayFor(model => model.ProductName)</h3>
-                            <span class="product-custom-brand">
-                                <h4>Thương hiệu: <h5>@ViewBag.brdetails</h5></h4> 
-                            </span>
-                    <h2>@string.Format("{0:0,0 VNĐ}", Model.Price)</h2>
+                    <span class="product-custom-brand">
+                        <h4>Thương hiệu: <h5>@ViewBag.brdetails</h5></h4>
+                    </span>
+                    @if (Model.Sale > 0)
+                    {
+                        <div class="d-flex">
+                            <h2>@string.Format("{0:0,0 VNĐ}", (Model.Price - Model.Sale))</h2>
+                            <h4 class="text-muted ml-4" style="text-decoration: line-through">@string.Format("{0:0,0 VNĐ}", Model.Price)</h4>
+                        </div>
+                    }
+                    else
+                    {
+                        <h2>@string.Format("{0:0,0 VNĐ}", Model.Price)</h2>
+                    }
                     <p></p>
                     <div class="size-wrap">
                         <div class="block-26 slt-detail-product mb-5">
@@ -92,7 +102,7 @@
                         </div>
 
                         <div class="block-26-color mb-4">
-                            <h4>Màu sắc</h4>    
+                            <h4>Màu sắc</h4>
                             <select class="nice-select product-details-color" id="color">
                                 <option value="Random">Chọn Color:</option>
                                 @foreach (var item in ViewBag.procol)
@@ -127,7 +137,7 @@
                             <button class="icon_btn"><i class='bx bxs-heart bx-lg'></i></button>
                         </div>
                     </div>
-</div>
+                </div>
             </div>
         </div>
     </div>
@@ -430,6 +440,9 @@
                         showConfirmButton: false,
                         timer: 1000
                     })
+                    setTimeout(function () {
+                        location.reload();
+                    }, 1000)
                 },
                 error: function (e) {
                     Swal.fire({

@@ -20,6 +20,10 @@ using MailKit.Net.Smtp;
 using MimeKit;
 using static Sneaker_DATN.Filters.AuthenticationFilterAttribute;
 using System.Text;
+using Microsoft.Extensions.Configuration;
+using PayPal.Core;
+using PayPal.v1.Payments;
+using BraintreeHttp;
 
 namespace Sneaker_DATN.Controllers
 {
@@ -33,11 +37,14 @@ namespace Sneaker_DATN.Controllers
         private readonly IOrderDetailSvc _orderDetailSvc;
         private readonly IDiscountSvc _discountSvc;
         private readonly DataContext _context;
+        private readonly string _clientId;
+        private readonly string _secretKey;
         protected IEncodeHelper _encodeHelper;
         protected ISendMailService _sendGmail;
+        public double tyGiaUSD = 23200;
         public HomeController(IUserMemSvc userMemSvc, IProductSvc productSvc, IWebHostEnvironment webHostEnvironment,
              IUploadHelper uploadHelper, IOrderSvc orderSvc, IOrderDetailSvc orderDetailSvc, DataContext context,
-             IEncodeHelper encodeHelper, IDiscountSvc discountSvc, ISendMailService sendGmail)
+             IEncodeHelper encodeHelper, IDiscountSvc discountSvc, ISendMailService sendGmail, IConfiguration config)
         {
             _userMemSvc = userMemSvc;
             _productSvc = productSvc;
@@ -49,6 +56,8 @@ namespace Sneaker_DATN.Controllers
             _encodeHelper = encodeHelper;
             _discountSvc = discountSvc;
             _sendGmail = sendGmail;
+            _clientId = config["PayPalSettings:ClientId"];
+            _secretKey = config["PayPalSettings:SecretKey"];
         }
 
 
@@ -141,7 +150,9 @@ namespace Sneaker_DATN.Controllers
             }
         }
 
-        public IActionResult Products(int? page, string sortOrder, string searchString, string brands, int sizes, int colors, string currentFilterSearch, string currentFilterBrand, int currentFilterSize, int currentFilterColor)
+        public IActionResult Products(int? page, string sortOrder, string searchString, string brands,
+            int sizes, int colors, string currentFilterSearch, string currentFilterBrand, int currentFilterSize,
+            int currentFilterColor)
         {
             ViewBag.BrandName = (from r in _context.Brands
                                  select r.BrandName).Distinct();
@@ -473,11 +484,120 @@ namespace Sneaker_DATN.Controllers
                         _context.SaveChanges();
                     }
                 }
-                HttpContext.Session.Remove("cart");
                 return Ok();
 
             }
             return RedirectToAction(nameof(OrderComplete), "Home");
+        }
+
+        public async Task<IActionResult> PaypalCheckOut()
+        {
+            var environment = new SandboxEnvironment(_clientId, _secretKey);
+            var client = new PayPalHttpClient(environment);
+            var cart = HttpContext.Session.GetString("cart");
+
+            var itemList = new ItemList()
+            {
+                Items = new List<Item>()
+            };
+
+            var total = Math.Round(Tongtien() / tyGiaUSD, 2);
+            List<ViewCart> dataCart = JsonConvert.DeserializeObject<List<ViewCart>>(cart);
+            foreach (var item in dataCart)
+            {
+                if (item.Products.Sale > 0)
+                {
+                    itemList.Items.Add(new Item()
+                    {
+                        Name = item.Products.ProductName,
+                        Currency = "USD",
+                        Price = Math.Round(((item.Products.Price - item.Products.Sale) * item.Quantity) / tyGiaUSD, 2).ToString(),
+                        Quantity = item.Quantity.ToString(),
+                        Sku = "Sku",
+                        Tax = "0"
+                    });
+                }
+                else
+                {
+                    itemList.Items.Add(new Item()
+                    {
+                        Name = item.Products.ProductName,
+                        Currency = "USD",
+                        Price = Math.Round((item.Products.Price * item.Quantity) / tyGiaUSD, 2).ToString(),
+                        Quantity = item.Quantity.ToString(),
+                        Sku = "Sku",
+                        Tax = "0"
+                    });
+                }
+            }
+
+            var paypalOrderId = DateTime.Now.Ticks;
+            var hostname = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
+            var payment = new Payment()
+            {
+                Intent = "sale",
+                Transactions = new List<Transaction>()
+            {
+                new Transaction()
+                {
+                    Amount = new Amount()
+                    {
+                        Total = total.ToString(),
+                        Currency = "USD",
+                        Details = new AmountDetails
+                        {
+                            Tax = "0",
+                            Shipping = "0",
+                            Subtotal = total.ToString()
+                        }
+                    },
+                    ItemList = itemList,
+                    Description = $"Invoice #{paypalOrderId}",
+                    InvoiceNumber = paypalOrderId.ToString()
+                }
+            },
+                RedirectUrls = new RedirectUrls()
+                {
+                    CancelUrl = $"{hostname}/Home/CheckoutFail",
+                    ReturnUrl = $"{hostname}/Home/CheckoutComplete"
+                },
+                Payer = new Payer()
+                {
+                    PaymentMethod = "paypal"
+                }
+            };
+
+            PaymentCreateRequest request = new PaymentCreateRequest();
+            request.RequestBody(payment);
+
+            try
+            {
+                var response = await client.Execute(request);
+                var statusCode = response.StatusCode;
+                Payment result = response.Result<Payment>();
+
+                var links = result.Links.GetEnumerator();
+                string paypalRedirectUrl = null;
+                while (links.MoveNext())
+                {
+                    LinkDescriptionObject lnk = links.Current;
+                    if (lnk.Rel.ToLower().Trim().Equals("approval_url"))
+                    {
+                        //saving the payapalredirect URL to which user will be redirected for payment  
+                        paypalRedirectUrl = lnk.Href;
+                    }
+                }
+
+                return Redirect(paypalRedirectUrl);
+            }
+            catch (HttpException httpException)
+            {
+                var statusCode = httpException.StatusCode;
+                var debugId = httpException.Headers.GetValues("PayPal-Debug-Id").FirstOrDefault();
+
+                //Process when Checkout with Paypal fails
+                return Redirect("/Home/CheckOutFailed");
+            }
         }
 
         public IActionResult CheckVoucher(string voucherCode)
@@ -615,7 +735,9 @@ namespace Sneaker_DATN.Controllers
             return View();
         }
 
-        public IActionResult FlashSale(int? page, string sortOrder, string searchString, string brands, int sizes, int colors, string currentFilterSearch, string currentFilterBrand, int currentFilterSize, int currentFilterColor)
+        public IActionResult FlashSale(int? page, string sortOrder, string searchString, string brands,
+            int sizes, int colors, string currentFilterSearch, string currentFilterBrand, int currentFilterSize,
+            int currentFilterColor)
         {
             ViewBag.BrandName = (from r in _context.Brands
                                  select r.BrandName).Distinct();
@@ -739,46 +861,83 @@ namespace Sneaker_DATN.Controllers
             return View(dataCart);
         }
 
+        public IActionResult CheckoutComplete()
+        {
+            // Add OrderDetails
+            var GuestContext = HttpContext.Session.GetString(SessionKey.Guest.GuestContext);
+            var GuestID = JsonConvert.DeserializeObject<Users>(GuestContext).UserID;
+            var user = _context.Users.Find(GuestID);
+            var cart = HttpContext.Session.GetString("cart");
+            double tong = Tongtien();
+
+            var order = new Orders()
+            {
+                UserID = GuestID,
+                DateCreate = DateTime.Now,
+                Total = tong,
+                PaymentAmount = tong,
+                Address = user.Address,
+                Status = "Đang xử lý",
+                Note = "PayPal",
+                FullName = user.FullName,
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber
+            };
+            _context.Orders.Add(order);
+            _context.SaveChanges();
+
+            // Add Orders
+            int orderID = order.OrderID;
+            List<ViewCart> dataCart = JsonConvert.DeserializeObject<List<ViewCart>>(cart);
+            for (int i = 0; i < dataCart.Count; i++)
+            {
+                if (dataCart[i].Products.Sale > 0)
+                {
+                    OrderDetails details = new OrderDetails()
+                    {
+                        OrderID = orderID,
+                        ProductID = dataCart[i].Products.ProductID,
+                        Quantity = dataCart[i].Quantity,
+                        Price = (dataCart[i].Products.Price - dataCart[i].Products.Sale) * dataCart[i].Quantity,
+                        ColorID = dataCart[i].Color,
+                        SizeID = dataCart[i].Size
+                    };
+                    _context.OrderDetails.Add(details);
+                    _context.SaveChanges();
+                }
+                else
+                {
+                    OrderDetails details = new OrderDetails()
+                    {
+                        OrderID = orderID,
+                        ProductID = dataCart[i].Products.ProductID,
+                        Quantity = dataCart[i].Quantity,
+                        Price = dataCart[i].Products.Price * dataCart[i].Quantity,
+                        ColorID = dataCart[i].Color,
+                        SizeID = dataCart[i].Size
+                    };
+                    _context.OrderDetails.Add(details);
+                    _context.SaveChanges();
+                }
+            }
+
+            HttpContext.Session.Remove("cart");
+            return View();
+        }
+
+        public IActionResult CheckoutFailed()
+        {
+            return View();
+        }
+
         public IActionResult Contact()
         {
             return View();
         }
 
-        //[HttpPost]
-        //public IActionResult Contact(Contact formData)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return View(formData);
-        //    }
-        //    using (var client = new SmtpClient())
-        //    {
-        //        client.Connect("smtp.gmail.com");
-        //        client.Authenticate("d.achsneaker@gmail.com", "dachsneaker2021");
-
-        //        var bodyBuilder = new BodyBuilder
-        //        {
-        //            HtmlBody = $"<p>{formData.Name}</p> <p>{formData.Phone}</p> <p>{formData.EmailAddress}</p>",
-        //            TextBody = "{ formData.Name } \r\n { formData.Phone } \r\n { formData.EmailAddress }"
-        //        };
-
-        //        var message = new MimeMessage
-        //        {
-        //            Body = bodyBuilder.ToMessageBody()
-        //        };
-        //        message.From.Add(new MailboxAddress("Noreply my site", "d.achsneaker@gmail.com"));
-        //        message.To.Add(new MailboxAddress("dachneaker123", formData.EmailAddress));
-        //        message.Subject = "New contact submitted data";
-        //        client.Send(message);
-
-        //        client.Disconnect(true);
-        //    }
-        //    TempData["Message"] = "Thank you";
-        //    return RedirectToAction("Contact");
-        //}
-
         public IActionResult OrderComplete()
         {
+            HttpContext.Session.Remove("cart");
             return View();
         }
 

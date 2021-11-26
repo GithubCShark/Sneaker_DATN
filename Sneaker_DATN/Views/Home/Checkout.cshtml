@@ -208,8 +208,8 @@
                                 <div class="col-md-12">
                                     <div class="radio">
                                         <label>
-                                            <input type="radio" disabled="disabled" name="optradio" class="pixel-radio">Chuyển khoản
-                                            ngân hàng
+                                            <input type="radio" id="paypal" name="checkoutradio" class="pixel-radio" onclick="checkPayPal()">
+                                            Thanh toán PayPal
                                         </label>
                                     </div>
                                 </div>
@@ -218,18 +218,8 @@
                                 <div class="col-md-12">
                                     <div class="radio">
                                         <label>
-                                            <input type="radio" disabled="disabled" class="pixel-radio" name="optradio">Quét mã
-                                            QR
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-12">
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" checked="checked" class="pixel-radio" name="optradio">Thanh toán
-                                            khi nhận hàng
+                                            <input type="radio" id="paylater" checked="checked" name="checkoutradio" class="pixel-radio" onclick="checkPayPal()">
+                                            Thanh toán khi nhận hàng
                                         </label>
                                     </div>
                                 </div>
@@ -238,8 +228,13 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12 cart-detail-btn text-center">
-                        <p><a href="javascript:orderCart();" class="primary-btn">Đặt hàng</a></p>
+                    <div class="col-md-6 cart-detail-btn text-center">
+                        <p><button onclick="orderCart();" id="orderBtn" class="primary-btn border-0">Đặt hàng</button></p>
+                    </div>
+                    <div class="col-md-6 cart-detail-btn text-center" id="payPalBtn" style="display:none">
+                        <a asp-action="PaypalCheckOut" class="primary-btn border-0 d-flex align-items-center text-white">
+                            <i class='bx bxl-paypal bx-sm' style="color:#fff !important;"></i> PayPal
+                        </a>
                     </div>
                 </div>
             </div>
@@ -251,10 +246,6 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
 <script src='https://cdn.jsdelivr.net/gh/vietblogdao/js/districts.min.js'></script>
 <script>
-    function getVoucher() {
-        
-    }
-
     function checkVoucher() {
         $.ajax({
             type: "POST",
@@ -263,10 +254,8 @@
                 voucherCode: $("#txtVoucherCode").val(),
             },
             success: function (result) {
-              /*  $('#voucher').val(price)*/
                 if (result == "0") {
                     alert("Ma khuyen mai khong hop le");
-                    //$("#imgCart").attr("src", '/images/cart.png');
                 }
             }
         });
@@ -284,5 +273,22 @@
                 window.location = "/Home/OrderComplete";
             }
         });
+    }
+
+    function checkPayPal() {
+        var chk = document.getElementById("paypal");
+        var btnPayPal = document.getElementById("payPalBtn");
+        var btnOrder = document.getElementById("orderBtn");
+        btnPayPal.style.display = chk.checked ? "block" : "none";
+
+        if (chk.checked) {
+            btnOrder.classList.add('custom-history-trash-disable');
+            btnOrder.setAttribute("disabled", "disabled");
+        }
+        else {
+            btnOrder.classList.remove('custom-history-trash-disable');
+            btnOrder.removeAttribute("disabled", "disabled");
+        }
+
     }
 </script>
