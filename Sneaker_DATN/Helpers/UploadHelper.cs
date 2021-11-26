@@ -15,7 +15,6 @@ namespace Sneaker_DATN.Helpers
     {
         public void UploadImage(IFormFile file, string rootPath, string phanloai)
         {
-            //string path = Path.Combine(_hostingEnvironment.WebRootPath, "images", file.FileName);
             if (!Directory.Exists(rootPath))
             {
                 Directory.CreateDirectory(rootPath);
@@ -41,10 +40,6 @@ namespace Sneaker_DATN.Helpers
             if (File.Exists(filePath))
             {
                 File.Delete(filePath);
-
-                //string path = Path.Combine(_hostingEnvironment.WebRootPath, "images", file.FileName);
-                //var getFile = new FileInfo(filePath);
-                //getFile.Delete();
             }
         }
 

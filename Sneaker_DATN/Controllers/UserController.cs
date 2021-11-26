@@ -75,8 +75,6 @@ namespace Sneaker_DATN.Controllers
 
             return View(students.ToPagedList(pageNumber, pageSize));
 
-        
-            //return View(_userSvc.GetAllUser());
         }
 
         // GET: UserController/Details/5

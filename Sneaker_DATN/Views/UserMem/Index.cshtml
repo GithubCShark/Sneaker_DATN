@@ -17,7 +17,6 @@
                             @using (Html.BeginForm("Index", "UserMem", FormMethod.Get))
                             {
                                 <p class="d-flex">
-                                    @*@Html.TextBox("SearchString", ViewBag.CurrentFilterSearch as string)*@
                                     <input class="pl-3" id="SearchString" name="SearchString" type="text" value="" placeholder="Nhập tên">
                                     <button type="submit" value="Search" class="search-btn btn btn-primary">
                                         <i class="fas fa-search"></i>
@@ -28,7 +27,6 @@
                                 @using (Html.BeginForm("Index", "UserMem", FormMethod.Get))
                                 {
                                     <div class="d-flex">
-                                        @*@Html.DropDownList("status", new SelectList(ViewBag.Status))*@
                                         <select id="status" name="status">
                                             <option value="">Chọn trạng thái</option>
                                             <option value=False>Đang hoạt động</option>
@@ -51,9 +49,6 @@
             <table class="posts-table mt-3">
                 <thead>
                     <tr class="users-table-info">
-                        @*<th>
-                                @Html.DisplayNameFor(model => model.First().UserName)
-                            </th>*@
                         <th>
                             Họ Tên
                         </th>
@@ -65,34 +60,27 @@
                                 <span>Giới tính</span>
                                 <i class="fas fa-sort ml-1"></i>
                             </a>
-                            @*@Html.ActionLink("Giới tính", "Index", new { sortOrder = ViewBag.GenderSortParm })*@
                         </th>
                         <th class="text-center">
                             <a href="@Url.ActionLink("Index", "UserMem", new { sortOrder = ViewBag.PhoneSortParm  })">
                                 <span>SĐT</span>
                                 <i class="fas fa-sort ml-1"></i>
                             </a>
-                            @*@Html.DisplayNameFor(model => model.First().PhoneNumber)*@
                         </th>
                         <th class="text-center">
                             <a href="@Url.ActionLink("Index", "UserMem", new { sortOrder = ViewBag.DobSortParm  })">
                                 <span>Ngày sinh</span>
                                 <i class="fas fa-sort ml-1"></i>
                             </a>
-                            @*@Html.DisplayNameFor(model => model.First().DOB)*@
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.First().Address)
                         </th>
-                        @*<th>
-                                @Html.DisplayNameFor(model => model.Roles)
-                            </th>*@
                         <th class="text-center">
                             <a href="@Url.ActionLink("Index", "UserMem", new { sortOrder = ViewBag.LockSortParm  })">
                                 <span>Trạng thái</span>
                                 <i class="fas fa-sort ml-1"></i>
                             </a>
-                            @*@Html.DisplayNameFor(model => model.First().Lock)*@
                         </th>
                         <th></th>
                     </tr>
@@ -101,9 +89,6 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            @*<td>
-                                    @Html.DisplayFor(modelItem => item.UserName)
-                                </td>*@
                             <td class="col-lg-2">
                                 @Html.DisplayFor(modelItem => item.FullName)
                             </td>
@@ -129,13 +114,6 @@
                             <td class="col-lg-2">
                                 @Html.DisplayFor(modelItem => item.Address)
                             </td>
-                            @*<td>
-                                    @if (item.RoleID == 3)
-                                    {
-                                        <span>Khách hàng</span>
-                                    }
-                                @Html.DisplayFor(modelItem => item.RoleID)
-                                </td>*@
                             <td class="col-lg-1 text-center">
                                 @Html.DisplayFor(modelItem => item.Lock)
                             </td>

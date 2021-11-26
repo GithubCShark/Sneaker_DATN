@@ -6,7 +6,6 @@
 
 <main class="main users chart-page" id="skip-target">
     <div class="container pt-3">
-        @*<h2 class="main-title">Trang Chủ</h2>*@
         <div class="row stat-cards">
             <div class="col-md-6 col-xl-3">
                 <article class="stat-cards-item">
@@ -68,10 +67,6 @@
                         <p class="stat-cards-info__num">@ViewBag.LsOrderDOB</p>
                         <p class="stat-cards-info__title">Sinh nhật của khách</p>
                         <p class="stat-cards-info__progress">
-                            @*<span class="stat-cards-info__profit warning">
-                                    <i class="fas fa-chart-line"></i> 0.00%
-                                </span>
-                                Tháng trước*@
                             <a class="btn-light btn-gift-dob" href="@Url.Action("GiftDoB", "Admin")">>> Gửi Voucher <<</a>
                         </p>
                     </div>

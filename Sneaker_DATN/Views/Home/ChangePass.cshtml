@@ -39,7 +39,6 @@
                         {
                         <span class="img-info-user">
                             <span class='bx bx-user'></span>
-                            @*<img src="~/images/user.png" style="width:25px" />*@
                         </span>
                         }
                         else
@@ -59,12 +58,6 @@
                         <li class="nav-link">
                             <a asp-controller="Home" asp-action="Info">Thông tin</a>
                         </li>
-                        @*<li class="nav-link">
-                            <a href="">Đơn hàng</a>
-                        </li>*@
-                        @*<li class="nav-link">
-                                <a href="">Địa chỉ</a>
-                            </li>*@
                         <li class="nav-link">
                             <a asp-controller="Home" asp-action="ChangePass" class="nav-info-active">Đổi mật khẩu</a>
                         </li>
@@ -76,7 +69,6 @@
                     <div class="infomation-user-info col-lg-12">
 
                         <div class="login_form_inner">
-                            @*<h3>Đổi mật khẩu</h3>*@
                             <div class="text-danger" asp-validation-summary="All"></div>
                             <form asp-action="ChangePass" class="row changepass_form login_form" method="post" id="contactForm"
                                   novalidate="novalidate">

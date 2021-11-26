@@ -16,7 +16,6 @@ using X.PagedList;
 
 namespace Sneaker_DATN.Controllers
 {
-    //[Route("/product")]
     public class ProductController : BaseController
     {
 
@@ -41,7 +40,6 @@ namespace Sneaker_DATN.Controllers
             ViewBag.NameSortParm = sortOrder == "name" ? "name_desc" : "name";
             ViewBag.PriceSortParm = sortOrder == "price" ? "price_desc" : "price";
             ViewBag.SaleSortParm = sortOrder == "sale" ? "sale_desc" : "sale";
-            //ViewBag.StatusSortParm = sortOrder == "status" ? "status_desc" : "status";
 
             ViewBag.Status = (from r in _productSvc.GetProductAll()
                               select r.Status).Distinct();
@@ -102,13 +100,6 @@ namespace Sneaker_DATN.Controllers
                 case "sale_desc":
                     students = students.OrderByDescending(s => s.Sale);
                     break;
-
-                //case "status":
-                //    students = students.OrderBy(s => s.Status);
-                //    break;
-                //case "status_desc":
-                //    students = students.OrderByDescending(s => s.Status);
-                //    break;
 
                 default:
                     students = students.OrderByDescending(s => s.ProductID);

@@ -58,7 +58,6 @@ namespace Sneaker_DATN
             services.AddTransient<IDiscountSvc, DiscountSvc>();
             services.AddTransient<ISendMailService, SendGmailSvc>();
 
-            //services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddHttpContextAccessor();
         }

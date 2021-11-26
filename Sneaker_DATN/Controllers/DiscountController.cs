@@ -111,9 +111,7 @@ namespace Sneaker_DATN.Controllers
         }
         public ActionResult Create()
         {
-            //System.Guid guid = System.Guid.NewGuid();
             var item = new Discounts();
-            //item.VoucherCode = guid.ToString();
             return PartialView(item);
         }
 
