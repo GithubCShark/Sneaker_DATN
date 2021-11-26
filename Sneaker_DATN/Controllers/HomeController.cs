@@ -554,7 +554,7 @@ namespace Sneaker_DATN.Controllers
             },
                 RedirectUrls = new RedirectUrls()
                 {
-                    CancelUrl = $"{hostname}/Home/CheckoutFail",
+                    CancelUrl = $"{hostname}/Home/CheckoutFailed",
                     ReturnUrl = $"{hostname}/Home/CheckoutComplete"
                 },
                 Payer = new Payer()
