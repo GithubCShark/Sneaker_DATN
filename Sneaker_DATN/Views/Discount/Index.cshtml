@@ -21,15 +21,10 @@
                 <div class="row col-lg-12">
                     <div class="input-group col-lg-8 col-sm-6">
                         <div class="form-outline d-flex">
-                            @using (Html.BeginForm("Index", "Discount", FormMethod.Get))
-                            {
-                                <p class="d-flex">
-                                    <input class="pl-3" id="SearchString" name="SearchString" type="text" value="" placeholder="Tìm kiếm..">
-                                    <button type="submit" value="Search" class="search-btn btn btn-primary">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                </p>
-                            }
+                            <input type="search" class="input-group col-lg-8" placeholder="Tìm kiếm..." />
+                            <button type="button" class="search-btn btn btn-primary">
+                                <i class="fas fa-search"></i>
+                            </button>
                         </div>
                     </div>
                     <div class="col-lg-4 col-sm-6">
@@ -68,7 +63,7 @@
                                 <i class="fas fa-sort ml-1"></i>
                             </a>
                         </th>
-                        <th class="text-center">
+                        <th class="px-3">
                             KH sử dụng
                         </th>
                         <th class="text-center">
@@ -77,7 +72,7 @@
                                 <i class="fas fa-sort ml-1"></i>
                             </a>
                         </th>
-                        <th class="text-center">
+                        <th>
                             <a href="@Url.ActionLink("Index", "Discount", new { sortOrder = ViewBag.PriceSortParm })">
                                 <span>Giảm $</span>
                                 <i class="fas fa-sort ml-1"></i>
@@ -108,7 +103,7 @@
                             <td class="text-center">
                                 @Html.DisplayFor(modelItem => item.DateUse)
                             </td>
-                            <td class="text-center">
+                            <td class="px-3">
                                 @foreach (var u in ViewBag.user)
                                 {
                                     if (u.UserID == item.CustomerId)
@@ -120,11 +115,18 @@
                             <td class="text-center custom-checkbox-index">
                                 @Html.DisplayFor(modelItem => item.Status)
                             </td>
-                            <td class="custom-checkbox-index d-flex ml-2 justify-content-left">
+                            <td class="custom-checkbox-index d-flex text-left">
                                     @Html.DisplayFor(modelItem => item.Classify)
-                                    <div class="ml-3">
-                                        @string.Format("{0:0,0}", item.Price) VNĐ
-                                    </div>
+                                <div class="ml-3">
+                                    @if (item.Price == 0)
+                                    {
+                                        <span>0</span>
+                                    }
+                                    else
+                                    {
+                                        @string.Format("{0:0,0 VNĐ}", item.Price)
+                                    }
+                                </div>
                             </td>
                             <td class="text-center">
                                 @Html.DisplayFor(modelItem => item.Percent)%
@@ -153,7 +155,7 @@
                 Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
             </div>
             <div class="pagin-right float-right">
-                @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.SortOrder, currentSearch = ViewBag.currentSearch }))
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.SortOrder }))
             </div>
         </div>
     </div>

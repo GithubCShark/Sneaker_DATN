@@ -80,3 +80,20 @@
 .colorlib-product {
     padding: 0;
 }
+/*badge product*/
+.single-product .badge-products-stop {
+    background: grey !important;
+}
+
+    .single-product .badge-products-stop::after {
+        border-top: 12px solid grey !important;
+    }
+/*checkout failed*/
+.btn-checkout-failed {
+    background: #fc6969 !important;
+}
+
+.process-failed span {
+    color: #fc6969 !important;
+    border: 2px solid #fc6969 !important;
+}

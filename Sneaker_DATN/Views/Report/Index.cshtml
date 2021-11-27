@@ -56,8 +56,8 @@
                         @using (Html.BeginForm("Export", "Report", FormMethod.Post))
                         {
                             @Html.TextBox("check", check, new { style = "display:none;"});
-                            <button type="submit" class="search-btn btn btn-success float-right">
-                                Xuất Excel?
+                            <button type="submit" class="search-btn btn btn-success float-right align-items-center d-flex">
+                                Xuất Excel <i class='bx bx-send ml-2'></i>
                             </button>
                         }
                     </div>
@@ -72,12 +72,13 @@
                 <img src="~/images/svg/report.svg" />
             </div>
         }
-        <div class="users-table table-wrapper">
+        <div class="users-table table-wrapper px-4">
 
             <table class="posts-table mt-3">
                 <thead>
                     @if (check == 1)
                     {
+                        <h4 class="font-weight-bold text-uppercase text-center mt-4">Báo cáo doanh thu theo sản phẩm</h4>
                         <tr class="users-table-info">
                             <th>
                                 @Html.DisplayNameFor(model => model.Products.ProductName)
@@ -95,6 +96,7 @@
                     }
                     else if (check == 2)
                     {
+                        <h4 class="font-weight-bold text-uppercase text-center mt-4">Báo cáo xếp hạng hơn hành khách</h4>
                         <tr class="users-table-info">
                             <th>
                                 @Html.DisplayNameFor(model => model.Users.FullName)
@@ -115,6 +117,7 @@
                     }
                     else if (check == 3)
                     {
+                        <h4 class="font-weight-bold text-uppercase text-center mt-4">Báo cáo doanh thu theo thương hiệu</h4>
                         <tr class="users-table-info">
                             <th>
                                 @Html.DisplayNameFor(model => model.BrandName)
@@ -130,10 +133,10 @@
                     else
                     {
                         <tr class="users-table-info">
+                            @*<th> </th>
                             <th> </th>
                             <th> </th>
-                            <th> </th>
-                            <th> </th>
+                            <th> </th>*@
                         </tr>
                     }
                 </thead>
@@ -201,10 +204,10 @@
                     else
                     {
                         <tr>
+                            @*<td> </td>
                             <td> </td>
                             <td> </td>
-                            <td> </td>
-                            <td> </td>
+                            <td> </td>*@
                         </tr>
                     }
                 </tbody>

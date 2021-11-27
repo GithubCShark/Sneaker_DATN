@@ -219,7 +219,7 @@
                                     <img class="img-fluid" src="~/images/Product/@item.Image" alt="">
                                     @if (item.Status)
                                     {
-                                        <div class="badge-overlay badge-products">
+                                        <div class="badge-overlay badge-products badge-products-stop">
                                             <span class="badge">Ngừng kinh doanh</span>
                                         </div>
                                     }
@@ -241,12 +241,12 @@
                                     <div class="price d-flex">
                                         @if (item.Sale > 0)
                                         {
-                                            <h6 class="d-flex">@string.Format("{0:0,0 vnđ}", (item.Price - item.Sale)) <span class="text-lowercase"></span></h6>
-                                            <h6 class="d-flex l-through">@string.Format("{0:0,0 vnđ}", item.Price) <span class="text-lowercase"></span></h6>
+                                            <h6 class="d-flex">@string.Format("{0:0,0 VNĐ}", (item.Price - item.Sale)) <span class="text-lowercase"></span></h6>
+                                            <h6 class="d-flex l-through">@string.Format("{0:0,0 VNĐ}", item.Price) <span class="text-lowercase"></span></h6>
                                         }
                                         else
                                         {
-                                            <h6 class="d-flex">@string.Format("{0:0,0 vnđ}", item.Price) <span class="text-lowercase"></span></h6>
+                                            <h6 class="d-flex">@string.Format("{0:0,0 VNĐ}", item.Price) <span class="text-lowercase"></span></h6>
                                         }
                                     </div>
                                     <div class="prd-bottom">
@@ -264,13 +264,13 @@
                                                 <p class="hover-text">Giỏ hàng</p>
                                             </a>
                                         }
-                                        <a class="social-info">
-                                            <span class='bx bx-heart'></span>
-                                            <p class="hover-text">Yêu thích</p>
-                                        </a>
                                         <a asp-action="Details" asp-route-id="@item.ProductID" class="social-info">
                                             <span class='bx bx-move'></span>
                                             <p class="hover-text">Xem Thêm</p>
+                                        </a>
+                                        <a class="social-info">
+                                            <span class='bx bx-share bx-rotate-180'></span>
+                                            <p class="hover-text">Chia sẻ</p>
                                         </a>
                                     </div>
                                 </div>

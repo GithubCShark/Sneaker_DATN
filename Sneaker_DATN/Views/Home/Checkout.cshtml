@@ -15,6 +15,23 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .colorlib-form .form-control-note {
+        width: 100%;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        color: #666666;
+        background: #fff;
+        box-shadow: none;
+        padding: 0.375rem 0.75rem;
+    }
+    .btn-checkout-paypal {
+        background: #000046 !important;
+        background: -webkit-linear-gradient(to left, #1CB5E0, #000046) !important;
+        background: linear-gradient(to left, #1CB5E0, #000046) !important; 
+    }
+</style>
 
 <!-- Start Banner Area -->
 <section class="banner-area organic-breadcrumb">
@@ -37,7 +54,7 @@
 </section>
 <!-- End breadcumb Area -->
 <!--================Checkout Area =================-->
-<div class="colorlib-product">
+<div class="colorlib-product pb-5">
     <div class="container">
         <div class="row row-pb-lg">
             <div class="col-sm-10 offset-md-1">
@@ -172,8 +189,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="note">Ghi chú</label>
-                                <textarea name="Note" id="Note" class="form-control form-control-note"
-                                          style="height: 80px !important;"></textarea>
+                                <textarea name="Note" id="Note" rows="5" class="form-control-note"></textarea>
                             </div>
                         </div>
                     </div>
@@ -223,13 +239,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6 cart-detail-btn text-center">
+                <div class="row mt-4">
+                    <div class="col-md-7 cart-detail-btn text-center">
                         <p><button onclick="orderCart();" id="orderBtn" class="primary-btn border-0">Đặt hàng</button></p>
                     </div>
-                    <div class="col-md-6 cart-detail-btn text-center" id="payPalBtn" style="display:none">
-                        <a asp-action="PaypalCheckOut" class="primary-btn border-0 d-flex align-items-center text-white">
-                            <i class='bx bxl-paypal bx-sm' style="color:#fff !important;"></i> PayPal
+                    <div class="col-md-5 cart-detail-btn text-center" id="payPalBtn" style="display:none">
+                        <a asp-action="PaypalCheckOut" class="btn-checkout-paypal  primary-btn d-flex justify-content-center align-items-center text-white">
+                            <i class='bx bxl-paypal bx-sm pr-2' style="color:#fff !important;"></i> PayPal
                         </a>
                     </div>
                 </div>

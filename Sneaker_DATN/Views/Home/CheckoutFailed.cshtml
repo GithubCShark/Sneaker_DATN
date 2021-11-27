@@ -3,6 +3,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 <!-- Start Banner Area -->
 <section class="banner-area organic-breadcrumb">
     <div class="container">
@@ -37,7 +38,7 @@
                         <p><span>02</span></p>
                         <h3>Thanh Toán</h3>
                     </div>
-                    <div class="process text-center active">
+                    <div class="process text-center process-failed active">
                         <p><span>03</span></p>
                         <h3>Không thành công</h3>
                     </div>
@@ -49,7 +50,7 @@
                 <p class="icon-addcart"><img src="~/images/svg/OrderError.svg" alt=""></p>
                 <h2 class="mb-4">Thanh toán không thành công, quay lại để tiếp tục thanh toán</h2>
                 <p>
-                    <a asp-controller="Home" asp-action="Checkout" class="primary-btn">Tiếp tục thanh toán</a>
+                    <a asp-controller="Home" asp-action="Checkout" class="primary-btn btn-checkout-failed">Tiếp tục thanh toán</a>
                 </p>
             </div>
         </div>
