@@ -6,6 +6,12 @@
 @{ string userName = Context.Session.GetString(SessionKey.User.UserName);}
 @{ string fullName = Context.Session.GetString(SessionKey.User.FullName);}
 @{ string avatar = Context.Session.GetString(SessionKey.User.Avatar);}
+@{ int roleid = 0;
+    if (Context.Session.GetInt32(SessionKey.User.RoleID.ToString()) != null)
+    {
+        roleid = (int)Context.Session.GetInt32(SessionKey.User.RoleID.ToString());
+    }
+}
 
 @{
     int id = 0;
@@ -166,32 +172,38 @@
                                 </li>
                             </ul>
                         </li>
-                        <li>
-                            <a class="show-cat-btn1" href="#">
-                                <span class="icon bx bxs-report bx-sm" aria-hidden="true"></span>Thống Kê, Báo Cáo
-                                <span class="category__btn1 transparent-btn" title="Open list">
-                                    <span class="icon bx bxs-down-arrow" aria-hidden="true"></span>
-                                </span>
-                            </a>
-                            <ul class="cat-sub-menu">
-                                <li>
-                                    <a asp-controller="Chart" asp-action="Index">Thống Kê</a>
-                                </li>
-                                <li>
-                                    <a asp-controller="Report" asp-action="Index">Báo Cáo</a>
-                                </li>
-                            </ul>
-                        </li>
+                        @if (roleid == 1)
+                        {
+                            <li>
+                                <a class="show-cat-btn1" href="#">
+                                    <span class="icon bx bxs-report bx-sm" aria-hidden="true"></span>Thống Kê, Báo Cáo
+                                    <span class="category__btn1 transparent-btn" title="Open list">
+                                        <span class="icon bx bxs-down-arrow" aria-hidden="true"></span>
+                                    </span>
+                                </a>
+                                <ul class="cat-sub-menu">
+                                    <li>
+                                        <a asp-controller="Chart" asp-action="Index">Thống Kê</a>
+                                    </li>
+                                    <li>
+                                        <a asp-controller="Report" asp-action="Index">Báo Cáo</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
                         <li>
                             <a asp-controller="Discount" asp-action="Index">
                                 <span class="icon bx bxs-discount bx-sm" aria-hidden="true"></span>Mã giảm giá
                             </a>
                         </li>
-                        <li>
-                            <a asp-controller="User" asp-action="Index">
-                                <span class="icon bx bxs-user-account bx-sm" aria-hidden="true"></span>Quản lý tài khoản
-                            </a>
-                        </li>
+                        @if (roleid == 1)
+                        {
+                            <li>
+                                <a asp-controller="User" asp-action="Index">
+                                    <span class="icon bx bxs-user-account bx-sm" aria-hidden="true"></span>Quản lý tài khoản
+                                </a>
+                            </li>
+                        }
                         <li>
                             <a asp-controller="User" asp-action="BotChat">
                                 <span class="icon bx bxs-bot bx-sm" aria-hidden="true"></span><span class="ml-1">BOT chat</span>
@@ -204,7 +216,15 @@
                 <a href="##" class="sidebar-user d-flex justify-content-center">
                     <span class="sidebar-user-img mt-2">
                         <picture>
-                            <img src="~/images/avatar/@avatar" alt="User name">
+                            @if (avatar == null || avatar == "")
+                            {
+                                <source srcset="~/images/avatar/avatar-illustrated-02.webp" type="image/webp">
+                                <img src="~/images/avatar/avatar-illustrated-02.png" alt="User name">
+                            }
+                            else
+                            {
+                                <img src="~/images/avatar/@avatar" alt="User name">
+                            }
                         </picture>
                     </span>
                     <div class="sidebar-user-info  mt-3 pb-2">

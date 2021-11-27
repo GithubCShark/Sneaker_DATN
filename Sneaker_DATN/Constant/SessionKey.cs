@@ -14,6 +14,7 @@ namespace Sneaker_DATN.Constant
             public const string Valid = "Valid";
             public const string Avatar = "Avatar";
             public const int ID = 0;
+            public const int RoleID = 0;
             public const string UserContext = "UserContext";
         }
 
