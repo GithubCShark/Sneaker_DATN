@@ -41,7 +41,7 @@ namespace Sneaker_DATN.Models
         [Display(Name = "Thương hiệu")]
         public int BrandID { get; set; }
 
-        [Display(Name = "Đang phục vụ")]
+        [Display(Name = "Ngừng kinh doanh")]
         public bool Status { get; set; }
 
         [Display(Name = "Mô tả")]

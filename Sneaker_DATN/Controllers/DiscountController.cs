@@ -24,7 +24,7 @@ namespace Sneaker_DATN.Controllers
         }
 
         // GET: MonAnController
-        public ActionResult Index(int? page, string sortOrder, string sortProperty)
+        public ActionResult Index(int? page, string sortOrder, string sortProperty, string searchString, string currentSearch)
         {
             if (page == null) page = 1;
             var sizes = _context.Discounts.Include(b => b.VoucherCode).OrderBy(b => b.VoucherId);
@@ -98,6 +98,20 @@ namespace Sneaker_DATN.Controllers
                 default:
                     links = links.OrderByDescending(s => s.VoucherId);
                     break;
+            }
+            // 4.Search
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentSearch;
+            }
+            ViewBag.currentSearch = searchString;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                links = links.Where(s => s.VoucherCode.ToUpper().Contains(searchString.ToUpper()));
             }
 
             ViewBag.user = _context.Users.ToList();
