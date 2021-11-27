@@ -117,9 +117,16 @@
                             </td>
                             <td class="custom-checkbox-index d-flex text-left">
                                     @Html.DisplayFor(modelItem => item.Classify)
-                                    <div class="ml-3">
-                                        @string.Format("{0:0,0}", item.Price) VNĐ
-                                    </div>
+                                <div class="ml-3">
+                                    @if (item.Price == 0)
+                                    {
+                                        <span>0</span>
+                                    }
+                                    else
+                                    {
+                                        @string.Format("{0:0,0 VNĐ}", item.Price)
+                                    }
+                                </div>
                             </td>
                             <td class="text-center">
                                 @Html.DisplayFor(modelItem => item.Percent)%
