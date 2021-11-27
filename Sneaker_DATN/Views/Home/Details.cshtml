@@ -6,6 +6,33 @@
 <!-- slide -->
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
+<style>
+    .btn-share {
+        height: 10%;
+        width: 10%;
+        border: none;
+        background: transparent;
+    }
+        .btn-share i {
+            -webkit-transition: all 0.3s ease 0s;
+            -moz-transition: all 0.3s ease 0s;
+            -o-transition: all 0.3s ease 0s;
+            transition: all 0.3s ease 0s;
+            margin-right: 10px;
+            border: none;
+            background: #fff;
+            border-radius: 6px;
+            cursor: pointer;
+            padding: 6px;
+            font-size: 26px;
+            color: #999999;
+            box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+        }
+        .btn-share i:hover {
+            background: #576ee0;
+            color: #fff;
+        }
+</style>
 
 <!-- Start Banner Area -->
 <section class="banner-area organic-breadcrumb">
@@ -70,7 +97,7 @@
                     </span>
                     @if (Model.Sale > 0)
                     {
-                        <div class="d-flex">
+                        <div class="d-flex align-items-baseline">
                             <h2>@string.Format("{0:0,0 VNĐ}", (Model.Price - Model.Sale))</h2>
                             <h4 class="text-muted ml-4" style="text-decoration: line-through">@string.Format("{0:0,0 VNĐ}", Model.Price)</h4>
                         </div>
@@ -125,7 +152,7 @@
                             <input type="number" value="1"
                                    class="input-text qty">
                         </div>
-                        <div class="card_area align-items-center">
+                        <div class="card_area d-flex align-items-center">
                             @if (!Model.Status)
                             {
                                 <a class="primary-btn" href="javascript:addCart(@Model.ProductID);">Thêm vào giỏ hàng</a>
@@ -134,7 +161,7 @@
                             {
                                 <a class="primary-btn custom-history-trash-disable" disabled="disabled">Thêm vào giỏ hàng</a>
                             }
-                            <button class="icon_btn"><i class='bx bxs-heart bx-lg'></i></button>
+                            <button class="btn-share  d-flex align-items-center justify-content-center"><i class='bx bx-share-alt'></i></button>
                         </div>
                     </div>
                 </div>

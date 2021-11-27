@@ -50,34 +50,34 @@
                         <th>
                             @Html.DisplayNameFor(model => model.First().FullName)
                         </th>
-                        <th>
+                        <th class="text-center">
                             <a href="@Url.ActionLink("Index", "Orders", new { sortOrder = ViewBag.TotalSortParm })">
                                 <span>Tổng tiền</span>
                                 <i class="fas fa-sort ml-1"></i>
                             </a>
                         </th>
-                        <th>
+                        <th class="text-center">
                             <a href="@Url.ActionLink("Index", "Orders", new { sortOrder = ViewBag.PaymentAmountSortParm })">
                                 <span>Thanh toán</span>
                                 <i class="fas fa-sort ml-1"></i>
                             </a>
                         </th>
-                        <th>
+                        <th class="text-center">
                             @Html.DisplayNameFor(model => model.First().Status)
                         </th>
-                        <th>
+                        <th class="text-center">
                             SĐT
                         </th>
-                        <th>
+                        <th class="text-center">
                             Địa chỉ
                         </th>
-                        <th>
+                        <th class="text-center">
                             <a href="@Url.ActionLink("Index", "Orders", new { sortOrder = ViewBag.DateCreateSortParm })">
                                 <span>Ngày đặt</span>
                                 <i class="fas fa-sort ml-1"></i>
                             </a>
                         </th>
-                        <th>
+                        <th class="text-center">
                             @Html.DisplayNameFor(model => model.First().Note)
                         </th>
                         <th></th>
@@ -90,16 +90,16 @@
                             <td class="col-lg-2">
                                 @Html.DisplayFor(modelItem => item.FullName)
                             </td>
-                            <td class="col-lg-1">
+                            <td class="col-lg-1 text-center">
                                 @string.Format("{0:0,0}", item.Total)
                             </td>
-                            <td class="col-lg-1">
+                            <td class="col-lg-1 text-center">
                                 @string.Format("{0:0,0}", item.PaymentAmount)
                             </td>
                             <td class="col-lg-1">
                                 @Html.DisplayFor(modelItem => item.Status)
                             </td>
-                            <td class="col-lg-1">
+                            <td class="col-lg-1 text-center">
                                 @Html.DisplayFor(modelItem => item.PhoneNumber)
                             </td>
                             <td class="col-lg-2">
@@ -107,7 +107,7 @@
                                     @Html.DisplayFor(modelItem => item.Address)
                                 </span>
                             </td>
-                            <td class="col-lg-1">
+                            <td class="col-lg-1 text-center">
                                 @Html.DisplayFor(modelItem => item.DateCreate)
                             </td>
                             <td class="col-lg-1">

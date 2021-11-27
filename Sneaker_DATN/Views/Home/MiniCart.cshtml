@@ -46,7 +46,7 @@
                                                 </h3>
                                                 <p>
                                                     <input class="cart-quantity" name="sl" type="number" id="@txt_Id" onchange="updateCart(@iD)" value="@item.Quantity" disabled /> x
-                                                    <span class="cart-price" id="tdGia_@iD">@item.Products.Price</span>
+                                                    <span class="cart-price" id="tdGia_@iD">@string.Format("{0:0,0 VNĐ}", (@item.Products.Price))</span>
                                                 </p>
                                             </div>
                                             <a class="minicart-remove" href="javascript:delCart(@iD);"><i class='bx bx-x'></i></a>
@@ -62,7 +62,18 @@
                             <ul>
                                 <li class="total">
                                     <span>Tổng</span>
-                                    <span id="spTotal"><strong>@total</strong></span>
+                                    <span id="spTotal">
+                                        <strong>
+                                            @if (@total == 0)
+                                            {
+                                                <span>0</span>
+                                            }
+                                            else
+                                            {
+                                                @string.Format("{0:0,0 VNĐ}", @total)
+                                            }
+                                        </strong>
+                                    </span>
                                 </li>
                             </ul>
                         </div>

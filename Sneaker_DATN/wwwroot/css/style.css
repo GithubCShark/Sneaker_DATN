@@ -3349,7 +3349,8 @@ label {
 }
 
 .darkmode .users-table td {
-  background-color: #222235;
+ /* background-color: #222235;*/
+  background-color: transparent;
   border-color: transparent;
 }
 

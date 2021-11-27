@@ -4,6 +4,18 @@
     Layout = "~/Views/Shared/_LayoutManager.cshtml";
 }
 
+<style>
+    .btn-gift-dob {
+        background: transparent;
+        color: #93a2eb;
+        font-weight: 700;
+    }
+        .btn-gift-dob:hover {
+            color: #3d57db;
+            background: transparent;
+        }
+</style>
+
 <main class="main users chart-page" id="skip-target">
     <div class="container pt-3">
         <div class="row stat-cards">
@@ -67,7 +79,7 @@
                         <p class="stat-cards-info__num">@ViewBag.LsOrderDOB</p>
                         <p class="stat-cards-info__title">Sinh nhật của khách</p>
                         <p class="stat-cards-info__progress">
-                            <a class="btn-light btn-gift-dob" href="@Url.Action("GiftDoB", "Admin")">>> Gửi Voucher <<</a>
+                            <a class="btn-gift-dob" href="@Url.Action("GiftDoB", "Admin")">>> Gửi Voucher <<</a>
                         </p>
                     </div>
                 </article>
