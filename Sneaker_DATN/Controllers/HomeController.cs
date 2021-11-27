@@ -277,10 +277,10 @@ namespace Sneaker_DATN.Controllers
             return View(productFilters.ToPagedList(pageNumber, pageSize));
         }
 
-        public IActionResult AddCart(int id, int size, int color)
+        public IActionResult AddCart(int id, int size, int color, int quantity)
         {
             var cart = HttpContext.Session.GetString("cart");
-            
+
             if (cart == null)
             {
                 var product = _productSvc.GetProduct(id);
@@ -289,7 +289,7 @@ namespace Sneaker_DATN.Controllers
                     new ViewCart
                     {
                         Products = product,
-                        Quantity = 1,
+                        Quantity = quantity,
                         Size = size,
                         Color =  color
                     }

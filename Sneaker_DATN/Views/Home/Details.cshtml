@@ -187,7 +187,7 @@
                         </div>
                         <div class="block-26-color product_count">
                             <h4>Số lượng:</h4>
-                            <input type="number" value="1"
+                            <input type="number" id="quantity" min="1" max="99" value="1"
                                    class="input-text qty">
                         </div>
                         <div class="card_area d-flex align-items-center">
@@ -260,6 +260,7 @@
         $("#imgBusy_" + id).show();
         var size = $("#size").val();
         var color = $("#color").val();
+        var quantity = $("#quantity").val();
         setTimeout(function () {
             $.ajax({
                 url: "/Home/AddCart",
@@ -267,7 +268,8 @@
                 data: {
                     id: id,
                     size: size,
-                    color: color
+                    color: color,
+                    quantity: quantity
                 },
                 success: function (result) {
                     Swal.fire({
