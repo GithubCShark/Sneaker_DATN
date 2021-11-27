@@ -21,10 +21,15 @@
                 <div class="row col-lg-12">
                     <div class="input-group col-lg-8 col-sm-6">
                         <div class="form-outline d-flex">
-                            <input type="search" class="input-group col-lg-8" placeholder="Tìm kiếm..." />
-                            <button type="button" class="search-btn btn btn-primary">
-                                <i class="fas fa-search"></i>
-                            </button>
+                            @using (Html.BeginForm("Index", "Discount", FormMethod.Get))
+                            {
+                                <p class="d-flex">
+                                    <input class="pl-3" id="SearchString" name="SearchString" type="text" value="" placeholder="Tìm kiếm..">
+                                    <button type="submit" value="Search" class="search-btn btn btn-primary">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </p>
+                            }
                         </div>
                     </div>
                     <div class="col-lg-4 col-sm-6">
@@ -115,7 +120,7 @@
                             <td class="text-center custom-checkbox-index">
                                 @Html.DisplayFor(modelItem => item.Status)
                             </td>
-                            <td class="custom-checkbox-index d-flex text-left">
+                            <td class="custom-checkbox-index d-flex justify-content-center">
                                     @Html.DisplayFor(modelItem => item.Classify)
                                 <div class="ml-3">
                                     @if (item.Price == 0)
@@ -155,7 +160,7 @@
                 Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
             </div>
             <div class="pagin-right float-right">
-                @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.SortOrder }))
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.SortOrder, currentSearch = ViewBag.currentSearch }))
             </div>
         </div>
     </div>
