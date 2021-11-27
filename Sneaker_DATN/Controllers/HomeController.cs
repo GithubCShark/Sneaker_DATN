@@ -314,7 +314,7 @@ namespace Sneaker_DATN.Controllers
                     dataCart.Add(new ViewCart
                     {
                         Products = product,
-                        Quantity = 1,
+                        Quantity = quantity,
                         Size = size,
                         Color = color
                     });
