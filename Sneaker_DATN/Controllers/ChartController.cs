@@ -21,6 +21,10 @@ namespace Sneaker_DATN.Controllers
         {
             return View();
         }
+        public IActionResult ChartWeek()
+        {
+            return View();
+        }
         [HttpPost]
         public IActionResult GetAllDateUserMem(int year)
         {
@@ -73,6 +77,45 @@ namespace Sneaker_DATN.Controllers
                     });
                 }
             }
+            ViewData["DataList"] = dataChart.ToList();
+            return Json(JsonConvert.SerializeObject(dataChart));
+        }
+
+        [HttpPost]
+        public IActionResult GetChartMonth(int month)
+        {
+            var dt = DateTime.Now.Year;
+            var lsorder = from p in _context.Orders.Where(p => p.Status == "Đã nhận").ToList()
+                          where p.DateCreate.Month == month && p.DateCreate.Year == dt
+                          orderby p.DateCreate
+                          group p by p.FullName into List
+                          select new
+                          {
+                              Name = List.Key.ToString()
+                          };
+            var lstotal = from p in _context.Orders.Where(p => p.Status == "Đã nhận").ToList()
+                          where p.DateCreate.Month == month && p.DateCreate.Year == dt
+                          orderby p.DateCreate
+                          select p;
+            List<ViewChar> dataChart = new List<ViewChar>();
+            //Theo tên khách
+            for (int i = 0; i < lsorder.ToList().Count; i++)
+            {
+                double total = 0;
+                foreach (var item in lstotal)
+                {
+                    if (lsorder.ToList()[i].Name == item.FullName)
+                    {
+                        total += item.Total;
+                    }
+                }
+                dataChart.Add(new ViewChar
+                {
+                    Name = lsorder.ToList()[i].Name,
+                    Total = total
+                });
+            }
+
             ViewData["DataList"] = dataChart.ToList();
             return Json(JsonConvert.SerializeObject(dataChart));
         }
