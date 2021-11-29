@@ -80,10 +80,12 @@
                 success: function (dataChart) {
                     var lsName = [];
                     var lsTotal = [];
+                    var lsTotalCTT = [];
 
                     $.each(JSON.parse(dataChart), function (index, item) {
                         lsName.push(item.Name);
                         lsTotal.push(item.Total);
+                        lsTotalCTT.push(item.TotalCTT);
                     });
 
                     //Total
@@ -92,10 +94,16 @@
                         labels: lsName,
                         datasets: [
                             {
-                                label: 'Doanh Thu',
+                                label: 'Đã giao',
                                 backgroundColor: "#D9880F",
                                 borderWidth: 1,
                                 data: lsTotal
+                            },
+                            {
+                                label: 'Đang duyệt',
+                                backgroundColor: "#CC975E",
+                                borderWidth: 1,
+                                data: lsTotalCTT
                             }
                         ]
                     };
@@ -104,7 +112,7 @@
                         data: barChartData1,
                         options: {
                             responsive: true,
-                            title: { display: true, text: 'Biểu đồ cột biểu thị doanh thu theo khách trong tháng', position: 'bottom' },
+                            title: { display: true, text: 'Biểu đồ cột biểu thị doanh thu trong tháng theo khách', position: 'bottom' },
                         }
                     });
 

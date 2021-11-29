@@ -63,9 +63,8 @@
         });
 
         // Set năm hiển thị ban đầu
-        //var dt = new Date();
-        //GetReportList(dt.getFullYear());
-        GetReportList(2021);
+        var dt = new Date();
+        GetReportList(dt.getFullYear());
 
         //// Đọc năm và trả về object
         function GetReportList(year) {
@@ -117,11 +116,17 @@
                         labels: lsThangOrder,
                         datasets: [
                             {
-                                label: 'Doanh Thu',
+                                label: 'Đã giao',
                                 backgroundColor: "#D9880F",
                                 borderWidth: 1,
                                 data: lsTotal
-                            }
+                            },
+                            //{
+                            //    label: 'Đang duyệt',
+                            //    backgroundColor: "#CC975E",
+                            //    borderWidth: 1,
+                            //    data: 
+                            //}
                         ]
                     };
                     var myBarChart1 = new Chart(ctx1, {
@@ -139,11 +144,17 @@
                         labels: lsThangOrder,
                         datasets: [
                             {
-                                label: 'Đơn hàng',
+                                label: 'Đã giao',
                                 backgroundColor: "#D9880F",
                                 borderWidth: 1,
                                 data: lsDataOrder
-                            }
+                            },
+                            //{
+                            //    label: 'Đang duyệt',
+                            //    backgroundColor: "#CC975E",
+                            //    borderWidth: 1,
+                            //    data: 
+                            //}
                         ]
                     };
                     var myBarChart2 = new Chart(ctx2, {

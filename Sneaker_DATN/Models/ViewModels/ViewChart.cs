@@ -12,7 +12,7 @@ namespace Sneaker_DATN.Models
         public string ThangOrder { get; set; }
         public int SoLuongOrder { get; set; }
         public double Total { get; set; }
-
+        public double TotalCTT { get; set; }
         public string Name { get; set; }
     }
 }

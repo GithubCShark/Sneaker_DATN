@@ -85,34 +85,42 @@ namespace Sneaker_DATN.Controllers
         public IActionResult GetChartMonth(int month)
         {
             var dt = DateTime.Now.Year;
-            var lsorder = from p in _context.Orders.Where(p => p.Status == "Đã nhận").ToList()
-                          where p.DateCreate.Month == month && p.DateCreate.Year == dt
-                          orderby p.DateCreate
-                          group p by p.FullName into List
-                          select new
-                          {
-                              Name = List.Key.ToString()
-                          };
-            var lstotal = from p in _context.Orders.Where(p => p.Status == "Đã nhận").ToList()
+            var lsorder = from p in _context.Orders.ToList()
                           where p.DateCreate.Month == month && p.DateCreate.Year == dt
                           orderby p.DateCreate
                           select p;
+
+            var lsDTT = from p in lsorder.Where(p => p.Status == "Đã nhận").ToList()
+                        select p;
+            var lsCTT = from p in lsorder.Where(p => p.Status != "Đã nhận" && p.Status != "Đã hủy").ToList()
+                        select p;
+
+            var lsname = lsorder.GroupBy(x => x.FullName).ToList();
             List<ViewChar> dataChart = new List<ViewChar>();
             //Theo tên khách
-            for (int i = 0; i < lsorder.ToList().Count; i++)
+            for (int i = 0; i < lsname.Count; i++)
             {
                 double total = 0;
-                foreach (var item in lstotal)
+                double totalCTT = 0;
+                foreach (var x in lsDTT)
                 {
-                    if (lsorder.ToList()[i].Name == item.FullName)
+                    if (lsname.ToList()[i].Key == x.FullName)
                     {
-                        total += item.Total;
+                        total += x.Total;
+                    }
+                }
+                foreach (var y in lsCTT)
+                {
+                    if (lsname.ToList()[i].Key == y.FullName)
+                    {
+                        totalCTT += y.Total;
                     }
                 }
                 dataChart.Add(new ViewChar
                 {
-                    Name = lsorder.ToList()[i].Name,
-                    Total = total
+                    Name = lsname[i].Key,
+                    Total = total,
+                    TotalCTT = totalCTT
                 });
             }
 
