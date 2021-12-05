@@ -128,7 +128,10 @@
                         <div class="card_area d-flex align-items-center">
                             @if (!Model.Status)
                             {
-                                <a class="primary-btn" href="javascript:addCart(@Model.ProductID);">Thêm vào giỏ hàng</a>
+                                <a class="primary-btn d-flex align-items-center justify-content-center" href="javascript:addCart(@Model.ProductID);">
+                                    <i class='bx bx-shopping-bag bx-sm'></i>&nbsp;&nbsp;
+                                    Thêm vào giỏ hàng
+                                </a>
                             }
                             else
                             {
@@ -136,7 +139,7 @@
                             }
                             <input type="text" class="d-none" id="myInput">
                             <button onclick="Share()" title="Copy link" data-toggle="tooltip" onmouseout="outFunc()" class="btn-share  d-flex align-items-center justify-content-center">
-                                <i class='bx bx-share-alt'></i>
+                                <i class='bx bx-share bx-rotate-180'></i>
                             </button>
                         </div>
                     </div>

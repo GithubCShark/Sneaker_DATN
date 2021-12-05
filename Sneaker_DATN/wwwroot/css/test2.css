@@ -63,3 +63,14 @@
         visibility: visible;
         opacity: 1;
     }
+
+/*    menu hover*/
+.line-effect {
+    width: 0;
+    height: 2.5px;
+    background-color: #576ee0;
+    position: fixed;
+    pointer-events: none;
+    z-index: 99;
+    transition: all 0.25s linear;
+}

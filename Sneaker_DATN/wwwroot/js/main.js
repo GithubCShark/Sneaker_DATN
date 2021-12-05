@@ -106,4 +106,27 @@ document.querySelector('.slide-prev').addEventListener('click', () => {
 
 showSlide()
 
+/*menu hover*/
+window.addEventListener("load", function () {
+    const links = [...document.querySelectorAll(".nav-link")];
+    links.forEach((item) => item.addEventListener("mouseenter", handleHoverLink));
+    const line = document.createElement("div");
+    line.className = "line-effect";
+    document.body.appendChild(line);
+    function handleHoverLink(event) {
+        const { left, top, width, height } = event.target.getBoundingClientRect();
+        const offsetBottom = 3;
+        line.style.width = `${width}px`;
+        line.style.left = `${left}px`;
+        line.style.top = `${top + height + offsetBottom}px`;
+    }
+
+
+    const menu = document.querySelector(".main_menu");
+    menu.addEventListener("mouseleave", function () {
+        line.style.width = 0;
+        line.style.left = 0;
+        line.style.top = 0;
+    })
+})
 
