@@ -110,10 +110,10 @@
                             <td class="col-lg-1 text-center">
                                 @Html.DisplayFor(modelItem => item.DateCreate)
                             </td>
-                            <td class="col-lg-1">
+                            <td class="col-lg-2">
                                 @Html.DisplayFor(modelItem => item.Note)
                             </td>
-                            <td class="col-lg-2">
+                            <td class="col-lg-1">
                                 <a href="@Url.Action("Edit", "Orders", new { id = @item.OrderID })" class="btn-edit-order">
                                     <i class="far fa-edit dashbroad-icon-hover" style="font-size: 1.5rem;"></i>
                                 </a>
