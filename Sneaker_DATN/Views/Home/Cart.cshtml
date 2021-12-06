@@ -12,7 +12,6 @@
 @{ int checksz = 0; int checkcol = 0;}
 
 
-
 <!-- Start Banner Area -->
 <section class="banner-area organic-breadcrumb">
     <div class="container">
@@ -100,7 +99,10 @@
                                                 <img class="img-fluid" src="~/images/Product/@item.Products.Image" alt="Product" />
                                             </a>
                                         </td>
-                                        <td class="pro-title"><a asp-action="Details" asp-route-id="Products"> @item.Products.ProductName</a></td>
+                                        <td class="pro-title custom-title-cart">
+                                            <a data-toggle="tooltip" 
+                                               title="@item.Products.ProductName" asp-action="Details" asp-route-id="Products"> @item.Products.ProductName</a>
+                                            </td>
                                         <td class="pro-quantity text-center">
                                             <select class="cart-tbl-select-custom ml-3 border-0" id="size_@iD">
                                                 @foreach (var i in ViewBag.sz)

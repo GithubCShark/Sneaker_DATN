@@ -74,3 +74,12 @@
     z-index: 99;
     transition: all 0.25s linear;
 }
+/*cart title*/
+.custom-title-cart {
+    white-space: nowrap;
+    width: 250px !important;
+    /* height: 100px !important; */
+    max-width: 250px !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
