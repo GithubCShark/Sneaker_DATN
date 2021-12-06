@@ -43,7 +43,7 @@
                         }
                         else
                         {
-                            <img alt='' src="~/images/avatar/@Model.ImgUser" />
+                            <img alt='' src="~/images/avatar/@avatar" />
                         }
                         <span class="">
                             @Html.DisplayFor(model => model.FullName)
@@ -67,9 +67,20 @@
 
                 <div class="col-lg-8 infomation-user-right">
                     <div class="infomation-user-info col-lg-12">
-
                         <div class="login_form_inner">
-                            <div class="text-danger" asp-validation-summary="All"></div>
+                            @if (ViewData["Error"] != null)
+                            {
+                                <div class="red">
+                                    <p class="text-danger">@ViewData["Error"].ToString()</p>
+                                </div>
+                            }
+                            @if (TempData["Success"] != null)
+                            {
+                                <div class="green">
+                                    <p class="text-success">@TempData["Success"].ToString()</p>
+                                </div>
+                            }
+                            @*<div class="text-danger" asp-validation-summary="All"></div>*@
                             <form asp-action="ChangePass" class="row changepass_form login_form" method="post" id="contactForm"
                                   novalidate="novalidate">
                                 <div class="col-md-12 form-group d-none">

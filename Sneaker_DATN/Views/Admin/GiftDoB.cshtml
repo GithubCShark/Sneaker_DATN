@@ -67,8 +67,15 @@
             url: "/Admin/SendVoucher",
             success: function (result) {
                 setTimeout(function () {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Gửi voucher thành công!',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
                     location.reload();
-                }, 2000)
+                }, 1000)
             }
         });
     }

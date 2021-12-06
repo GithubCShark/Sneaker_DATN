@@ -108,7 +108,7 @@ showSlide()
 
 /*menu hover*/
 window.addEventListener("load", function () {
-    const links = [...document.querySelectorAll(".nav-link")];
+    const links = [...document.querySelectorAll(".nav-link-hover")];
     links.forEach((item) => item.addEventListener("mouseenter", handleHoverLink));
     const line = document.createElement("div");
     line.className = "line-effect";
@@ -122,11 +122,10 @@ window.addEventListener("load", function () {
     }
 
 
-    const menu = document.querySelector(".main_menu");
+    const menu = document.querySelector(".nav-menu-hover");
     menu.addEventListener("mouseleave", function () {
         line.style.width = 0;
         line.style.left = 0;
         line.style.top = 0;
     })
 })
-

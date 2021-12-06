@@ -79,14 +79,14 @@
                         </div>
                         <div class="minicart-button">
                             <div class="minicart-button-ct  col-lg-12">
-                                <a class="col-lg-6" asp-controller="Home" asp-action="Cart"><i class='bx bx-shopping-bag bx-sm'></i> Xem giỏ hàng</a>
+                                <a class="col-lg-6  d-flex align-items-center" asp-controller="Home" asp-action="Cart"><i class='bx bx-shopping-bag bx-sm'></i> Xem giỏ hàng</a>
                                 @if (fullName != null && fullName != "")
                                 {
-                                    <a class="col-lg-6" asp-controller="Home" asp-action="Checkout"><i class='bx bx-share bx-rotate-180 bx-sm'></i> Thanh toán</a>
+                                    <a class="col-lg-6 d-flex align-items-center" asp-controller="Home" asp-action="Checkout"><i class='bx bx-navigation bx-sm'></i> Thanh toán</a>
                                 }
                                 else
                                 {
-                                    <a class="col-lg-6" onclick="return false" asp-controller="Home" asp-action="Checkout"><i class='bx bx-share bx-rotate-180 bx-sm'></i> Thanh toán</a>
+                                    <a class="col-lg-6 d-flex align-items-center" onclick="return false" asp-controller="Home" asp-action="Checkout"><i class='bx bx-navigation bx-sm'></i> Thanh toán</a>
                                   
                                     <span class="d-flex align-items-center">Bạn cần 
                                         &nbsp; 

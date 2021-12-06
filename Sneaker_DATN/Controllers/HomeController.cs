@@ -964,9 +964,14 @@ namespace Sneaker_DATN.Controllers
                     user.ConfirmPassword = user.Password;
 
                     _userMemSvc.EditUserMem(id, user);
-                    return RedirectToAction(nameof(Index));
+                    TempData["Success"] = "Đổi mật khẩu thành công.";
+                    return View();
                 }
-                return View();
+                else
+                {
+                    ViewData["Error"] = "Đổi mật khẩu thất bại";
+                    return View();
+                }
             }
             catch (Exception)
             {
