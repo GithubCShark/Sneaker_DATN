@@ -393,7 +393,7 @@ namespace Sneaker_DATN.Controllers
             }
             else
             {
-                prod.Status = false;
+                prod.Status = true;
                 _context.Products.Update(prod);
                 await _context.SaveChangesAsync();
             }

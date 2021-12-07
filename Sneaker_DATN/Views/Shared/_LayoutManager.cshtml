@@ -7,17 +7,17 @@
 @{ string fullName = Context.Session.GetString(SessionKey.User.FullName);}
 @{ string avatar = Context.Session.GetString(SessionKey.User.Avatar);}
 @{ int roleid = 0;
-    if (Context.Session.GetInt32(SessionKey.User.RoleID.ToString()) != null)
+    if (Context.Session.GetString(SessionKey.User.RoleID) != null)
     {
-        roleid = (int)Context.Session.GetInt32(SessionKey.User.RoleID.ToString());
+        roleid = int.Parse(Context.Session.GetString(SessionKey.User.RoleID));
     }
 }
 
 @{
-    int id = 0;
-    if (Context.Session.GetInt32(SessionKey.User.ID.ToString()) != null)
+    int userid = 0;
+    if (Context.Session.GetInt32(SessionKey.User.User_ID.ToString()) != null)
     {
-        id = (int)Context.Session.GetInt32(SessionKey.User.ID.ToString());
+        userid = (int)Context.Session.GetInt32(SessionKey.User.User_ID.ToString());
     }
 }
 
@@ -287,7 +287,7 @@
                             <ul class="users-item-dropdown nav-user-dropdown dropdown">
                                 <li>
                                     <button class="nav-link btn btn-link">
-                                        <a asp-controller="User" asp-action="Info" asp-route-id="@id" class="text-primary">
+                                        <a asp-controller="User" asp-action="Info" asp-route-id="@userid" class="text-primary">
                                             <i class='bx bx-info-circle bx-sm pr-2'></i>
                                             Thông Tin
                                         </a>

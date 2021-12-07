@@ -28,8 +28,12 @@ namespace Sneaker_DATN.Controllers
             //1
             var lsProduct = from x in _context.Products
                             select x;
-            var lsOrderDetails = from y in _context.OrderDetails
+            var lsOrder = from x in _context.Orders
+                          where x.Status == "Đã nhận"
+                          select x.OrderID;
+            var lsOrderD = from y in _context.OrderDetails
                                  select y;
+            var lsOrderDetails = lsOrderD.Where(x => lsOrder.Contains(x.OrderID)).ToList();
             //2
             var lsUser = from x in _context.Users
                             where x.RoleID == 3

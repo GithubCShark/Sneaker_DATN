@@ -86,6 +86,7 @@ namespace Sneaker_DATN.Controllers
                     HttpContext.Session.SetString(SessionKey.Guest.Guest_FullName, user.FullName);
                     HttpContext.Session.SetInt32(SessionKey.Guest.Guest_ID.ToString(), user.UserID);
                     HttpContext.Session.SetString(SessionKey.Guest.GuestContext, JsonConvert.SerializeObject(user));
+
                     if (user.ImgUser == null || user.ImgUser == "")
                     {
                         HttpContext.Session.SetString(SessionKey.Guest.Guest_Avatar, "");
