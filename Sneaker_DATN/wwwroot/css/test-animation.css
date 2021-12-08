@@ -1,0 +1,45 @@
+﻿.img-fluid{
+    z-index: 9999 !important;
+    margin-bottom: 0 !important;
+}
+.badge-overlay {
+    z-index: 9999 !important;
+}
+.img-prd-animation {
+    padding: 2px;
+}
+.img-prd-animation:hover {
+    z-index: 99 !important;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+    .img-prd-animation:hover::before {
+        position: absolute;
+        content: '';
+        width: 100px;
+        height: 400px;
+        z-index: 999 !important;
+        background: linear-gradient(#99FEFF, #B983FF);
+        animation: animate 3s linear infinite;
+        border-radius: 10px;
+    }
+    .img-prd-animation:hover::after {
+        position: absolute;
+        content: '';
+        inset: 4px;
+        background: #fff;
+    }
+
+        @keyframes animate {
+            0%{
+                transform: rotate(0deg);
+            }
+            100%{
+                transform: rotate(360deg);
+            }
+        }

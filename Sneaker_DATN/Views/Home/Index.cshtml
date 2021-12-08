@@ -5,7 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 <!-- start banner Area -->
 <section class="banner-area">
     <div class="container">
@@ -228,22 +227,26 @@
                     <div class="col-lg-3 col-md-6 col-sm-6">
                         <div class="single-product">
                             <a asp-action="Details" asp-route-id="@item.ProductID">
-                                <img class="img-fluid" src="~/images/Product/@item.Image" alt="">
-                                @if (item.Status)
-                                {
-                                    <div class="badge-overlay badge-stop">
-                                        <span class="badge">Ngừng kinh doanh</span>
+                                <div class="img-prd-animation">
+                                    <div class="img-fluid">
+                                        <img class="" src="~/images/Product/@item.Image" alt="" />
+                                        @if (item.Status)
+                                        {
+                                            <div class="bagde-sale badge-stop">
+                                                <span class="badge-txt"> Ngừng kinh doanh</span>
+                                            </div>
+                                        }
+                                        else if (item.Sale > 0)
+                                        {
+                                            var sale = Math.Round((@item.Sale / @item.Price) * 100);
+                                            <div class="bagde-sale">
+                                                <span class="badge-txt">Sale @sale%</span>
+                                            </div>
+                                        }
                                     </div>
-                                }
-                                else if (item.Sale > 0)
-                                {
-                                    var sale = Math.Round((@item.Sale / @item.Price) * 100);
-                                    <div class="badge-overlay">
-                                        <span class="badge">Sale @sale%</span>
-                                    </div>
-                                }
+                                </div>
                             </a>
-                            <div class="product-details">
+                            <div class="product-details mt-3">
                                 <h6 class="custom-title-product">
                                     <a class="text-decoration-none text-link-hover" data-toggle="tooltip" title="@item.ProductName" asp-action="Details" asp-route-id="@item.ProductID">
                                         @Html.DisplayFor(modelItem => item.ProductName)
@@ -418,6 +421,30 @@
                 <div class="row">
                     <div class="exclusive-deal-txt col-lg-10">
                         <h1>SALE OFF</h1>
+
+                        <div class="time mt-4">
+                            <div class="time-colon">
+                                <div class="time-text">
+                                    <span class="num hour_num">1</span>
+                                    <span class="text">Giờ</span>
+                                </div>
+                                <span class="colon">:</span>
+                            </div>
+                            <div class="time-colon">
+                                <div class="time-text">
+                                    <span class="num min_num">45</span>
+                                    <span class="text">Phút</span>
+                                </div>
+                                <span class="colon">:</span>
+                            </div>
+                            <div class="time-colon">
+                                <div class="time-text">
+                                    <span class="num sec_num">45</span>
+                                    <span class="text">Giây</span>
+                                </div>
+                            </div>
+                        </div>
+
                         <a asp-action="FlashSale" class="primary-btn">Xem ngay<i class='bx bx-send primary-btn-icon'></i></a>
                     </div>
                     <div class="exclusive-deal-img col-lg-2">
@@ -454,6 +481,7 @@
 <!-- End brand Area -->
 
 <script>
+
     function clearCart() {
         $("#imgCart").attr("src", '/images/bag.png');
     }

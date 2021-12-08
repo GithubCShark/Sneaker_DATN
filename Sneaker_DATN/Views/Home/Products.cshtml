@@ -216,20 +216,24 @@
                         <div class="col-lg-4 col-md-6"  data-aos="fade-up">
                             <div class="single-product">
                                 <a asp-action="Details" asp-route-id="@item.ProductID">
-                                    <img class="img-fluid" src="~/images/Product/@item.Image" alt="">
-                                    @if (item.Status)
-                                    {
-                                        <div class="badge-overlay badge-products badge-products-stop">
-                                            <span class="badge">Ngừng kinh doanh</span>
+                                    <div class="img-prd-animation">
+                                        <div class="img-fluid">
+                                            <img class="" src="~/images/Product/@item.Image" alt="" />
+                                            @if (item.Status)
+                                            {
+                                                <div class="bagde-sale badge-stop">
+                                                    <span class="badge-txt"> Ngừng kinh doanh</span>
+                                                </div>
+                                            }
+                                            else if (item.Sale > 0)
+                                            {
+                                                var sale = Math.Round((@item.Sale / @item.Price) * 100);
+                                                <div class="bagde-sale">
+                                                    <span class="badge-txt">Sale @sale%</span>
+                                                </div>
+                                            }
                                         </div>
-                                    }
-                                    else if (item.Sale > 0)
-                                    {
-                                        var sale = Math.Round((@item.Sale / @item.Price) * 100);
-                                        <div class="badge-overlay badge-products">
-                                            <span class="badge">Sale @sale%</span>
-                                        </div>
-                                    }
+                                    </div>
                                 </a>
                                 <div class="product-details">
                                     <h6 class="custom-title-product">

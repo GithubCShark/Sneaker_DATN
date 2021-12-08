@@ -970,7 +970,7 @@ h6 {
     /* start features area css
 ============================================================================================ */
     .features-area {
-        margin-top: -10%;
+        margin-top: -15%;
     }
 
     @media (max-width: 768px) {
@@ -1284,7 +1284,7 @@ h6 {
 
     .exclusive-deal-area .exclusive-deal-txt {
         text-align: center;
-        margin-top: 8%;
+        margin-top: 3%;
     }
 
 
@@ -1319,7 +1319,7 @@ h6 {
     }
 
     .exclusive-deal-area .exclusive-left .primary-btn {
-        margin-top: 40px;
+        margin-top: 30px;
     }
 
     .exclusive-deal-area .exclusive-left .primary-btn-icon {
