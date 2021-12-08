@@ -114,9 +114,7 @@
                                             if (i.ColorID == item.ColorID)
                                             {
                                                 <li>
-                                                    <input class="color-checkbox" type="radio" name="color" style="        background-color: @i.Color;
-        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-" value="@i.ColorID">
+                                                    <input class="color-checkbox" type="radio" name="color" style="background-color: @i.Color;" value="@i.ColorID">
                                                 </li>
                                             }
                                         }
@@ -124,26 +122,6 @@
                                 }
                             </ul>
                         </div>
-
-                        @*<div class="block-26-color mb-4">
-                            <h4>Màu sắc</h4>
-                            <select class="nice-select product-details-color" id="color">
-                                <option value="Random">Chọn Color:</option>
-                                @foreach (var item in ViewBag.procol)
-                                {
-                                    if (item.ID == Model.ProductID)
-                                    {
-                                        foreach (var i in ViewBag.col)
-                                        {
-                                            if (i.ColorID == item.ColorID)
-                                            {
-                                                <option value="@i.ColorID">@i.Color</option>
-                                            }
-                                        }
-                                    }
-                                }
-                            </select>
-                        </div>*@
                         <div class="block-26-color product_count">
                             <h4>Số lượng:</h4>
                             <input type="number" id="quantity" min="1" max="99" value="1"

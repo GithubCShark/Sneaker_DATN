@@ -1,30 +1,123 @@
-﻿.custom-text-login{
+﻿.btn-share {
+    height: 10%;
+    width: 10%;
+    border: none;
+    background: transparent;
+}
+
+    .btn-share i {
+        -webkit-transition: all 0.3s ease 0s;
+        -moz-transition: all 0.3s ease 0s;
+        -o-transition: all 0.3s ease 0s;
+        transition: all 0.3s ease 0s;
+        margin-right: 10px;
+        border: none;
+        background: #fff;
+        border-radius: 6px;
+        cursor: pointer;
+        padding: 6px;
+        font-size: 26px;
+        color: #999999;
+        box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+    }
+
+        .btn-share i:hover {
+            background: #576ee0;
+            color: #fff;
+        }
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 140px;
+        background-color: #555;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px;
+        position: absolute;
+        z-index: 1;
+        bottom: 150%;
+        left: 50%;
+        margin-left: -75px;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+        .tooltip .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+    }
+
+/*    menu hover*/
+.line-effect {
+    width: 0;
+    height: 2.5px;
+    background-color: #576ee0;
+    position: fixed;
+    pointer-events: none;
+    z-index: 99;
+    transition: all 0.25s linear;
+}
+/*cart title*/
+.custom-title-cart {
+    white-space: nowrap;
+    width: 250px !important;
+    /* height: 100px !important; */
+    max-width: 250px !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/*reponsive*/
+.custom-text-login {
     color: #777;
 }
-.custom-text-login:hover{
-    color: #576ee0;
-}
+
+    .custom-text-login:hover {
+        color: #576ee0;
+    }
+
 .login_box_area {
     padding-bottom: 5rem;
 }
-.custom-select-register .nice-select{
+
+.custom-select-register .nice-select {
     width: 100%;
     display: flex;
     align-items: center;
 }
+
     .custom-select-register .nice-select .list {
         width: 100%;
     }
-    @media (max-width: 991px) {
-        /*menu*/
-        .header_area .navbar .nav .nav-item.submenu ul .nav-item .nav-link {
+
+@media (max-width: 991px) {
+    /*menu*/
+    .header_area .navbar .nav .nav-item.submenu ul .nav-item .nav-link {
         padding: 0 !important;
         text-align: center !important;
     }
+
     .submenu-user .dropdown-menu {
         margin-left: -4rem !important;
     }
-/*    info user*/
+    /*    info user*/
     .infomation-user .infomation-user-right {
         margin-top: 2rem;
         border-left: none !important;
@@ -34,17 +127,18 @@
         padding: 2rem 0rem;
     }
     /*history*/
-        .tbl-history tbody tr td{
-            border: none
-        }
-        .steps-timeline {
-            display: block !important;
-        }
+    .tbl-history tbody tr td {
+        border: none
+    }
 
-       /* order complete*/
-        .icon-addcart img{
-            width: 100%;
-        }
+    .steps-timeline {
+        display: block !important;
+    }
+
+    /* order complete*/
+    .icon-addcart img {
+        width: 100%;
+    }
 }
 
 
@@ -128,6 +222,7 @@
         margin-left: 10%;
     }
 }
+
 @media screen and (min-width: 991px) {
     .steps-three {
         margin-left: 10%;
@@ -161,14 +256,16 @@
     }
 }
 
-.steps-name{
+.steps-name {
     margin: 0;
 }
+
 .steps-name {
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
+
 @media screen and (min-width: 991px) {
     .steps-name {
         text-align: center;
@@ -176,13 +273,15 @@
 }
 
 .steps-timeline .active span {
-    color: #576ee0; 
+    color: #576ee0;
     border: 2px solid #576ee0;
 }
+
 .steps-timeline .active-success span {
     color: #198754;
     border: 2px solid #198754;
 }
+
 .steps-timeline .active-cancel span {
     color: #dc3545;
     border: 2px solid #dc3545;
