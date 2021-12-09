@@ -324,7 +324,7 @@
                                         @item.Quantity
                                     </td>
                                     <td>
-                                        @string.Format("{0:0,0}", item.Price)
+                                        @string.Format("{0:0,0 VNĐ}", item.Price)
                                     </td>
                                 </tr>
                                 i++;
@@ -346,7 +346,7 @@
                                     <h5></h5>
                                 </td>
                                 <td>
-                                    <p>@string.Format("{0:0,0}", ViewBag.order.Total)</p>
+                                    <p>@string.Format("{0:0,0 VNĐ}", ViewBag.order.Total)</p>
                                 </td>
                             </tr>
                             <tr>
@@ -373,7 +373,7 @@
                                         }
                                         else
                                         {
-                                            @string.Format("{0:0,0}", ViewBag.order.Total - ViewBag.order.PaymentAmount)
+                                            @string.Format("{0:0,0 VNĐ}", ViewBag.order.Total - ViewBag.order.PaymentAmount)
                                         }
                                     </p>
                                 </td>
@@ -395,7 +395,7 @@
                                     <h5></h5>
                                 </td>
                                 <td>
-                                    <p>@string.Format("{0:0,0}", ViewBag.order.PaymentAmount)</p>
+                                    <p>@string.Format("{0:0,0 VNĐ}", ViewBag.order.PaymentAmount)</p>
                                 </td>
                             </tr>
                         </tbody>
