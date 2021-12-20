@@ -125,3 +125,7 @@
         transform: rotate(360deg);
     }
 }
+
+.img-cart-inx {
+    z-index: 89 !important;
+}

@@ -115,7 +115,7 @@
                                         <tr id="tr_@iD">
                                             <td class="pro-thumbnail">
                                                 <a href="#">
-                                                    <img class="img-fluid" src="~/images/Product/@item.Products.Image" alt="Product" />
+                                                    <img class="img-fluid img-cart-inx" src="~/images/Product/@item.Products.Image" alt="Product" />
                                                 </a>
                                             </td>
                                             <td class="pro-title"><a asp-controller="Home" asp-action="Products"> @item.Products.ProductName</a></td>
@@ -267,7 +267,13 @@
             },
             success: function (result) {
                 if (result == "0") {
-                    alert("Ma khuyen mai khong hop le");
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'Mã giảm giá không hợp lệ!',
+                        showConfirmButton: true,
+                        timer: 1000
+                    })
                 }
             }
         });
