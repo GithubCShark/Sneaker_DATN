@@ -1764,7 +1764,7 @@ h6 {
 
     .s_product_text {
         margin-left: -15px;
-        margin-top: 65px;
+        margin-top: 10px;
     }
 
     @media (max-width: 575px) {
@@ -1791,7 +1791,7 @@ h6 {
         padding-top: 20px;
         border-top: 1px dotted #d5d5d5;
         margin-top: 20px;
-        margin-bottom: 30px;
+/*        margin-bottom: 30px;*/
     }
     /* size */
     .block-26 {
@@ -4673,7 +4673,7 @@ h6 {
 
  /*   css trang test 1*/
 .s_product_text .size-wrap .card_area {
-    margin-top: 13rem;
+    margin-top: 14.5rem;
 }
 
 .s_product_text .size-wrap .product_count input {
