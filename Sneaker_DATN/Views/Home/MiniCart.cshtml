@@ -9,7 +9,21 @@
 @{ string fullName = Context.Session.GetString(SessionKey.Guest.Guest_FullName);
 }
 
-
+<style>
+    .text-minicart a:hover {
+        background-color: transparent !important;
+    }
+    .text-custom-minicart {
+        background-color: #fff !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+    .text-custom-minicart:hover {
+        background-color: #fff !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+</style>
 
 <div class="modal-content minicart-custom-content">
     <div class="modal-body minicart-custom-body">
@@ -78,7 +92,7 @@
                             </ul>
                         </div>
                         <div class="minicart-button">
-                            <div class="minicart-button-ct  col-lg-12">
+                            <div class="minicart-button-ct col-lg-12 mb-5">
                                 <a class="col-lg-6  d-flex align-items-center" asp-controller="Home" asp-action="Cart"><i class='bx bx-shopping-bag bx-sm'></i> Xem giỏ hàng</a>
                                 @if (fullName != null && fullName != "")
                                 {
@@ -90,9 +104,12 @@
                                   
                                     <span class="d-flex align-items-center">Bạn cần 
                                         &nbsp; 
-                                        <a class="text-danger text-lowercase" style="border: none; background: transparent;" asp-action="Login">đăng nhập</a> 
+                                        <div class="text-minicart">
+                                            <a class="text-danger text-lowercase text-custom-minicart" asp-action="Login">đăng nhập</a>
+                                        </div>
                                         &nbsp; 
                                         để đặt hàng
+                                           
                                     </span>
                                 }
                             </div>
