@@ -7,6 +7,8 @@
 
 .text-minicart a:hover {
     background-color: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
 }
 
 .text-custom-minicart {
@@ -22,6 +24,6 @@
     }
 
 .minicart-button a:hover {
-    box-shadow: 0 0 5px #576ee0, 0 0 10px #576ee0, 0 0 25px #576ee0, 0 0 50px #576ee0 !important;
+    box-shadow: 0 0 5px #576ee0, 0 0 10px #576ee0, 0 0 25px #576ee0, 0 0 50px #576ee0;
     /*  box-shadow: 0 0 5px #576ee0, 0 0 25px #576ee0, 0 0 50px #576ee0, 0 0 200px #576ee0;*/
 }

@@ -9,7 +9,6 @@
 @{ string fullName = Context.Session.GetString(SessionKey.Guest.Guest_FullName);
 }
 
-
 <div class="modal-content minicart-custom-content">
     <div class="modal-body minicart-custom-body">
         <!-- offcanvas mini cart start -->
@@ -87,11 +86,9 @@
                                 {
                                     <a class="col-lg-6 d-flex align-items-center" onclick="return false" asp-controller="Home" asp-action="Checkout"><i class='bx bx-navigation bx-sm'></i> Thanh toán</a>
                                   
-                                    <span class="d-flex align-items-center">Bạn cần 
+                                    <span class="d-flex align-items-center text-minicart">Bạn cần 
                                         &nbsp; 
-                                        <div class="text-minicart">
                                             <a class="text-danger text-lowercase text-custom-minicart" asp-action="Login">đăng nhập</a>
-                                        </div>
                                         &nbsp; 
                                         để đặt hàng
                                            
