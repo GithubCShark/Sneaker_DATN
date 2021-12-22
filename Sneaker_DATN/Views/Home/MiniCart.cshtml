@@ -9,21 +9,6 @@
 @{ string fullName = Context.Session.GetString(SessionKey.Guest.Guest_FullName);
 }
 
-<style>
-    .text-minicart a:hover {
-        background-color: transparent !important;
-    }
-    .text-custom-minicart {
-        background-color: #fff !important;
-        border: none !important;
-        box-shadow: none !important;
-    }
-    .text-custom-minicart:hover {
-        background-color: #fff !important;
-        border: none !important;
-        box-shadow: none !important;
-    }
-</style>
 
 <div class="modal-content minicart-custom-content">
     <div class="modal-body minicart-custom-body">
@@ -92,7 +77,7 @@
                             </ul>
                         </div>
                         <div class="minicart-button">
-                            <div class="minicart-button-ct col-lg-12 mb-5">
+                            <div class="minicart-button-ct col-lg-12">
                                 <a class="col-lg-6  d-flex align-items-center" asp-controller="Home" asp-action="Cart"><i class='bx bx-shopping-bag bx-sm'></i> Xem giỏ hàng</a>
                                 @if (fullName != null && fullName != "")
                                 {
